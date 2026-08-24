@@ -5,6 +5,7 @@ playwright-report/
 test-results/
 .wrangler/
 supabase/.temp/
+supabase/.branches/
 .env
 .env.*
 !.env.example
