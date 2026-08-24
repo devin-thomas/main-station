@@ -21,14 +21,14 @@ function database(): Promise<IDBPDatabase<MainStationDatabase>> {
 }
 
 function cloneEmptyDraft(): GuestDraft {
-  return structuredClone(emptyDraft);
+  return { ...structuredClone(emptyDraft), requestId: crypto.randomUUID() };
 }
 
 export async function loadGuestDraft(): Promise<GuestDraft> {
   const stored = await (await database()).get('drafts', 'active');
   if (!stored) return cloneEmptyDraft();
   if (stored.version !== 1) throw new Error('This guest draft uses an unsupported data version. Export or clear it before continuing.');
-  return stored;
+  return { ...stored, requestId: stored.requestId || crypto.randomUUID() };
 }
 
 export async function saveGuestDraft(draft: GuestDraft): Promise<void> {

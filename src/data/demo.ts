@@ -46,6 +46,7 @@ export const demoLineups: Lineup[] = [
 
 export const emptyDraft: GuestDraft = {
   version: 1,
+  requestId: '00000000-0000-4000-8000-000000000000',
   profile: { displayName: '', handle: '', bio: '' },
   lineups: [],
   updatedAt: createdAt,
@@ -53,6 +54,7 @@ export const emptyDraft: GuestDraft = {
 
 export const demoProfile: GuestDraft = {
   version: 1,
+  requestId: '00000000-0000-4000-8000-000000000001',
   profile: {
     displayName: 'Station Zero',
     handle: 'station-zero',

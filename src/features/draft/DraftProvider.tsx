@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { DraftProfile, GuestDraft, Lineup } from '../../types/domain';
-import { clearGuestDraft, loadGuestDraft, saveGuestDraft } from './draftStore';
+import { clearGuestDraft, loadGuestDraft, preserveRecoveryDraft, saveGuestDraft } from './draftStore';
 
 interface DraftContextValue {
   draft: GuestDraft;
@@ -10,11 +10,13 @@ interface DraftContextValue {
   addLineup(lineup: Lineup): Promise<void>;
   removeLineup(lineupId: string): Promise<void>;
   replaceDraft(draft: GuestDraft): Promise<void>;
+  preserveRecovery(): Promise<void>;
   clearDraft(): Promise<void>;
 }
 
 const initialDraft: GuestDraft = {
   version: 1,
+  requestId: '00000000-0000-4000-8000-000000000000',
   profile: { displayName: '', handle: '', bio: '' },
   lineups: [],
   updatedAt: new Date(0).toISOString(),
@@ -45,9 +47,10 @@ export function DraftProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const commit = useCallback(async (nextDraft: GuestDraft) => {
+    const versionedDraft = { ...nextDraft, requestId: crypto.randomUUID() };
     try {
-      await saveGuestDraft(nextDraft);
-      setDraft(nextDraft);
+      await saveGuestDraft(versionedDraft);
+      setDraft(versionedDraft);
       setStorageError(null);
     } catch (error) {
       const message = error instanceof Error ? error.message : 'The guest draft could not be saved.';
@@ -71,6 +74,9 @@ export function DraftProvider({ children }: { children: ReactNode }) {
     },
     async replaceDraft(nextDraft) {
       await commit({ ...nextDraft, updatedAt: new Date().toISOString() });
+    },
+    async preserveRecovery() {
+      await preserveRecoveryDraft(draft);
     },
     async clearDraft() {
       try {

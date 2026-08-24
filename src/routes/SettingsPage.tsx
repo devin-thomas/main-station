@@ -1,8 +1,11 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import type { Session } from '@supabase/supabase-js';
+import { Link } from 'react-router-dom';
 import { useDraft } from '../features/draft/DraftProvider';
 import { sendEmailLink, signInWithDiscord, signOut } from '../features/auth/auth';
+import { getMyRegisteredHandle, writeProfileDraft } from '../features/profile/profile';
 import { useInstall } from '../features/pwa/useInstall';
+import { validateLineup } from '../lib/lineupValidation';
 import { supabase, supabaseConfigured } from '../lib/supabase';
 
 function downloadJson(filename: string, value: unknown) {
@@ -15,12 +18,16 @@ function downloadJson(filename: string, value: unknown) {
 }
 
 export function SettingsPage() {
-  const { draft, clearDraft } = useDraft();
+  const { draft, clearDraft, preserveRecovery } = useDraft();
   const install = useInstall();
   const [email, setEmail] = useState('');
   const [authMessage, setAuthMessage] = useState<string | null>(null);
   const [authError, setAuthError] = useState<string | null>(null);
   const [session, setSession] = useState<Session | null>(null);
+  const [registeredHandle, setRegisteredHandle] = useState<string | null>(null);
+  const [registeredOwnerId, setRegisteredOwnerId] = useState<string | null>(null);
+  const [syncing, setSyncing] = useState(false);
+  const [online, setOnline] = useState(() => navigator.onLine);
 
   useEffect(() => {
     if (!supabase) return;
@@ -28,9 +35,49 @@ export function SettingsPage() {
       if (error) setAuthError(error.message);
       else setSession(data.session);
     });
-    const { data } = supabase.auth.onAuthStateChange((_event, nextSession) => setSession(nextSession));
+    const { data } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      setSession(nextSession);
+      if (!nextSession) {
+        setRegisteredHandle(null);
+        setRegisteredOwnerId(null);
+      }
+    });
     return () => data.subscription.unsubscribe();
   }, []);
+
+  useEffect(() => {
+    let active = true;
+    if (!session) return;
+    void getMyRegisteredHandle(session.user.id)
+      .then((handle) => {
+        if (active) {
+          setRegisteredHandle(handle);
+          setRegisteredOwnerId(session.user.id);
+        }
+      })
+      .catch((error: unknown) => {
+        if (active) setAuthError(error instanceof Error ? error.message : 'The registered profile could not be checked.');
+      });
+    return () => {
+      active = false;
+    };
+  }, [session]);
+
+  useEffect(() => {
+    const updateConnection = () => setOnline(navigator.onLine);
+    window.addEventListener('online', updateConnection);
+    window.addEventListener('offline', updateConnection);
+    return () => {
+      window.removeEventListener('online', updateConnection);
+      window.removeEventListener('offline', updateConnection);
+    };
+  }, []);
+
+  const draftCanSync = draft.profile.displayName.trim().length > 0
+    && /^[a-z0-9][a-z0-9-]{1,30}[a-z0-9]$/.test(draft.profile.handle)
+    && draft.lineups.every((lineup) => validateLineup(lineup).valid);
+  const profileLoading = Boolean(session && registeredOwnerId !== session.user.id);
+  const hasRegisteredProfile = Boolean(session && registeredOwnerId === session.user.id && registeredHandle);
 
   async function requestEmailLink(event: FormEvent) {
     event.preventDefault();
@@ -64,6 +111,35 @@ export function SettingsPage() {
     }
   }
 
+  async function requestProfileWrite() {
+    if (!session) return;
+    setAuthMessage(null);
+    setAuthError(null);
+    if (!online) {
+      setAuthError('Registered saves require a network connection. The local draft remains unchanged.');
+      return;
+    }
+    if (!draftCanSync) {
+      setAuthError('Complete the local identity and every saved Character or Team before syncing.');
+      return;
+    }
+    setSyncing(true);
+    try {
+      const replacing = hasRegisteredProfile;
+      if (!replacing) await preserveRecovery();
+      const receipt = await writeProfileDraft(draft, replacing);
+      setRegisteredHandle(receipt.handle);
+      setRegisteredOwnerId(session.user.id);
+      setAuthMessage(replacing
+        ? `Registered profile saved with ${receipt.lineupCount} ${receipt.lineupCount === 1 ? 'stop' : 'stops'}.`
+        : `Draft claimed as @${receipt.handle}. A local recovery copy is retained on this device.`);
+    } catch (error) {
+      setAuthError(error instanceof Error ? error.message : 'The registered profile could not be saved. The local draft remains unchanged.');
+    } finally {
+      setSyncing(false);
+    }
+  }
+
   async function deleteAccount() {
     if (!supabase || !session) return;
     const confirmed = window.confirm('Delete this public profile, every Character and Team, recommendation contribution, and feedback? This cannot be undone.');
@@ -75,6 +151,8 @@ export function SettingsPage() {
       return;
     }
     await supabase.auth.signOut({ scope: 'local' });
+    setRegisteredHandle(null);
+    setRegisteredOwnerId(null);
     setAuthMessage('Account deleted. Derived state must exclude the removed source immediately and finish cleanup within 24 hours.');
   }
 
@@ -91,7 +169,7 @@ export function SettingsPage() {
     <div className="settings-page page-frame">
       <header className="page-title">
         <div><p className="eyebrow">ACCOUNT / INSTALL / DATA</p><h1>Station controls.</h1></div>
-        <p>Account data is server-authoritative. The guest draft below is local to this browser profile until you explicitly claim it.</p>
+        <p>Account data is server-authoritative. Builder changes stay local to this browser until you explicitly claim or sync them here.</p>
       </header>
 
       <div className="settings-ledger">
@@ -108,7 +186,25 @@ export function SettingsPage() {
             ) : session ? (
               <div className="account-session">
                 <p>Signed in as <strong>{session.user.email ?? session.user.id}</strong></p>
-                <button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button>
+                {profileLoading ? (
+                  <p className="fine-print" role="status">Checking registered profile…</p>
+                ) : hasRegisteredProfile ? (
+                  <p>Registered as <Link className="text-link" to={`/p/${registeredHandle}`}>@{registeredHandle}</Link>.</p>
+                ) : (
+                  <p>No registered MainStation profile yet. Claiming creates a public profile; private Characters and Teams remain absent from it.</p>
+                )}
+                <p className="fine-print">Registered writes are online-only. A failed request leaves this local draft intact; no background outbox is implied.</p>
+                <div className="command-row">
+                  <button
+                    type="button"
+                    className="button-primary"
+                    disabled={profileLoading || syncing || !online || !draftCanSync}
+                    onClick={() => void requestProfileWrite()}
+                  >
+                    {syncing ? 'Saving...' : hasRegisteredProfile ? 'Save registered copy' : 'Claim guest draft'}
+                  </button>
+                  <button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button>
+                </div>
               </div>
             ) : (
               <div className="auth-controls">

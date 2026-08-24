@@ -79,6 +79,7 @@ export interface DraftProfile {
 
 export interface GuestDraft {
   version: 1;
+  requestId: string;
   profile: DraftProfile;
   lineups: Lineup[];
   updatedAt: string;
