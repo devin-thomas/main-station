@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+.wrangler/
+supabase/.temp/
+.env
+.env.*
+!.env.example
+*.local
+*.log
+.DS_Store
+Thumbs.db
+
+# Unapproved legacy identity asset; the final MainStation logo is still pending.
+MainStation Logo.png

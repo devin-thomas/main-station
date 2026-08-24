@@ -1,0 +1,41 @@
+import { useState } from 'react';
+import type { Character, GameVersion } from '../types/domain';
+
+interface CharacterStageProps {
+  character: Character;
+  game: GameVersion;
+  compact?: boolean;
+}
+
+export function CharacterStage({ character, game, compact = false }: CharacterStageProps) {
+  const [imageAvailable, setImageAvailable] = useState(Boolean(character.art));
+  const showImage = imageAvailable && character.art;
+
+  return (
+    <figure className={`character-stage${compact ? ' character-stage--compact' : ''}`}>
+      <div className="character-stage__index" aria-hidden="true">{game.shortName}</div>
+      {showImage ? (
+        <img
+          className="character-stage__art"
+          src={showImage.localPath}
+          alt={`${character.name} official character art for ${game.name}`}
+          onError={() => setImageAvailable(false)}
+        />
+      ) : (
+        <div className="character-stage__fallback" role="img" aria-label={`${character.name}; approved character art is not available yet`}>
+          <span>{game.shortName}</span>
+          <strong>{character.name}</strong>
+          <small>ART RIGHTS REVIEW</small>
+        </div>
+      )}
+      <div className="character-stage__rail" aria-hidden="true">
+        <span />
+      </div>
+      {showImage && (
+        <figcaption className="character-stage__credit">
+          <a href={showImage.licenseUrl} target="_blank" rel="noreferrer">{showImage.creditText}</a>
+        </figcaption>
+      )}
+    </figure>
+  );
+}

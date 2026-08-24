@@ -1,0 +1,295 @@
+import type { Character, GameVersion, SelectionSchema } from '../types/domain';
+
+const fighter = (
+  slug: string,
+  name: string,
+  summary: string,
+  sourceUrl: string,
+  extra: Partial<Character> = {},
+): Character => ({ slug, name, summary, sourceUrl, role: 'fighter', ...extra });
+
+const soloSchema = (verified = true): SelectionSchema => ({
+  version: 1,
+  noun: 'Character',
+  verified,
+  ordered: false,
+  uniqueCharacters: true,
+  slots: [{ id: 'fighter', label: 'Character', allowedRoles: ['fighter'] }],
+});
+
+const teamSchema = (count: number, verified = true): SelectionSchema => ({
+  version: 1,
+  noun: 'Team',
+  verified,
+  ordered: true,
+  uniqueCharacters: true,
+  slots: Array.from({ length: count }, (_, index) => ({
+    id: `slot-${index + 1}`,
+    label: `Slot ${index + 1}`,
+    allowedRoles: ['fighter'] as const,
+  })),
+});
+
+const mvcSchema = (assistValues: string[]): SelectionSchema => ({
+  version: 1,
+  noun: 'Team',
+  verified: true,
+  ordered: true,
+  uniqueCharacters: true,
+  slots: Array.from({ length: 3 }, (_, index) => ({
+    id: `slot-${index + 1}`,
+    label: ['Point', 'Middle', 'Anchor'][index],
+    allowedRoles: ['fighter'] as const,
+    optionLabel: 'Assist',
+    optionValues: assistValues,
+  })),
+});
+
+const sourceCheckedAt = '2026-08-24';
+
+export const catalog: GameVersion[] = [
+  {
+    slug: '2xko',
+    name: '2XKO',
+    shortName: '2XKO',
+    releaseLabel: 'Live roster preview',
+    sourceUrl: 'https://2xko.riotgames.com/en-us/champions/',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: {
+      ...teamSchema(2, false),
+      teamOptionLabel: 'Fuse',
+      verificationNote: 'The two-Champion structure is confirmed. Current Fuse values require the catalog verification pass before saves are enabled.',
+    },
+    characters: [
+      fighter('ekko', 'Ekko', 'A mobile close-range fighter built around temporal pressure and layered mixups.', 'https://2xko.riotgames.com/en-us/champions/ekko/'),
+      fighter('ahri', 'Ahri', 'A mobile mage who turns space control into fast approach and conversion routes.', 'https://2xko.riotgames.com/en-us/champions/ahri/'),
+      fighter('darius', 'Darius', 'A heavy mid-range threat whose axe controls movement and rewards decisive reads.', 'https://2xko.riotgames.com/en-us/champions/'),
+      fighter('yasuo', 'Yasuo', 'A stance-rich swordsman with precise movement and expressive combo routing.', 'https://2xko.riotgames.com/en-us/champions/'),
+    ],
+  },
+  {
+    slug: 'marvel-tokon',
+    name: 'Marvel Tokon: Fighting Souls',
+    shortName: 'TOKON',
+    releaseLabel: 'Launch roster preview',
+    sourceUrl: 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: teamSchema(4),
+    characters: [
+      fighter('magik', 'Magik', 'A sword-wielding fighter who uses stepping discs to attack from changing angles.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/'),
+      fighter('spider-man', 'Spider-Man', 'A high-mobility fighter who uses webs to close distance and sustain pressure.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/'),
+      fighter('black-panther', 'Black Panther', 'The Queen of Wakanda fights with speed, precision, and close-range control.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/'),
+      fighter('storm', 'Storm', 'A technical space-control fighter who redirects offense through Tempest.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/'),
+      fighter('iron-man', 'Iron Man', 'A mid-range specialist with a broad projectile and air-mobility toolkit.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/'),
+      fighter('doctor-doom', 'Doctor Doom', 'A controlling team fighter who turns layered threats into oppressive screen presence.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/'),
+    ],
+  },
+  {
+    slug: 'mvc2',
+    name: 'Marvel vs. Capcom 2',
+    shortName: 'MVC2',
+    releaseLabel: 'Arcade / collection ruleset',
+    sourceUrl: 'https://game.capcom.com/manual/MVCFC/en/switch/top',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: mvcSchema(['Assist A', 'Assist B', 'Assist C']),
+    characters: [
+      fighter('storm', 'Storm', 'A fast, flight-capable team cornerstone with exceptional movement and control.', 'https://game.capcom.com/manual/MVCFC/en/switch/top'),
+      fighter('magneto', 'Magneto', 'An explosive rushdown character built around tri-jump pressure and fast confirms.', 'https://game.capcom.com/manual/MVCFC/en/switch/top'),
+      fighter('sentinel', 'Sentinel', 'A large-body anchor with flight pressure, armor, and a defining assist.', 'https://game.capcom.com/manual/MVCFC/en/switch/top'),
+      fighter('cable', 'Cable', 'A projectile specialist who converts meter and assists into screen control.', 'https://game.capcom.com/manual/MVCFC/en/switch/top'),
+    ],
+  },
+  {
+    slug: 'umvc3',
+    name: 'Ultimate Marvel vs. Capcom 3',
+    shortName: 'UMVC3',
+    releaseLabel: 'Ultimate roster',
+    sourceUrl: 'https://www.capcom.com/manuals/umvc3/',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: mvcSchema(['Assist alpha', 'Assist beta', 'Assist gamma']),
+    characters: [
+      fighter('zero', 'Zero', 'A highly mobile point character with layered lightning pressure and long confirms.', 'https://www.capcom.com/manuals/umvc3/'),
+      fighter('vergil', 'Vergil', 'A dominant sword user with broad conversion tools and threatening meter use.', 'https://www.capcom.com/manuals/umvc3/'),
+      fighter('doom', 'Doctor Doom', 'A flexible team staple with flight movement and several high-value assists.', 'https://www.capcom.com/manuals/umvc3/'),
+      fighter('dante', 'Dante', 'A technical all-range fighter with an unusually broad special-move kit.', 'https://www.capcom.com/manuals/umvc3/'),
+    ],
+  },
+  {
+    slug: 'uni2',
+    name: 'Under Night In-Birth II Sys:Celes',
+    shortName: 'UNI2',
+    releaseLabel: 'Current official roster',
+    sourceUrl: 'https://www.arcsystemworks.jp/uni2celes/en/character/',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: soloSchema(),
+    characters: [
+      fighter('hyde', 'Hyde', 'A versatile sword user whose grounded fundamentals lead into strong pressure.', 'https://www.arcsystemworks.jp/uni2celes/en/character/hyde.php', {
+        art: {
+          localPath: '/art/uni2-hyde.png',
+          sourceUrl: 'https://www.arcsystemworks.jp/uni2celes/en/fankit/',
+          licenseUrl: 'https://www.arcsystemworks.jp/uni2celes/en/fankit/',
+          creditText: '© FRENCH-BREAD / ARC SYSTEM WORKS',
+          usageBasis: 'official-fankit',
+          assetHash: 'sha256:6deb04b76669e9e05ea301e53ddaecb0a31d312c4b313c675ba41a2b3f5038e4',
+          reviewedAt: sourceCheckedAt,
+        },
+      }),
+      fighter('linne', 'Linne', 'A compact, high-speed fighter who uses fast movement to create close-range openings.', 'https://www.arcsystemworks.jp/uni2celes/en/character/linne.php'),
+      fighter('yuzuriha', 'Yuzuriha', 'A long-range stance character who rewards measured spacing and precise commitments.', 'https://www.arcsystemworks.jp/uni2celes/en/character/yuzuriha.php'),
+      fighter('waldstein', 'Waldstein', 'A command-grab threat whose enormous normals force opponents to respect his reach.', 'https://www.arcsystemworks.jp/uni2celes/en/character/waldstein.php'),
+    ],
+  },
+  {
+    slug: 'avatar-legends',
+    name: 'Avatar Legends: The Fighting Game',
+    shortName: 'AVATAR',
+    releaseLabel: 'Roster preview',
+    sourceUrl: 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: {
+      ...teamSchema(2, false),
+      verificationNote: 'The required support/fuse-equivalent selection is not yet verified against a stable first-party rules reference.',
+    },
+    characters: [
+      fighter('azula', 'Azula', 'A precise firebender who turns disciplined spacing into explosive offense.', 'https://steamcommunity.com/app/2424420/announcements/'),
+      fighter('aang', 'Aang', 'A highly mobile airbender built around evasive movement and redirection.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/'),
+      fighter('korra', 'Korra', 'A direct, athletic bender who shifts elements to cover different ranges.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/'),
+      fighter('zuko', 'Zuko', 'A pressure-focused firebender who advances behind controlled flame attacks.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/'),
+    ],
+  },
+  {
+    slug: 'melee',
+    name: 'Super Smash Bros. Melee',
+    shortName: 'MELEE',
+    releaseLabel: 'NTSC 1.02',
+    sourceUrl: 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: soloSchema(),
+    characters: [
+      fighter('fox', 'Fox', 'A fast, execution-heavy character with explosive punish routes and flexible tools.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html'),
+      fighter('marth', 'Marth', 'A spacing-focused swordsman whose strongest hits reward precise range control.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html'),
+      fighter('falco', 'Falco', 'A high-pressure glass cannon with dominant vertical combos and a disruptive laser.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html'),
+      fighter('sheik', 'Sheik', 'A grounded conversion specialist with quick normals and reliable edge pressure.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html'),
+    ],
+  },
+  {
+    slug: 'ggxxacpr',
+    name: 'Guilty Gear XX Accent Core Plus R',
+    shortName: '+R',
+    releaseLabel: 'Plus R',
+    sourceUrl: 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: soloSchema(),
+    characters: [
+      fighter('sol', 'Sol Badguy', 'An aggressive all-rounder with explosive close-range conversions.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/'),
+      fighter('ky', 'Ky Kiske', 'A measured all-rounder who controls lanes with sword normals and projectiles.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/'),
+      fighter('testament', 'Testament', 'A trap-oriented space controller who layers threats across the screen.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/'),
+      fighter('zappa', 'Zappa', 'An unorthodox stance character whose summoned spirits radically alter his options.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/'),
+    ],
+  },
+  {
+    slug: 'vampire-savior',
+    name: 'Vampire Savior',
+    shortName: 'VSAV',
+    releaseLabel: 'Darkstalkers 3 arcade rules',
+    sourceUrl: 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: soloSchema(),
+    characters: [
+      fighter('morrigan', 'Morrigan', 'A mobile offense character with flight movement and layered projectile pressure.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html'),
+      fighter('jedah', 'Jedah', 'A mobile space-control character with unusual air movement and command threats.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html'),
+      fighter('bulleta', 'Bulleta', 'A deceptive rushdown fighter who hides dangerous pressure behind playful movement.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html'),
+      fighter('q-bee', 'Q-Bee', 'A fast aerial attacker whose mobility creates difficult left-right pressure.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html'),
+    ],
+  },
+  {
+    slug: 'sf6',
+    name: 'Street Fighter 6',
+    shortName: 'SF6',
+    releaseLabel: 'Current live version',
+    sourceUrl: 'https://game.capcom.com/manual/SF6/en/ps5/page/1/1',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: soloSchema(),
+    characters: [
+      fighter('ken', 'Ken', 'An aggressive shoto who converts forward movement into corner pressure.', 'https://www.streetfighter.com/6/en-us/character/ken'),
+      fighter('chun-li', 'Chun-Li', 'A technical neutral specialist with fast buttons, charge tools, and stance routes.', 'https://www.streetfighter.com/6/en-us/character/chunli'),
+      fighter('akuma', 'Akuma', 'A volatile shoto with broad offensive options balanced by lower vitality.', 'https://www.streetfighter.com/6/en-us/character/akuma'),
+      fighter('juri', 'Juri', 'A mobile pressure character who stores resources to extend offense and routing.', 'https://www.streetfighter.com/6/en-us/character/juri'),
+    ],
+  },
+  {
+    slug: 'mk1',
+    name: 'Mortal Kombat 1',
+    shortName: 'MK1',
+    releaseLabel: 'Definitive roster',
+    sourceUrl: 'https://www.mortalkombat.com/en-gb/roster',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: {
+      version: 1,
+      noun: 'Team',
+      verified: true,
+      ordered: true,
+      uniqueCharacters: true,
+      slots: [
+        { id: 'fighter', label: 'Fighter', allowedRoles: ['fighter'] },
+        { id: 'kameo', label: 'Kameo', allowedRoles: ['kameo'] },
+      ],
+    },
+    characters: [
+      fighter('scorpion', 'Scorpion', 'A direct pressure fighter whose spear and teleports punish careless space.', 'https://www.mortalkombat.com/en-gb/roster'),
+      fighter('sub-zero', 'Sub-Zero', 'A defensive fighter who uses ice to control movement and confirm openings.', 'https://www.mortalkombat.com/en-gb/roster'),
+      fighter('mileena', 'Mileena', 'A fast attacker with sudden movement and punishing close-range sequences.', 'https://www.mortalkombat.com/en-gb/roster'),
+      { ...fighter('sonya', 'Sonya', 'A Kameo partner who extends pressure and converts grounded openings.', 'https://www.mortalkombat.com/en-gb/roster'), role: 'kameo' },
+      { ...fighter('kano', 'Kano', 'A Kameo partner whose knives and ball attacks add flexible coverage.', 'https://www.mortalkombat.com/en-gb/roster'), role: 'kameo' },
+    ],
+  },
+  {
+    slug: 'tekken-8',
+    name: 'Tekken 8',
+    shortName: 'TEKKEN 8',
+    releaseLabel: 'Current live roster',
+    sourceUrl: 'https://tekken.com/fighters',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: soloSchema(),
+    characters: [
+      fighter('jin', 'Jin Kazama', 'A versatile Mishima-style fighter with strong punishment and stance transitions.', 'https://tekken.com/fighters/jin-kazama'),
+      fighter('reina', 'Reina', 'An assertive close-range fighter combining Mishima tools with agile stance pressure.', 'https://tekken.com/fighters/reina'),
+      fighter('king', 'King', 'A grappler with layered throw chains and powerful counter-hit offense.', 'https://tekken.com/fighters/king'),
+      fighter('lili', 'Lili', 'A movement-oriented fighter who creates evasive angles and wall pressure.', 'https://tekken.com/fighters/lili'),
+    ],
+  },
+  {
+    slug: 'ggst',
+    name: 'Guilty Gear -Strive-',
+    shortName: 'STRIVE',
+    releaseLabel: 'Current live roster',
+    sourceUrl: 'https://www.guiltygear.com/ggst/en/character/',
+    catalogStatus: 'fixture',
+    playerCount: null,
+    schema: soloSchema(),
+    characters: [
+      fighter('sol', 'Sol Badguy', 'A forceful close-range all-rounder with explosive damage and direct pressure.', 'https://www.guiltygear.com/ggst/en/character/sol/'),
+      fighter('ramlethal', 'Ramlethal Valentine', 'A mid-range controller who turns sword placement into suffocating corner offense.', 'https://www.guiltygear.com/ggst/en/character/ramlethal/'),
+      fighter('nagoriyuki', 'Nagoriyuki', 'A high-damage swordsman whose blood resource governs movement and restraint.', 'https://www.guiltygear.com/ggst/en/character/nagoriyuki/'),
+      fighter('bridget', 'Bridget', 'A mobile setplay fighter who uses yo-yo placement to sustain layered approaches.', 'https://www.guiltygear.com/ggst/en/character/bridget/'),
+    ],
+  },
+];
+
+export const catalogBySlug = new Map(catalog.map((game) => [game.slug, game]));
+
+export function findCharacter(gameSlug: string, characterSlug: string): Character | undefined {
+  return catalogBySlug.get(gameSlug)?.characters.find((character) => character.slug === characterSlug);
+}
