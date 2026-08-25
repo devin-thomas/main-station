@@ -101,7 +101,10 @@ export function BuilderPage() {
           <p className="eyebrow">LOCAL DRAFT / SAVED ON THIS DEVICE</p>
           <h1>Build your line.</h1>
         </div>
-        <p>Choose one exact Game Version, construct a complete Character or Team, then decide how it belongs in your history. Your public name and handle come after you create an account.</p>
+        <div className="builder-intro">
+          <p>Choose one exact Game Version, construct a complete Character or Team, then decide how it belongs in your history. Your public name and handle come after you create an account.</p>
+          <Link className="button-primary builder-intro__cta" to="/settings">Create account to save &amp; share</Link>
+        </div>
       </header>
 
       {storageError && <div className="notice notice--error" role="alert"><strong>Draft storage failed</strong><p>{storageError}</p></div>}
@@ -219,8 +222,8 @@ export function BuilderPage() {
 
       <section className="draft-line" aria-labelledby="draft-line-heading">
         <div className="section-heading section-heading--split">
-          <div><p className="eyebrow">03 / REVIEW DRAFT</p><h2 id="draft-line-heading">Your local Mainline</h2></div>
-          <Link className="text-link" to="/settings">Claim this draft with an account</Link>
+          <div><p className="eyebrow">03 / REVIEW DRAFT</p><h2 id="draft-line-heading">Your saved draft</h2></div>
+          <div className="draft-claim"><p>Save this draft online to use it across devices and share your profile when you are ready.</p><Link className="button-primary" to="/settings">Create account to save this draft</Link></div>
         </div>
         <Mainline lineups={draft.lineups} label="Guest draft Mainline" />
         {draft.lineups.length > 0 && (

@@ -134,6 +134,7 @@ p {
 .button-secondary,
 .button-danger,
 .header-command,
+.header-auth,
 .button-quiet {
   display: inline-flex;
   min-height: 44px;
@@ -153,13 +154,15 @@ p {
 }
 
 .button-primary,
-.header-command {
+.header-command,
+.header-auth {
   color: #051012;
   background: var(--signal);
 }
 
 .button-primary:hover,
-.header-command:hover {
+.header-command:hover,
+.header-auth:hover {
   background: #7bdbe4;
 }
 
@@ -309,6 +312,20 @@ button:disabled {
   border-radius: 0;
 }
 
+.header-actions {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  padding: 10px 16px;
+}
+
+.header-auth {
+  min-width: 156px;
+  border-radius: 999px;
+  padding-inline: 20px;
+  white-space: nowrap;
+}
+
 .system-rail {
   position: relative;
   z-index: 100;
@@ -426,6 +443,34 @@ button:disabled {
   max-width: 46ch;
   margin-bottom: 0;
   color: var(--text-muted);
+}
+
+.page-title--builder {
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+  gap: clamp(28px, 5vw, 64px);
+}
+
+.page-title--builder h1 {
+  font-size: clamp(3.75rem, 7vw, 6.8rem);
+}
+
+.builder-intro {
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+}
+
+.builder-intro p {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1rem, 1.35vw, 1.16rem);
+  line-height: 1.55;
+}
+
+.builder-intro__cta {
+  min-height: 52px;
+  padding-inline: 22px;
 }
 
 .entry-stage {
@@ -914,7 +959,7 @@ button:disabled {
 label {
   color: var(--text-muted);
   font-family: var(--mono);
-  font-size: .67rem;
+  font-size: .74rem;
   letter-spacing: .04em;
   text-transform: uppercase;
 }
@@ -928,6 +973,7 @@ select {
   padding: 10px 12px;
   color: var(--text);
   background: var(--surface-deep);
+  font-size: .94rem;
 }
 
 input:hover,
@@ -967,7 +1013,7 @@ select:hover {
 .game-selector__item {
   display: grid;
   grid-template-columns: 26px 1fr auto;
-  min-height: 54px;
+  min-height: 60px;
   align-items: center;
   gap: 8px;
   border: 0;
@@ -992,7 +1038,7 @@ select:hover {
 .game-selector__item span,
 .game-selector__item small {
   font-family: var(--mono);
-  font-size: .55rem;
+  font-size: .63rem;
 }
 
 .game-selector__item strong {
@@ -1017,7 +1063,7 @@ select:hover {
 
 .lineup-editor__heading h2 {
   margin: 0;
-  font-size: clamp(2.5rem, 5vw, 5.4rem);
+  font-size: clamp(2.35rem, 4.2vw, 4.35rem);
 }
 
 .status-mark {
@@ -1129,6 +1175,31 @@ select:hover {
 
 .draft-line {
   padding: 80px 0 0;
+}
+
+.draft-line .section-heading h2 {
+  font-size: clamp(2.5rem, 4.5vw, 4.35rem);
+}
+
+.draft-claim {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+  border-left: 3px solid var(--signal);
+  padding: 4px 0 4px 20px;
+}
+
+.draft-claim p {
+  max-width: 42ch;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: .96rem;
+  line-height: 1.55;
+}
+
+.draft-claim .button-primary {
+  min-height: 52px;
+  padding-inline: 22px;
 }
 
 .draft-actions {
@@ -1969,6 +2040,10 @@ select:hover {
     display: none;
   }
 
+  .header-actions {
+    padding: 10px 14px;
+  }
+
   .entry-stage {
     grid-template-columns: 1fr;
   }
@@ -2120,6 +2195,17 @@ select:hover {
     overflow: hidden;
   }
 
+  .header-actions {
+    width: 100%;
+    border-top: 1px solid var(--rule-dim);
+    padding: 8px 12px;
+  }
+
+  .header-auth {
+    width: 100%;
+    min-height: 48px;
+  }
+
   .system-rail {
     flex-wrap: wrap;
   }
@@ -2154,6 +2240,14 @@ select:hover {
   .entry-stage h1,
   .page-title h1 {
     font-size: clamp(4rem, 22vw, 7rem);
+  }
+
+  .page-title--builder h1 {
+    font-size: clamp(3.45rem, 17vw, 5.1rem);
+  }
+
+  .builder-intro p {
+    font-size: 1rem;
   }
 
   .page-title--account h1 {

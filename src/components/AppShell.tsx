@@ -14,7 +14,7 @@ export function AppShell() {
   const lifecycle = usePwaLifecycle();
   const { session, registeredHandle } = useAuth();
   const profilePath = registeredHandle ? `/p/${registeredHandle}` : session ? '/settings' : '/p/station-zero';
-  const accountLabel = registeredHandle ? `@${registeredHandle}` : session ? 'Account' : 'Sign in';
+  const accountLabel = registeredHandle ? `@${registeredHandle}` : 'Account';
   const isAccountRoute = location.pathname === '/settings';
 
   useEffect(() => {
@@ -64,9 +64,11 @@ export function AppShell() {
           <NavLink className={navClass} to="/build">Build</NavLink>
           <NavLink className={navClass} to="/recommend">Recommend</NavLink>
           <NavLink className={navClass} to={profilePath}>Profile</NavLink>
-          <NavLink className={navClass} to="/settings">{accountLabel}</NavLink>
         </nav>
-        {location.pathname !== '/build' && <NavLink className="header-command" to="/build">Add a main</NavLink>}
+        <div className="header-actions">
+          {location.pathname !== '/build' && <NavLink className="header-command" to="/build">Add a main</NavLink>}
+          <NavLink className="header-auth" to="/settings">{session ? accountLabel : 'Sign in / Sign up'}</NavLink>
+        </div>
       </header>
       <main id="main-content" tabIndex={-1}>
         <Outlet />
