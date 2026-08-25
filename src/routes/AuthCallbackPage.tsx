@@ -4,10 +4,18 @@ import { supabase } from '../lib/supabase';
 
 const safeDestinations = new Set(['/settings', '/build', '/recommend']);
 
+function oauthErrorMessage(params: URLSearchParams): string | null {
+  const error = params.get('error');
+  if (!error) return null;
+  if (error === 'access_denied') return 'Discord sign-in was cancelled. Your local draft is unchanged.';
+  return `Discord sign-in could not be completed (${error}). Your local draft is unchanged.`;
+}
+
 export function AuthCallbackPage() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
-  const [error, setError] = useState<string | null>(() => supabase ? null : 'Account features are not configured on this release. Your local draft is unchanged.');
+  const providerError = oauthErrorMessage(params);
+  const [error, setError] = useState<string | null>(() => providerError ?? (supabase ? null : 'Account features are not configured on this release. Your local draft is unchanged.'));
 
   useEffect(() => {
     let active = true;
@@ -15,12 +23,16 @@ export function AuthCallbackPage() {
     const destination = safeDestinations.has(requested) ? requested : '/settings';
     const code = params.get('code');
     const client = supabase;
-    if (!client) return;
+    if (!client || providerError) return;
     const complete = async () => {
       const result = code ? await client.auth.exchangeCodeForSession(code) : await client.auth.getSession();
       if (!active) return;
       if (result.error) {
         setError(result.error.message);
+        return;
+      }
+      if (!result.data.session) {
+        setError('Discord sign-in returned without a session. Try again; your local draft is unchanged.');
         return;
       }
       navigate(destination, { replace: true });
@@ -29,7 +41,7 @@ export function AuthCallbackPage() {
     return () => {
       active = false;
     };
-  }, [navigate, params]);
+  }, [navigate, params, providerError]);
 
   return (
     <div className="state-page page-frame">

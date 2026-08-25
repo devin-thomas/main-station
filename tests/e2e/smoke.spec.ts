@@ -22,6 +22,13 @@ test('unknown public route shows a real product 404', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'This stop is not on the line.' })).toBeVisible();
 });
 
+test('cancelled Discord sign-in stops visibly without touching the guest draft', async ({ page }) => {
+  await page.goto('/auth/callback?error=access_denied&next=%2Fsettings');
+  await expect(page.getByRole('heading', { name: 'Sign-in stopped safely.' })).toBeVisible();
+  await expect(page.getByRole('alert')).toContainText('Discord sign-in was cancelled. Your local draft is unchanged.');
+  await expect(page).toHaveURL(/\/auth\/callback/);
+});
+
 test('manifest and service worker are emitted in production', async ({ request }) => {
   const manifest = await request.get('/manifest.webmanifest');
   expect(manifest.ok()).toBeTruthy();
