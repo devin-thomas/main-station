@@ -1,19 +1,41 @@
 import { expect, test } from '@playwright/test';
+import { catalog } from '../../src/data/catalog';
 
 test('home, catalog, and cleared imagery render', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Your mains');
   await expect(page.locator('.wordmark__logo')).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Founding Game catalog' })).toBeVisible();
-  await expect(page.getByAltText(/Hyde official character art/)).toBeVisible();
+  await expect(page.getByAltText(/Hyde reviewed character artwork/)).toBeVisible();
   await expect(page.getByText('Developed by Uppercut Labs')).toBeVisible();
 
   await page.goto('/games/uni2');
   await expect(page.getByRole('heading', { name: 'Official roster' })).toBeVisible();
   await expect(page.locator('.roster-ledger li')).toHaveCount(28);
   await page.getByRole('link', { name: 'Zohar', exact: true }).click();
-  await expect(page.getByAltText(/Zohar official character art/)).toBeVisible();
+  await expect(page.getByAltText(/Zohar reviewed character artwork/)).toBeVisible();
   await expect(page.getByRole('link', { name: '© FRENCH-BREAD / ARC SYSTEM WORKS' })).toBeVisible();
+});
+
+test('every current Character art file is served as an image', async ({ request }) => {
+  const artRecords = catalog.flatMap((game) => game.characters.map((character) => character.art));
+  expect(artRecords).toHaveLength(90);
+
+  for (const art of artRecords) {
+    expect(art).toBeDefined();
+    const response = await request.get(art!.localPath);
+    expect(response.ok(), art!.localPath).toBeTruthy();
+    expect(response.headers()['content-type'], art!.localPath).toMatch(/^image\//);
+  }
+});
+
+test('every founding game renders reviewed art and provenance on a Character page', async ({ page }) => {
+  for (const game of catalog) {
+    const character = game.characters[0];
+    await page.goto(`/games/${game.slug}/characters/${character.slug}`);
+    await expect(page.getByAltText(`${character.name} reviewed character artwork for ${game.name}`)).toBeVisible();
+    await expect(page.locator('.provenance-block')).toContainText(character.art!.usageBasis.replaceAll('-', ' '));
+  }
 });
 
 test('guest can save a valid solo Character and reload it from IndexedDB', async ({ page }) => {

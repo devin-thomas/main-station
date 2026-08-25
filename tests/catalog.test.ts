@@ -29,17 +29,54 @@ describe('founding catalog', () => {
 
   it('records the complete verified UNI2 roster with unchanged fan-kit art provenance', () => {
     const uni2 = catalog.find((game) => game.slug === 'uni2');
-    const artCharacters = catalog.flatMap((game) => game.characters.filter((character) => character.art));
+    const artCharacters = uni2?.characters.filter((character) => character.art) ?? [];
     expect(uni2?.catalogStatus).toBe('verified');
     expect(uni2?.sourceCheckedAt).toBe('2026-08-25');
     expect(uni2?.characters).toHaveLength(28);
     expect(artCharacters).toHaveLength(28);
     expect(new Set(artCharacters.map((character) => character.slug)).size).toBe(28);
     for (const character of artCharacters) {
-      expect(character.art?.usageBasis).toBe('official-fankit');
-      expect(character.art?.licenseUrl).toBe('https://www.arcsystemworks.jp/uni2celes/en/fankit/');
+      expect(character.art?.usageBasis).toBe('express-fan-kit');
+      expect(character.art?.reviewUrl).toBe('https://www.arcsystemworks.jp/uni2celes/en/fankit/');
       expect(character.art?.assetHash).toMatch(/^sha256:[a-f0-9]{64}$/);
     }
+  });
+
+  it('provides reviewed artwork and provenance for every current Character row', () => {
+    const entries = catalog.flatMap((game) => game.characters.map((character) => ({ game, character })));
+    const artEntries = entries.filter((entry) => entry.character.art);
+    const basisCounts = new Map<string, number>();
+    for (const { character } of artEntries) {
+      const basis = character.art?.usageBasis;
+      if (basis) basisCounts.set(basis, (basisCounts.get(basis) ?? 0) + 1);
+    }
+
+    expect(entries).toHaveLength(90);
+    expect(artEntries).toHaveLength(90);
+    expect(new Set(artEntries.map(({ game, character }) => `${game.slug}/${character.slug}`)).size).toBe(90);
+    expect(new Set(artEntries.map(({ game }) => game.slug)).size).toBe(13);
+    expect(basisCounts.get('express-fan-kit')).toBe(28);
+    expect(basisCounts.get('conditional-fan-kit')).toBe(4);
+    expect(basisCounts.get('conditional-community-policy')).toBe(15);
+    expect(basisCounts.get('publisher-promotional')).toBe(43);
+
+    for (const { character } of artEntries) {
+      expect(character.art?.assetHash).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(character.art?.sourceUrl).toMatch(/^https:\/\//);
+      expect(character.art?.reviewUrl).toMatch(/^https:\/\//);
+      expect(character.art?.creditText.length).toBeGreaterThan(8);
+      expect(character.art?.permissionEvidence.length).toBeGreaterThan(40);
+    }
+
+    const avatar = catalog.find((game) => game.slug === 'avatar-legends');
+    const sharedAvatarArt = avatar?.characters.filter((character) => ['aang', 'korra', 'zuko'].includes(character.slug)) ?? [];
+    expect(new Set(sharedAvatarArt.map((character) => character.art?.assetHash)).size).toBe(1);
+    expect(new Set(sharedAvatarArt.map((character) => character.art?.objectPosition)).size).toBe(3);
+
+    const melee = catalog.find((game) => game.slug === 'melee');
+    expect(melee?.characters.every((character) => character.art?.creditText.includes('cross-version'))).toBe(true);
+    const doom = catalog.find((game) => game.slug === 'umvc3')?.characters.find((character) => character.slug === 'doom');
+    expect(doom?.art?.creditText).toContain('cross-version');
   });
 
   it('records the verified current 2XKO roster and Fuse choices', () => {

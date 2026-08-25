@@ -1,6 +1,6 @@
 begin;
 
-select plan(94);
+select plan(98);
 
 select has_table('public', 'profiles', 'profiles exists');
 select has_table('public', 'lineups', 'lineups exists');
@@ -28,6 +28,50 @@ select results_eq(
       )$$,
   array[4::integer],
   'the approved UNI2 fan-kit inventory contains all four unchanged preview Character assets'
+);
+
+select results_eq(
+  $$select count(*)::integer from public.character_art_assets
+    where review_state = 'approved' and is_primary and disabled_at is null$$,
+  array[90::integer],
+  'all 90 current Character rows have active approved primary art'
+);
+
+select results_eq(
+  $$select count(*)::integer
+    from public.characters character_row
+    left join public.character_art_assets art
+      on art.character_id = character_row.id
+      and art.review_state = 'approved'
+      and art.is_primary
+      and art.disabled_at is null
+    group by character_row.id
+    having count(art.id) <> 1$$,
+  array[]::integer[],
+  'every Character has exactly one active primary art record'
+);
+
+select results_eq(
+  $$select asset_reuse_mode, count(*)::bigint
+    from public.character_art_assets
+    where review_state = 'approved' and is_primary and disabled_at is null
+    group by asset_reuse_mode
+    order by asset_reuse_mode$$,
+  $$values
+    ('conditional-community-policy'::text, 15::bigint),
+    ('conditional-fan-kit'::text, 4::bigint),
+    ('express-fan-kit'::text, 28::bigint),
+    ('publisher-promotional'::text, 43::bigint)$$,
+  'art usage bases preserve fan-kit, community-policy, and ADR-023 promotional distinctions'
+);
+
+select results_eq(
+  $$select count(*)::integer from pg_constraint
+    where conrelid = 'public.character_art_assets'::regclass
+      and conname = 'character_art_assets_character_hash_key'
+      and contype = 'u'$$,
+  array[1::integer],
+  'Character art uniqueness is scoped to Character plus asset hash'
 );
 
 select results_eq(

@@ -27,7 +27,7 @@ node C:\Users\lilgo\.codex\skills\pwa-development\scripts\audit-manifest.mjs --m
 
 ## Supabase
 
-The hosted project `bqfzzrasfunysseoogcg` has the source schema, public data-product RPCs, private policy helper, and verified 2XKO/UNI2 catalog migrations applied. It currently contains 13 game versions, 90 Character records, two verified complete catalogs, 28 approved UNI2 art records, one live-accepted Discord identity, and no registered public profile. Discord OAuth completed its callback and PKCE token exchange successfully on 2026-08-25; claiming or syncing a guest draft remains a separate explicit action.
+The hosted project `bqfzzrasfunysseoogcg` has the source schema, public data-product RPCs, private policy helper, verified 2XKO/UNI2 catalog migrations, and the complete reviewed Character-art migration applied. It currently contains 13 game versions, 90 Character records, two verified complete catalogs, 90 active primary art records, one live-accepted Discord identity, and no registered public profile. Discord OAuth completed its callback and PKCE token exchange successfully on 2026-08-25; claiming or syncing a guest draft remains a separate explicit action.
 
 For another checkout, copy `.env.example` to `.env.production.local` and set only the modern publishable key. This working copy already has that ignored browser configuration. Regenerate `src/types/database.ts` after every hosted schema migration.
 
@@ -57,7 +57,9 @@ Preview origin: `https://mainstation-preview.uppercut-labs.workers.dev`.
 - Uppercut Labs appears only as the developer credit, using `public/uppercut-labs-logo.png` unchanged.
 - The supplied MainStation mark is tracked canonically at `assets/brand/mainstation-logo.png` (SHA-256 `7BCACF1A848FC405483844588E0790DB64C6CD76E8BCC2326C00C1C63C55D732`). The original root-level drop remains ignored.
 - `npm run generate:icons` derives the runtime mark, ordinary and maskable launcher icons, Apple touch icon, and favicon without redrawing the identity. Installed-surface visual acceptance remains open until physical-device testing.
-- All 28 playable UNI2 Characters use their corresponding `express-fan-kit` image. Each official file is stored unchanged with its SHA-256, required notice, exact source, and official terms link; the five nonroster fan-kit images are intentionally excluded.
-- Public publisher imagery without an express app-reuse basis remains in the intentional typographic fallback state.
+- Every one of the 90 currently published Character rows has reviewed, localized artwork with an exact source, publisher, rights-review URL, visible credit, retrieval date, and verified SHA-256. Full-resolution art remains outside the service-worker precache.
+- The usage ledger distinguishes 28 UNI2 `express-fan-kit` files, 4 GGST `conditional-fan-kit` files, 15 2XKO `conditional-community-policy` portraits, and 43 `publisher-promotional` records accepted under ADR-023. Attribution is not represented as publisher permission.
+- UMVC3 Doctor Doom and the four Melee entries visibly identify their cross-version fallback art. Aang, Korra, and Zuko share official Avatar key art with Character-specific focal positions because no standalone first-party cutouts were located.
+- First-party asset and terms evidence is preserved in `research/character-art-audit-riot-modern.md`, `research/character-art-audit-arc-bamco.md`, and `research/character-art-audit-legacy.md`.
 
 The authoritative product and data contracts are `Context.md`, `ADR.md`, and `SPEC.md`.

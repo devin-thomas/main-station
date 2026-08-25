@@ -78,8 +78,11 @@ export function CharacterPage() {
             {character.art ? (
               <>
                 <strong>{character.art.usageBasis.replaceAll('-', ' ')}</strong>
-                <p>{character.art.creditText}</p>
-                <a href={character.art.sourceUrl} target="_blank" rel="noreferrer">Review official usage terms</a>
+                <p>{character.art.creditText} · {character.art.permissionEvidence}</p>
+                <div className="provenance-block__links">
+                  <a href={character.art.sourceUrl} target="_blank" rel="noreferrer">View original asset</a>
+                  <a href={character.art.reviewUrl} target="_blank" rel="noreferrer">Review source basis</a>
+                </div>
               </>
             ) : (
               <><strong>No approved image record</strong><p>The page stays complete without hotlinking or treating attribution as permission.</p></>

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "generate:icons": "tsx scripts/generate-icons.ts",
+    "generate:art-migration": "tsx scripts/generate-character-art-migration.ts",
     "generate:seed": "tsx scripts/generate-supabase-seed.ts",
     "verify:art": "tsx scripts/verify-art-assets.ts",
     "prebuild": "npm run generate:icons",

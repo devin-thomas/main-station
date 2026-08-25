@@ -78,7 +78,7 @@ export function GamePage() {
               <span>{String(index + 1).padStart(2, '0')}</span>
               <Link to={`/games/${game.slug}/characters/${character.slug}`}>{character.name}</Link>
               <small>{character.role}</small>
-              <strong>{character.art ? 'ART CLEARED' : 'ART REVIEW'}</strong>
+              <strong>{character.art ? 'ART REVIEWED' : 'ART REVIEW'}</strong>
             </li>
           ))}
         </ol>

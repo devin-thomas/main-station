@@ -3,14 +3,26 @@ export type LineupLifecycle = 'active' | 'retired';
 export type LineupVisibility = 'public' | 'private';
 export type RosterRole = 'fighter' | 'kameo';
 
+export type CharacterArtUsageBasis =
+  | 'express-fan-kit'
+  | 'publisher-promotional'
+  | 'conditional-fan-kit'
+  | 'conditional-community-policy'
+  | 'written-permission'
+  | 'community-licensed';
+
 export interface CharacterArtAsset {
   localPath: string;
   sourceUrl: string;
-  licenseUrl: string;
+  sourcePublisher: string;
+  reviewUrl: string;
   creditText: string;
-  usageBasis: 'official-fankit' | 'written-permission' | 'community-license';
+  usageBasis: CharacterArtUsageBasis;
+  permissionEvidence: string;
   assetHash: string;
   reviewedAt: string;
+  displayFit?: 'contain' | 'cover';
+  objectPosition?: string;
 }
 
 export interface Character {

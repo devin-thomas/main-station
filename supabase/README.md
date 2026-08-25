@@ -2,9 +2,9 @@
 
 Target project: `bqfzzrasfunysseoogcg`.
 
-The hosted project has the initial source-of-truth schema plus the public data-product, private policy-helper, approved UNI2 art, complete UNI2 roster, complete 2XKO roster, and 2XKO schema-refinement migrations applied. Together they provide owner/public RLS, child-Pick privacy inheritance, normalized signatures, atomic guest-draft claim/registered save, registered export, account deletion, live public statistics, immutable recommendation runs, and constrained feedback. Current statistics derive from eligible source rows so hides and deletes disappear immediately without waiting for a materialized refresh.
+The hosted project has the initial source-of-truth schema plus the public data-product, private policy-helper, complete UNI2 and 2XKO catalogs, 2XKO schema refinement, and complete Character-art migrations applied. Together they provide owner/public RLS, child-Pick privacy inheritance, normalized signatures, atomic guest-draft claim/registered save, registered export, account deletion, live public statistics, immutable recommendation runs, constrained feedback, and a disableable provenance record for every published Character image. Current statistics derive from eligible source rows so hides and deletes disappear immediately without waiting for a materialized refresh.
 
-The hosted catalog contains 13 active Game Versions, 90 Character records, two verified complete catalogs, 28 approved UNI2 art records, and zero Profile or Lineup rows. 2XKO and UNI2 are source-checked; the other 11 game catalogs remain preview fixtures and are not represented as complete.
+The hosted catalog contains 13 active Game Versions, 90 Character records, two verified complete catalogs, 90 active primary art records, and zero Profile or Lineup rows. The art ledger contains 28 express fan-kit, 4 conditional fan-kit, 15 conditional community-policy, and 43 ADR-023 publisher-promotional records. 2XKO and UNI2 are source-checked; the other 11 game catalogs remain preview fixtures and are not represented as complete.
 
 ## Local reproduction
 
@@ -16,7 +16,7 @@ npm run lint:db
 npx supabase stop
 ```
 
-The release gate is a fresh reset, all 94 pgTAP assertions, and a clean database lint.
+The release gate is a fresh reset, all 98 pgTAP assertions, and a clean database lint.
 
 ## Hosted Auth configuration
 

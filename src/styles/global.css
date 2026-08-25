@@ -546,6 +546,11 @@ button:disabled {
   object-position: center bottom;
 }
 
+.character-stage__art--cover {
+  object-fit: cover;
+  object-position: center;
+}
+
 .character-stage__index {
   position: absolute;
   z-index: 1;
@@ -1684,6 +1689,12 @@ select:hover {
 
 .provenance-block a {
   color: var(--signal);
+}
+
+.provenance-block__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
 }
 
 .settings-ledger {

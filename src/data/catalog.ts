@@ -1,4 +1,5 @@
 import type { Character, GameVersion, SelectionSchema } from '../types/domain';
+import { promotionalArtByCharacter } from './promotionalArt';
 
 const fighter = (
   slug: string,
@@ -61,9 +62,11 @@ const uni2BalanceNotesUrl = 'https://www.arcsystemworks.jp/portal/post-30285/';
 const uni2FanKitArt = (filename: string, sourceFilename: string, assetHash: string): NonNullable<Character['art']> => ({
   localPath: `/art/${filename}`,
   sourceUrl: `https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/${sourceFilename}`,
-  licenseUrl: 'https://www.arcsystemworks.jp/uni2celes/en/fankit/',
+  sourcePublisher: 'Arc System Works',
+  reviewUrl: 'https://www.arcsystemworks.jp/uni2celes/en/fankit/',
   creditText: '© FRENCH-BREAD / ARC SYSTEM WORKS',
-  usageBasis: 'official-fankit',
+  usageBasis: 'express-fan-kit',
+  permissionEvidence: 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.',
   assetHash: `sha256:${assetHash}`,
   reviewedAt: uni2FanKitReviewedAt,
 });
@@ -87,7 +90,7 @@ const uni2Fighter = (
   },
 );
 
-export const catalog: GameVersion[] = [
+const catalogBase: GameVersion[] = [
   {
     slug: '2xko',
     name: '2XKO',
@@ -353,12 +356,20 @@ export const catalog: GameVersion[] = [
     schema: soloSchema(),
     characters: [
       fighter('sol', 'Sol Badguy', 'A forceful close-range all-rounder with explosive damage and direct pressure.', 'https://www.guiltygear.com/ggst/en/character/sol/'),
-      fighter('ramlethal', 'Ramlethal Valentine', 'A mid-range controller who turns sword placement into suffocating corner offense.', 'https://www.guiltygear.com/ggst/en/character/ramlethal/'),
-      fighter('nagoriyuki', 'Nagoriyuki', 'A high-damage swordsman whose blood resource governs movement and restraint.', 'https://www.guiltygear.com/ggst/en/character/nagoriyuki/'),
-      fighter('bridget', 'Bridget', 'A mobile setplay fighter who uses yo-yo placement to sustain layered approaches.', 'https://www.guiltygear.com/ggst/en/character/bridget/'),
+      fighter('ramlethal', 'Ramlethal Valentine', 'A mid-range controller who turns sword placement into suffocating corner offense.', 'https://www.guiltygear.com/ggst/en/character/ram/'),
+      fighter('nagoriyuki', 'Nagoriyuki', 'A high-damage swordsman whose blood resource governs movement and restraint.', 'https://www.guiltygear.com/ggst/en/character/nag/'),
+      fighter('bridget', 'Bridget', 'A mobile setplay fighter who uses yo-yo placement to sustain layered approaches.', 'https://www.guiltygear.com/ggst/en/character/bgt/'),
     ],
   },
 ];
+
+export const catalog: GameVersion[] = catalogBase.map((game) => ({
+  ...game,
+  characters: game.characters.map((character) => ({
+    ...character,
+    art: character.art ?? promotionalArtByCharacter.get(`${game.slug}/${character.slug}`),
+  })),
+}));
 
 export const catalogBySlug = new Map(catalog.map((game) => [game.slug, game]));
 
