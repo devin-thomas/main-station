@@ -935,27 +935,6 @@ select:hover {
   border-color: var(--rule);
 }
 
-.profile-strip {
-  display: grid;
-  grid-template-columns: minmax(150px, .8fr) minmax(150px, .7fr) minmax(220px, 1.5fr) auto;
-  align-items: end;
-  gap: 1px;
-  margin-top: 40px;
-  background: var(--rule-dim);
-}
-
-.profile-strip label {
-  display: grid;
-  gap: 8px;
-  padding: 12px;
-  background: var(--surface);
-}
-
-.profile-strip button {
-  min-height: 76px;
-  border-radius: 0;
-}
-
 .builder-workbench {
   display: grid;
   grid-template-columns: minmax(190px, 2.3fr) minmax(0, 9.7fr);
@@ -1904,6 +1883,22 @@ select:hover {
   margin-top: 5px;
 }
 
+.account-onboarding__form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.account-onboarding__form label {
+  display: grid;
+  gap: 8px;
+}
+
+.account-onboarding__bio {
+  grid-column: 1 / -1;
+}
+
 .account-card .command-row {
   margin-top: 28px;
 }
@@ -1997,14 +1992,6 @@ select:hover {
   .recommend-console__target {
     border-right: 0;
     border-bottom: 1px solid var(--rule);
-  }
-
-  .profile-strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .profile-strip__bio {
-    grid-column: 1 / -1;
   }
 
   .builder-workbench {
@@ -2279,11 +2266,11 @@ select:hover {
     flex-direction: column;
   }
 
-  .profile-strip {
+  .account-onboarding__form {
     grid-template-columns: 1fr;
   }
 
-  .profile-strip__bio {
+  .account-onboarding__bio {
     grid-column: auto;
   }
 

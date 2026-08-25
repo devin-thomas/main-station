@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
+import { useMemo, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Mainline } from '../components/Mainline';
 import { catalog, catalogBySlug } from '../data/catalog';
 import { useDraft } from '../features/draft/DraftProvider';
 import { validateLineup } from '../lib/lineupValidation';
-import type { CharacterPick, DraftProfile, Lineup, LineupCategory, LineupLifecycle, LineupVisibility } from '../types/domain';
+import type { CharacterPick, Lineup, LineupCategory, LineupLifecycle, LineupVisibility } from '../types/domain';
 
 function initialPicks(gameSlug: string): CharacterPick[] {
   const game = catalogBySlug.get(gameSlug);
@@ -12,26 +12,17 @@ function initialPicks(gameSlug: string): CharacterPick[] {
 }
 
 export function BuilderPage() {
-  const { draft, ready, storageError, updateProfile, addLineup, updateLineup, moveLineup, removeLineup } = useDraft();
+  const { draft, storageError, addLineup, updateLineup, moveLineup, removeLineup } = useDraft();
   const [selectedGame, setSelectedGame] = useState('uni2');
   const [picks, setPicks] = useState<CharacterPick[]>(() => initialPicks('uni2'));
   const [category, setCategory] = useState<LineupCategory>('main');
   const [lifecycle, setLifecycle] = useState<LineupLifecycle>('active');
   const [visibility, setVisibility] = useState<LineupVisibility>('public');
   const [teamOption, setTeamOption] = useState('');
-  const [profileForm, setProfileForm] = useState<DraftProfile>(draft.profile);
   const [message, setMessage] = useState<string | null>(null);
   const [attempted, setAttempted] = useState(false);
   const [editingLineupId, setEditingLineupId] = useState<string | null>(null);
-  const profileInitialized = useRef(false);
   const game = catalogBySlug.get(selectedGame) ?? catalog[0];
-
-  useEffect(() => {
-    if (ready && !profileInitialized.current) {
-      setProfileForm(draft.profile);
-      profileInitialized.current = true;
-    }
-  }, [draft.profile, ready]);
 
   const candidate = useMemo<Lineup>(() => ({
     id: 'candidate',
@@ -56,16 +47,6 @@ export function BuilderPage() {
 
   function updatePick(slotId: string, patch: Partial<CharacterPick>) {
     setPicks((current) => current.map((pick) => pick.slotId === slotId ? { ...pick, ...patch } : pick));
-  }
-
-  async function saveProfile(event: FormEvent) {
-    event.preventDefault();
-    try {
-      await updateProfile(profileForm);
-      setMessage('Profile details saved on this device.');
-    } catch {
-      setMessage(null);
-    }
   }
 
   async function saveLineup(event: FormEvent) {
@@ -120,18 +101,11 @@ export function BuilderPage() {
           <p className="eyebrow">LOCAL DRAFT / SAVED ON THIS DEVICE</p>
           <h1>Build your line.</h1>
         </div>
-        <p>Choose one exact Game Version, construct a complete Character or Team, then decide how it belongs in your history.</p>
+        <p>Choose one exact Game Version, construct a complete Character or Team, then decide how it belongs in your history. Your public name and handle come after you create an account.</p>
       </header>
 
       {storageError && <div className="notice notice--error" role="alert"><strong>Draft storage failed</strong><p>{storageError}</p></div>}
       {message && <div className="notice" role="status"><strong>Saved</strong><p>{message}</p></div>}
-
-      <form className="profile-strip" onSubmit={(event) => void saveProfile(event)}>
-        <label>Display name<input value={profileForm.displayName} maxLength={48} onChange={(event) => setProfileForm({ ...profileForm, displayName: event.target.value })} /></label>
-        <label>Handle<input value={profileForm.handle} maxLength={32} pattern="[a-z0-9-]+" placeholder="your-handle" onChange={(event) => setProfileForm({ ...profileForm, handle: event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') })} /></label>
-        <label className="profile-strip__bio">Bio<input value={profileForm.bio} maxLength={160} onChange={(event) => setProfileForm({ ...profileForm, bio: event.target.value })} /></label>
-        <button type="submit" className="button-secondary" disabled={!ready}>Save identity</button>
-      </form>
 
       <section className="builder-workbench" aria-labelledby="select-game-heading">
         <div className="builder-workbench__games">

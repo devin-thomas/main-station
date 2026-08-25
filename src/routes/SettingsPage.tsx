@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../features/auth/AuthProvider';
 import { friendlyAuthError, sendEmailLink, signInWithDiscord, signOut } from '../features/auth/auth';
@@ -7,6 +7,7 @@ import { exportMyProfileData, loadMyProfileDraft, writeProfileDraft } from '../f
 import { useInstall } from '../features/pwa/useInstall';
 import { validateLineup } from '../lib/lineupValidation';
 import { supabase, supabaseConfigured } from '../lib/supabase';
+import type { DraftProfile } from '../types/domain';
 
 function downloadJson(filename: string, value: unknown) {
   const url = URL.createObjectURL(new Blob([JSON.stringify(value, null, 2)], { type: 'application/json' }));
@@ -30,6 +31,8 @@ export function SettingsPage() {
   const [claimedHandle, setClaimedHandle] = useState<string | null>(null);
   const [syncing, setSyncing] = useState(false);
   const [online, setOnline] = useState(() => navigator.onLine);
+  const [onboardingProfile, setOnboardingProfile] = useState<DraftProfile>(draft.profile);
+  const onboardingProfileTouched = useRef(false);
 
   useEffect(() => {
     const updateConnection = () => setOnline(navigator.onLine);
@@ -41,16 +44,22 @@ export function SettingsPage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!onboardingProfileTouched.current) setOnboardingProfile(draft.profile);
+  }, [draft.profile]);
+
+  const hasRegisteredProfile = Boolean(session && registeredHandle);
+  const profileForWrite = hasRegisteredProfile ? draft.profile : onboardingProfile;
+
   const readinessIssues = useMemo(() => {
     const issues: string[] = [];
-    if (!draft.profile.displayName.trim()) issues.push('Add a display name');
-    if (!/^[a-z0-9][a-z0-9-]{1,30}[a-z0-9]$/.test(draft.profile.handle)) issues.push('Choose a valid handle');
+    if (!profileForWrite.displayName.trim()) issues.push('Add a display name');
+    if (!/^[a-z0-9][a-z0-9-]{1,30}[a-z0-9]$/.test(profileForWrite.handle)) issues.push('Choose a valid handle');
     const invalidEntries = draft.lineups.filter((lineup) => !validateLineup(lineup).valid).length;
     if (invalidEntries > 0) issues.push(`Finish ${invalidEntries} incomplete ${invalidEntries === 1 ? 'entry' : 'entries'}`);
     return issues;
-  }, [draft]);
+  }, [draft.lineups, profileForWrite]);
   const draftCanSync = readinessIssues.length === 0;
-  const hasRegisteredProfile = Boolean(session && registeredHandle);
   const profileCheckReady = !profileLoading && !profileLookupFailed;
   const authNext = searchParams.get('next') === '/recommend' ? '/recommend' : '/settings';
 
@@ -106,7 +115,9 @@ export function SettingsPage() {
     try {
       const replacing = hasRegisteredProfile;
       if (!replacing) await preserveRecovery();
-      const receipt = await writeProfileDraft(draft, replacing);
+      const draftToSave = replacing ? draft : { ...draft, profile: onboardingProfile, updatedAt: new Date().toISOString() };
+      const receipt = await writeProfileDraft(draftToSave, replacing);
+      if (!replacing) await replaceDraft(draftToSave);
       await refreshProfile();
       if (replacing) setMessage(`Saved ${receipt.lineupCount} ${receipt.lineupCount === 1 ? 'entry' : 'entries'} to @${receipt.handle}.`);
       else setClaimedHandle(receipt.handle);
@@ -224,7 +235,7 @@ export function SettingsPage() {
         ) : hasRegisteredProfile ? (
           <div className="account-session"><div><p className="eyebrow">SIGNED IN</p><h2 id="account-heading">@{registeredHandle}</h2><p>Your profile is saved online. Changes made in the builder stay on this device until you save them here.</p></div><div className="command-row"><Link className="button-secondary" to={`/p/${registeredHandle}`}>View profile</Link><button type="button" className="button-primary" disabled={syncing || !online || !draftCanSync} onClick={() => void requestProfileWrite()}>{syncing ? 'Saving…' : 'Save changes'}</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
         ) : (
-          <div className="account-claim"><p className="eyebrow">READY TO CLAIM</p><h2 id="account-heading">Make this draft yours.</h2><p>Claiming creates your public MainStation profile. Private entries stay private.</p>{!draftCanSync && <div className="claim-readiness" role="status"><strong>Finish your profile first</strong><ul>{readinessIssues.map((issue) => <li key={issue}>{issue}</li>)}</ul><Link className="button-secondary" to="/build">Continue building</Link></div>}<div className="command-row"><button type="button" className="button-primary" disabled={syncing || !online || !draftCanSync} onClick={() => void requestProfileWrite()}>{syncing ? 'Saving…' : 'Claim profile'}</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
+          <div className="account-claim"><p className="eyebrow">PROFILE SETUP</p><h2 id="account-heading">Finish your public profile.</h2><p>Choose the name and handle people see. Your bio is optional, and private entries stay private.</p><div className="account-onboarding__form"><label>Display name<input required autoComplete="nickname" value={onboardingProfile.displayName} maxLength={48} onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, displayName: event.target.value }); }} /></label><label>Handle<input required autoCapitalize="none" autoComplete="username" spellCheck={false} value={onboardingProfile.handle} maxLength={32} pattern="[a-z0-9-]+" placeholder="your-handle" onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, handle: event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') }); }} /></label><label className="account-onboarding__bio">Bio (optional)<input value={onboardingProfile.bio} maxLength={160} onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, bio: event.target.value }); }} /></label></div>{!draftCanSync && <div className="claim-readiness" role="status"><strong>Finish setup</strong><ul>{readinessIssues.map((issue) => <li key={issue}>{issue}</li>)}</ul>{readinessIssues.some((issue) => issue.includes('incomplete')) && <Link className="button-secondary" to="/build">Continue building</Link>}</div>}<div className="command-row"><button type="button" className="button-primary" disabled={syncing || !online || !draftCanSync} onClick={() => void requestProfileWrite()}>{syncing ? 'Creating…' : 'Create profile'}</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
         )}
         {message && <p className="inline-status" role="status">{message}</p>}
         {authError && <p className="inline-error" role="alert">{authError}</p>}

@@ -72,6 +72,8 @@ test('guest can select and save a valid roster entry for every founding game', a
 
 test('guest can save a valid solo Character and reload it from IndexedDB', async ({ page }) => {
   await page.goto('/build');
+  await expect(page.getByRole('button', { name: 'Save identity' })).toHaveCount(0);
+  await expect(page.getByText('Your public name and handle come after you create an account.')).toBeVisible();
   await page.getByLabel('Character').selectOption('hyde');
   await page.getByRole('button', { name: 'Save Character' }).click();
   await expect(page.getByText('Hyde', { exact: true }).last()).toBeVisible();
