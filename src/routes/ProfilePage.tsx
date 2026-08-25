@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Mainline } from '../components/Mainline';
 import { demoProfile } from '../data/demo';
+import { useAuth } from '../features/auth/AuthProvider';
 import { loadPublicProfile } from '../features/profile/profile';
+import { getProfileBuildAction } from '../features/profile/profilePresentation';
 import { supabaseConfigured } from '../lib/supabase';
 import type { GuestDraft } from '../types/domain';
 
@@ -14,6 +16,7 @@ interface ProfileResult {
 
 export function ProfilePage() {
   const { handle } = useParams();
+  const { registeredHandle } = useAuth();
   const [result, setResult] = useState<ProfileResult | null>(null);
 
   useEffect(() => {
@@ -60,6 +63,8 @@ export function ProfilePage() {
   }
 
   const publicLineups = profile.lineups.filter((lineup) => lineup.visibility === 'public');
+  const isOwnProfile = Boolean(registeredHandle && registeredHandle === profile.profile.handle);
+  const buildAction = getProfileBuildAction(isOwnProfile, profile.lineups.length);
   return (
     <div className="profile-page page-frame">
       <header className="profile-identity">
@@ -70,7 +75,7 @@ export function ProfilePage() {
           <p className="profile-identity__handle">@{profile.profile.handle}</p>
         </div>
         <p className="profile-identity__bio">{profile.profile.bio || 'No profile note supplied.'}</p>
-        <Link className="button-secondary" to="/build">Build yours</Link>
+        <Link className="button-secondary" to="/build">{buildAction}</Link>
       </header>
       <section className="profile-mainline" aria-labelledby="profile-line-heading">
         <div className="section-heading section-heading--split">
