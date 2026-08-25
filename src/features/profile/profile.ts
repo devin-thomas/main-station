@@ -68,6 +68,53 @@ function parseLineup(value: unknown): Lineup {
   };
 }
 
+function parseDraftLineup(value: unknown): Lineup {
+  if (!isRecord(value)) throw new Error('Supabase returned an invalid registered Lineup.');
+  const category = value.category;
+  const lifecycle = value.lifecycle;
+  const visibility = value.visibility;
+  const picks = value.picks;
+  if (category !== 'main' && category !== 'secondary') throw new Error('Supabase returned an invalid Character category.');
+  if (lifecycle !== 'active' && lifecycle !== 'retired') throw new Error('Supabase returned an invalid Character lifecycle.');
+  if (visibility !== 'public' && visibility !== 'private') throw new Error('Supabase returned an invalid Character visibility.');
+  if (!Array.isArray(picks)) throw new Error('Supabase returned an invalid Character Pick list.');
+  const teamOption = value.teamOption;
+  if (teamOption !== null && teamOption !== undefined && typeof teamOption !== 'string') {
+    throw new Error('Supabase returned an invalid Team option.');
+  }
+  return {
+    id: requireString(value, 'id'),
+    gameSlug: requireString(value, 'gameSlug'),
+    category,
+    lifecycle,
+    visibility,
+    picks: picks.map(parsePick),
+    ...(teamOption ? { teamOption } : {}),
+    createdAt: requireString(value, 'createdAt'),
+  };
+}
+
+function parseRegisteredDraft(value: unknown): GuestDraft | null {
+  if (value === null) return null;
+  if (!isRecord(value) || value.version !== 1) throw new Error('Supabase returned an invalid registered draft.');
+  const profile = value.profile;
+  const lineups = value.lineups;
+  if (!isRecord(profile) || !Array.isArray(lineups)) throw new Error('Supabase returned an invalid registered draft payload.');
+  const bio = profile.bio;
+  if (typeof bio !== 'string') throw new Error('Supabase returned an invalid profile bio.');
+  return {
+    version: 1,
+    requestId: requireString(value, 'requestId'),
+    profile: {
+      handle: requireString(profile, 'handle'),
+      displayName: requireString(profile, 'displayName'),
+      bio,
+    },
+    lineups: lineups.map(parseDraftLineup),
+    updatedAt: requireString(value, 'updatedAt'),
+  };
+}
+
 export async function getMyRegisteredHandle(userId: string): Promise<string | null> {
   const { data, error } = await requireSupabase()
     .from('profiles')
@@ -112,6 +159,18 @@ export async function writeProfileDraft(draft: GuestDraft, replace: boolean): Pr
   );
   if (error) throw error;
   return parseReceipt(data);
+}
+
+export async function loadMyProfileDraft(): Promise<GuestDraft | null> {
+  const { data, error } = await requireSupabase().rpc('get_my_profile_draft');
+  if (error) throw error;
+  return parseRegisteredDraft(data);
+}
+
+export async function exportMyProfileData(): Promise<Json> {
+  const { data, error } = await requireSupabase().rpc('export_my_profile');
+  if (error) throw error;
+  return data;
 }
 
 export async function loadPublicProfile(handle: string): Promise<GuestDraft | null> {

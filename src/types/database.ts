@@ -609,6 +609,7 @@ export type Database = {
       }
       delete_my_account: { Args: never; Returns: undefined }
       export_my_profile: { Args: never; Returns: Json }
+      get_my_profile_draft: { Args: never; Returns: Json }
       finalize_lineup: {
         Args: { p_lineup_id: string }
         Returns: {
@@ -633,7 +634,6 @@ export type Database = {
         }
       }
       lineup_is_complete: { Args: { p_lineup_id: string }; Returns: boolean }
-      lineup_is_publishable: { Args: { p_lineup_id: string }; Returns: boolean }
       recommend_characters: {
         Args: { p_profile_id: string; p_target_game_version_id: string }
         Returns: {
@@ -644,6 +644,19 @@ export type Database = {
           score: number
           support_count: number
         }[]
+      }
+      record_recommendation_feedback: {
+        Args: {
+          p_character_id: string
+          p_reason_code?: string
+          p_recommendation_run_id: string
+          p_response: Database["public"]["Enums"]["feedback_response"]
+        }
+        Returns: Json
+      }
+      run_my_recommendations: {
+        Args: { p_target_game_version_id: string }
+        Returns: Json
       }
       save_my_profile_draft: {
         Args: { p_payload: Json; p_request_id: string }

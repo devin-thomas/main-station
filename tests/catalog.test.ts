@@ -27,6 +27,16 @@ describe('founding catalog', () => {
     expect(new Set(catalog.map((game) => game.slug)).size).toBe(13);
   });
 
+  it('records four unchanged UNI2 fan-kit assets with per-file provenance', () => {
+    const artCharacters = catalog.flatMap((game) => game.characters.filter((character) => character.art));
+    expect(artCharacters.map((character) => character.slug).sort()).toEqual(['hyde', 'linne', 'waldstein', 'yuzuriha']);
+    for (const character of artCharacters) {
+      expect(character.art?.usageBasis).toBe('official-fankit');
+      expect(character.art?.licenseUrl).toBe('https://www.arcsystemworks.jp/uni2celes/en/fankit/');
+      expect(character.art?.assetHash).toMatch(/^sha256:[a-f0-9]{64}$/);
+    }
+  });
+
   it('accepts every verified preview Selection Schema fixture', () => {
     for (const [index, game] of catalog.entries()) {
       if (!game.schema.verified) continue;

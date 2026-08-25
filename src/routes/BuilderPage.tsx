@@ -12,7 +12,7 @@ function initialPicks(gameSlug: string): CharacterPick[] {
 }
 
 export function BuilderPage() {
-  const { draft, ready, storageError, updateProfile, addLineup, removeLineup } = useDraft();
+  const { draft, ready, storageError, updateProfile, addLineup, updateLineup, moveLineup, removeLineup } = useDraft();
   const [selectedGame, setSelectedGame] = useState('uni2');
   const [picks, setPicks] = useState<CharacterPick[]>(() => initialPicks('uni2'));
   const [category, setCategory] = useState<LineupCategory>('main');
@@ -22,6 +22,7 @@ export function BuilderPage() {
   const [profileForm, setProfileForm] = useState<DraftProfile>(draft.profile);
   const [message, setMessage] = useState<string | null>(null);
   const [attempted, setAttempted] = useState(false);
+  const [editingLineupId, setEditingLineupId] = useState<string | null>(null);
   const profileInitialized = useRef(false);
   const game = catalogBySlug.get(selectedGame) ?? catalog[0];
 
@@ -49,6 +50,7 @@ export function BuilderPage() {
     setPicks(initialPicks(gameSlug));
     setTeamOption('');
     setAttempted(false);
+    setEditingLineupId(null);
     setMessage(null);
   }
 
@@ -70,13 +72,42 @@ export function BuilderPage() {
     event.preventDefault();
     setAttempted(true);
     if (!validation.valid) return;
-    const lineup = { ...candidate, id: crypto.randomUUID(), createdAt: new Date().toISOString() };
+    const existing = editingLineupId ? draft.lineups.find((lineup) => lineup.id === editingLineupId) : undefined;
+    const lineup = {
+      ...candidate,
+      id: existing?.id ?? crypto.randomUUID(),
+      createdAt: existing?.createdAt ?? new Date().toISOString(),
+    };
     try {
-      await addLineup(lineup);
+      if (existing) await updateLineup(lineup);
+      else await addLineup(lineup);
       setPicks(initialPicks(game.slug));
       setTeamOption('');
       setAttempted(false);
-      setMessage(`${game.schema.noun} saved on this device.`);
+      setEditingLineupId(null);
+      setMessage(`${game.schema.noun} ${existing ? 'updated' : 'saved'} on this device.`);
+    } catch {
+      setMessage(null);
+    }
+  }
+
+  function beginEdit(lineup: Lineup) {
+    setSelectedGame(lineup.gameSlug);
+    setPicks(lineup.picks.map((pick) => ({ ...pick })));
+    setCategory(lineup.category);
+    setLifecycle(lineup.lifecycle);
+    setVisibility(lineup.visibility);
+    setTeamOption(lineup.teamOption ?? '');
+    setEditingLineupId(lineup.id);
+    setAttempted(false);
+    setMessage('Editing this local stop. Save the editor to keep the changes.');
+    document.querySelector('.lineup-editor')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  async function patchLineup(lineup: Lineup, patch: Partial<Lineup>, successMessage: string) {
+    try {
+      await updateLineup({ ...lineup, ...patch });
+      setMessage(successMessage);
     } catch {
       setMessage(null);
     }
@@ -194,7 +225,10 @@ export function BuilderPage() {
 
           <div className="lineup-editor__commands">
             <p>{visibility === 'private' ? 'Private entries stay off your profile and out of every aggregate.' : 'Public entries become visible after you claim this draft.'}</p>
-            <button className="button-primary" type="submit" disabled={!game.schema.verified}>Save {game.schema.noun}</button>
+            <div className="command-row">
+              {editingLineupId && <button className="button-secondary" type="button" onClick={() => chooseGame(game.slug)}>Cancel edit</button>}
+              <button className="button-primary" type="submit" disabled={!game.schema.verified}>{editingLineupId ? 'Update' : 'Save'} {game.schema.noun}</button>
+            </div>
           </div>
         </form>
       </section>
@@ -206,10 +240,23 @@ export function BuilderPage() {
         </div>
         <Mainline lineups={draft.lineups} label="Guest draft Mainline" />
         {draft.lineups.length > 0 && (
-          <div className="draft-actions" aria-label="Remove draft entries">
-            {draft.lineups.map((lineup) => {
+          <div className="draft-action-ledger" aria-label="Edit and reorder local draft entries">
+            {draft.lineups.map((lineup, index) => {
               const lineupGame = catalogBySlug.get(lineup.gameSlug);
-              return <button type="button" key={lineup.id} onClick={() => void removeLineup(lineup.id)}>Remove {lineupGame?.shortName ?? 'entry'}</button>;
+              return (
+                <div className={editingLineupId === lineup.id ? 'draft-action-ledger__row draft-action-ledger__row--editing' : 'draft-action-ledger__row'} key={lineup.id}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <div><strong>{lineupGame?.shortName ?? 'Entry'}</strong><small>{lineup.category} · {lineup.lifecycle} · {lineup.visibility}</small></div>
+                  <div className="draft-action-ledger__commands">
+                    <button type="button" onClick={() => beginEdit(lineup)}>Edit</button>
+                    <button type="button" onClick={() => void patchLineup(lineup, { visibility: lineup.visibility === 'public' ? 'private' : 'public' }, lineup.visibility === 'public' ? 'Stop hidden from the public profile and recommendation graph.' : 'Stop restored to public contribution.')}>{lineup.visibility === 'public' ? 'Hide' : 'Publish'}</button>
+                    <button type="button" onClick={() => void patchLineup(lineup, { lifecycle: lineup.lifecycle === 'active' ? 'retired' : 'active' }, lineup.lifecycle === 'active' ? 'Stop marked Retired.' : 'Stop restored to Active.')}>{lineup.lifecycle === 'active' ? 'Retire' : 'Reactivate'}</button>
+                    <button type="button" disabled={index === 0} onClick={() => void moveLineup(lineup.id, -1)}>Move up</button>
+                    <button type="button" disabled={index === draft.lineups.length - 1} onClick={() => void moveLineup(lineup.id, 1)}>Move down</button>
+                    <button type="button" onClick={() => void removeLineup(lineup.id)}>Remove</button>
+                  </div>
+                </div>
+              );
             })}
           </div>
         )}

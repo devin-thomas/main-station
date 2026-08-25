@@ -8,6 +8,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { App } from './app/App';
+import { AuthProvider } from './features/auth/AuthProvider';
 import { DraftProvider } from './features/draft/DraftProvider';
 import './styles/global.css';
 
@@ -17,9 +18,11 @@ if (!root) throw new Error('MainStation root element is missing.');
 createRoot(root).render(
   <StrictMode>
     <BrowserRouter>
-      <DraftProvider>
-        <App />
-      </DraftProvider>
+      <AuthProvider>
+        <DraftProvider>
+          <App />
+        </DraftProvider>
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 );

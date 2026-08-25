@@ -189,12 +189,15 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-hyde.png', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and official-site link.', 'sha256:6deb04b76669e9e05ea301e53ddaecb0a31d312c4b313c675ba41a2b3f5038e4', 'approved', true, '2026-08-24T00:00:00Z', '2026-08-24T00:00:00Z'
+select c.id, '/art/uni2-hyde.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_000Hyde.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and official-site link.', 'sha256:6deb04b76669e9e05ea301e53ddaecb0a31d312c4b313c675ba41a2b3f5038e4', 'approved', true, '2026-08-25', '2026-08-25'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'hyde' and c.roster_role = 'fighter'
 on conflict (asset_sha256) do update set
-  review_state = excluded.review_state, is_primary = excluded.is_primary, reviewed_at = excluded.reviewed_at;
+  character_id = excluded.character_id, storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'linne', 'Linne', 'fighter', 'released', true, 2, 'A compact, high-speed fighter who uses fast movement to create close-range openings.', 'https://www.arcsystemworks.jp/uni2celes/en/character/linne.php', 'www.arcsystemworks.jp', 'attributed-paraphrase', '2026-08-24T00:00:00Z'
@@ -204,6 +207,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/uni2-linne.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_001Linne.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and official-site link.', 'sha256:c01bac53bf24aee8a760b9a8f0f2cd522cdc6d0f26db9d4d861b442cb1d287e7', 'approved', true, '2026-08-25', '2026-08-25'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'uni2' and c.slug = 'linne' and c.roster_role = 'fighter'
+on conflict (asset_sha256) do update set
+  character_id = excluded.character_id, storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'yuzuriha', 'Yuzuriha', 'fighter', 'released', true, 3, 'A long-range stance character who rewards measured spacing and precise commitments.', 'https://www.arcsystemworks.jp/uni2celes/en/character/yuzuriha.php', 'www.arcsystemworks.jp', 'attributed-paraphrase', '2026-08-24T00:00:00Z'
 from public.game_versions where slug = 'uni2'
@@ -212,6 +226,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/uni2-yuzuriha.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_009Yuzuriha.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and official-site link.', 'sha256:cbf1fc94121b64faf4ba632d59def84a916b66eebd991fd1f7c591188b3e169c', 'approved', true, '2026-08-25', '2026-08-25'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'uni2' and c.slug = 'yuzuriha' and c.roster_role = 'fighter'
+on conflict (asset_sha256) do update set
+  character_id = excluded.character_id, storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'waldstein', 'Waldstein', 'fighter', 'released', true, 4, 'A command-grab threat whose enormous normals force opponents to respect his reach.', 'https://www.arcsystemworks.jp/uni2celes/en/character/waldstein.php', 'www.arcsystemworks.jp', 'attributed-paraphrase', '2026-08-24T00:00:00Z'
 from public.game_versions where slug = 'uni2'
@@ -219,6 +244,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/uni2-waldstein.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_002Waldstein.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and official-site link.', 'sha256:fdd8d928fab8aa94879f9afa0d9073eb7415fefb4b32e4b597c722d7d7a6dc18', 'approved', true, '2026-08-25', '2026-08-25'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'uni2' and c.slug = 'waldstein' and c.roster_role = 'fighter'
+on conflict (asset_sha256) do update set
+  character_id = excluded.character_id, storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)
 values ('avatar-legends', 'Avatar Legends: The Fighting Game', 'AVATAR', 'Roster preview', 6, '{"version":1,"noun":"Team","verified":false,"ordered":true,"uniqueCharacters":true,"slots":[{"id":"slot-1","label":"Slot 1","allowedRoles":["fighter"]},{"id":"slot-2","label":"Slot 2","allowedRoles":["fighter"]}],"verificationNote":"The required support/fuse-equivalent selection is not yet verified against a stable first-party rules reference."}'::jsonb, 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'preview', '2026-08-24T00:00:00Z')

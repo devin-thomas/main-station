@@ -13,6 +13,7 @@ export function HomePage() {
     <div className="home-page">
       <section className="entry-stage" aria-labelledby="entry-title">
         <div className="entry-stage__copy">
+          <img className="entry-stage__mark" src="/brand/mainstation-logo.png" alt="" />
           <p className="eyebrow">PUBLIC MAINS · CONNECTED ACROSS GAMES</p>
           <h1 id="entry-title">Your mains<br />form a line.</h1>
           <p className="entry-stage__lede">

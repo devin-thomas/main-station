@@ -45,7 +45,17 @@ const mvcSchema = (assistValues: string[]): SelectionSchema => ({
   })),
 });
 
-const sourceCheckedAt = '2026-08-24';
+const uni2FanKitReviewedAt = '2026-08-25';
+
+const uni2FanKitArt = (filename: string, sourceFilename: string, assetHash: string): NonNullable<Character['art']> => ({
+  localPath: `/art/${filename}`,
+  sourceUrl: `https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/${sourceFilename}`,
+  licenseUrl: 'https://www.arcsystemworks.jp/uni2celes/en/fankit/',
+  creditText: '© FRENCH-BREAD / ARC SYSTEM WORKS',
+  usageBasis: 'official-fankit',
+  assetHash: `sha256:${assetHash}`,
+  reviewedAt: uni2FanKitReviewedAt,
+});
 
 export const catalog: GameVersion[] = [
   {
@@ -129,19 +139,17 @@ export const catalog: GameVersion[] = [
     schema: soloSchema(),
     characters: [
       fighter('hyde', 'Hyde', 'A versatile sword user whose grounded fundamentals lead into strong pressure.', 'https://www.arcsystemworks.jp/uni2celes/en/character/hyde.php', {
-        art: {
-          localPath: '/art/uni2-hyde.png',
-          sourceUrl: 'https://www.arcsystemworks.jp/uni2celes/en/fankit/',
-          licenseUrl: 'https://www.arcsystemworks.jp/uni2celes/en/fankit/',
-          creditText: '© FRENCH-BREAD / ARC SYSTEM WORKS',
-          usageBasis: 'official-fankit',
-          assetHash: 'sha256:6deb04b76669e9e05ea301e53ddaecb0a31d312c4b313c675ba41a2b3f5038e4',
-          reviewedAt: sourceCheckedAt,
-        },
+        art: uni2FanKitArt('uni2-hyde.png', 'csel_noef_000Hyde.png', '6deb04b76669e9e05ea301e53ddaecb0a31d312c4b313c675ba41a2b3f5038e4'),
       }),
-      fighter('linne', 'Linne', 'A compact, high-speed fighter who uses fast movement to create close-range openings.', 'https://www.arcsystemworks.jp/uni2celes/en/character/linne.php'),
-      fighter('yuzuriha', 'Yuzuriha', 'A long-range stance character who rewards measured spacing and precise commitments.', 'https://www.arcsystemworks.jp/uni2celes/en/character/yuzuriha.php'),
-      fighter('waldstein', 'Waldstein', 'A command-grab threat whose enormous normals force opponents to respect his reach.', 'https://www.arcsystemworks.jp/uni2celes/en/character/waldstein.php'),
+      fighter('linne', 'Linne', 'A compact, high-speed fighter who uses fast movement to create close-range openings.', 'https://www.arcsystemworks.jp/uni2celes/en/character/linne.php', {
+        art: uni2FanKitArt('uni2-linne.png', 'csel_noef_001Linne.png', 'c01bac53bf24aee8a760b9a8f0f2cd522cdc6d0f26db9d4d861b442cb1d287e7'),
+      }),
+      fighter('yuzuriha', 'Yuzuriha', 'A long-range stance character who rewards measured spacing and precise commitments.', 'https://www.arcsystemworks.jp/uni2celes/en/character/yuzuriha.php', {
+        art: uni2FanKitArt('uni2-yuzuriha.png', 'csel_noef_009Yuzuriha.png', 'cbf1fc94121b64faf4ba632d59def84a916b66eebd991fd1f7c591188b3e169c'),
+      }),
+      fighter('waldstein', 'Waldstein', 'A command-grab threat whose enormous normals force opponents to respect his reach.', 'https://www.arcsystemworks.jp/uni2celes/en/character/waldstein.php', {
+        art: uni2FanKitArt('uni2-waldstein.png', 'csel_noef_002Waldstein.png', 'fdd8d928fab8aa94879f9afa0d9073eb7415fefb4b32e4b597c722d7d7a6dc18'),
+      }),
     ],
   },
   {

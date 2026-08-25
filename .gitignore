@@ -14,5 +14,5 @@ supabase/.branches/
 .DS_Store
 Thumbs.db
 
-# Unapproved legacy identity asset; the final MainStation logo is still pending.
+# Original user drop; the tracked canonical source lives in assets/brand.
 MainStation Logo.png

@@ -11,7 +11,7 @@ export default defineConfig({
       filename: 'sw.ts',
       injectRegister: false,
       registerType: 'prompt',
-      includeAssets: ['favicon.svg', 'icons/*.png', 'uppercut-labs-logo.png'],
+      includeAssets: ['favicon.png', 'brand/*.png', 'icons/*.png', 'uppercut-labs-logo.png'],
       manifest: {
         id: '/',
         name: 'MainStation',
@@ -33,6 +33,7 @@ export default defineConfig({
       },
       injectManifest: {
         globPatterns: ['**/*.{js,css,html,woff2,png,svg,webmanifest}'],
+        globIgnores: ['art/**'],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
       },
       devOptions: { enabled: true, type: 'module' },

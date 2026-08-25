@@ -1,6 +1,6 @@
 begin;
 
-select plan(86);
+select plan(94);
 
 select has_table('public', 'profiles', 'profiles exists');
 select has_table('public', 'lineups', 'lineups exists');
@@ -12,6 +12,23 @@ select has_function('public', 'recommend_characters', array['uuid', 'uuid'], 're
 select has_function('public', 'delete_my_account', array[]::text[], 'account deletion RPC exists');
 select has_function('public', 'claim_profile_draft', array['jsonb', 'uuid'], 'guest-draft claim RPC exists');
 select has_function('public', 'save_my_profile_draft', array['jsonb', 'uuid'], 'registered-draft save RPC exists');
+select has_function('public', 'get_my_profile_draft', array[]::text[], 'registered-draft read RPC exists');
+select has_function('public', 'run_my_recommendations', array['uuid'], 'audited recommendation RPC exists');
+select has_function('public', 'record_recommendation_feedback', array['uuid', 'uuid', 'feedback_response', 'text'], 'bounded feedback RPC exists');
+
+select results_eq(
+  $$select count(*)::integer from public.character_art_assets
+    where review_state = 'approved'
+      and is_primary
+      and storage_path in (
+        '/art/uni2-hyde.png',
+        '/art/uni2-linne.png',
+        '/art/uni2-waldstein.png',
+        '/art/uni2-yuzuriha.png'
+      )$$,
+  array[4::integer],
+  'the approved UNI2 fan-kit inventory contains all four unchanged preview Character assets'
+);
 
 select results_eq(
   $$select count(*)::integer
@@ -155,17 +172,17 @@ select ok(
 );
 
 select ok(
-  has_function_privilege('anon', 'public.lineup_is_publishable(uuid)', 'EXECUTE'),
-  'anonymous RLS can execute the non-leaking publishability helper'
+  has_function_privilege('anon', 'mainstation_policy.lineup_is_publishable(uuid)', 'EXECUTE'),
+  'anonymous RLS can execute the non-exposed publishability helper'
 );
 
 select ok(
-  has_function_privilege('authenticated', 'public.lineup_is_publishable(uuid)', 'EXECUTE'),
+  has_function_privilege('authenticated', 'mainstation_policy.lineup_is_publishable(uuid)', 'EXECUTE'),
   'authenticated RLS can execute the publishability helper'
 );
 
 select ok(
-  has_function_privilege('service_role', 'public.lineup_is_publishable(uuid)', 'EXECUTE'),
+  has_function_privilege('service_role', 'mainstation_policy.lineup_is_publishable(uuid)', 'EXECUTE'),
   'service-role checks can execute the publishability helper'
 );
 
@@ -177,7 +194,10 @@ select results_eq(
       ('public.export_my_profile()'),
       ('public.delete_my_account()'),
       ('public.claim_profile_draft(jsonb,uuid)'),
-      ('public.save_my_profile_draft(jsonb,uuid)')
+      ('public.save_my_profile_draft(jsonb,uuid)'),
+      ('public.get_my_profile_draft()'),
+      ('public.run_my_recommendations(uuid)'),
+      ('public.record_recommendation_feedback(uuid,uuid,public.feedback_response,text)')
     ) as rpc(signature)
     where has_function_privilege('anon', rpc.signature, 'EXECUTE')$$,
   array[0::integer],
@@ -192,11 +212,14 @@ select results_eq(
       ('public.export_my_profile()'),
       ('public.delete_my_account()'),
       ('public.claim_profile_draft(jsonb,uuid)'),
-      ('public.save_my_profile_draft(jsonb,uuid)')
+      ('public.save_my_profile_draft(jsonb,uuid)'),
+      ('public.get_my_profile_draft()'),
+      ('public.run_my_recommendations(uuid)'),
+      ('public.record_recommendation_feedback(uuid,uuid,public.feedback_response,text)')
     ) as rpc(signature)
     where has_function_privilege('authenticated', rpc.signature, 'EXECUTE')$$,
-  array[6::integer],
-  'authenticated callers can execute the six account RPCs'
+  array[9::integer],
+  'authenticated callers can execute the nine account and data-product RPCs'
 );
 
 select results_eq(
@@ -207,7 +230,10 @@ select results_eq(
       ('public.export_my_profile()'),
       ('public.delete_my_account()'),
       ('public.claim_profile_draft(jsonb,uuid)'),
-      ('public.save_my_profile_draft(jsonb,uuid)')
+      ('public.save_my_profile_draft(jsonb,uuid)'),
+      ('public.get_my_profile_draft()'),
+      ('public.run_my_recommendations(uuid)'),
+      ('public.record_recommendation_feedback(uuid,uuid,public.feedback_response,text)')
     ) as rpc(signature)
     where has_function_privilege('service_role', rpc.signature, 'EXECUTE')$$,
   array[0::integer],
@@ -271,7 +297,7 @@ select results_eq(
       ('public.recommendation_runs'),
       ('public.recommendation_feedback')
     ) as protected_table(signature)$$,
-  $$values (5::integer, 4::integer, 2::integer, 0::integer, 0::integer, 0::integer)$$,
+  $$values (3::integer, 3::integer, 2::integer, 0::integer, 0::integer, 0::integer)$$,
   'authenticated table privileges match the explicit RLS-backed write matrix'
 );
 
@@ -585,6 +611,15 @@ select results_eq(
   'registered save commits the new identity and private Team together'
 );
 
+select results_eq(
+  $$select
+      public.get_my_profile_draft() -> 'profile' ->> 'displayName',
+      jsonb_array_length(public.get_my_profile_draft() -> 'lineups'),
+      public.get_my_profile_draft() -> 'lineups' -> 0 ->> 'visibility'$$,
+  $$values ('Claim Owner Updated'::text, 1::integer, 'private'::text)$$,
+  'the owner can explicitly reload the complete registered draft including private Lineups'
+);
+
 select throws_ok(
   $$select public.save_my_profile_draft(
       jsonb_set(
@@ -872,7 +907,7 @@ select results_eq(
 );
 
 select results_eq(
-  $$select (position('lineup_is_publishable' in pg_get_viewdef('public.public_lineups'::regclass, true)) > 0)::integer$$,
+  $$select (position('mainstation_policy.lineup_is_publishable' in pg_get_viewdef('public.public_lineups'::regclass, true)) > 0)::integer$$,
   array[1::integer],
   'public Lineups recompute validity instead of trusting a stale flag'
 );
@@ -904,13 +939,13 @@ select results_eq(
 );
 
 select is(
-  public.lineup_is_publishable('40000000-0000-4000-8000-000000000005'),
+  mainstation_policy.lineup_is_publishable('40000000-0000-4000-8000-000000000005'),
   false,
   'a private Lineup is not publishable'
 );
 
 select is(
-  public.lineup_is_publishable('ffffffff-ffff-4fff-8fff-ffffffffffff'),
+  mainstation_policy.lineup_is_publishable('ffffffff-ffff-4fff-8fff-ffffffffffff'),
   false,
   'an unknown Lineup is indistinguishable from a private Lineup'
 );
@@ -1029,7 +1064,7 @@ insert into public.recommendation_runs (
   scoring_policy,
   candidates
 ) values
-  ('60000000-0000-4000-8000-000000000001', '10000000-0000-4000-8000-000000000001', '20000000-0000-4000-8000-000000000001', 'association-v1', '[]'),
+  ('60000000-0000-4000-8000-000000000001', '10000000-0000-4000-8000-000000000001', '20000000-0000-4000-8000-000000000001', 'association-v1', '[{"characterId":"30000000-0000-4000-8000-000000000001","characterSlug":"alpha","characterName":"Alpha","rank":1,"score":0.5,"supportCount":1,"policyVersion":"association-v1"}]'),
   ('60000000-0000-4000-8000-000000000002', '10000000-0000-4000-8000-000000000002', '20000000-0000-4000-8000-000000000001', 'association-v1', '[]');
 
 insert into public.recommendation_feedback (
@@ -1054,19 +1089,46 @@ end;
 $$;
 
 select lives_ok(
-  $$update public.recommendation_feedback
-    set response = 'already_play'
+  $$select public.record_recommendation_feedback(
+      '60000000-0000-4000-8000-000000000001',
+      '30000000-0000-4000-8000-000000000001',
+      'already_play',
+      null
+    )$$,
+  'an owner can update analytics-only feedback through the bounded RPC'
+);
+
+select results_eq(
+  $$select response::text from public.recommendation_feedback
     where id = '70000000-0000-4000-8000-000000000001'$$,
-  'an owner can update feedback on its own Recommendation Run'
+  array['already_play'::text],
+  'the feedback RPC updates the unique owner, run, and Character response'
 );
 
 select throws_ok(
-  $$update public.recommendation_feedback
-    set recommendation_run_id = '60000000-0000-4000-8000-000000000002'
-    where id = '70000000-0000-4000-8000-000000000001'$$,
+  $$select public.record_recommendation_feedback(
+      '60000000-0000-4000-8000-000000000002',
+      '30000000-0000-4000-8000-000000000001',
+      'would_try',
+      null
+    )$$,
   '42501',
-  'new row violates row-level security policy for table "recommendation_feedback"',
-  'feedback cannot be reassigned to another owner Recommendation Run'
+  'Recommendation candidate not found or not owned by the current user.',
+  'feedback cannot target another owner Recommendation Run'
+);
+
+select is(
+  jsonb_array_length(public.run_my_recommendations('20000000-0000-4000-8000-000000000003') -> 'candidates'),
+  0,
+  'a zero-candidate recommendation remains honest'
+);
+
+select results_eq(
+  $$select count(*)::integer from public.recommendation_runs
+    where owner_id = '10000000-0000-4000-8000-000000000001'
+      and target_game_version_id = '20000000-0000-4000-8000-000000000003'$$,
+  array[1::integer],
+  'the zero-candidate recommendation still records its immutable audit run'
 );
 
 reset role;

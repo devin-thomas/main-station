@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { useAuth } from '../features/auth/AuthProvider';
 import { usePwaLifecycle } from '../features/pwa/usePwaLifecycle';
 import { Wordmark } from './Wordmark';
 
@@ -11,6 +12,8 @@ export function AppShell() {
   const [online, setOnline] = useState(navigator.onLine);
   const location = useLocation();
   const lifecycle = usePwaLifecycle();
+  const { session, registeredHandle } = useAuth();
+  const profilePath = registeredHandle ? `/p/${registeredHandle}` : session ? '/settings' : '/p/station-zero';
 
   useEffect(() => {
     const updateOnline = () => setOnline(true);
@@ -58,7 +61,7 @@ export function AppShell() {
         <nav className="site-nav" aria-label="Primary">
           <NavLink className={navClass} to="/build">Build</NavLink>
           <NavLink className={navClass} to="/recommend">Recommend</NavLink>
-          <NavLink className={navClass} to="/p/station-zero">Profile</NavLink>
+          <NavLink className={navClass} to={profilePath}>Profile</NavLink>
           <NavLink className={navClass} to="/settings">Settings</NavLink>
         </nav>
         {location.pathname !== '/build' && <NavLink className="header-command" to="/build">Add a main</NavLink>}

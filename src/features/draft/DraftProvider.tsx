@@ -8,6 +8,8 @@ interface DraftContextValue {
   storageError: string | null;
   updateProfile(profile: DraftProfile): Promise<void>;
   addLineup(lineup: Lineup): Promise<void>;
+  updateLineup(lineup: Lineup): Promise<void>;
+  moveLineup(lineupId: string, direction: -1 | 1): Promise<void>;
   removeLineup(lineupId: string): Promise<void>;
   replaceDraft(draft: GuestDraft): Promise<void>;
   preserveRecovery(): Promise<void>;
@@ -68,6 +70,24 @@ export function DraftProvider({ children }: { children: ReactNode }) {
     },
     async addLineup(lineup) {
       await commit({ ...draft, lineups: [...draft.lineups, lineup], updatedAt: new Date().toISOString() });
+    },
+    async updateLineup(lineup) {
+      if (!draft.lineups.some((candidate) => candidate.id === lineup.id)) {
+        throw new Error('The Character or Team no longer exists in this local draft.');
+      }
+      await commit({
+        ...draft,
+        lineups: draft.lineups.map((candidate) => candidate.id === lineup.id ? lineup : candidate),
+        updatedAt: new Date().toISOString(),
+      });
+    },
+    async moveLineup(lineupId, direction) {
+      const currentIndex = draft.lineups.findIndex((lineup) => lineup.id === lineupId);
+      const targetIndex = currentIndex + direction;
+      if (currentIndex < 0 || targetIndex < 0 || targetIndex >= draft.lineups.length) return;
+      const lineups = [...draft.lineups];
+      [lineups[currentIndex], lineups[targetIndex]] = [lineups[targetIndex], lineups[currentIndex]];
+      await commit({ ...draft, lineups, updatedAt: new Date().toISOString() });
     },
     async removeLineup(lineupId) {
       await commit({ ...draft, lineups: draft.lineups.filter((lineup) => lineup.id !== lineupId), updatedAt: new Date().toISOString() });

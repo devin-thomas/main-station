@@ -38,12 +38,15 @@ catalog.forEach((game, index) => {
     if (character.art) {
       lines.push(
         'insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)',
-        `select c.id, ${sql(character.art.localPath)}, ${sql(character.art.sourceUrl)}, 'Arc System Works', ${sql(character.art.licenseUrl)}, 'express-fan-kit', ${sql(character.art.creditText)}, 'Official fan-kit terms permit website use and unmodified redistribution with notice and official-site link.', ${sql(character.art.assetHash)}, 'approved', true, '2026-08-24T00:00:00Z', '2026-08-24T00:00:00Z'`,
+        `select c.id, ${sql(character.art.localPath)}, ${sql(character.art.sourceUrl)}, 'Arc System Works', ${sql(character.art.licenseUrl)}, 'express-fan-kit', ${sql(character.art.creditText)}, 'Official fan-kit terms permit website use and unmodified redistribution with notice and official-site link.', ${sql(character.art.assetHash)}, 'approved', true, ${sql(character.art.reviewedAt)}, ${sql(character.art.reviewedAt)}`,
         'from public.characters c',
         'join public.game_versions gv on gv.id = c.game_version_id',
         `where gv.slug = ${sql(game.slug)} and c.slug = ${sql(character.slug)} and c.roster_role = ${sql(character.role)}`,
         'on conflict (asset_sha256) do update set',
-        '  review_state = excluded.review_state, is_primary = excluded.is_primary, reviewed_at = excluded.reviewed_at;',
+        '  character_id = excluded.character_id, storage_path = excluded.storage_path, source_url = excluded.source_url,',
+        '  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,',
+        '  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,',
+        '  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;',
         '',
       );
     }
