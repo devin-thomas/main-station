@@ -15,7 +15,7 @@ export function AppShell() {
   const { session, registeredHandle } = useAuth();
   const profilePath = registeredHandle ? `/p/${registeredHandle}` : session ? '/settings' : '/p/station-zero';
   const accountLabel = registeredHandle ? `@${registeredHandle}` : 'Account';
-  const isAccountRoute = location.pathname === '/settings';
+  const isFocusRoute = location.pathname === '/settings' || location.pathname === '/build';
 
   useEffect(() => {
     const updateOnline = () => setOnline(true);
@@ -37,7 +37,7 @@ export function AppShell() {
           <p>Your guest draft remains available on this device. Account saves and fresh recommendations need a connection.</p>
         </div>
       )}
-      {lifecycle.updateReady && !isAccountRoute && (
+      {lifecycle.updateReady && !isFocusRoute && (
         <div className="system-rail" role="status">
           <span>UPDATE READY</span>
           <p>A controlled new version is waiting.</p>
@@ -45,7 +45,7 @@ export function AppShell() {
           <button type="button" className="button-quiet" onClick={lifecycle.deferUpdate}>Later</button>
         </div>
       )}
-      {lifecycle.offlineReady && !isAccountRoute && (
+      {lifecycle.offlineReady && !isFocusRoute && (
         <div className="system-rail system-rail--ready" role="status">
           <span>OFFLINE READY</span>
           <p>The app shell can now reopen without a connection.</p>
