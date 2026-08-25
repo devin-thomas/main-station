@@ -32,7 +32,7 @@ Implementation resolves conflicts in this order:
 
 - Guest profile draft stored locally without an account.
 - Discord and email authentication through Supabase Auth.
-- Claim a valid guest draft into a registered public Player Profile.
+- Let a guest explicitly merge a valid local draft into a registered public Player Profile, discard it after sign-in, or cancel before authentication.
 - Public and owner profile views.
 - Create, edit, hide, restore, retire, reactivate, reorder, and delete complete Characters or Teams.
 - Version-aware Selection Schema validation for all 13 founding Game Versions.
@@ -226,7 +226,7 @@ Unknown public handles, Games, and Characters return a real not-found state in t
 - Category enum: `main | secondary`.
 - Lifecycle enum: `active | retired`.
 - Visibility enum: `public | private`.
-- Stable client request ID for idempotent claim/save.
+- Stable client request ID for idempotent claim, merge, and save.
 - Owner-defined sort order, timestamps.
 - A Lineup is not valid until its complete Character Picks pass the Game Version Selection Schema.
 
@@ -271,7 +271,8 @@ Launch seeds must represent all 13 Game Versions. At minimum they preserve the a
 - `player_game_signatures`: normalized versioned Character weights per Player and Game Version.
 - `recommend_characters(profile_id, target_game_version_id)`: ranked data-derived candidates and support.
 - `export_profile_data(profile_id)`: owner-only machine-readable account export.
-- `claim_profile_draft(payload, request_id)`: authenticated transactional validation and import of a guest draft.
+- `claim_profile_draft(payload, request_id)`: authenticated transactional validation and import when the account has no registered profile.
+- `merge_my_guest_draft(payload, request_id)`: authenticated transactional validation and non-destructive merge of a guest draft into an existing registered profile.
 
 No launch view may bypass source-row visibility or ownership policies.
 
@@ -303,7 +304,7 @@ No launch view may bypass source-row visibility or ownership policies.
 - No personalized Supabase response is stored in Cache Storage.
 - Logs exclude auth tokens, private Lineup payloads, email addresses, and feedback bodies.
 
-## 9. Guest draft and claim flow
+## 9. Guest draft, sign-in decision, and merge flow
 
 ### 9.1 Local draft
 
@@ -314,16 +315,26 @@ No launch view may bypass source-row visibility or ownership policies.
 - A quota or transaction failure shows a persistent error and does not pretend the draft was saved.
 - The player can export or clear the guest draft.
 
-### 9.2 Claim
+### 9.2 Pre-auth draft decision
 
-1. Validate the entire draft locally against current catalog schemas.
-2. Authenticate with Discord or email.
-3. Show that registration creates a public profile and that private Characters/Teams remain absent.
-4. Submit the complete draft once with a UUID request ID to `claim_profile_draft`.
-5. The database revalidates and imports the payload in one transaction.
-6. A duplicate request ID returns the existing successful result.
-7. On success, preserve a local read-only recovery copy until the registered profile is confirmed, then offer removal.
-8. On validation, handle, auth, or network failure, keep the local draft unchanged and show the exact next action.
+When a visitor starts sign-in while the Guest Draft contains a profile field or Lineup, the client does not immediately open Discord or send an email link. It presents a focused decision screen that says the draft is saved only on this device and names all three outcomes:
+
+1. **Merge this draft and sign in:** sign in, then add the guest work to the existing account without replacing the saved profile.
+2. **Discard this draft and sign in:** sign in, then clear this browser's guest draft and load the saved account profile.
+3. **Keep editing:** close the decision screen and make no authentication or draft change.
+
+The selection is stored locally without a draft payload or account data in the redirect URL. Empty drafts may proceed directly to ordinary sign-in. Cancelled, failed, or incomplete provider authentication always returns with the guest draft unchanged, regardless of the chosen intent.
+
+### 9.3 Post-auth behavior
+
+1. Confirm the authenticated session and load the registered profile state.
+2. For **discard**, clear the guest draft only now, clear any recovery copy for that discarded draft, and load the registered profile if one exists. A sign-in failure never discards it.
+3. For **merge** with no registered profile, validate the draft and create the first public profile through `claim_profile_draft`; profile setup is required when the guest draft lacks a valid display name or handle.
+4. For **merge** with an existing registered profile, submit the complete guest draft once with a UUID request ID to `merge_my_guest_draft`.
+5. The database revalidates, loads the authenticated owner's profile, computes the merge, and commits the result in one transaction. A duplicate request ID returns the same successful receipt and result.
+6. Existing registered display name, handle, and bio always win. Registered Lineups remain. A guest Lineup is appended in its guest order unless a semantic exact duplicate already exists; semantic equality includes Game Version, ordered Picks and options, category, lifecycle, visibility, and team option, but ignores local IDs and timestamps.
+7. A guest Lineup with a different category, lifecycle, visibility, option, or pick order is not treated as a duplicate and is preserved rather than silently resolved. The server returns the merged registered draft so the client displays the exact saved result.
+8. Before either claim or merge, preserve a local read-only recovery copy. Remove it only after the returned registered draft has been loaded and confirmed. On validation, auth, authorization, conflict, or network failure, leave the editable Guest Draft unchanged and show the precise recovery action.
 
 Registered edits are online-only at launch. Offline owner attempts remain unsent and visibly blocked; there is no silent outbox.
 
@@ -452,7 +463,7 @@ Policy ID: `association-v1`.
 
 - The shell, local guest draft, catalog fixture data needed to edit that draft, and explicit offline status remain usable.
 - Public server data may show the last safe same-origin read model only when labeled with its retrieval time; launch may instead show an unavailable-online state.
-- Registered saves, claim, feedback, export, deletion, and fresh recommendations are visibly unavailable offline.
+- Registered saves, guest-draft claim or merge, feedback, export, deletion, and fresh recommendations are visibly unavailable offline.
 - `navigator.onLine` is a hint only; request results determine reachability.
 - Storage quota, IndexedDB migration, blocked database, and cleared-storage states have explicit recovery copy.
 
@@ -528,7 +539,7 @@ npm run test:e2e
 
 ### 19.4 UI gates
 
-- Playwright covers guest draft, schema validation, claim error preservation, public/private visibility, recommendation no-data/weak-data states, feedback isolation, art fallback, export, and deletion failure.
+- Playwright covers guest draft, pre-auth merge/discard/cancel choices, cancelled-auth draft preservation, claim and existing-profile merge idempotency, merge duplicate handling, public/private visibility, recommendation no-data/weak-data states, feedback isolation, art fallback, export, and deletion failure.
 - Automated accessibility checks run on primary routes; keyboard and screen-reader behavior receive manual verification.
 - Desktop and mobile screenshots are reviewed with Dark Reader enabled and disabled; authored appearance should not materially change.
 - The anti-slop checklist passes: recognizable composition, Mainline signature move, purposeful typography, semantic containment, intentional mobile composition, project-owned tokens, and no default SaaS/card-grid aesthetic.

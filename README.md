@@ -2,7 +2,7 @@
 
 MainStation is an FGC main-history profile and cross-game Character recommendation PWA. The public identity is the product; recommendations are a transparent, profile-data-only payoff.
 
-The current release is an implementation preview. It includes a complete local guest-draft workflow, explicit account claim/sync, 13 saveable Selection Schema shapes, complete checked selection rosters for all 13 founding games, public profile/Game/Character statistics, audited profile-data-only recommendations and feedback, a generated typed Supabase client, and Cloudflare Workers Static Assets packaging. Character art provenance remains a separate 90-record review ledger; roster rows without approved art stay visibly text-only.
+The current release is an implementation preview. It includes a complete local guest-draft workflow, an explicit pre-sign-in merge/discard/cancel decision, 13 saveable Selection Schema shapes, complete checked selection rosters for all 13 founding games, public profile/Game/Character statistics, audited profile-data-only recommendations and feedback, a generated typed Supabase client, and Cloudflare Workers Static Assets packaging. Character art provenance remains a separate 90-record review ledger; roster rows without approved art stay visibly text-only.
 
 ## Local development
 
@@ -27,7 +27,7 @@ node C:\Users\lilgo\.codex\skills\pwa-development\scripts\audit-manifest.mjs --m
 
 ## Supabase
 
-The hosted project `bqfzzrasfunysseoogcg` has the source schema, public data-product RPCs, private policy helper, and the generated complete catalog seed. It currently contains 13 game versions, 410 Character records, 90 active primary art records, one live-accepted Discord identity, and no registered public profile. Discord OAuth completed its callback and PKCE token exchange successfully on 2026-08-25; claiming or syncing a guest draft remains a separate explicit action.
+The hosted project `bqfzzrasfunysseoogcg` has the source schema, public data-product RPCs, private policy helper, and the generated complete catalog seed. It currently contains 13 game versions, 410 Character records, 90 active primary art records, one live-accepted Discord identity, and no registered public profile. Discord OAuth completed its callback and PKCE token exchange successfully on 2026-08-25; guest-draft ownership is decided explicitly before sign-in, then claimed or merged only after the session is confirmed.
 
 For another checkout, copy `.env.example` to `.env.production.local` and set only the modern publishable key. This working copy already has that ignored browser configuration. Regenerate `src/types/database.ts` after every hosted schema migration.
 

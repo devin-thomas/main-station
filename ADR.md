@@ -259,3 +259,13 @@
 **Rationale:** The supplied neon-grid mark gives MainStation a recognizable app identity while preserving the subdued station-board interface around it. A single tracked source and deterministic derivatives prevent provisional marks or platform-specific redraws from drifting into competing identities.
 
 **Consequences:** The typographic product name remains beside the mark where small-image legibility is weak. Generated icon files are release artifacts derived by `npm run generate:icons`. Physical Android, Windows, iOS/iPadOS, and macOS installed-surface acceptance remains open until each claimed surface is tested; supplying the artwork alone does not close that gate.
+
+## ADR-027 - Require an explicit guest-draft decision before account sign-in
+
+**Status:** Accepted
+
+**Decision:** When a browser has a non-empty local guest draft and the visitor starts sign-in, MainStation must stop before leaving for the authentication provider and present three equally clear choices: sign in and merge the guest draft, discard the guest draft and sign in, or cancel and return to editing. The selected intent is local-only and survives the authentication redirect; draft payloads and intent never enter a URL.
+
+**Rationale:** A local draft and an existing registered profile are different ownership states. Silently changing from the local draft to an account view after sign-in makes it appear that the work disappeared, while silently replacing the account profile risks data loss. The person must understand the destination of their current work before an external sign-in begins.
+
+**Consequences:** Cancelled, failed, or interrupted authentication never changes the guest draft. A successful discard clears the guest draft only after the session is confirmed. A successful merge creates the first registered profile when none exists, or transactionally combines the guest draft with the existing registered profile. Existing registered identity fields win; merge adds guest Lineups without overwriting registered Lineups, removes only semantic exact duplicates, and retains a local recovery copy until the committed account profile is confirmed. The server owns validation, idempotency, and the final merge result. The former claim/save-only model is superseded wherever a guest draft meets an existing registered profile.

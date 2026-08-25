@@ -610,6 +610,10 @@ export type Database = {
       delete_my_account: { Args: never; Returns: undefined }
       export_my_profile: { Args: never; Returns: Json }
       get_my_profile_draft: { Args: never; Returns: Json }
+      merge_my_guest_draft: {
+        Args: { p_payload: Json; p_request_id: string }
+        Returns: Json
+      }
       finalize_lineup: {
         Args: { p_lineup_id: string }
         Returns: {
