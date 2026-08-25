@@ -53,8 +53,8 @@ export function ProfilePage() {
       <div className="state-page page-frame">
         <p className="eyebrow">PROFILE / NOT FOUND</p>
         <h1>No public line reaches “{handle}”.</h1>
-        <p>Guest drafts stay private on their device until an account explicitly claims them.</p>
-        <Link className="button-primary" to="/build">Build your profile</Link>
+        <p>Drafts stay on their device until they are saved to a profile.</p>
+        <Link className="button-primary" to="/build">Build your line</Link>
       </div>
     );
   }

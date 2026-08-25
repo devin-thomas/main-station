@@ -2,6 +2,8 @@ import { useMemo, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Mainline } from '../components/Mainline';
 import { catalog, catalogBySlug } from '../data/catalog';
+import { getBuilderAccountPresentation } from '../features/auth/accountPresentation';
+import { useAuth } from '../features/auth/AuthProvider';
 import { useDraft } from '../features/draft/DraftProvider';
 import { validateLineup } from '../lib/lineupValidation';
 import type { CharacterPick, Lineup, LineupCategory, LineupLifecycle, LineupVisibility } from '../types/domain';
@@ -13,6 +15,7 @@ function initialPicks(gameSlug: string): CharacterPick[] {
 
 export function BuilderPage() {
   const { draft, storageError, addLineup, updateLineup, moveLineup, removeLineup } = useDraft();
+  const { session, sessionLoading, registeredHandle, profileLoading, profileLookupFailed } = useAuth();
   const [selectedGame, setSelectedGame] = useState('uni2');
   const [picks, setPicks] = useState<CharacterPick[]>(() => initialPicks('uni2'));
   const [category, setCategory] = useState<LineupCategory>('main');
@@ -23,6 +26,13 @@ export function BuilderPage() {
   const [attempted, setAttempted] = useState(false);
   const [editingLineupId, setEditingLineupId] = useState<string | null>(null);
   const game = catalogBySlug.get(selectedGame) ?? catalog[0];
+  const accountPresentation = getBuilderAccountPresentation({
+    hasSession: Boolean(session),
+    sessionLoading,
+    profileLoading,
+    profileLookupFailed,
+    registeredHandle,
+  });
 
   const candidate = useMemo<Lineup>(() => ({
     id: 'candidate',
@@ -66,7 +76,9 @@ export function BuilderPage() {
       setTeamOption('');
       setAttempted(false);
       setEditingLineupId(null);
-      setMessage(`${game.schema.noun} ${existing ? 'updated' : 'saved'} on this device.`);
+      setMessage(accountPresentation.state === 'registered'
+        ? `${game.schema.noun} ${existing ? 'updated' : 'saved'} here. Save changes to update your profile.`
+        : `${game.schema.noun} ${existing ? 'updated' : 'saved'} on this device.`);
     } catch {
       setMessage(null);
     }
@@ -98,12 +110,12 @@ export function BuilderPage() {
     <div className="builder-page page-frame">
       <header className="page-title page-title--builder">
         <div>
-          <p className="eyebrow">LOCAL DRAFT / SAVED ON THIS DEVICE</p>
-          <h1>Build your line.</h1>
+          <p className="eyebrow">{accountPresentation.eyebrow}</p>
+          <h1>{accountPresentation.heading}</h1>
         </div>
         <div className="builder-intro">
-          <p>Choose one exact Game Version, construct a complete Character or Team, then decide how it belongs in your history. Your public name and handle come after you create an account.</p>
-          <Link className="button-primary builder-intro__cta" to="/settings">Create account to save &amp; share</Link>
+          <p>{accountPresentation.description}</p>
+          {accountPresentation.actionLabel && <Link className="button-primary builder-intro__cta" to="/settings">{accountPresentation.actionLabel}</Link>}
         </div>
       </header>
 
@@ -211,7 +223,7 @@ export function BuilderPage() {
           )}
 
           <div className="lineup-editor__commands">
-            <p>{visibility === 'private' ? 'Private entries stay off your profile and do not shape recommendations.' : 'This entry becomes visible after you claim this draft.'}</p>
+            <p>{visibility === 'private' ? 'Private entries stay off your profile and do not shape recommendations.' : accountPresentation.visibilityNote}</p>
             <div className="command-row">
               {editingLineupId && <button className="button-secondary" type="button" onClick={() => chooseGame(game.slug)}>Cancel edit</button>}
               <button className="button-primary" type="submit" disabled={!game.schema.verified}>{editingLineupId ? 'Update' : 'Save'} {game.schema.noun}</button>
@@ -222,10 +234,10 @@ export function BuilderPage() {
 
       <section className="draft-line" aria-labelledby="draft-line-heading">
         <div className="section-heading section-heading--split">
-          <div><p className="eyebrow">03 / REVIEW DRAFT</p><h2 id="draft-line-heading">Your saved draft</h2></div>
-          <div className="draft-claim"><p>Save this draft online to use it across devices and share your profile when you are ready.</p><Link className="button-primary" to="/settings">Create account to save this draft</Link></div>
+          <div><p className="eyebrow">03 / REVIEW DRAFT</p><h2 id="draft-line-heading">Your draft</h2></div>
+          <div className="draft-claim"><p>{accountPresentation.reviewDescription}</p>{accountPresentation.reviewActionLabel && <Link className="button-primary" to="/settings">{accountPresentation.reviewActionLabel}</Link>}</div>
         </div>
-        <Mainline lineups={draft.lineups} label="Guest draft Mainline" />
+        <Mainline lineups={draft.lineups} label={accountPresentation.mainlineLabel} />
         {draft.lineups.length > 0 && (
           <div className="draft-action-ledger" aria-label="Edit and reorder local draft entries">
             {draft.lineups.map((lineup, index) => {

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { getBuilderAccountPresentation } from '../features/auth/accountPresentation';
 import { useAuth } from '../features/auth/AuthProvider';
 import { friendlyAuthError, sendEmailLink, signInWithDiscord, signOut } from '../features/auth/auth';
 import { useDraft } from '../features/draft/DraftProvider';
@@ -49,6 +50,17 @@ export function SettingsPage() {
   }, [draft.profile]);
 
   const hasRegisteredProfile = Boolean(session && registeredHandle);
+  const accountPresentation = getBuilderAccountPresentation({
+    hasSession: Boolean(session),
+    sessionLoading,
+    profileLoading,
+    profileLookupFailed,
+    registeredHandle,
+  });
+  const accountHeading = accountPresentation.state === 'guest' ? 'Save your line.' : accountPresentation.heading;
+  const accountDescription = accountPresentation.state === 'guest'
+    ? 'Build on this device first. Sign in when you want to save, share, or use your profile across devices.'
+    : accountPresentation.description;
   const profileForWrite = hasRegisteredProfile ? draft.profile : onboardingProfile;
 
   const readinessIssues = useMemo(() => {
@@ -199,8 +211,8 @@ export function SettingsPage() {
   return (
     <div className="settings-page page-frame">
       <header className="page-title page-title--account">
-        <div><p className="eyebrow">ACCOUNT</p><h1>Save your Mainline.</h1></div>
-        <p>Build privately first. Create an account when you are ready to save, share, and use your profile across devices.</p>
+        <div><p className="eyebrow">{accountPresentation.state === 'guest' ? 'ACCOUNT' : accountPresentation.eyebrow}</p><h1>{accountHeading}</h1></div>
+        <p>{accountDescription}</p>
       </header>
 
       <section className="account-card" aria-labelledby="account-heading">
@@ -216,7 +228,7 @@ export function SettingsPage() {
           </div>
         ) : (
           <div className="account-start">
-            <div><p className="eyebrow">CREATE OR SIGN IN</p><h2 id="account-heading">Keep your progress.</h2><p>Your public profile is created only when you claim this draft. Entries marked private stay off your profile and do not shape recommendations.</p></div>
+            <div><p className="eyebrow">CREATE OR SIGN IN</p><h2 id="account-heading">Keep your progress.</h2><p>Your public profile is created when you save this draft. Entries marked private stay off your profile and do not shape recommendations.</p></div>
             <div className="auth-controls">
               <button type="button" className="button-primary" disabled={Boolean(authPending)} onClick={() => void requestDiscord()}>{authPending === 'discord' ? 'Opening Discord…' : 'Continue with Discord'}</button>
               <span>or</span>

@@ -73,9 +73,9 @@ test('guest can select and save a valid roster entry for every founding game', a
 test('guest can save a valid solo Character and reload it from IndexedDB', async ({ page }) => {
   await page.goto('/build');
   await expect(page.getByRole('button', { name: 'Save identity' })).toHaveCount(0);
-  await expect(page.getByText('Your public name and handle come after you create an account.')).toBeVisible();
+  await expect(page.getByText('Choose a Game Version, build a Character or Team, and decide how it belongs in your history.')).toBeVisible();
   await expect(page.getByRole('link', { name: 'Sign in / Sign up' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Create account to save & share' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Sign in to save & share' })).toBeVisible();
   await page.getByLabel('Character').selectOption('hyde');
   await page.getByRole('button', { name: 'Save Character' }).click();
   await expect(page.getByText('Hyde', { exact: true }).last()).toBeVisible();
@@ -133,10 +133,10 @@ test('cancelled sign-in stops on a focused recovery screen without touching the 
 
 test('Builder offers a prominent account path before and after drafting', async ({ page }) => {
   await page.goto('/build');
-  await page.getByRole('link', { name: 'Create account to save & share' }).click();
+  await page.getByRole('link', { name: 'Sign in to save & share' }).click();
   await expect(page).toHaveURL(/\/settings$/);
   await page.goto('/build');
-  await expect(page.getByRole('link', { name: 'Create account to save this draft' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Sign in to save this draft' })).toBeVisible();
 });
 
 test('fragment sign-in errors use the same provider-neutral recovery', async ({ page }) => {
@@ -147,7 +147,7 @@ test('fragment sign-in errors use the same provider-neutral recovery', async ({ 
 
 test('account route leads with the focused account state', async ({ page }) => {
   await page.goto('/settings');
-  await expect(page.getByRole('heading', { name: 'Save your Mainline.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Save your line.' })).toBeVisible();
   await expect(page.getByText('Account is not available in this preview')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Install MainStation' })).toHaveCount(0);
 });

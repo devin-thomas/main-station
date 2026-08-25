@@ -94,11 +94,11 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(4rem, 10vw, 9.5rem);
+  font-size: clamp(2.75rem, 5.75vw, 5rem);
 }
 
 h2 {
-  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-size: clamp(1.9rem, 3.5vw, 3.2rem);
 }
 
 p {
@@ -124,9 +124,9 @@ p {
   margin-bottom: 16px;
   color: var(--signal);
   font-family: var(--mono);
-  font-size: .72rem;
+  font-size: .8rem;
   font-weight: 600;
-  letter-spacing: .12em;
+  letter-spacing: .1em;
   line-height: 1.4;
 }
 
@@ -144,7 +144,7 @@ p {
   border-radius: 2px;
   padding: 11px 18px;
   font-family: var(--mono);
-  font-size: .76rem;
+  font-size: .82rem;
   font-weight: 600;
   letter-spacing: .04em;
   text-decoration: none;
@@ -195,7 +195,7 @@ button:disabled {
 .source-line {
   color: var(--signal);
   font-family: var(--mono);
-  font-size: .78rem;
+  font-size: .86rem;
   text-decoration-color: var(--signal-dim);
   text-underline-offset: 4px;
 }
@@ -295,7 +295,7 @@ button:disabled {
   border-right: 1px solid var(--rule-dim);
   color: var(--text-muted);
   font-family: var(--mono);
-  font-size: .7rem;
+  font-size: .76rem;
   letter-spacing: .08em;
   text-decoration: none;
   text-transform: uppercase;
@@ -451,7 +451,7 @@ button:disabled {
 }
 
 .page-title--builder h1 {
-  font-size: clamp(3.75rem, 7vw, 6.8rem);
+  font-size: clamp(2.8rem, 4.8vw, 4.6rem);
 }
 
 .builder-intro {
@@ -464,7 +464,7 @@ button:disabled {
   max-width: 48ch;
   margin: 0;
   color: var(--text);
-  font-size: clamp(1rem, 1.35vw, 1.16rem);
+  font-size: clamp(1.05rem, 1.25vw, 1.125rem);
   line-height: 1.55;
 }
 
@@ -761,7 +761,7 @@ button:disabled {
 .mainline__sequence {
   color: var(--text-muted);
   font-family: var(--mono);
-  font-size: .65rem;
+  font-size: .75rem;
 }
 
 .mainline__node {
@@ -790,7 +790,7 @@ button:disabled {
   margin-bottom: 16px;
   color: var(--text-muted);
   font-family: var(--mono);
-  font-size: .62rem;
+  font-size: .75rem;
   letter-spacing: .05em;
   text-transform: uppercase;
 }
@@ -802,7 +802,7 @@ button:disabled {
 .mainline__characters {
   color: var(--text);
   font-family: var(--display);
-  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  font-size: clamp(1.65rem, 2.35vw, 2.35rem);
   font-weight: 700;
   line-height: .95;
   text-decoration: none;
@@ -818,7 +818,7 @@ button:disabled {
   padding-top: 16px;
   color: var(--text-muted);
   font-family: var(--mono);
-  font-size: .67rem;
+  font-size: .78rem;
 }
 
 .empty-line {
@@ -959,7 +959,7 @@ button:disabled {
 label {
   color: var(--text-muted);
   font-family: var(--mono);
-  font-size: .74rem;
+  font-size: .8rem;
   letter-spacing: .04em;
   text-transform: uppercase;
 }
@@ -973,7 +973,7 @@ select {
   padding: 10px 12px;
   color: var(--text);
   background: var(--surface-deep);
-  font-size: .94rem;
+  font-size: 1rem;
 }
 
 input:hover,
@@ -1001,7 +1001,7 @@ select:hover {
   padding: 18px;
   color: var(--text-muted);
   font-family: var(--mono);
-  font-size: .68rem;
+  font-size: .78rem;
   letter-spacing: .08em;
 }
 
@@ -1038,12 +1038,12 @@ select:hover {
 .game-selector__item span,
 .game-selector__item small {
   font-family: var(--mono);
-  font-size: .63rem;
+  font-size: .72rem;
 }
 
 .game-selector__item strong {
   font-family: var(--display);
-  font-size: 1.08rem;
+  font-size: 1.18rem;
   letter-spacing: .02em;
 }
 
@@ -1063,7 +1063,7 @@ select:hover {
 
 .lineup-editor__heading h2 {
   margin: 0;
-  font-size: clamp(2.35rem, 4.2vw, 4.35rem);
+  font-size: clamp(2rem, 3.25vw, 3.1rem);
 }
 
 .status-mark {
@@ -1072,7 +1072,7 @@ select:hover {
   color: var(--warning);
   background: var(--surface-deep);
   font-family: var(--mono);
-  font-size: .62rem;
+  font-size: .72rem;
 }
 
 .status-mark--ready {
@@ -1112,7 +1112,7 @@ select:hover {
   width: 36px;
   color: var(--signal);
   font-family: var(--mono);
-  font-size: .65rem;
+  font-size: .75rem;
 }
 
 .slot-row label,
@@ -1145,7 +1145,7 @@ select:hover {
 
 .validation-block strong {
   font-family: var(--mono);
-  font-size: .72rem;
+  font-size: .8rem;
   text-transform: uppercase;
 }
 
@@ -1153,7 +1153,7 @@ select:hover {
   margin-bottom: 0;
   padding-left: 20px;
   color: #ffc4bf;
-  font-size: .86rem;
+  font-size: .96rem;
 }
 
 .lineup-editor__commands {
@@ -1170,7 +1170,7 @@ select:hover {
   max-width: 58ch;
   margin: 0;
   color: var(--text-muted);
-  font-size: .82rem;
+  font-size: .96rem;
 }
 
 .draft-line {
@@ -1178,7 +1178,7 @@ select:hover {
 }
 
 .draft-line .section-heading h2 {
-  font-size: clamp(2.5rem, 4.5vw, 4.35rem);
+  font-size: clamp(2rem, 3.3vw, 3.2rem);
 }
 
 .draft-claim {
@@ -1193,7 +1193,7 @@ select:hover {
   max-width: 42ch;
   margin: 0;
   color: var(--text-muted);
-  font-size: .96rem;
+  font-size: 1.05rem;
   line-height: 1.55;
 }
 
@@ -1240,7 +1240,7 @@ select:hover {
 .draft-action-ledger__row small {
   color: var(--text-muted);
   font-family: var(--mono);
-  font-size: .62rem;
+  font-size: .75rem;
   text-transform: uppercase;
 }
 
@@ -1866,7 +1866,7 @@ select:hover {
 }
 
 .page-title--account h1 {
-  font-size: clamp(3.2rem, 6vw, 5.5rem);
+  font-size: clamp(2.6rem, 4.5vw, 4.2rem);
 }
 
 .settings-page {
@@ -1883,7 +1883,7 @@ select:hover {
 
 .account-card h2 {
   margin-bottom: 16px;
-  font-size: clamp(2.6rem, 5vw, 4.6rem);
+  font-size: clamp(2rem, 3.5vw, 3rem);
 }
 
 .account-card > p,
@@ -2186,7 +2186,7 @@ select:hover {
     min-height: 48px;
     flex: 1 1 25%;
     padding: 0 3px;
-    font-size: .63rem;
+    font-size: .72rem;
   }
 
   .site-nav {
@@ -2239,19 +2239,19 @@ select:hover {
 
   .entry-stage h1,
   .page-title h1 {
-    font-size: clamp(4rem, 22vw, 7rem);
+    font-size: clamp(2.6rem, 11.5vw, 3.8rem);
   }
 
   .page-title--builder h1 {
-    font-size: clamp(3.45rem, 17vw, 5.1rem);
+    font-size: clamp(2.5rem, 11vw, 3.5rem);
   }
 
   .builder-intro p {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   .page-title--account h1 {
-    font-size: clamp(3rem, 14vw, 4rem);
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
   }
 
   .settings-page {

@@ -59,8 +59,12 @@ export function RecommendationPage() {
       setError('Fresh recommendations require a network connection. No stale result is being presented as current.');
       return;
     }
-    if (!session || !registeredHandle) {
-      setError('Sign in and claim a complete registered Mainline before requesting profile-based recommendations.');
+    if (!session) {
+      setError('Sign in and save your profile before requesting recommendations.');
+      return;
+    }
+    if (!registeredHandle) {
+      setError('Finish your profile setup before requesting recommendations.');
       return;
     }
     setLoading(true);
@@ -124,8 +128,8 @@ export function RecommendationPage() {
           >
             {loading ? 'Reading public graph...' : 'Run current recommendation'}
           </button>
-          {!sessionLoading && !session && <p className="fine-print">Sign in to use your profile: <Link className="text-link" to="/settings?next=%2Frecommend">continue to account</Link>.</p>}
-          {!profileLoading && session && !registeredHandle && <p className="fine-print">Claim your local draft in <Link className="text-link" to="/settings">your account</Link> first.</p>}
+          {!sessionLoading && !session && <p className="fine-print">Sign in to use recommendations from your profile: <Link className="text-link" to="/settings?next=%2Frecommend">sign in</Link>.</p>}
+          {!profileLoading && session && !registeredHandle && <p className="fine-print">Finish <Link className="text-link" to="/settings">your profile setup</Link> before using recommendations.</p>}
         </section>
 
         <section className="recommend-console__result" aria-labelledby="result-heading">
