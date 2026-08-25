@@ -34,21 +34,22 @@ select results_eq(
   $$select count(*)::integer from public.character_art_assets
     where review_state = 'approved' and is_primary and disabled_at is null$$,
   array[90::integer],
-  'all 90 current Character rows have active approved primary art'
+  'the art ledger has 90 active approved primary art records'
 );
 
 select results_eq(
-  $$select count(*)::integer
-    from public.characters character_row
-    left join public.character_art_assets art
-      on art.character_id = character_row.id
-      and art.review_state = 'approved'
-      and art.is_primary
-      and art.disabled_at is null
-    group by character_row.id
-    having count(art.id) <> 1$$,
-  array[]::integer[],
-  'every Character has exactly one active primary art record'
+  $$select count(*)::integer from public.characters character_row
+    where not exists (
+      select 1 from public.character_art_assets art
+      where art.character_id = character_row.id
+        and art.review_state = 'approved'
+        and art.is_primary
+        and art.disabled_at is null
+    )$$,
+  $$select (select count(*)::integer from public.characters)
+      - (select count(*)::integer from public.character_art_assets
+         where review_state = 'approved' and is_primary and disabled_at is null)$$,
+  'roster rows without reviewed art remain explicit and countable'
 );
 
 select results_eq(

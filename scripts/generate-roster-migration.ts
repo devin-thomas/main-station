@@ -7,7 +7,7 @@ function sql(value: string): string {
 }
 
 const lines: string[] = [
-  '-- Generated from src/data/catalog.ts. Roster completeness and art rights review are tracked separately.',
+  '-- Generated from src/data/catalog.ts. Roster completeness is separate from art rights review.',
   'begin;',
   '',
 ];
@@ -39,24 +39,13 @@ catalog.forEach((game, index) => {
       '  summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;',
       '',
     );
-
-    if (character.art) {
-      lines.push(
-        'insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)',
-        `select c.id, ${sql(character.art.localPath)}, ${sql(character.art.sourceUrl)}, ${sql(character.art.sourcePublisher)}, ${sql(character.art.reviewUrl)}, ${sql(character.art.usageBasis)}, ${sql(character.art.creditText)}, ${sql(character.art.permissionEvidence)}, ${sql(character.art.assetHash)}, 'approved', true, ${sql(character.art.reviewedAt)}, ${sql(character.art.reviewedAt)}`,
-        'from public.characters c',
-        'join public.game_versions gv on gv.id = c.game_version_id',
-        `where gv.slug = ${sql(game.slug)} and c.slug = ${sql(character.slug)} and c.roster_role = ${sql(character.role)}`,
-        'on conflict (character_id, asset_sha256) do update set',
-        '  storage_path = excluded.storage_path, source_url = excluded.source_url,',
-        '  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,',
-        '  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,',
-        '  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;',
-        '',
-      );
-    }
   });
 });
 
 lines.push('commit;', '');
-await writeFile(path.resolve('supabase/seed.sql'), lines.join('\n'), 'utf8');
+
+await writeFile(
+  path.resolve('supabase/migrations/202608251700_complete_character_rosters.sql'),
+  lines.join('\n'),
+  'utf8',
+);

@@ -47,7 +47,7 @@ export function HomePage() {
             <p className="eyebrow">FOUNDING NETWORK / 01–13</p>
             <h2 id="catalog-title">Built for actual FGC histories.</h2>
           </div>
-          <p>Modern, legacy, solo, tag, assist, and Kameo rules remain version-scoped. Preview rosters are visibly marked until their audit closes.</p>
+          <p>Modern, legacy, solo, tag, assist, and Kameo rules remain version-scoped. Every founding game now exposes its complete checked selection roster; art review remains a separate ledger.</p>
         </div>
         <CatalogRail />
       </section>

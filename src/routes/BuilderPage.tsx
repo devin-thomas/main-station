@@ -183,6 +183,9 @@ export function BuilderPage() {
             {game.schema.slots.map((slot, index) => {
               const pick = picks.find((candidatePick) => candidatePick.slotId === slot.id);
               const availableCharacters = game.characters.filter((character) => slot.allowedRoles.includes(character.role));
+              const optionValues = pick?.characterSlug
+                ? slot.optionValuesByCharacter?.[pick.characterSlug] ?? slot.optionValues
+                : slot.optionValues;
               return (
                 <fieldset className="slot-row" key={slot.id}>
                   <legend><span>{String(index + 1).padStart(2, '0')}</span>{slot.label}</legend>
@@ -193,12 +196,12 @@ export function BuilderPage() {
                       {availableCharacters.map((character) => <option value={character.slug} key={character.slug}>{character.name}</option>)}
                     </select>
                   </label>
-                  {slot.optionValues && (
+                  {(slot.optionValues || slot.optionValuesByCharacter) && (
                     <label>
                       <span>{slot.optionLabel}</span>
                       <select value={pick?.option ?? ''} onChange={(event) => updatePick(slot.id, { option: event.target.value })}>
                         <option value="">Choose {slot.optionLabel}</option>
-                        {slot.optionValues.map((option) => <option value={option} key={option}>{option}</option>)}
+                        {optionValues?.map((option) => <option value={option} key={option}>{option}</option>)}
                       </select>
                     </label>
                   )}

@@ -14,7 +14,11 @@ function validFixture(gameIndex: number): Lineup {
     picks: game.schema.slots.map((slot) => {
       const character = game.characters.find((candidate) => slot.allowedRoles.includes(candidate.role));
       if (!character) throw new Error(`No ${slot.allowedRoles.join('/')} fixture for ${game.slug}.`);
-      return { slotId: slot.id, characterSlug: character.slug, option: slot.optionValues?.[0] };
+      return {
+        slotId: slot.id,
+        characterSlug: character.slug,
+        option: slot.optionValuesByCharacter?.[character.slug]?.[0] ?? slot.optionValues?.[0],
+      };
     }),
     teamOption: game.schema.teamOptionValues?.[0],
     createdAt: '2026-08-24T00:00:00.000Z',
@@ -25,6 +29,27 @@ describe('founding catalog', () => {
   it('contains exactly 13 unique version-scoped games', () => {
     expect(catalog).toHaveLength(13);
     expect(new Set(catalog.map((game) => game.slug)).size).toBe(13);
+  });
+
+  it('contains the complete version-scoped roster counts', () => {
+    expect(Object.fromEntries(catalog.map((game) => [game.slug, game.characters.length]))).toEqual({
+      '2xko': 15,
+      'marvel-tokon': 20,
+      mvc2: 56,
+      umvc3: 50,
+      uni2: 28,
+      'avatar-legends': 12,
+      melee: 26,
+      ggxxacpr: 25,
+      'vampire-savior': 15,
+      sf6: 31,
+      mk1: 56,
+      'tekken-8': 42,
+      ggst: 34,
+    });
+    expect(catalog.reduce((total, game) => total + game.characters.length, 0)).toBe(410);
+    expect(catalog.every((game) => game.catalogStatus === 'verified' && game.schema.verified)).toBe(true);
+    expect(new Set(catalog.flatMap((game) => game.characters.map((character) => `${game.slug}/${character.slug}`))).size).toBe(410);
   });
 
   it('records the complete verified UNI2 roster with unchanged fan-kit art provenance', () => {
@@ -42,7 +67,7 @@ describe('founding catalog', () => {
     }
   });
 
-  it('provides reviewed artwork and provenance for every current Character row', () => {
+  it('retains reviewed artwork and provenance for the art-reviewed Character rows', () => {
     const entries = catalog.flatMap((game) => game.characters.map((character) => ({ game, character })));
     const artEntries = entries.filter((entry) => entry.character.art);
     const basisCounts = new Map<string, number>();
@@ -51,7 +76,7 @@ describe('founding catalog', () => {
       if (basis) basisCounts.set(basis, (basisCounts.get(basis) ?? 0) + 1);
     }
 
-    expect(entries).toHaveLength(90);
+    expect(entries).toHaveLength(410);
     expect(artEntries).toHaveLength(90);
     expect(new Set(artEntries.map(({ game, character }) => `${game.slug}/${character.slug}`)).size).toBe(90);
     expect(new Set(artEntries.map(({ game }) => game.slug)).size).toBe(13);
@@ -74,7 +99,7 @@ describe('founding catalog', () => {
     expect(new Set(sharedAvatarArt.map((character) => character.art?.objectPosition)).size).toBe(3);
 
     const melee = catalog.find((game) => game.slug === 'melee');
-    expect(melee?.characters.every((character) => character.art?.creditText.includes('cross-version'))).toBe(true);
+    expect(melee?.characters.filter((character) => character.art).every((character) => character.art?.creditText.includes('cross-version'))).toBe(true);
     const doom = catalog.find((game) => game.slug === 'umvc3')?.characters.find((character) => character.slug === 'doom');
     expect(doom?.art?.creditText).toContain('cross-version');
   });
@@ -98,9 +123,8 @@ describe('founding catalog', () => {
     ]);
   });
 
-  it('accepts every verified preview Selection Schema fixture', () => {
+  it('accepts a valid Selection Schema fixture for every game', () => {
     for (const [index, game] of catalog.entries()) {
-      if (!game.schema.verified) continue;
       const fixture = validFixture(index);
       if (game.schema.uniqueCharacters && fixture.picks.length > 1) {
         fixture.picks = fixture.picks.map((pick, pickIndex) => {
@@ -114,11 +138,14 @@ describe('founding catalog', () => {
     }
   });
 
-  it('blocks unverified game options rather than accepting invented values', () => {
-    for (const [index, game] of catalog.entries()) {
-      if (game.schema.verified) continue;
-      expect(validateLineup(validFixture(index)).valid, game.slug).toBe(false);
-    }
+  it('requires the selected Avatar support to match the selected fighter', () => {
+    const avatar = catalog.find((game) => game.slug === 'avatar-legends');
+    if (!avatar) throw new Error('Avatar catalog is missing.');
+    const supportSlot = avatar.schema.slots[0];
+    const valid = validFixture(catalog.findIndex((game) => game.slug === 'avatar-legends'));
+    valid.picks[0].option = supportSlot.optionValuesByCharacter?.['aang']?.[0];
+    valid.picks[0].characterSlug = 'zuko';
+    expect(validateLineup(valid).errors).toContain('Character needs a valid Support.');
   });
 
   it('rejects duplicate Characters in a fixed Team', () => {

@@ -42,6 +42,7 @@ export interface SelectionSlot {
   allowedRoles: RosterRole[];
   optionLabel?: string;
   optionValues?: string[];
+  optionValuesByCharacter?: Record<string, string[]>;
 }
 
 export interface SelectionSchema {

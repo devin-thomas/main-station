@@ -30,7 +30,8 @@ export function validateLineup(lineup: Lineup): LineupValidation {
     if (!slot.allowedRoles.includes(character.role)) {
       errors.push(`${character.name} cannot fill the ${slot.label} slot.`);
     }
-    if (slot.optionValues?.length && !slot.optionValues.includes(pick.option ?? '')) {
+    const optionValues = slot.optionValuesByCharacter?.[character.slug] ?? slot.optionValues;
+    if (optionValues?.length && !optionValues.includes(pick.option ?? '')) {
       errors.push(`${slot.label} needs a valid ${slot.optionLabel ?? 'option'}.`);
     }
   }

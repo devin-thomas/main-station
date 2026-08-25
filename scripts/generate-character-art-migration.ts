@@ -11,7 +11,7 @@ const artEntries = catalog.flatMap((game) => game.characters.flatMap((character)
 )));
 
 if (artEntries.length !== 90) {
-  throw new Error(`Expected artwork for all 90 current Character rows; found ${artEntries.length}.`);
+  throw new Error(`Expected 90 reviewed art records in the current art ledger; found ${artEntries.length}.`);
 }
 
 const lines: string[] = [

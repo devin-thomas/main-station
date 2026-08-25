@@ -18,7 +18,7 @@ test('home, catalog, and cleared imagery render', async ({ page }) => {
 });
 
 test('every current Character art file is served as an image', async ({ request }) => {
-  const artRecords = catalog.flatMap((game) => game.characters.map((character) => character.art));
+  const artRecords = catalog.flatMap((game) => game.characters.map((character) => character.art)).filter((art) => art);
   expect(artRecords).toHaveLength(90);
 
   for (const art of artRecords) {
@@ -33,8 +33,40 @@ test('every founding game renders reviewed art and provenance on a Character pag
   for (const game of catalog) {
     const character = game.characters[0];
     await page.goto(`/games/${game.slug}/characters/${character.slug}`);
-    await expect(page.getByAltText(`${character.name} reviewed character artwork for ${game.name}`)).toBeVisible();
-    await expect(page.locator('.provenance-block')).toContainText(character.art!.usageBasis.replaceAll('-', ' '));
+    if (character.art) {
+      await expect(page.getByAltText(`${character.name} reviewed character artwork for ${game.name}`)).toBeVisible();
+      await expect(page.locator('.provenance-block')).toContainText(character.art.usageBasis.replaceAll('-', ' '));
+    } else {
+      await expect(page.getByRole('img', { name: `${character.name}; approved character art is not available yet` })).toBeVisible();
+      await expect(page.locator('.character-stage__fallback')).toContainText('ART RIGHTS REVIEW');
+    }
+  }
+});
+
+test('guest can select and save a valid roster entry for every founding game', async ({ page }) => {
+  await page.goto('/build');
+
+  for (const game of catalog) {
+    await page.locator('.game-selector__item').filter({ hasText: game.shortName }).click();
+
+    for (const [index, slot] of game.schema.slots.entries()) {
+      const row = page.locator('fieldset.slot-row').nth(index);
+      const candidates = game.characters.filter((character) => slot.allowedRoles.includes(character.role));
+      const character = candidates[index % candidates.length];
+      await row.getByRole('combobox').nth(0).selectOption(character.slug);
+
+      const optionValues = slot.optionValuesByCharacter?.[character.slug] ?? slot.optionValues;
+      if (optionValues?.length) {
+        await row.getByRole('combobox').nth(1).selectOption(optionValues[0]);
+      }
+    }
+
+    if (game.schema.teamOptionValues?.length) {
+      await page.getByLabel(game.schema.teamOptionLabel!).selectOption(game.schema.teamOptionValues[0]);
+    }
+
+    await page.getByRole('button', { name: `Save ${game.schema.noun}` }).click();
+    await expect(page.getByRole('status').filter({ hasText: /saved on this device/ })).toBeVisible();
   }
 });
 
