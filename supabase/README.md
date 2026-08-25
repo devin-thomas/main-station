@@ -18,12 +18,13 @@ npx supabase stop
 
 The release gate is a fresh reset, all 86 pgTAP assertions, and a clean database lint.
 
-## Dashboard actions still required
+## Hosted Auth configuration
 
-1. Set Site URL to `https://mainstation-preview.uppercut-labs.workers.dev`.
-2. Add `https://mainstation-preview.uppercut-labs.workers.dev/auth/callback` to Auth redirect URLs. Add `http://127.0.0.1:4173/auth/callback` only when testing local sign-in.
-3. Add the Discord Client ID and Client Secret in the Supabase Dashboard. The Discord provider callback is `https://bqfzzrasfunysseoogcg.supabase.co/auth/v1/callback`.
-4. Keep the Discord secret, service-role key, database password, and access tokens out of all `VITE_` variables and source files.
+The production Site URL is `https://mainstation-preview.uppercut-labs.workers.dev`, and `https://mainstation-preview.uppercut-labs.workers.dev/auth/callback` is allowlisted. Add `http://127.0.0.1:4173/auth/callback` only when testing local sign-in.
+
+The Discord provider is enabled with callback `https://bqfzzrasfunysseoogcg.supabase.co/auth/v1/callback`. Live acceptance passed on 2026-08-25: Supabase completed the provider callback with HTTP `302`, exchanged the PKCE authorization code at `/token` with HTTP `200`, and created one Discord identity without creating a public profile. Claiming or syncing the guest draft remains a separate explicit action.
+
+Keep the Discord secret, service-role key, database password, and access tokens out of all `VITE_` variables and source files.
 
 ## Advisor review
 

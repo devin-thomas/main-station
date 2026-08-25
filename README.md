@@ -27,7 +27,7 @@ node C:\Users\lilgo\.codex\skills\pwa-development\scripts\audit-manifest.mjs --m
 
 ## Supabase
 
-The hosted project `bqfzzrasfunysseoogcg` has migration `initial_mainstation` plus the preview catalog seed applied. It currently contains 13 game versions, 55 bounded preview Character records, one approved UNI2 art record, and no user data.
+The hosted project `bqfzzrasfunysseoogcg` has migration `initial_mainstation` plus the preview catalog seed applied. It currently contains 13 game versions, 55 bounded preview Character records, one approved UNI2 art record, one live-accepted Discord identity, and no registered public profile. Discord OAuth completed its callback and PKCE token exchange successfully on 2026-08-25; claiming or syncing a guest draft remains a separate explicit action.
 
 For another checkout, copy `.env.example` to `.env.production.local` and set only the modern publishable key. This working copy already has that ignored browser configuration. Regenerate `src/types/database.ts` after every hosted schema migration.
 
