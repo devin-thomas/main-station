@@ -139,6 +139,20 @@ test('Builder offers a prominent account path before and after drafting', async 
   await expect(page.getByRole('link', { name: 'Sign in to save this draft' })).toBeVisible();
 });
 
+test('a non-empty guest draft requires an explicit merge, account, or editing choice before sign-in', async ({ page }) => {
+  await page.goto('/build');
+  await page.getByLabel('Character').selectOption('hyde');
+  await page.getByRole('button', { name: 'Save Character' }).click();
+  await page.getByRole('link', { name: 'Sign in to save this draft' }).click();
+
+  await expect(page.getByRole('heading', { name: 'What should happen after sign-in?' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Merge this draft and sign in' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Discard this draft and sign in' })).toBeVisible();
+  await page.getByRole('link', { name: 'Keep editing' }).click();
+  await expect(page).toHaveURL(/\/build$/);
+  await expect(page.getByText('Hyde', { exact: true }).last()).toBeVisible();
+});
+
 test('fragment sign-in errors use the same provider-neutral recovery', async ({ page }) => {
   await page.goto('/auth/callback#error=access_denied');
   await expect(page.getByRole('heading', { name: 'Your draft is safe.' })).toBeVisible();
@@ -148,7 +162,8 @@ test('fragment sign-in errors use the same provider-neutral recovery', async ({ 
 test('account route leads with the focused account state', async ({ page }) => {
   await page.goto('/settings');
   await expect(page.getByRole('heading', { name: 'Save your line.' })).toBeVisible();
-  await expect(page.getByText('Account is not available in this preview')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Keep your progress.' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Continue with Discord' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Install MainStation' })).toHaveCount(0);
 });
 

@@ -3,7 +3,9 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { getBuilderAccountPresentation } from '../features/auth/accountPresentation';
 import { useAuth } from '../features/auth/AuthProvider';
 import { friendlyAuthError, sendEmailLink, signInWithDiscord, signOut } from '../features/auth/auth';
+import { rememberGuestAccountDecision, type GuestAccountDecision } from '../features/auth/guestAccountTransition';
 import { useDraft } from '../features/draft/DraftProvider';
+import { hasGuestDraftContent } from '../features/draft/draftMerge';
 import { exportMyProfileData, loadMyProfileDraft, writeProfileDraft } from '../features/profile/profile';
 import { useInstall } from '../features/pwa/useInstall';
 import { validateLineup } from '../lib/lineupValidation';
@@ -34,6 +36,7 @@ export function SettingsPage() {
   const [online, setOnline] = useState(() => navigator.onLine);
   const [onboardingProfile, setOnboardingProfile] = useState<DraftProfile>(draft.profile);
   const onboardingProfileTouched = useRef(false);
+  const [signInDecision, setSignInDecision] = useState<GuestAccountDecision | null>(null);
 
   useEffect(() => {
     const updateConnection = () => setOnline(navigator.onLine);
@@ -74,6 +77,34 @@ export function SettingsPage() {
   const draftCanSync = readinessIssues.length === 0;
   const profileCheckReady = !profileLoading && !profileLookupFailed;
   const authNext = searchParams.get('next') === '/recommend' ? '/recommend' : '/settings';
+  const guestHasWork = hasGuestDraftContent(draft);
+  const transitionMessage = useMemo(() => {
+    const merged = searchParams.get('merged');
+    if (merged !== null) {
+      const duplicates = Number(searchParams.get('duplicates') ?? '0');
+      const conflicts = Number(searchParams.get('conflicts') ?? '0');
+      const added = Number(merged);
+      if (Number.isInteger(added) && added >= 0 && Number.isInteger(duplicates) && duplicates >= 0 && Number.isInteger(conflicts) && conflicts >= 0) {
+        const parts = [`Added ${added} local ${added === 1 ? 'entry' : 'entries'} to your profile.`];
+        if (duplicates > 0) parts.push(`${duplicates} duplicate ${duplicates === 1 ? 'entry was' : 'entries were'} kept once.`);
+        if (conflicts > 0) parts.push(`${conflicts} changed ${conflicts === 1 ? 'entry was' : 'entries were'} kept as separate entries.`);
+        return parts.join(' ');
+      }
+    }
+    if (searchParams.get('discarded') === '1') return 'Your local draft was removed and your saved account is now loaded on this device.';
+    if (searchParams.get('merge') === 'profile-setup') return 'You are signed in. Finish your profile to save this local draft online.';
+    return null;
+  }, [searchParams]);
+
+  async function prepareSignIn(): Promise<boolean> {
+    if (!guestHasWork) return true;
+    if (!signInDecision) {
+      setAuthError('Choose what should happen to this device’s draft before you sign in.');
+      return false;
+    }
+    await rememberGuestAccountDecision(signInDecision, draft);
+    return true;
+  }
 
   async function requestEmailLink(event: FormEvent) {
     event.preventDefault();
@@ -82,6 +113,7 @@ export function SettingsPage() {
     setMessage(null);
     setAuthPending('email');
     try {
+      if (!await prepareSignIn()) return;
       await sendEmailLink(email, authNext);
       setEmailSent(true);
     } catch (error) {
@@ -97,6 +129,7 @@ export function SettingsPage() {
     setMessage(null);
     setAuthPending('discord');
     try {
+      if (!await prepareSignIn()) return;
       await signInWithDiscord(authNext);
     } catch (error) {
       setAuthError(friendlyAuthError(error, 'discord'));
@@ -228,15 +261,29 @@ export function SettingsPage() {
           </div>
         ) : (
           <div className="account-start">
-            <div><p className="eyebrow">CREATE OR SIGN IN</p><h2 id="account-heading">Keep your progress.</h2><p>Your public profile is created when you save this draft. Entries marked private stay off your profile and do not shape recommendations.</p></div>
-            <div className="auth-controls">
-              <button type="button" className="button-primary" disabled={Boolean(authPending)} onClick={() => void requestDiscord()}>{authPending === 'discord' ? 'Opening Discord…' : 'Continue with Discord'}</button>
-              <span>or</span>
-              <form onSubmit={(event) => void requestEmailLink(event)}>
-                <label>Email address<input type="email" required autoComplete="email" disabled={Boolean(authPending)} value={email} onChange={(event) => setEmail(event.target.value)} /></label>
-                <button type="submit" className="button-secondary" disabled={Boolean(authPending)}>{authPending === 'email' ? 'Sending…' : 'Continue with email'}</button>
-              </form>
-            </div>
+            <div><p className="eyebrow">CREATE OR SIGN IN</p><h2 id="account-heading">Keep your progress.</h2><p>{guestHasWork ? `This device has ${draft.lineups.length} local ${draft.lineups.length === 1 ? 'entry' : 'entries'}. Choose what happens to it before sign-in.` : 'Sign in to save, share, and use your profile across devices.'}</p></div>
+            {guestHasWork && !signInDecision ? (
+              <section className="draft-sign-in-decision" aria-labelledby="draft-sign-in-decision-heading">
+                <p className="eyebrow">YOUR LOCAL DRAFT</p>
+                <h3 id="draft-sign-in-decision-heading">What should happen after sign-in?</h3>
+                <p>Your saved account will never be replaced by this device’s draft.</p>
+                <div className="draft-sign-in-decision__actions">
+                  <button type="button" className="button-primary" onClick={() => { setAuthError(null); setSignInDecision('merge'); }}>Merge this draft and sign in</button>
+                  <button type="button" className="button-secondary" onClick={() => { setAuthError(null); setSignInDecision('discard'); }}>Discard this draft and sign in</button>
+                  <Link className="button-quiet" to="/build">Keep editing</Link>
+                </div>
+              </section>
+            ) : (
+              <div className="auth-controls">
+                {signInDecision && <div className="draft-sign-in-decision__selected"><strong>{signInDecision === 'merge' ? 'Merge after sign-in' : 'Discard local draft after sign-in'}</strong><p>{signInDecision === 'merge' ? 'We will add these local entries to your saved profile. Your account name, handle, and bio stay as they are.' : 'We will load your saved profile on this device. This local draft is removed only after sign-in succeeds.'}</p><button type="button" className="text-link" disabled={Boolean(authPending)} onClick={() => setSignInDecision(null)}>Change choice</button></div>}
+                <button type="button" className="button-primary" disabled={Boolean(authPending)} onClick={() => void requestDiscord()}>{authPending === 'discord' ? 'Opening Discord…' : 'Continue with Discord'}</button>
+                <span>or</span>
+                <form onSubmit={(event) => void requestEmailLink(event)}>
+                  <label>Email address<input type="email" required autoComplete="email" disabled={Boolean(authPending)} value={email} onChange={(event) => setEmail(event.target.value)} /></label>
+                  <button type="submit" className="button-secondary" disabled={Boolean(authPending)}>{authPending === 'email' ? 'Sending…' : 'Continue with email'}</button>
+                </form>
+              </div>
+            )}
           </div>
         ) : profileLoading ? (
           <><h2 id="account-heading">Checking your profile</h2><p role="status">One moment…</p></>
@@ -249,7 +296,7 @@ export function SettingsPage() {
         ) : (
           <div className="account-claim"><p className="eyebrow">PROFILE SETUP</p><h2 id="account-heading">Finish your public profile.</h2><p>Choose the name and handle people see. Your bio is optional, and private entries stay private.</p><div className="account-onboarding__form"><label>Display name<input required autoComplete="nickname" value={onboardingProfile.displayName} maxLength={48} onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, displayName: event.target.value }); }} /></label><label>Handle<input required autoCapitalize="none" autoComplete="username" spellCheck={false} value={onboardingProfile.handle} maxLength={32} pattern="[a-z0-9-]+" placeholder="your-handle" onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, handle: event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') }); }} /></label><label className="account-onboarding__bio">Bio (optional)<input value={onboardingProfile.bio} maxLength={160} onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, bio: event.target.value }); }} /></label></div>{!draftCanSync && <div className="claim-readiness" role="status"><strong>Finish setup</strong><ul>{readinessIssues.map((issue) => <li key={issue}>{issue}</li>)}</ul>{readinessIssues.some((issue) => issue.includes('incomplete')) && <Link className="button-secondary" to="/build">Continue building</Link>}</div>}<div className="command-row"><button type="button" className="button-primary" disabled={syncing || !online || !draftCanSync} onClick={() => void requestProfileWrite()}>{syncing ? 'Creating…' : 'Create profile'}</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
         )}
-        {message && <p className="inline-status" role="status">{message}</p>}
+        {(message ?? transitionMessage) && <p className="inline-status" role="status">{message ?? transitionMessage}</p>}
         {authError && <p className="inline-error" role="alert">{authError}</p>}
       </section>
 

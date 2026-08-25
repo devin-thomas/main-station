@@ -9,6 +9,12 @@ export interface DraftReceipt {
   lineupCount: number;
 }
 
+export interface DraftMergeReceipt extends DraftReceipt {
+  addedLineupCount: number;
+  duplicateLineupCount: number;
+  conflictingLineupCount: number;
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
@@ -30,6 +36,25 @@ function parseReceipt(value: unknown): DraftReceipt {
     handle: requireString(value, 'handle'),
     profilePath: requireString(value, 'profilePath'),
     lineupCount,
+  };
+}
+
+function requireCount(record: Record<string, unknown>, key: string): number {
+  const value = record[key];
+  if (typeof value !== 'number' || !Number.isInteger(value) || value < 0) {
+    throw new Error(`Supabase returned an invalid ${key} value.`);
+  }
+  return value;
+}
+
+function parseMergeReceipt(value: unknown): DraftMergeReceipt {
+  const receipt = parseReceipt(value);
+  if (!isRecord(value)) throw new Error('Supabase returned an invalid merge receipt.');
+  return {
+    ...receipt,
+    addedLineupCount: requireCount(value, 'addedLineupCount'),
+    duplicateLineupCount: requireCount(value, 'duplicateLineupCount'),
+    conflictingLineupCount: requireCount(value, 'conflictingLineupCount'),
   };
 }
 
@@ -129,7 +154,17 @@ export async function getMyRegisteredHandle(userId: string): Promise<string | nu
 }
 
 export async function writeProfileDraft(draft: GuestDraft, replace: boolean): Promise<DraftReceipt> {
-  const payload: Json = {
+  const payload = draftPayload(draft);
+  const { data, error } = await requireSupabase().rpc(
+    replace ? 'save_my_profile_draft' : 'claim_profile_draft',
+    { p_payload: payload, p_request_id: draft.requestId },
+  );
+  if (error) throw error;
+  return parseReceipt(data);
+}
+
+function draftPayload(draft: GuestDraft): Json {
+  return {
     version: draft.version,
     requestId: draft.requestId,
     profile: {
@@ -153,12 +188,16 @@ export async function writeProfileDraft(draft: GuestDraft, replace: boolean): Pr
     })),
     updatedAt: draft.updatedAt,
   };
-  const { data, error } = await requireSupabase().rpc(
-    replace ? 'save_my_profile_draft' : 'claim_profile_draft',
-    { p_payload: payload, p_request_id: draft.requestId },
-  );
+}
+
+export async function mergeGuestDraft(draft: GuestDraft): Promise<DraftMergeReceipt> {
+  const payload = draftPayload(draft);
+  const { data, error } = await requireSupabase().rpc('merge_my_guest_draft', {
+    p_payload: payload,
+    p_request_id: draft.requestId,
+  });
   if (error) throw error;
-  return parseReceipt(data);
+  return parseMergeReceipt(data);
 }
 
 export async function loadMyProfileDraft(): Promise<GuestDraft | null> {
