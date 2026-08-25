@@ -8,6 +8,7 @@ interface AuthContextValue {
   sessionLoading: boolean;
   registeredHandle: string | null;
   profileLoading: boolean;
+  profileLookupFailed: boolean;
   error: string | null;
   refreshProfile(): Promise<void>;
   clearError(): void;
@@ -20,19 +21,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [sessionLoading, setSessionLoading] = useState(Boolean(supabase));
   const [registeredHandle, setRegisteredHandle] = useState<string | null>(null);
   const [profileLoading, setProfileLoading] = useState(false);
+  const [profileLookupFailed, setProfileLookupFailed] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const refreshProfile = useCallback(async () => {
     if (!session) {
       setRegisteredHandle(null);
       setProfileLoading(false);
+      setProfileLookupFailed(false);
       return;
     }
     setProfileLoading(true);
+    setProfileLookupFailed(false);
     try {
       setRegisteredHandle(await getMyRegisteredHandle(session.user.id));
       setError(null);
     } catch (profileError) {
+      setRegisteredHandle(null);
+      setProfileLookupFailed(true);
       setError(profileError instanceof Error ? profileError.message : 'The registered profile could not be checked.');
     } finally {
       setProfileLoading(false);
@@ -42,19 +48,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!supabase) return;
     let active = true;
-    void supabase.auth.getSession().then(({ data, error: sessionError }) => {
-      if (!active) return;
-      if (sessionError) setError(sessionError.message);
-      else {
-        setSession(data.session);
-        setProfileLoading(Boolean(data.session));
-      }
-      setSessionLoading(false);
-    });
+    void supabase.auth.getSession()
+      .then(({ data, error: sessionError }) => {
+        if (!active) return;
+        if (sessionError) setError(sessionError.message);
+        else {
+          setSession(data.session);
+          setProfileLoading(Boolean(data.session));
+          setProfileLookupFailed(false);
+        }
+        setSessionLoading(false);
+      })
+      .catch((sessionError: unknown) => {
+        if (!active) return;
+        setError(sessionError instanceof Error ? sessionError.message : 'The current account session could not be checked.');
+        setSessionLoading(false);
+        setProfileLoading(false);
+      });
     const { data } = supabase.auth.onAuthStateChange((_event, nextSession) => {
       if (!active) return;
       setSession(nextSession);
       setProfileLoading(Boolean(nextSession));
+      setProfileLookupFailed(false);
       setSessionLoading(false);
       if (!nextSession) setRegisteredHandle(null);
     });
@@ -71,11 +86,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .then((handle) => {
         if (active) {
           setRegisteredHandle(handle);
+          setProfileLookupFailed(false);
           setError(null);
         }
       })
       .catch((profileError: unknown) => {
-        if (active) setError(profileError instanceof Error ? profileError.message : 'The registered profile could not be checked.');
+        if (active) {
+          setRegisteredHandle(null);
+          setProfileLookupFailed(true);
+          setError(profileError instanceof Error ? profileError.message : 'The registered profile could not be checked.');
+        }
       })
       .finally(() => {
         if (active) setProfileLoading(false);
@@ -90,10 +110,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     sessionLoading,
     registeredHandle,
     profileLoading,
+    profileLookupFailed,
     error,
     refreshProfile,
     clearError: () => setError(null),
-  }), [error, profileLoading, refreshProfile, registeredHandle, session, sessionLoading]);
+  }), [error, profileLoading, profileLookupFailed, refreshProfile, registeredHandle, session, sessionLoading]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

@@ -13,6 +13,7 @@ import { SettingsPage } from '../routes/SettingsPage';
 export function App() {
   return (
     <Routes>
+      <Route path="auth/callback" element={<AuthCallbackPage />} />
       <Route element={<AppShell />}>
         <Route index element={<HomePage />} />
         <Route path="build" element={<BuilderPage />} />
@@ -20,7 +21,6 @@ export function App() {
         <Route path="p/:handle" element={<ProfilePage />} />
         <Route path="games/:gameSlug" element={<GamePage />} />
         <Route path="games/:gameSlug/characters/:characterSlug" element={<CharacterPage />} />
-        <Route path="auth/callback" element={<AuthCallbackPage />} />
         <Route path="settings" element={<SettingsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

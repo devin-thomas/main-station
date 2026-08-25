@@ -1,8 +1,8 @@
-import { useEffect, useState, type FormEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../features/auth/AuthProvider';
+import { friendlyAuthError, sendEmailLink, signInWithDiscord, signOut } from '../features/auth/auth';
 import { useDraft } from '../features/draft/DraftProvider';
-import { sendEmailLink, signInWithDiscord, signOut } from '../features/auth/auth';
 import { exportMyProfileData, loadMyProfileDraft, writeProfileDraft } from '../features/profile/profile';
 import { useInstall } from '../features/pwa/useInstall';
 import { validateLineup } from '../lib/lineupValidation';
@@ -18,19 +18,16 @@ function downloadJson(filename: string, value: unknown) {
 }
 
 export function SettingsPage() {
-  const { draft, clearDraft, preserveRecovery, replaceDraft } = useDraft();
-  const {
-    session,
-    sessionLoading,
-    registeredHandle,
-    profileLoading,
-    error: sessionError,
-    refreshProfile,
-  } = useAuth();
+  const { draft, clearDraft, discardRecovery, hasRecovery, preserveRecovery, replaceDraft, restoreRecovery } = useDraft();
+  const [searchParams] = useSearchParams();
+  const { session, sessionLoading, registeredHandle, profileLoading, profileLookupFailed, refreshProfile } = useAuth();
   const install = useInstall();
   const [email, setEmail] = useState('');
-  const [authMessage, setAuthMessage] = useState<string | null>(null);
+  const [emailSent, setEmailSent] = useState(false);
+  const [authPending, setAuthPending] = useState<'discord' | 'email' | null>(null);
   const [authError, setAuthError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [claimedHandle, setClaimedHandle] = useState<string | null>(null);
   const [syncing, setSyncing] = useState(false);
   const [online, setOnline] = useState(() => navigator.onLine);
 
@@ -44,30 +41,45 @@ export function SettingsPage() {
     };
   }, []);
 
-  const draftCanSync = draft.profile.displayName.trim().length > 0
-    && /^[a-z0-9][a-z0-9-]{1,30}[a-z0-9]$/.test(draft.profile.handle)
-    && draft.lineups.every((lineup) => validateLineup(lineup).valid);
+  const readinessIssues = useMemo(() => {
+    const issues: string[] = [];
+    if (!draft.profile.displayName.trim()) issues.push('Add a display name');
+    if (!/^[a-z0-9][a-z0-9-]{1,30}[a-z0-9]$/.test(draft.profile.handle)) issues.push('Choose a valid handle');
+    const invalidEntries = draft.lineups.filter((lineup) => !validateLineup(lineup).valid).length;
+    if (invalidEntries > 0) issues.push(`Finish ${invalidEntries} incomplete ${invalidEntries === 1 ? 'entry' : 'entries'}`);
+    return issues;
+  }, [draft]);
+  const draftCanSync = readinessIssues.length === 0;
   const hasRegisteredProfile = Boolean(session && registeredHandle);
+  const profileCheckReady = !profileLoading && !profileLookupFailed;
+  const authNext = searchParams.get('next') === '/recommend' ? '/recommend' : '/settings';
 
   async function requestEmailLink(event: FormEvent) {
     event.preventDefault();
-    setAuthMessage(null);
+    if (authPending) return;
     setAuthError(null);
+    setMessage(null);
+    setAuthPending('email');
     try {
-      await sendEmailLink(email);
-      setAuthMessage('Check your inbox for the secure MainStation sign-in link.');
+      await sendEmailLink(email, authNext);
+      setEmailSent(true);
     } catch (error) {
-      setAuthError(error instanceof Error ? error.message : 'The email sign-in request failed.');
+      setAuthError(friendlyAuthError(error, 'email'));
+    } finally {
+      setAuthPending(null);
     }
   }
 
   async function requestDiscord() {
-    setAuthMessage(null);
+    if (authPending) return;
     setAuthError(null);
+    setMessage(null);
+    setAuthPending('discord');
     try {
-      await signInWithDiscord();
+      await signInWithDiscord(authNext);
     } catch (error) {
-      setAuthError(error instanceof Error ? error.message : 'Discord sign-in could not start.');
+      setAuthError(friendlyAuthError(error, 'discord'));
+      setAuthPending(null);
     }
   }
 
@@ -75,22 +87,19 @@ export function SettingsPage() {
     setAuthError(null);
     try {
       await signOut();
-      setAuthMessage('Signed out. Your local guest draft remains on this device.');
+      setClaimedHandle(null);
+      setMessage('Signed out. Your local draft stays on this device.');
     } catch (error) {
-      setAuthError(error instanceof Error ? error.message : 'Sign-out failed.');
+      setAuthError(friendlyAuthError(error, 'callback'));
     }
   }
 
   async function requestProfileWrite() {
-    if (!session) return;
-    setAuthMessage(null);
+    if (!session || !profileCheckReady || !draftCanSync) return;
+    setMessage(null);
     setAuthError(null);
     if (!online) {
-      setAuthError('Registered saves require a network connection. The local draft remains unchanged.');
-      return;
-    }
-    if (!draftCanSync) {
-      setAuthError('Complete the local identity and every saved Character or Team before syncing.');
+      setAuthError('You need a connection to save your profile online. Your local draft is unchanged.');
       return;
     }
     setSyncing(true);
@@ -99,11 +108,10 @@ export function SettingsPage() {
       if (!replacing) await preserveRecovery();
       const receipt = await writeProfileDraft(draft, replacing);
       await refreshProfile();
-      setAuthMessage(replacing
-        ? `Registered profile saved with ${receipt.lineupCount} ${receipt.lineupCount === 1 ? 'stop' : 'stops'}.`
-        : `Draft claimed as @${receipt.handle}. A local recovery copy is retained on this device.`);
-    } catch (error) {
-      setAuthError(error instanceof Error ? error.message : 'The registered profile could not be saved. The local draft remains unchanged.');
+      if (replacing) setMessage(`Saved ${receipt.lineupCount} ${receipt.lineupCount === 1 ? 'entry' : 'entries'} to @${receipt.handle}.`);
+      else setClaimedHandle(receipt.handle);
+    } catch {
+      setAuthError('We could not save your profile online. Your local draft is unchanged; try again in a moment.');
     } finally {
       setSyncing(false);
     }
@@ -112,11 +120,11 @@ export function SettingsPage() {
   async function loadRegisteredCopy() {
     if (!session || !hasRegisteredProfile) return;
     const hasLocalWork = draft.lineups.length > 0 || draft.profile.displayName.trim().length > 0 || draft.profile.handle.trim().length > 0;
-    if (hasLocalWork && !window.confirm('Replace the current local draft with the complete registered copy? A recovery copy will be retained on this device first.')) return;
-    setAuthMessage(null);
+    if (hasLocalWork && !window.confirm('Replace this device’s draft with your saved profile? Your current draft will be kept as a recovery copy.')) return;
+    setMessage(null);
     setAuthError(null);
     if (!online) {
-      setAuthError('Loading the registered copy requires a network connection. The local draft remains unchanged.');
+      setAuthError('You need a connection to load your saved profile. Your local draft is unchanged.');
       return;
     }
     setSyncing(true);
@@ -125,154 +133,112 @@ export function SettingsPage() {
       const registeredDraft = await loadMyProfileDraft();
       if (!registeredDraft) throw new Error('No registered profile was found for this account.');
       await replaceDraft(registeredDraft);
-      setAuthMessage(`Loaded @${registeredDraft.profile.handle}, including private Characters and Teams, into the local editor.`);
-    } catch (error) {
-      setAuthError(error instanceof Error ? error.message : 'The registered copy could not be loaded. The local draft remains unchanged.');
+      setMessage(`Loaded @${registeredDraft.profile.handle} into this device’s editor.`);
+    } catch {
+      setAuthError('We could not load your saved profile. Your local draft is unchanged; try again in a moment.');
     } finally {
       setSyncing(false);
     }
   }
 
-  async function exportRegisteredData() {
-    if (!session || !hasRegisteredProfile) return;
-    setAuthError(null);
-    if (!online) {
-      setAuthError('Registered export requires a network connection.');
-      return;
+  async function restoreRecoveryCopy() {
+    if (!window.confirm('Replace this device’s current draft with the recovery copy?')) return;
+    try {
+      if (await restoreRecovery()) setMessage('Recovery copy restored to this device.');
+      else setAuthError('That recovery copy is no longer available.');
+    } catch {
+      setAuthError('We could not restore the recovery copy. Your current draft is unchanged.');
     }
+  }
+
+  async function exportRegisteredData() {
+    if (!session || !hasRegisteredProfile || !online) return;
     try {
       downloadJson('mainstation-registered-account.json', await exportMyProfileData());
-      setAuthMessage('Registered account export prepared from the current server-authoritative data.');
-    } catch (error) {
-      setAuthError(error instanceof Error ? error.message : 'The registered account export failed.');
+      setMessage('Your account export is ready to download.');
+    } catch {
+      setAuthError('We could not prepare your account export. Try again in a moment.');
     }
   }
 
   async function deleteAccount() {
     if (!supabase || !session) return;
-    const confirmed = window.confirm('Delete this public profile, every Character and Team, recommendation contribution, and feedback? This cannot be undone.');
+    const confirmed = window.confirm('Delete your public profile, entries, recommendation contribution, and feedback? This cannot be undone.');
     if (!confirmed) return;
     setAuthError(null);
     const { error } = await supabase.rpc('delete_my_account');
     if (error) {
-      setAuthError(`Account deletion failed: ${error.message}. Your account remains active.`);
+      setAuthError('We could not delete your account. It remains active.');
       return;
     }
     await supabase.auth.signOut({ scope: 'local' });
-    setAuthMessage('Account deleted. Derived state must exclude the removed source immediately and finish cleanup within 24 hours.');
+    setMessage('Your account was deleted.');
   }
 
   async function requestClearDraft() {
-    if (!window.confirm('Clear the guest draft stored on this device? Export it first if you may need it.')) return;
+    if (!window.confirm('Clear the draft saved on this device? Export it first if you may need it.')) return;
     try {
       await clearDraft();
+      setMessage('This device’s local draft was cleared.');
     } catch {
-      // DraftProvider exposes the persistent storage error adjacent to the destructive controls.
+      setAuthError('We could not clear the local draft.');
     }
   }
 
   return (
     <div className="settings-page page-frame">
-      <header className="page-title">
-        <div><p className="eyebrow">ACCOUNT / INSTALL / DATA</p><h1>Station controls.</h1></div>
-        <p>Account data is server-authoritative. Builder changes stay local to this browser until you explicitly claim or sync them here.</p>
+      <header className="page-title page-title--account">
+        <div><p className="eyebrow">ACCOUNT</p><h1>Save your Mainline.</h1></div>
+        <p>Build privately first. Create an account when you are ready to save, share, and use your profile across devices.</p>
       </header>
 
-      <div className="settings-ledger">
-        <section aria-labelledby="account-heading">
-          <span className="settings-ledger__index">01</span>
-          <div className="settings-ledger__body">
-            <p className="eyebrow">SUPABASE AUTH</p>
-            <h2 id="account-heading">Account</h2>
-            {!supabaseConfigured ? (
-              <div className="notice notice--warning">
-                <strong>Account connection pending</strong>
-                <p>This preview intentionally ships without a publishable key. Local profile building works; sign-in, claim, and registered saves stay unavailable rather than pretending to succeed.</p>
-              </div>
-            ) : sessionLoading ? (
-              <p className="fine-print" role="status">Checking the current account session...</p>
-            ) : session ? (
-              <div className="account-session">
-                <p>Signed in as <strong>{session.user.email ?? session.user.id}</strong></p>
-                {profileLoading ? (
-                  <p className="fine-print" role="status">Checking registered profile…</p>
-                ) : hasRegisteredProfile ? (
-                  <p>Registered as <Link className="text-link" to={`/p/${registeredHandle}`}>@{registeredHandle}</Link>.</p>
-                ) : (
-                  <p>No registered MainStation profile yet. Claiming creates a public profile; private Characters and Teams remain absent from it.</p>
-                )}
-                <p className="fine-print">Registered writes are online-only. A failed request leaves this local draft intact; no background outbox is implied.</p>
-                <div className="command-row">
-                  <button
-                    type="button"
-                    className="button-primary"
-                    disabled={profileLoading || syncing || !online || !draftCanSync}
-                    onClick={() => void requestProfileWrite()}
-                  >
-                    {syncing ? 'Saving...' : hasRegisteredProfile ? 'Save registered copy' : 'Claim guest draft'}
-                  </button>
-                  <button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button>
-                </div>
-                {hasRegisteredProfile && (
-                  <div className="command-row">
-                    <button type="button" className="button-secondary" disabled={syncing || !online} onClick={() => void loadRegisteredCopy()}>Load registered copy</button>
-                    <button type="button" className="button-secondary" disabled={!online} onClick={() => void exportRegisteredData()}>Export registered data</button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="auth-controls">
-                <button type="button" className="button-primary" onClick={() => void requestDiscord()}>Continue with Discord</button>
-                <span>or</span>
-                <form onSubmit={(event) => void requestEmailLink(event)}>
-                  <label>Email address<input type="email" required autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} /></label>
-                  <button type="submit" className="button-secondary">Send sign-in link</button>
-                </form>
-              </div>
-            )}
-            {authMessage && <p className="inline-status" role="status">{authMessage}</p>}
-            {(authError ?? sessionError) && <p className="inline-error" role="alert">{authError ?? sessionError}</p>}
+      <section className="account-card" aria-labelledby="account-heading">
+        {!supabaseConfigured ? (
+          <><h2 id="account-heading">Account is not available in this preview</h2><p>You can still build a local draft on this device. Sign-in and online saving will appear when this release is connected.</p></>
+        ) : sessionLoading ? (
+          <><h2 id="account-heading">Checking your account</h2><p role="status">One moment…</p></>
+        ) : !session ? emailSent ? (
+          <div className="auth-sent" aria-live="polite">
+            <p className="eyebrow">CHECK YOUR EMAIL</p><h2 id="account-heading">Open your sign-in link.</h2>
+            <p>We sent a secure sign-in link to <strong>{email}</strong>. It will bring you back here, with your local draft untouched.</p>
+            <button type="button" className="text-link" onClick={() => { setEmailSent(false); setEmail(''); }}>Use another email</button>
           </div>
-        </section>
-
-        <section aria-labelledby="install-heading">
-          <span className="settings-ledger__index">02</span>
-          <div className="settings-ledger__body">
-            <p className="eyebrow">PWA SURFACE</p>
-            <h2 id="install-heading">Install MainStation</h2>
-            {install.installed ? <p className="inline-status">This window is running in an installed display mode.</p> : (
-              <>
-                <p>{install.guidance}</p>
-                {install.canPrompt && <button type="button" className="button-primary" onClick={() => void install.prompt()}>Install MainStation</button>}
-              </>
-            )}
-            <p className="fine-print">The supplied MainStation mark now drives ordinary, maskable, Apple-touch, and favicon surfaces. Physical launcher acceptance remains open until each claimed platform is device-tested.</p>
-          </div>
-        </section>
-
-        <section aria-labelledby="local-data-heading">
-          <span className="settings-ledger__index">03</span>
-          <div className="settings-ledger__body">
-            <p className="eyebrow">LOCAL DATA</p>
-            <h2 id="local-data-heading">Guest draft</h2>
-            <dl className="route-evidence"><div><dt>Stops</dt><dd>{draft.lineups.length}</dd></div><div><dt>Updated</dt><dd>{new Date(draft.updatedAt).toLocaleString()}</dd></div></dl>
-            <div className="command-row">
-              <button type="button" className="button-secondary" onClick={() => downloadJson('mainstation-guest-draft.json', draft)}>Export JSON</button>
-              <button type="button" className="button-danger" onClick={() => void requestClearDraft()}>Clear local draft</button>
+        ) : (
+          <div className="account-start">
+            <div><p className="eyebrow">CREATE OR SIGN IN</p><h2 id="account-heading">Keep your progress.</h2><p>Your public profile is created only when you claim this draft. Entries marked private stay off your profile and do not shape recommendations.</p></div>
+            <div className="auth-controls">
+              <button type="button" className="button-primary" disabled={Boolean(authPending)} onClick={() => void requestDiscord()}>{authPending === 'discord' ? 'Opening Discord…' : 'Continue with Discord'}</button>
+              <span>or</span>
+              <form onSubmit={(event) => void requestEmailLink(event)}>
+                <label>Email address<input type="email" required autoComplete="email" disabled={Boolean(authPending)} value={email} onChange={(event) => setEmail(event.target.value)} /></label>
+                <button type="submit" className="button-secondary" disabled={Boolean(authPending)}>{authPending === 'email' ? 'Sending…' : 'Continue with email'}</button>
+              </form>
             </div>
           </div>
-        </section>
+        ) : profileLoading ? (
+          <><h2 id="account-heading">Checking your profile</h2><p role="status">One moment…</p></>
+        ) : profileLookupFailed ? (
+          <div className="account-recovery"><h2 id="account-heading">We could not check your account</h2><p>Your local draft is safe. Retry before changing anything online.</p><div className="command-row"><button type="button" className="button-primary" onClick={() => void refreshProfile()}>Retry account check</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
+        ) : claimedHandle ? (
+          <div className="claim-success"><p className="eyebrow">PROFILE SAVED</p><h2 id="account-heading">You’re on the line.</h2><p>Your public profile is live as <strong>@{claimedHandle}</strong>. A recovery copy remains on this device until you remove it.</p><div className="command-row"><Link className="button-primary" to={`/p/${claimedHandle}`}>View your profile</Link><Link className="button-secondary" to="/build">Keep editing</Link></div></div>
+        ) : hasRegisteredProfile ? (
+          <div className="account-session"><div><p className="eyebrow">SIGNED IN</p><h2 id="account-heading">@{registeredHandle}</h2><p>Your profile is saved online. Changes made in the builder stay on this device until you save them here.</p></div><div className="command-row"><Link className="button-secondary" to={`/p/${registeredHandle}`}>View profile</Link><button type="button" className="button-primary" disabled={syncing || !online || !draftCanSync} onClick={() => void requestProfileWrite()}>{syncing ? 'Saving…' : 'Save changes'}</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
+        ) : (
+          <div className="account-claim"><p className="eyebrow">READY TO CLAIM</p><h2 id="account-heading">Make this draft yours.</h2><p>Claiming creates your public MainStation profile. Private entries stay private.</p>{!draftCanSync && <div className="claim-readiness" role="status"><strong>Finish your profile first</strong><ul>{readinessIssues.map((issue) => <li key={issue}>{issue}</li>)}</ul><Link className="button-secondary" to="/build">Continue building</Link></div>}<div className="command-row"><button type="button" className="button-primary" disabled={syncing || !online || !draftCanSync} onClick={() => void requestProfileWrite()}>{syncing ? 'Saving…' : 'Claim profile'}</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
+        )}
+        {message && <p className="inline-status" role="status">{message}</p>}
+        {authError && <p className="inline-error" role="alert">{authError}</p>}
+      </section>
 
-        <section aria-labelledby="delete-heading">
-          <span className="settings-ledger__index">04</span>
-          <div className="settings-ledger__body">
-            <p className="eyebrow">DESTRUCTIVE</p>
-            <h2 id="delete-heading">Delete account</h2>
-            <p>Deletes the public profile, Characters and Teams, recommendation audit records, and feedback. Served current results exclude the source immediately; physical derived cleanup completes within 24 hours.</p>
-            <button type="button" className="button-danger" disabled={!session} onClick={() => void deleteAccount()}>Delete registered account</button>
-          </div>
-        </section>
-      </div>
+      {session && profileCheckReady && (
+        <div className="account-management">
+          {hasRecovery && <section aria-labelledby="recovery-heading"><h2 id="recovery-heading">Recovery copy</h2><p>A saved copy from before an online change is available on this device.</p><div className="command-row"><button type="button" className="button-secondary" onClick={() => void restoreRecoveryCopy()}>Restore recovery copy</button><button type="button" className="button-quiet" onClick={() => void discardRecovery()}>Remove recovery copy</button></div></section>}
+          {hasRegisteredProfile && <section aria-labelledby="saved-profile-heading"><h2 id="saved-profile-heading">Saved profile</h2><p>Load the version saved online into this device’s editor, or download a copy of your account data.</p><div className="command-row"><button type="button" className="button-secondary" disabled={syncing || !online} onClick={() => void loadRegisteredCopy()}>Load saved profile</button><button type="button" className="button-secondary" disabled={!online} onClick={() => void exportRegisteredData()}>Download account data</button></div></section>}
+          <section aria-labelledby="install-heading"><h2 id="install-heading">Install MainStation</h2>{install.installed ? <p className="inline-status">This window is running as an installed app.</p> : <><p>{install.guidance}</p>{install.canPrompt && <button type="button" className="button-secondary" onClick={() => void install.prompt()}>Install MainStation</button>}</>}</section>
+          <section aria-labelledby="local-data-heading"><h2 id="local-data-heading">This device’s draft</h2><p>{draft.lineups.length} {draft.lineups.length === 1 ? 'entry' : 'entries'} saved locally.</p><div className="command-row"><button type="button" className="button-secondary" onClick={() => downloadJson('mainstation-guest-draft.json', draft)}>Download local draft</button><button type="button" className="button-danger" onClick={() => void requestClearDraft()}>Clear local draft</button></div></section>
+          {hasRegisteredProfile && <section className="account-management__danger" aria-labelledby="delete-heading"><h2 id="delete-heading">Delete account</h2><p>Deletes your public profile, entries, contribution, and feedback. This cannot be undone.</p><button type="button" className="button-danger" onClick={() => void deleteAccount()}>Delete account</button></section>}
+        </div>
+      )}
     </div>
   );
 }

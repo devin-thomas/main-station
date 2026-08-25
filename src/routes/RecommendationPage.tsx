@@ -124,8 +124,8 @@ export function RecommendationPage() {
           >
             {loading ? 'Reading public graph...' : 'Run current recommendation'}
           </button>
-          {!sessionLoading && !session && <p className="fine-print">Sign in from <Link className="text-link" to="/settings">Station controls</Link> to use registered profile evidence.</p>}
-          {!profileLoading && session && !registeredHandle && <p className="fine-print">Claim your complete local draft in <Link className="text-link" to="/settings">Station controls</Link> first.</p>}
+          {!sessionLoading && !session && <p className="fine-print">Sign in to use your profile: <Link className="text-link" to="/settings?next=%2Frecommend">continue to account</Link>.</p>}
+          {!profileLoading && session && !registeredHandle && <p className="fine-print">Claim your local draft in <Link className="text-link" to="/settings">your account</Link> first.</p>}
         </section>
 
         <section className="recommend-console__result" aria-labelledby="result-heading">
@@ -135,7 +135,7 @@ export function RecommendationPage() {
             <>
               <h2 id="result-heading">Route unavailable.</h2>
               <p className="inline-error" role="alert">{error}</p>
-              <div className="command-row"><Link className="button-secondary" to="/settings">Check account</Link></div>
+              <div className="command-row"><Link className="button-secondary" to="/settings?next=%2Frecommend">Check account</Link></div>
             </>
           ) : loading ? (
             <><h2 id="result-heading">Reading observed links.</h2><p role="status">Computing from eligible registered public Mainlines and recording the audit run.</p></>

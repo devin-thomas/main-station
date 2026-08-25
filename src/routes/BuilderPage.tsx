@@ -223,7 +223,7 @@ export function BuilderPage() {
           <div className="classification-grid">
             <label>Role<select value={category} onChange={(event) => setCategory(event.target.value as LineupCategory)}><option value="main">Main</option><option value="secondary">Secondary</option></select></label>
             <label>Lifecycle<select value={lifecycle} onChange={(event) => setLifecycle(event.target.value as LineupLifecycle)}><option value="active">Active</option><option value="retired">Retired</option></select></label>
-            <label>Contribution<select value={visibility} onChange={(event) => setVisibility(event.target.value as LineupVisibility)}><option value="public">Public · contributes</option><option value="private">Private · excluded</option></select></label>
+            <label>Profile visibility<select value={visibility} onChange={(event) => setVisibility(event.target.value as LineupVisibility)}><option value="public">Show on profile · contributes</option><option value="private">Keep private · excluded</option></select></label>
           </div>
 
           {attempted && !validation.valid && (
@@ -234,7 +234,7 @@ export function BuilderPage() {
           )}
 
           <div className="lineup-editor__commands">
-            <p>{visibility === 'private' ? 'Private entries stay off your profile and out of every aggregate.' : 'Public entries become visible after you claim this draft.'}</p>
+            <p>{visibility === 'private' ? 'Private entries stay off your profile and do not shape recommendations.' : 'This entry becomes visible after you claim this draft.'}</p>
             <div className="command-row">
               {editingLineupId && <button className="button-secondary" type="button" onClick={() => chooseGame(game.slug)}>Cancel edit</button>}
               <button className="button-primary" type="submit" disabled={!game.schema.verified}>{editingLineupId ? 'Update' : 'Save'} {game.schema.noun}</button>

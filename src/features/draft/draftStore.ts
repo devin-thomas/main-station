@@ -45,6 +45,17 @@ export async function preserveRecoveryDraft(draft: GuestDraft): Promise<void> {
   await transaction.done;
 }
 
+export async function loadRecoveryDraft(): Promise<GuestDraft | null> {
+  return (await (await database()).get('drafts', 'recovery')) ?? null;
+}
+
+export async function discardRecoveryDraft(): Promise<void> {
+  const db = await database();
+  const transaction = db.transaction('drafts', 'readwrite', { durability: 'strict' });
+  await transaction.store.delete('recovery');
+  await transaction.done;
+}
+
 export async function clearGuestDraft(): Promise<GuestDraft> {
   const next = cloneEmptyDraft();
   const db = await database();

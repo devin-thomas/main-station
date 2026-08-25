@@ -1,11 +1,12 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { DraftProfile, GuestDraft, Lineup } from '../../types/domain';
-import { clearGuestDraft, loadGuestDraft, preserveRecoveryDraft, saveGuestDraft } from './draftStore';
+import { clearGuestDraft, discardRecoveryDraft, loadGuestDraft, loadRecoveryDraft, preserveRecoveryDraft, saveGuestDraft } from './draftStore';
 
 interface DraftContextValue {
   draft: GuestDraft;
   ready: boolean;
   storageError: string | null;
+  hasRecovery: boolean;
   updateProfile(profile: DraftProfile): Promise<void>;
   addLineup(lineup: Lineup): Promise<void>;
   updateLineup(lineup: Lineup): Promise<void>;
@@ -13,6 +14,8 @@ interface DraftContextValue {
   removeLineup(lineupId: string): Promise<void>;
   replaceDraft(draft: GuestDraft): Promise<void>;
   preserveRecovery(): Promise<void>;
+  restoreRecovery(): Promise<boolean>;
+  discardRecovery(): Promise<void>;
   clearDraft(): Promise<void>;
 }
 
@@ -30,12 +33,17 @@ export function DraftProvider({ children }: { children: ReactNode }) {
   const [draft, setDraft] = useState<GuestDraft>(initialDraft);
   const [ready, setReady] = useState(false);
   const [storageError, setStorageError] = useState<string | null>(null);
+  const [hasRecovery, setHasRecovery] = useState(false);
 
   useEffect(() => {
     let active = true;
     loadGuestDraft()
       .then((stored) => {
         if (active) setDraft(stored);
+        return loadRecoveryDraft();
+      })
+      .then((recovery) => {
+        if (active) setHasRecovery(Boolean(recovery));
       })
       .catch((error: unknown) => {
         if (active) setStorageError(error instanceof Error ? error.message : 'The guest draft could not be opened.');
@@ -65,6 +73,7 @@ export function DraftProvider({ children }: { children: ReactNode }) {
     draft,
     ready,
     storageError,
+    hasRecovery,
     async updateProfile(profile) {
       await commit({ ...draft, profile, updatedAt: new Date().toISOString() });
     },
@@ -97,6 +106,17 @@ export function DraftProvider({ children }: { children: ReactNode }) {
     },
     async preserveRecovery() {
       await preserveRecoveryDraft(draft);
+      setHasRecovery(true);
+    },
+    async restoreRecovery() {
+      const recovery = await loadRecoveryDraft();
+      if (!recovery) return false;
+      await commit({ ...recovery, updatedAt: new Date().toISOString() });
+      return true;
+    },
+    async discardRecovery() {
+      await discardRecoveryDraft();
+      setHasRecovery(false);
     },
     async clearDraft() {
       try {
@@ -109,7 +129,7 @@ export function DraftProvider({ children }: { children: ReactNode }) {
         throw error;
       }
     },
-  }), [commit, draft, ready, storageError]);
+  }), [commit, draft, hasRecovery, ready, storageError]);
 
   return <DraftContext.Provider value={value}>{children}</DraftContext.Provider>;
 }

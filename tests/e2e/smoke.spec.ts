@@ -117,11 +117,27 @@ test('unknown public route shows a real product 404', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'This stop is not on the line.' })).toBeVisible();
 });
 
-test('cancelled Discord sign-in stops visibly without touching the guest draft', async ({ page }) => {
+test('cancelled sign-in stops on a focused recovery screen without touching the guest draft', async ({ page }) => {
   await page.goto('/auth/callback?error=access_denied&next=%2Fsettings');
-  await expect(page.getByRole('heading', { name: 'Sign-in stopped safely.' })).toBeVisible();
-  await expect(page.getByRole('alert')).toContainText('Discord sign-in was cancelled. Your local draft is unchanged.');
+  await expect(page.getByRole('heading', { name: 'Your draft is safe.' })).toBeVisible();
+  await expect(page.getByRole('alert')).toContainText('Sign-in was cancelled. Your local draft is unchanged.');
+  await expect(page.getByRole('link', { name: 'Try again' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Back to your draft' })).toBeVisible();
+  await expect(page.getByRole('navigation', { name: 'Primary' })).toHaveCount(0);
   await expect(page).toHaveURL(/\/auth\/callback/);
+});
+
+test('fragment sign-in errors use the same provider-neutral recovery', async ({ page }) => {
+  await page.goto('/auth/callback#error=access_denied');
+  await expect(page.getByRole('heading', { name: 'Your draft is safe.' })).toBeVisible();
+  await expect(page.getByRole('alert')).toContainText('Sign-in was cancelled. Your local draft is unchanged.');
+});
+
+test('account route leads with the focused account state', async ({ page }) => {
+  await page.goto('/settings');
+  await expect(page.getByRole('heading', { name: 'Save your Mainline.' })).toBeVisible();
+  await expect(page.getByText('Account is not available in this preview')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Install MainStation' })).toHaveCount(0);
 });
 
 test('manifest and service worker are emitted in production', async ({ request }) => {

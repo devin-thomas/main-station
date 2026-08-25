@@ -1807,6 +1807,164 @@ select:hover {
   color: var(--text-muted);
 }
 
+.page-title--account {
+  max-width: 920px;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, .7fr);
+  gap: clamp(24px, 4vw, 40px);
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+}
+
+.page-title--account h1 {
+  font-size: clamp(3.2rem, 6vw, 5.5rem);
+}
+
+.settings-page {
+  padding-top: clamp(40px, 5vw, 72px);
+}
+
+.account-card {
+  max-width: 920px;
+  border: 1px solid var(--rule-dim);
+  border-left: 3px solid var(--signal);
+  padding: clamp(24px, 4vw, 48px);
+  background: linear-gradient(135deg, rgba(26, 32, 36, .96), rgba(13, 16, 18, .96));
+}
+
+.account-card h2 {
+  margin-bottom: 16px;
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
+}
+
+.account-card > p,
+.account-start p,
+.account-claim > p:not(.eyebrow),
+.account-session p,
+.auth-sent p:not(.eyebrow),
+.claim-success p:not(.eyebrow),
+.account-recovery p {
+  max-width: 62ch;
+  color: var(--text-muted);
+}
+
+.account-start {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, .9fr);
+  align-items: end;
+  gap: clamp(28px, 5vw, 72px);
+}
+
+.account-card .auth-controls {
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.account-card .auth-controls > span {
+  justify-self: start;
+}
+
+.account-card .auth-controls form {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.account-card .auth-controls .button-primary,
+.account-card .auth-controls .button-secondary {
+  width: 100%;
+}
+
+.account-card .auth-controls .button-secondary {
+  width: auto;
+}
+
+.auth-sent,
+.account-claim,
+.claim-success,
+.account-recovery {
+  max-width: 680px;
+}
+
+.claim-readiness {
+  margin: 28px 0;
+  border-left: 3px solid var(--warning);
+  padding: 16px 18px;
+  background: var(--surface-deep);
+}
+
+.claim-readiness strong {
+  color: var(--warning);
+}
+
+.claim-readiness ul {
+  margin: 12px 0 18px;
+  padding-left: 20px;
+  color: var(--text-muted);
+}
+
+.claim-readiness li + li {
+  margin-top: 5px;
+}
+
+.account-card .command-row {
+  margin-top: 28px;
+}
+
+.account-management {
+  max-width: 920px;
+  margin-top: 64px;
+}
+
+.account-management > section {
+  border-top: 1px solid var(--rule-dim);
+  padding: 28px 0 36px;
+}
+
+.account-management h2 {
+  margin-bottom: 12px;
+  font-size: 2rem;
+}
+
+.account-management > section > p {
+  max-width: 60ch;
+  color: var(--text-muted);
+}
+
+.account-management__danger {
+  border-top-color: rgba(255, 107, 95, .6) !important;
+}
+
+.auth-callback {
+  display: grid;
+  min-height: 100svh;
+  grid-template-rows: auto 1fr;
+  padding: 18px clamp(18px, 5vw, 72px);
+}
+
+.auth-callback .wordmark {
+  width: max-content;
+}
+
+.auth-callback__panel {
+  display: flex;
+  max-width: 700px;
+  align-self: center;
+  flex-direction: column;
+  align-items: flex-start;
+  border-left: 3px solid var(--signal);
+  padding: clamp(28px, 6vw, 72px);
+  background: linear-gradient(135deg, rgba(26, 32, 36, .92), rgba(13, 16, 18, .92));
+}
+
+.auth-callback__panel h1 {
+  max-width: 8ch;
+  margin-bottom: 24px;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+}
+
+.auth-callback__panel > p:not(.eyebrow) {
+  max-width: 52ch;
+  color: var(--text-muted);
+}
+
 @media (max-width: 1000px) {
   .site-header {
     grid-template-columns: auto 1fr;
@@ -2011,6 +2169,20 @@ select:hover {
     font-size: clamp(4rem, 22vw, 7rem);
   }
 
+  .page-title--account h1 {
+    font-size: clamp(3rem, 14vw, 4rem);
+  }
+
+  .settings-page {
+    padding-top: 28px;
+  }
+
+  .page-title--account {
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+  }
+
   .signal-ledger {
     grid-template-columns: 1fr;
     margin-top: 48px;
@@ -2188,6 +2360,24 @@ select:hover {
 
   .auth-controls > span {
     justify-self: start;
+  }
+
+  .account-start,
+  .account-card .auth-controls form {
+    grid-template-columns: 1fr;
+  }
+
+  .account-card .auth-controls .button-secondary {
+    width: 100%;
+  }
+
+  .account-card,
+  .auth-callback__panel {
+    padding: 24px;
+  }
+
+  .account-management {
+    margin-top: 48px;
   }
 }
 
