@@ -172,6 +172,13 @@ export function BuilderPage() {
             </div>
           )}
 
+          {game.schema.constraintNote && (
+            <div className="notice" role="note">
+              <strong>Conservative save rule</strong>
+              <p>{game.schema.constraintNote}</p>
+            </div>
+          )}
+
           <div className="slot-ledger">
             {game.schema.slots.map((slot, index) => {
               const pick = picks.find((candidatePick) => candidatePick.slotId === slot.id);
@@ -182,7 +189,7 @@ export function BuilderPage() {
                   <label>
                     <span>Character</span>
                     <select value={pick?.characterSlug ?? ''} onChange={(event) => updatePick(slot.id, { characterSlug: event.target.value, option: undefined })}>
-                      <option value="">Choose from preview roster</option>
+                      <option value="">{game.catalogStatus === 'verified' ? 'Choose Character' : 'Choose from preview roster'}</option>
                       {availableCharacters.map((character) => <option value={character.slug} key={character.slug}>{character.name}</option>)}
                     </select>
                   </label>

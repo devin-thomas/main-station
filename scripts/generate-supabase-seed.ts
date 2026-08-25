@@ -13,9 +13,11 @@ const lines: string[] = [
 ];
 
 catalog.forEach((game, index) => {
+  const gameSourceCheckedAt = game.sourceCheckedAt ?? '2026-08-24';
+
   lines.push(
     'insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)',
-    `values (${sql(game.slug)}, ${sql(game.name)}, ${sql(game.shortName)}, ${sql(game.releaseLabel)}, ${index + 1}, ${sql(JSON.stringify(game.schema))}::jsonb, ${sql(game.sourceUrl)}, ${sql(game.catalogStatus === 'verified' ? 'verified' : 'preview')}, '2026-08-24T00:00:00Z')`,
+    `values (${sql(game.slug)}, ${sql(game.name)}, ${sql(game.shortName)}, ${sql(game.releaseLabel)}, ${index + 1}, ${sql(JSON.stringify(game.schema))}::jsonb, ${sql(game.sourceUrl)}, ${sql(game.catalogStatus === 'verified' ? 'verified' : 'preview')}, ${sql(`${gameSourceCheckedAt}T00:00:00Z`)})`,
     'on conflict (slug) do update set',
     '  name = excluded.name, short_name = excluded.short_name, release_label = excluded.release_label,',
     '  launch_order = excluded.launch_order, selection_schema = excluded.selection_schema,',
@@ -24,9 +26,12 @@ catalog.forEach((game, index) => {
   );
 
   game.characters.forEach((character, characterIndex) => {
+    const characterSourceCheckedAt = character.sourceCheckedAt ?? gameSourceCheckedAt;
+    const characterSourcePublisher = character.sourcePublisher ?? new URL(character.sourceUrl).hostname;
+
     lines.push(
       'insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)',
-      `select id, ${sql(character.slug)}, ${sql(character.name)}, ${sql(character.role)}, 'released', true, ${characterIndex + 1}, ${sql(character.summary)}, ${sql(character.sourceUrl)}, ${sql(new URL(character.sourceUrl).hostname)}, 'attributed-paraphrase', '2026-08-24T00:00:00Z'`,
+      `select id, ${sql(character.slug)}, ${sql(character.name)}, ${sql(character.role)}, 'released', true, ${characterIndex + 1}, ${sql(character.summary)}, ${sql(character.sourceUrl)}, ${sql(characterSourcePublisher)}, 'attributed-paraphrase', ${sql(`${characterSourceCheckedAt}T00:00:00Z`)}`,
       `from public.game_versions where slug = ${sql(game.slug)}`,
       'on conflict (game_version_id, slug, roster_role) do update set',
       '  display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,',

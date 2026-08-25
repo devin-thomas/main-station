@@ -19,6 +19,8 @@ export interface Character {
   role: RosterRole;
   summary: string;
   sourceUrl: string;
+  sourcePublisher?: string;
+  sourceCheckedAt?: string;
   art?: CharacterArtAsset;
 }
 
@@ -39,6 +41,7 @@ export interface SelectionSchema {
   slots: SelectionSlot[];
   teamOptionLabel?: string;
   teamOptionValues?: string[];
+  constraintNote?: string;
   verificationNote?: string;
 }
 
@@ -48,6 +51,7 @@ export interface GameVersion {
   shortName: string;
   releaseLabel: string;
   sourceUrl: string;
+  sourceCheckedAt?: string;
   catalogStatus: 'fixture' | 'verified';
   playerCount: number | null;
   schema: SelectionSchema;

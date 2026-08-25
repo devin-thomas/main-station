@@ -129,7 +129,7 @@ MainStation treats proper Character imagery as important to discovery and profil
 - Supabase is the authority for registered account data. A guest draft is local IndexedDB state until the player signs in and explicitly claims it.
 - Registered edits require connectivity at launch. Offline mode preserves the shell, public data already available to the current client where safe, and the guest draft; it does not pretend an account mutation succeeded.
 - The app is dark by default, declares a dark color scheme, and prevents Dark Reader from re-transforming the authored palette. It supports current and immediately prior stable browser generations for Chrome, Edge, Firefox, and Safari in a browser tab, with installed-surface acceptance tracked separately for Android Chrome, Windows Edge, iOS/iPadOS Safari, and macOS Safari.
-- Uppercut Labs is the sole developer credit at launch. Personal names and social handles are absent. The supplied Uppercut Labs logo is canonical; MainStation uses a typographic wordmark until its app logo is supplied.
+- Uppercut Labs is the sole developer credit at launch. Personal names and social handles are absent. The supplied Uppercut Labs and MainStation logos are canonical. The product mark may be resized or safely padded for runtime and launcher surfaces, but not redrawn; the MainStation header keeps its typographic name beside the mark for legibility.
 
 ## Ubiquitous language
 
@@ -162,7 +162,7 @@ MainStation treats proper Character imagery as important to discovery and profil
 - Visitors can build a private draft without an account. Creating an account claims the draft and creates a public registered profile; only complete Characters or Teams explicitly kept private remain unpublished and ineligible.
 - Every game exposes plural Main and Secondary Character or Team lists only. Either category can contain Active or Retired entries; there are no Pocket or Learning categories. Lineup remains internal terminology only.
 - A Lineup must match its Game Version's complete Selection Schema before it can be saved.
-- Forced-team games preserve roster size, order, and required choices. Examples include four ordered characters in Marvel Tokon, two characters plus the applicable fuse in 2XKO, character-specific assist types in MvC2 and UMVC3, and Avatar's required fuse-equivalent choice.
+- Forced-team games preserve roster size, order, and required choices. Examples include four ordered characters in Marvel Tokon, Point and Assist plus the applicable Fuse in 2XKO, character-specific assist types in MvC2 and UMVC3, and Avatar's one fighter plus one fighter-specific support selection.
 - Recommendation calculations primarily use underlying characters. Order, assists, fuses, and similar configuration choices remain lower-weight signals.
 - Registered profiles are public. A player may keep a complete Character or Team private; doing so removes it from their public profile, personal recommendation inputs, and contributed aggregate data. The ordinary flow foregrounds public participation without shaming, obstructing, or monetizing privacy.
 - MainStation is fully free. Launch infrastructure must use no-cost tiers or available student resources. Advertising is only a later operating-cost contingency if exceptional popularity makes continued free operation expensive.
@@ -188,5 +188,5 @@ The consequential product, data-lifecycle, asset, platform, and PWA decisions re
 
 - Exact Main/Secondary and Active/Retired coefficients, association formula, and displayed support labels.
 - The initial approved official-art inventory and any later community submissions, tracked per asset rather than as a hidden blanket grant.
-- A future custom domain and MainStation app logo.
+- A future custom domain and physical installed-surface acceptance for the supplied MainStation logo derivatives.
 - Entire-game recommendations remain deferred in `Ideas.md`; launch recommendations target a Character in a player-selected Game Version.

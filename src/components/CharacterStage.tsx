@@ -8,8 +8,8 @@ interface CharacterStageProps {
 }
 
 export function CharacterStage({ character, game, compact = false }: CharacterStageProps) {
-  const [imageAvailable, setImageAvailable] = useState(Boolean(character.art));
-  const showImage = imageAvailable && character.art;
+  const [failedImagePath, setFailedImagePath] = useState<string | null>(null);
+  const showImage = character.art && failedImagePath !== character.art.localPath ? character.art : null;
 
   return (
     <figure className={`character-stage${compact ? ' character-stage--compact' : ''}`}>
@@ -19,7 +19,7 @@ export function CharacterStage({ character, game, compact = false }: CharacterSt
           className="character-stage__art"
           src={showImage.localPath}
           alt={`${character.name} official character art for ${game.name}`}
-          onError={() => setImageAvailable(false)}
+          onError={() => setFailedImagePath(showImage.localPath)}
         />
       ) : (
         <div className="character-stage__fallback" role="img" aria-label={`${character.name}; approved character art is not available yet`}>

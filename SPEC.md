@@ -55,7 +55,7 @@ Implementation resolves conflicts in this order:
 - Private registered profiles or partial hiding within one Team.
 - Offline mutation of registered data.
 - Push notifications, background sync, native wrappers, or store packages.
-- A permanent custom domain or final MainStation app logo.
+- A permanent custom domain.
 
 ## 3. Visual and interaction contract
 
@@ -430,10 +430,10 @@ Policy ID: `association-v1`.
 - Stable manifest `id`, `start_url`, and `scope` are `/`.
 - `name` is `MainStation`; `short_name` is `MainStation` unless launcher testing requires a shorter accepted label.
 - `display` is `standalone` with dark opaque theme/background colors.
-- A provisional typographic `MS` technical icon is used until the MainStation logo arrives. It is explicitly a development placeholder, not a replacement identity.
+- The supplied MainStation mark at `assets/brand/mainstation-logo.png` is the canonical product identity. Generated derivatives may resize or add opaque safe-zone padding without redrawing the mark.
 - The supplied Uppercut Labs logo remains unaltered and appears only beside the `Developed by Uppercut Labs` credit; it is never used as the MainStation app icon.
 - Required outputs are ordinary 192/512 icons, separate maskable 192/512 icons, Apple touch icon, and favicon.
-- Replacing the temporary icons must not change the manifest app ID.
+- Regenerating or refining the supplied-logo derivatives must not change the manifest app ID.
 
 ### 15.2 Service worker and cache
 
@@ -547,7 +547,7 @@ The first-release implementation is complete when:
 - Browser-tab, offline, update, persistence, accessibility, and recovery evidence is recorded honestly.
 - Every claimed installed surface is tested on that surface or explicitly marked untested.
 - Uppercut Labs is the only developer credit, the supplied logo is preserved, and no personal name or social handle appears.
-- Installed-surface brand acceptance remains open until final MainStation ordinary, maskable, Apple-touch, and favicon artwork is supplied and tested.
+- Installed-surface brand acceptance remains open until the generated MainStation ordinary, maskable, Apple-touch, and favicon artwork is tested on each claimed physical surface.
 
 ## 21. Known release risks
 
@@ -556,4 +556,4 @@ The first-release implementation is complete when:
 - Sparse profile coverage can yield many honest no-data results.
 - Supabase/Cloudflare free-tier limits and inactive-project behavior require monitoring; automatic spending is not enabled by this specification.
 - The MainStation name/domain is not formally cleared.
-- The final MainStation app logo and real installed-surface icon acceptance remain pending the supplied logo.
+- The MainStation logo is supplied and integrated; real installed-surface icon acceptance remains pending physical-device testing.

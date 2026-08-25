@@ -27,14 +27,38 @@ describe('founding catalog', () => {
     expect(new Set(catalog.map((game) => game.slug)).size).toBe(13);
   });
 
-  it('records four unchanged UNI2 fan-kit assets with per-file provenance', () => {
+  it('records the complete verified UNI2 roster with unchanged fan-kit art provenance', () => {
+    const uni2 = catalog.find((game) => game.slug === 'uni2');
     const artCharacters = catalog.flatMap((game) => game.characters.filter((character) => character.art));
-    expect(artCharacters.map((character) => character.slug).sort()).toEqual(['hyde', 'linne', 'waldstein', 'yuzuriha']);
+    expect(uni2?.catalogStatus).toBe('verified');
+    expect(uni2?.sourceCheckedAt).toBe('2026-08-25');
+    expect(uni2?.characters).toHaveLength(28);
+    expect(artCharacters).toHaveLength(28);
+    expect(new Set(artCharacters.map((character) => character.slug)).size).toBe(28);
     for (const character of artCharacters) {
       expect(character.art?.usageBasis).toBe('official-fankit');
       expect(character.art?.licenseUrl).toBe('https://www.arcsystemworks.jp/uni2celes/en/fankit/');
       expect(character.art?.assetHash).toMatch(/^sha256:[a-f0-9]{64}$/);
     }
+  });
+
+  it('records the verified current 2XKO roster and Fuse choices', () => {
+    const twoXko = catalog.find((game) => game.slug === '2xko');
+    expect(twoXko?.catalogStatus).toBe('verified');
+    expect(twoXko?.sourceCheckedAt).toBe('2026-08-25');
+    expect(twoXko?.characters).toHaveLength(15);
+    expect(twoXko?.schema.verified).toBe(true);
+    expect(twoXko?.schema.slots.map((slot) => slot.id)).toEqual(['point', 'assist']);
+    expect(twoXko?.schema.uniqueCharacters).toBe(true);
+    expect(twoXko?.schema.constraintNote).toContain('conservatively requires distinct');
+    expect(twoXko?.schema.teamOptionValues).toEqual([
+      'Double Down',
+      'Juggernaut',
+      'Sidekick',
+      '2X Assist',
+      'Freestyle',
+      'Teamfight',
+    ]);
   });
 
   it('accepts every verified preview Selection Schema fixture', () => {

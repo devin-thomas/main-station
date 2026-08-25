@@ -249,3 +249,13 @@
 **Rationale:** A PWA preserves frictionless browser access while supporting an app-like home-screen identity across the platforms used by the FGC. A deliberate dark palette fits the product and avoids Dark Reader fighting a light theme.
 
 **Consequences:** Browser-tab behavior remains the fallback when installation is unavailable. Manifest identity, service-worker updates, offline behavior, local drafts, Dark Reader handling, responsive composition, and installed-surface verification are explicit release gates rather than assumptions inferred from a build.
+
+## ADR-026 - Adopt the supplied MainStation product mark without changing app identity
+
+**Status:** Accepted
+
+**Decision:** Use the exact supplied MainStation logo as the canonical product mark, tracked at `assets/brand/mainstation-logo.png` with SHA-256 `7BCACF1A848FC405483844588E0790DB64C6CD76E8BCC2326C00C1C63C55D732`. Runtime, favicon, ordinary launcher, Apple-touch, and maskable outputs may resize the source or center it within an opaque safe zone, but must not redraw it. The manifest `id`, `start_url`, and `scope` remain `/`. Uppercut Labs remains the separate developer identity.
+
+**Rationale:** The supplied neon-grid mark gives MainStation a recognizable app identity while preserving the subdued station-board interface around it. A single tracked source and deterministic derivatives prevent provisional marks or platform-specific redraws from drifting into competing identities.
+
+**Consequences:** The typographic product name remains beside the mark where small-image legibility is weak. Generated icon files are release artifacts derived by `npm run generate:icons`. Physical Android, Windows, iOS/iPadOS, and macOS installed-surface acceptance remains open until each claimed surface is tested; supplying the artwork alone does not close that gate.

@@ -7,6 +7,13 @@ test('home, catalog, and cleared imagery render', async ({ page }) => {
   await expect(page.getByRole('navigation', { name: 'Founding Game catalog' })).toBeVisible();
   await expect(page.getByAltText(/Hyde official character art/)).toBeVisible();
   await expect(page.getByText('Developed by Uppercut Labs')).toBeVisible();
+
+  await page.goto('/games/uni2');
+  await expect(page.getByRole('heading', { name: 'Official roster' })).toBeVisible();
+  await expect(page.locator('.roster-ledger li')).toHaveCount(28);
+  await page.getByRole('link', { name: 'Zohar', exact: true }).click();
+  await expect(page.getByAltText(/Zohar official character art/)).toBeVisible();
+  await expect(page.getByRole('link', { name: '© FRENCH-BREAD / ARC SYSTEM WORKS' })).toBeVisible();
 });
 
 test('guest can save a valid solo Character and reload it from IndexedDB', async ({ page }) => {
@@ -16,6 +23,22 @@ test('guest can save a valid solo Character and reload it from IndexedDB', async
   await expect(page.getByText('Hyde', { exact: true }).last()).toBeVisible();
   await page.reload();
   await expect(page.getByText('Hyde', { exact: true }).last()).toBeVisible();
+});
+
+test('guest can save a source-checked 2XKO team and Fuse', async ({ page }) => {
+  await page.goto('/build');
+  await page.getByRole('listitem').filter({ hasText: '2XKO' }).click();
+  const point = page.locator('fieldset').filter({ hasText: 'Point' }).getByRole('combobox');
+  const assist = page.locator('fieldset').filter({ hasText: 'Assist' }).getByRole('combobox');
+  await point.selectOption('ahri');
+  await assist.selectOption('ahri');
+  await page.getByLabel('Fuse').selectOption('Double Down');
+  await page.getByRole('button', { name: 'Save Team' }).click();
+  await expect(page.getByRole('alert')).toContainText('A Character can appear only once in this Team.');
+  await assist.selectOption('akali');
+  await page.getByRole('button', { name: 'Save Team' }).click();
+  await expect(page.getByRole('link', { name: 'Ahri / Akali' })).toBeVisible();
+  await expect(page.getByText('Fuse: Double Down')).toBeVisible();
 });
 
 test('guest can edit, hide, restore, and retire a saved local stop', async ({ page }) => {

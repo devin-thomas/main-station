@@ -59,12 +59,18 @@ export function GamePage() {
       </header>
 
       {!game.schema.verified && <div className="notice notice--warning"><strong>Selection review open</strong><p>{game.schema.verificationNote}</p></div>}
+      {game.schema.constraintNote && <div className="notice"><strong>Conservative save rule</strong><p>{game.schema.constraintNote}</p></div>}
       {currentStats?.error && <div className="notice notice--error" role="alert"><strong>Public count unavailable</strong><p>{currentStats.error}</p></div>}
 
       <section className="roster-ledger" aria-labelledby="roster-heading">
         <div className="section-heading section-heading--split">
-          <div><p className="eyebrow">VERSION-SCOPED ROSTER</p><h2 id="roster-heading">Reviewed preview entries</h2></div>
-          <p>This is an implementation fixture, not a claim that the complete launch roster audit has closed.</p>
+          <div>
+            <p className="eyebrow">VERSION-SCOPED ROSTER</p>
+            <h2 id="roster-heading">{game.catalogStatus === 'verified' ? 'Official roster' : 'Reviewed preview entries'}</h2>
+          </div>
+          <p>{game.catalogStatus === 'verified'
+            ? `${game.characters.length} source-checked entries${game.sourceCheckedAt ? ` · reviewed ${game.sourceCheckedAt}` : ''}.`
+            : 'This is an implementation fixture, not a claim that the complete launch roster audit has closed.'}</p>
         </div>
         <ol>
           {game.characters.map((character, index) => (
