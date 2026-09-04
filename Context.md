@@ -1,7 +1,7 @@
 # MainStation Context
 
 **Discovery status:** Closed  
-**Last updated:** 2026-08-24  
+**Last updated:** 2026-09-04<br>
 **Research:** [Preliminary market research](MAINSTATION-PRELIMINARY-RESEARCH.md)
 **Figma:** [MainStation Discovery v0.1](https://www.figma.com/design/rK5L5uAPFSBM7yqC0GdxYh?node-id=3-2)
 
@@ -27,7 +27,7 @@ MainStation is therefore a conditional go only if the center of gravity is a mul
 
 ## First product loop
 
-1. A player records one or more Main or Secondary Characters or Teams for a game, including the complete game-specific selection shape and Active or Retired state.
+1. A player signs in, then records one or more Main or Secondary Characters or Teams for a game, including the complete game-specific selection shape and Active or Retired state.
 2. MainStation produces a public profile and a statistically derived taste readout from the player's eligible history.
 3. The player chooses a game they may want to try.
 4. MainStation ranks candidates from the whole weighted history and shows which observed profile associations and sample support contributed.
@@ -73,9 +73,8 @@ This catalog preserves the six-game validation path from the founder's supplied 
 
 ## Initial domain model
 
-- **Player Profile:** a player's FGC identity. A guest can build a private local draft, but every registered Player Profile is public.
-- **Guest Draft:** anonymous, device-local editable state. It is not a server profile and remains the visitor's draft until they explicitly choose how it should relate to an account before sign-in.
-- **Draft Merge:** the authenticated, transactional union of a guest draft and an existing registered profile. The registered profile owns display name, handle, and bio; guest Lineups are added without replacing registered Lineups, while semantic exact duplicates are retained once.
+- **Player Profile:** a player's FGC identity, created and edited only after sign-in. Every registered Player Profile is public.
+- **Unsaved Edits:** device-local editing state owned by one authenticated account. It is isolated by user ID and enters the server profile only through an explicit online save.
 - **Game Version:** a specific game, release, revision, or materially different ruleset.
 - **Character:** a playable character scoped to a Game Version.
 - **Selection Schema:** the Game Version's rules for a valid selectable configuration: roster size, order significance, slots, and required character or team options.
@@ -128,10 +127,10 @@ MainStation treats proper Character imagery as important to discovery and profil
 - The application is a React TypeScript/TSX PWA built and bundled with Vite.
 - Cloudflare Workers Static Assets hosts the browser application on a generic `workers.dev` origin until a domain is selected.
 - Supabase supplies Postgres and Auth. Launch authentication offers Discord and email; the project enforces ownership and public/private data rules with database grants and Row Level Security.
-- Supabase is the authority for registered account data. A guest draft is local IndexedDB state until the player explicitly chooses, before sign-in, to merge it into an account or discard it after a successful sign-in.
-- Registered edits require connectivity at launch. Offline mode preserves the shell, public data already available to the current client where safe, and the guest draft; it does not pretend an account mutation succeeded.
+- Supabase is the authority for registered account data. A confirmed session is required before any profile setup or Character/Team editing. Local unsaved edits are isolated by authenticated user ID; legacy anonymous drafts are not loaded, imported, or deleted by the account editor.
+- Server saves require connectivity at launch. Offline mode preserves the shell, public static catalog, and local unsaved work for its confirmed authenticated owner; it never queues server mutations or reports a local change as synchronized. Sign-out, session loss, and account switching immediately hide the previous owner's editing state and block unauthorized editing.
 - The app is dark by default, declares a dark color scheme, and prevents Dark Reader from re-transforming the authored palette. It supports current and immediately prior stable browser generations for Chrome, Edge, Firefox, and Safari in a browser tab, with installed-surface acceptance tracked separately for Android Chrome, Windows Edge, iOS/iPadOS Safari, and macOS Safari.
-- Uppercut Labs is the sole developer credit at launch. Personal names and social handles are absent. The supplied Uppercut Labs and MainStation logos are canonical. The product mark may be resized or safely padded for runtime and launcher surfaces, but not redrawn; the MainStation header keeps its typographic name beside the mark for legibility.
+- Uppercut Labs is the sole developer credit at launch. Personal names and social handles are absent. The supplied Uppercut Labs and MainStation logos are canonical. The square Uppercut Labs logo must remain fully visible without circular cropping. The product mark may be resized or safely padded for runtime and launcher surfaces, but not redrawn; the MainStation header keeps its typographic name beside the mark for legibility.
 
 ## Ubiquitous language
 
@@ -146,9 +145,7 @@ MainStation treats proper Character imagery as important to discovery and profil
 - **Taste Profile:** the derived pattern across eligible Player-Game Signatures.
 - **Recommendation Support:** the contributed player count and observed profile associations supporting a suggested Character; it is not an authored trait explanation.
 - **Profile Data Contribution:** the public, eligible Character or Team data from a registered profile used to improve aggregate recommendations.
-- **Guest Draft:** a browser-local, anonymous draft. It has no public URL, server identity, or cross-device availability.
-- **Sign-in Draft Decision:** the explicit pre-auth choice to merge a non-empty Guest Draft, discard it after successful authentication, or cancel and continue editing.
-- **Draft Merge:** a server-authoritative union used after sign-in with an existing profile. Account identity wins; registered Lineups remain; a guest Lineup is added unless an equivalent Lineup already exists.
+- **Unsaved Edits:** browser-local profile work owned by the signed-in account. Local persistence is distinct from an explicit online save and has no independent public identity.
 
 ## Known risks
 
@@ -164,7 +161,7 @@ MainStation treats proper Character imagery as important to discovery and profil
 
 - The public main-history profile is the primary promise; recommendations are one payoff of that identity.
 - The founding catalog contains the 13 named games above and must retain deep, version-aware coverage.
-- Visitors can build a private draft without an account. Before sign-in from a non-empty guest draft, they choose to merge it, discard it after successful authentication, or cancel and continue editing. Merging creates a public registered profile when none exists; with an existing profile, it preserves account identity and Lineups while adding non-duplicate guest Lineups. Only complete Characters or Teams explicitly kept private remain unpublished and ineligible.
+- Visitors can browse public profiles, Games, and Characters. They must sign in before profile setup, selection, or editing. Authentication has no guest-draft merge, discard, or recovery workflow. Signed-in work is isolated by account and saved online explicitly. Only complete Characters or Teams explicitly kept private remain unpublished and ineligible.
 - Every game exposes plural Main and Secondary Character or Team lists only. Either category can contain Active or Retired entries; there are no Pocket or Learning categories. Lineup remains internal terminology only.
 - A Lineup must match its Game Version's complete Selection Schema before it can be saved.
 - Forced-team games preserve roster size, order, and required choices. Examples include four ordered characters in Marvel Tokon, Point and Assist plus the applicable Fuse in 2XKO, character-specific assist types in MvC2 and UMVC3, and Avatar's one fighter plus one fighter-specific support selection.

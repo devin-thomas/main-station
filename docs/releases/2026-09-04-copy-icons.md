@@ -1,5 +1,7 @@
 # Copy and mobile icons release - 2026-09-04
 
+Historical snapshot of the release identified below. ADR-028 subsequently removed guest creation and pre-auth draft decisions. The recorded guest workflow and its acceptance results describe this earlier deployment; they do not establish acceptance of the current authenticated editor.
+
 Public deployment: https://mainstation-preview.uppercut-labs.workers.dev
 
 Runtime commit: `08ac2a9` on `main`.

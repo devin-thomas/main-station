@@ -102,13 +102,13 @@
 
 ## ADR-011 - Allow private guest drafts and explicit publication
 
-**Status:** Superseded
+**Status:** Superseded by ADR-013 and ADR-028; retained as historical decision context.
 
 **Decision:** Visitors can build a private profile draft without an account. Authentication is required to persist it across devices, publish it, or contribute eligible profile data. Publishing is always explicit.
 
 **Rationale:** This minimizes onboarding friction while preserving consent around public identity and contributed data.
 
-**Consequences:** ADR-013 preserves guest drafts but supersedes explicit publication after registration: registered profiles are public by definition.
+**Consequences:** ADR-013 superseded explicit publication after registration: registered profiles are public by definition. ADR-028 subsequently removes the guest-draft stage entirely.
 
 ## ADR-012 - Learn launch recommendations only from registered profile patterns
 
@@ -128,7 +128,7 @@
 
 **Rationale:** Public contribution is the product's social and statistical center. One coherent visibility rule is easier to understand than separate publishing, contribution, and recommendation toggles.
 
-**Consequences:** ADR-011 is superseded after the guest-draft stage. The interface needs clear consequences for making a Character or Team private, and deletion/statistical propagation rules remain to be decided.
+**Consequences:** ADR-011's publication rule is superseded. ADR-028 later removes guest creation and requires sign-in before profile setup. The interface needs clear consequences for making a Character or Team private; later data-lifecycle decisions govern deletion and statistical propagation.
 
 ## ADR-014 - Normalize each player's repeated character usage
 
@@ -248,7 +248,7 @@
 
 **Rationale:** A PWA preserves frictionless browser access while supporting an app-like home-screen identity across the platforms used by the FGC. A deliberate dark palette fits the product and avoids Dark Reader fighting a light theme.
 
-**Consequences:** Browser-tab behavior remains the fallback when installation is unavailable. Manifest identity, service-worker updates, offline behavior, local drafts, Dark Reader handling, responsive composition, and installed-surface verification are explicit release gates rather than assumptions inferred from a build.
+**Consequences:** Browser-tab behavior remains the fallback when installation is unavailable. Manifest identity, service-worker updates, offline behavior, authenticated account-isolated local edits, Dark Reader handling, responsive composition, and installed-surface verification are explicit release gates rather than assumptions inferred from a build. Display the supplied square Uppercut Labs logo without circular cropping.
 
 ## ADR-026 - Adopt the supplied MainStation product mark without changing app identity
 
@@ -262,10 +262,20 @@
 
 ## ADR-027 - Require an explicit guest-draft decision before account sign-in
 
-**Status:** Accepted
+**Status:** Superseded by ADR-028; the following records the retired guest workflow.
 
 **Decision:** When a browser has a non-empty local guest draft and the visitor starts sign-in, MainStation must stop before leaving for the authentication provider and present three equally clear choices: sign in and merge the guest draft, discard the guest draft and sign in, or cancel and return to editing. The selected intent is local-only and survives the authentication redirect; draft payloads and intent never enter a URL.
 
 **Rationale:** A local draft and an existing registered profile are different ownership states. Silently changing from the local draft to an account view after sign-in makes it appear that the work disappeared, while silently replacing the account profile risks data loss. The person must understand the destination of their current work before an external sign-in begins.
 
 **Consequences:** Cancelled, failed, or interrupted authentication never changes the guest draft. A successful discard clears the guest draft only after the session is confirmed. A successful merge creates the first registered profile when none exists, or transactionally combines the guest draft with the existing registered profile. Existing registered identity fields win; merge adds guest Lineups without overwriting registered Lineups, removes only semantic exact duplicates, and retains a local recovery copy until the committed account profile is confirmed. The server owns validation, idempotency, and the final merge result. The former claim/save-only model is superseded wherever a guest draft meets an existing registered profile.
+
+## ADR-028 - Require sign-in before profile creation and editing
+
+**Status:** Accepted, 2026-09-04
+
+**Decision:** Visitors may browse public profiles, Games, and Characters, but must have a confirmed signed-in session before profile setup, Character/Team selection, or editing. Authentication proceeds directly without guest merge, discard, or recovery choices. Profile creation and changes are saved online explicitly; sign-in and callbacks never publish work automatically.
+
+**Rationale:** Requiring account ownership from the first edit reduces scope and removes ambiguous transitions between anonymous work and saved account data.
+
+**Consequences:** ADR-011 and ADR-027 are superseded. Local unsaved edits may persist only under the authenticated owner's user ID and must never appear in another account or while signed out. Session loss, sign-out, and account switching immediately block editing and hide the previous owner's state. Legacy anonymous drafts and recovery copies are ignored, never imported into an account or deleted by the editor. Existing authenticated create/save RPCs retain server-side ownership, validation, and idempotency; the guest merge RPC is retired. Offline account saves remain blocked with no mutation queue, and unavailable auth never enables guest editing. Documentation, routes, copy, storage, database grants, generated API types, and acceptance tests must reflect this boundary.

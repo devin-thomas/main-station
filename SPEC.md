@@ -1,8 +1,8 @@
 # MainStation Implementation Specification
 
 **Status:** Build-ready  
-**Version:** 0.1  
-**Date:** 2026-08-24  
+**Version:** 0.2<br>
+**Date:** 2026-09-04<br>
 **Context:** [Context.md](Context.md)  
 **Decisions:** [ADR.md](ADR.md)  
 **Visual discovery:** [MainStation Discovery v0.1](https://www.figma.com/design/rK5L5uAPFSBM7yqC0GdxYh?node-id=3-2)
@@ -30,9 +30,9 @@ Implementation resolves conflicts in this order:
 
 ### 2.1 Launch scope
 
-- Guest profile draft stored locally without an account.
+- Public browsing of Games, Characters, and registered profiles without an account.
 - Discord and email authentication through Supabase Auth.
-- Let a guest explicitly merge a valid local draft into a registered public Player Profile, discard it after sign-in, or cancel before authentication.
+- Require a confirmed signed-in session before profile setup, Character/Team selection, or editing; saving a public profile remains explicit.
 - Public and owner profile views.
 - Create, edit, hide, restore, retire, reactivate, reorder, and delete complete Characters or Teams.
 - Version-aware Selection Schema validation for all 13 founding Game Versions.
@@ -41,7 +41,7 @@ Implementation resolves conflicts in this order:
 - Profile-derived Character recommendations with visible support.
 - Analytics-only recommendation feedback.
 - Account export and account deletion.
-- Installable dark PWA, durable guest draft, offline shell, explicit update prompt, and browser-tab fallback.
+- Installable dark PWA, account-isolated local unsaved edits, offline shell, explicit update prompt, and browser-tab fallback.
 - Cloudflare Workers Static Assets deployment backed by Supabase Postgres/Auth.
 
 ### 2.2 Non-goals
@@ -54,6 +54,7 @@ Implementation resolves conflicts in this order:
 - Comments, follows, direct messages, reputation, or editorial review councils.
 - Private registered profiles or partial hiding within one Team.
 - Offline mutation of registered data.
+- Guest creation, guest-draft import/merge/discard decisions, and guest recovery workflows.
 - Push notifications, background sync, native wrappers, or store packages.
 - A permanent custom domain.
 
@@ -115,7 +116,7 @@ The Mainline is a connected route strip that links Game stops in profile order. 
 - TypeScript and TSX only for application and Worker source.
 - React Router for routes.
 - Supabase JS for Auth and database access.
-- IndexedDB through a small typed adapter for the guest draft.
+- IndexedDB through a small typed adapter for authenticated, account-isolated local editing state.
 - Vite PWA/Workbox integration with prompt-based updates.
 - Vitest and React Testing Library for unit/component tests.
 - Playwright for browser acceptance.
@@ -176,7 +177,7 @@ Build, local browser, deployed origin, offline/update, and installed-surface acc
 | Route | Audience | Required behavior |
 | --- | --- | --- |
 | `/` | Public | Product entry with founding Game rail, sample Mainline, and direct actions to build or browse. No centered marketing hero plus feature-card grid. |
-| `/build` | Guest/owner | Create and edit the active draft/profile with complete Selection Schema validation. |
+| `/build` | Owner | Require sign-in before showing profile setup or selection controls; create and edit only the authenticated owner's profile with complete Selection Schema validation. |
 | `/recommend` | Owner | Select a target Game Version, see ranked candidates or explicit no-data state, then submit analytics-only feedback. |
 | `/p/:handle` | Public/owner | Public profile Mainline. Owner can enter edit mode; private entries appear only in owner edit surfaces. |
 | `/games/:gameSlug` | Public | Game identity, Registered Player Count, roster, and public usage overview. |
@@ -226,7 +227,7 @@ Unknown public handles, Games, and Characters return a real not-found state in t
 - Category enum: `main | secondary`.
 - Lifecycle enum: `active | retired`.
 - Visibility enum: `public | private`.
-- Stable client request ID for idempotent claim, merge, and save.
+- Stable client request ID for idempotent profile creation and save.
 - Owner-defined sort order, timestamps.
 - A Lineup is not valid until its complete Character Picks pass the Game Version Selection Schema.
 
@@ -271,8 +272,8 @@ Launch seeds must represent all 13 Game Versions. At minimum they preserve the a
 - `player_game_signatures`: normalized versioned Character weights per Player and Game Version.
 - `recommend_characters(profile_id, target_game_version_id)`: ranked data-derived candidates and support.
 - `export_profile_data(profile_id)`: owner-only machine-readable account export.
-- `claim_profile_draft(payload, request_id)`: authenticated transactional validation and import when the account has no registered profile.
-- `merge_my_guest_draft(payload, request_id)`: authenticated transactional validation and non-destructive merge of a guest draft into an existing registered profile.
+- `claim_profile_draft(payload, request_id)`: authenticated first-profile creation with transactional validation and idempotency. The existing API name is retained for compatibility; its payload is authored only after sign-in and is never imported from anonymous storage.
+- `save_my_profile_draft(payload, request_id)`: authenticated owner-only profile update with transactional validation and idempotency. No guest merge RPC remains exposed.
 
 No launch view may bypass source-row visibility or ownership policies.
 
@@ -304,39 +305,31 @@ No launch view may bypass source-row visibility or ownership policies.
 - No personalized Supabase response is stored in Cache Storage.
 - Logs exclude auth tokens, private Lineup payloads, email addresses, and feedback bodies.
 
-## 9. Guest draft, sign-in decision, and merge flow
+## 9. Sign-in and account editing flow
 
-### 9.1 Local draft
+### 9.1 Authentication boundary
 
-- IndexedDB database: `mainstation`, schema version 1.
-- Stores draft profile metadata, Lineups, Character Picks, draft schema version, and last local update time.
-- Contains no Supabase credentials or registered server session copies.
-- Every local mutation commits atomically before the UI reports it saved.
-- A quota or transaction failure shows a persistent error and does not pretend the draft was saved.
-- The player can export or clear the guest draft.
+- Visitors may browse public content. Builder entry, including direct links, requires a confirmed signed-in session before profile fields or Character/Team controls become available.
+- While authentication is loading, unavailable, expired, or signed out, creation and editing remain blocked. No anonymous local editing state is created or loaded.
+- Discord and email sign-in proceed directly without a draft decision. Authentication failure leaves the visitor at sign-in with a useful error.
+- Callback destinations are safe local routes. A callback confirms the session and returns to the requested route; it never imports, merges, discards, or publishes profile work.
 
-### 9.2 Pre-auth draft decision
+### 9.2 Account-owned local edits
 
-When a visitor starts sign-in while the Guest Draft contains a profile field or Lineup, the client does not immediately open Discord or send an email link. It presents a focused decision screen that says the draft is saved only on this device and names all three outcomes:
+- Local editing state belongs to one authenticated user ID. It contains profile metadata, Lineups, Character Picks, schema version, and local update time, but no Supabase credentials or session copies.
+- Load or persist local state only after confirming its owner matches the current session. Never load legacy anonymous drafts or recovery copies into an account, and do not delete that legacy browser storage.
+- Sign-out, session loss, and account switching immediately remove the previous owner's data and controls from the rendered interface; pending reads and writes cannot publish stale state into a different session.
+- Local persistence is not a server save. Storage errors remain visible and never report successful persistence.
 
-1. **Merge this draft and sign in:** sign in, then add the guest work to the existing account without replacing the saved profile.
-2. **Discard this draft and sign in:** sign in, then clear this browser's guest draft and load the saved account profile.
-3. **Keep editing:** close the decision screen and make no authentication or draft change.
+### 9.3 Explicit online save
 
-The selection is stored locally without a draft payload or account data in the redirect URL. Empty drafts may proceed directly to ordinary sign-in. Cancelled, failed, or incomplete provider authentication always returns with the guest draft unchanged, regardless of the chosen intent.
+1. Confirm the authenticated owner and load their saved profile before editing. A failed profile read is an error, not evidence that no profile exists.
+2. If the account has no profile, offer profile setup and complete Character/Team selection only after authentication.
+3. Validate identity fields and complete game-specific selections before an explicit online create or save action.
+4. The server binds the request to `auth.uid()`, revalidates the complete payload, and commits it atomically with an idempotent request ID.
+5. Load the saved result and report success only after server confirmation. Validation, authorization, and network failures preserve that owner's unsaved work and show the error.
 
-### 9.3 Post-auth behavior
-
-1. Confirm the authenticated session and load the registered profile state.
-2. For **discard**, clear the guest draft only now, clear any recovery copy for that discarded draft, and load the registered profile if one exists. A sign-in failure never discards it.
-3. For **merge** with no registered profile, validate the draft and create the first public profile through `claim_profile_draft`; profile setup is required when the guest draft lacks a valid display name or handle.
-4. For **merge** with an existing registered profile, submit the complete guest draft once with a UUID request ID to `merge_my_guest_draft`.
-5. The database revalidates, loads the authenticated owner's profile, computes the merge, and commits the result in one transaction. A duplicate request ID returns the same successful receipt and result.
-6. Existing registered display name, handle, and bio always win. Registered Lineups remain. A guest Lineup is appended in its guest order unless a semantic exact duplicate already exists; semantic equality includes Game Version, ordered Picks and options, category, lifecycle, visibility, and team option, but ignores local IDs and timestamps.
-7. A guest Lineup with a different category, lifecycle, visibility, option, or pick order is not treated as a duplicate and is preserved rather than silently resolved. The server returns the merged registered draft so the client displays the exact saved result.
-8. Before either claim or merge, preserve a local read-only recovery copy. Remove it only after the returned registered draft has been loaded and confirmed. On validation, auth, authorization, conflict, or network failure, leave the editable Guest Draft unchanged and show the precise recovery action.
-
-Registered edits are online-only at launch. Offline owner attempts remain unsent and visibly blocked; there is no silent outbox.
+Server mutations require connectivity. Local unsaved work may remain available to its authenticated owner, but offline saves stay visibly blocked and are never queued or reported as synchronized. Session loss blocks further editing until sign-in is confirmed again.
 
 ## 10. Selection behavior
 
@@ -442,7 +435,7 @@ Policy ID: `association-v1`.
 - `name` is `MainStation`; `short_name` is `MainStation` unless launcher testing requires a shorter accepted label.
 - `display` is `standalone` with dark opaque theme/background colors.
 - The supplied MainStation mark at `assets/brand/mainstation-logo.png` is the canonical product identity. Generated derivatives may resize or add opaque safe-zone padding without redrawing the mark.
-- The supplied Uppercut Labs logo remains unaltered and appears only beside the `Developed by Uppercut Labs` credit; it is never used as the MainStation app icon.
+- The supplied square Uppercut Labs logo remains unaltered, with no circular crop or mask, and appears only beside the `Developed by Uppercut Labs` credit; it is never used as the MainStation app icon.
 - Required outputs are ordinary 192/512 icons, separate maskable 192/512 icons, Apple touch icon, and favicon.
 - Regenerating or refining the supplied-logo derivatives must not change the manifest app ID.
 
@@ -461,9 +454,9 @@ Policy ID: `association-v1`.
 
 ### 15.3 Offline and failure states
 
-- The shell, local guest draft, catalog fixture data needed to edit that draft, and explicit offline status remain usable.
+- The shell, public static catalog, and explicit offline status remain usable. Account-owned local unsaved work is accessible only while its owner's authenticated session is confirmed.
 - Public server data may show the last safe same-origin read model only when labeled with its retrieval time; launch may instead show an unavailable-online state.
-- Registered saves, guest-draft claim or merge, feedback, export, deletion, and fresh recommendations are visibly unavailable offline.
+- Profile creation, registered saves, feedback, export, deletion, and fresh recommendations are visibly unavailable offline.
 - `navigator.onLine` is a hint only; request results determine reachability.
 - Storage quota, IndexedDB migration, blocked database, and cleared-storage states have explicit recovery copy.
 
@@ -490,11 +483,11 @@ Policy ID: `association-v1`.
 ## 17. Loading, empty, and error contract
 
 - Loading states preserve the station-board layout and do not fabricate statistics.
-- Empty guest draft: direct invitation to choose a first Game, not a generic blank card.
+- Signed-out builder: sign-in entry with no editable controls. Signed-in empty profile: direct invitation to set up the profile and choose a first Game.
 - Empty public profile: clear no-public-history state; do not reveal whether private data exists.
 - Zero recommendation support: explicit not-enough-data state with contribution invitation and no popularity fallback.
 - Weak support: rank the result, display the exact support count, and avoid fake precision.
-- Supabase/configuration unavailable: keep local draft and public static catalog surfaces usable; identify unavailable account features.
+- Supabase/configuration unavailable: keep public static catalog surfaces usable and identify unavailable account features; never fall back to guest editing.
 - Art failure: typographic Character stage plus visible source metadata if the record remains active.
 - Validation failure: preserve entered data, focus or link to the first invalid field, and list all affected Team requirements.
 - Unknown route: real product 404 state.
@@ -534,12 +527,12 @@ npm run test:e2e
 - Manifest helper passes against build output and actual icon dimensions.
 - Worker syntax and stable scope pass.
 - Fresh load, returning load, offline reload, failed precache, waiting update, deferred update, accepted one-reload update, two tabs, and recovery worker are exercised.
-- IndexedDB version 1 create/read/update/delete, reload persistence, quota/abort simulation, and clear/export behavior pass.
+- Account-scoped IndexedDB persistence, reload behavior, quota/abort errors, sign-out/session-loss isolation, account switching, and exclusion of legacy anonymous state pass.
 - Deployed release helper verifies HTTP metadata separately from local output.
 
 ### 19.4 UI gates
 
-- Playwright covers guest draft, pre-auth merge/discard/cancel choices, cancelled-auth draft preservation, claim and existing-profile merge idempotency, merge duplicate handling, public/private visibility, recommendation no-data/weak-data states, feedback isolation, art fallback, export, and deletion failure.
+- Playwright covers signed-out creation gates, direct builder links, authentication loading/failure/callback, signed-in creation and editing, explicit save failure, session loss and account switching, legacy anonymous-state isolation, public/private visibility, recommendation no-data/weak-data states, feedback isolation, art fallback, export, and deletion failure.
 - Automated accessibility checks run on primary routes; keyboard and screen-reader behavior receive manual verification.
 - Desktop and mobile screenshots are reviewed with Dark Reader enabled and disabled; authored appearance should not materially change.
 - The anti-slop checklist passes: recognizable composition, Mainline signature move, purposeful typography, semantic containment, intentional mobile composition, project-owned tokens, and no default SaaS/card-grid aesthetic.
