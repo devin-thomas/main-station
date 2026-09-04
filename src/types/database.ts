@@ -633,10 +633,6 @@ export type Database = {
       }
       get_my_profile_draft: { Args: never; Returns: Json }
       lineup_is_complete: { Args: { p_lineup_id: string }; Returns: boolean }
-      merge_my_guest_draft: {
-        Args: { p_payload: Json; p_request_id: string }
-        Returns: Json
-      }
       recommend_characters: {
         Args: { p_profile_id: string; p_target_game_version_id: string }
         Returns: {

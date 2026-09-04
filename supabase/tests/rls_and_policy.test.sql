@@ -1,6 +1,6 @@
 begin;
 
-select plan(103);
+select plan(107);
 
 select has_table('public', 'profiles', 'profiles exists');
 select has_table('public', 'lineups', 'lineups exists');
@@ -10,9 +10,9 @@ select has_view('public', 'player_game_signatures', 'signature view exists');
 select has_view('public', 'public_profile_mainline', 'public profile Mainline view exists');
 select has_function('public', 'recommend_characters', array['uuid', 'uuid'], 'recommendation RPC exists');
 select has_function('public', 'delete_my_account', array[]::text[], 'account deletion RPC exists');
-select has_function('public', 'claim_profile_draft', array['jsonb', 'uuid'], 'guest-draft claim RPC exists');
+select has_function('public', 'claim_profile_draft', array['jsonb', 'uuid'], 'authenticated profile creation RPC exists');
 select has_function('public', 'save_my_profile_draft', array['jsonb', 'uuid'], 'registered-draft save RPC exists');
-select has_function('public', 'merge_my_guest_draft', array['jsonb', 'uuid'], 'guest-draft merge RPC exists');
+select hasnt_function('public', 'merge_my_guest_draft', array['jsonb', 'uuid'], 'the retired guest merge RPC is absent');
 select has_function('public', 'get_my_profile_draft', array[]::text[], 'registered-draft read RPC exists');
 select has_function('public', 'run_my_recommendations', array['uuid'], 'audited recommendation RPC exists');
 select has_function('public', 'record_recommendation_feedback', array['uuid', 'uuid', 'feedback_response', 'text'], 'bounded feedback RPC exists');
@@ -241,7 +241,6 @@ select results_eq(
       ('public.delete_my_account()'),
       ('public.claim_profile_draft(jsonb,uuid)'),
       ('public.save_my_profile_draft(jsonb,uuid)'),
-      ('public.merge_my_guest_draft(jsonb,uuid)'),
       ('public.get_my_profile_draft()'),
       ('public.run_my_recommendations(uuid)'),
       ('public.record_recommendation_feedback(uuid,uuid,public.feedback_response,text)')
@@ -260,14 +259,13 @@ select results_eq(
       ('public.delete_my_account()'),
       ('public.claim_profile_draft(jsonb,uuid)'),
       ('public.save_my_profile_draft(jsonb,uuid)'),
-      ('public.merge_my_guest_draft(jsonb,uuid)'),
       ('public.get_my_profile_draft()'),
       ('public.run_my_recommendations(uuid)'),
       ('public.record_recommendation_feedback(uuid,uuid,public.feedback_response,text)')
     ) as rpc(signature)
     where has_function_privilege('authenticated', rpc.signature, 'EXECUTE')$$,
-  array[10::integer],
-  'authenticated callers can execute the ten account and data-product RPCs'
+  array[9::integer],
+  'authenticated callers can execute the nine account and data-product RPCs'
 );
 
 select results_eq(
@@ -279,7 +277,6 @@ select results_eq(
       ('public.delete_my_account()'),
       ('public.claim_profile_draft(jsonb,uuid)'),
       ('public.save_my_profile_draft(jsonb,uuid)'),
-      ('public.merge_my_guest_draft(jsonb,uuid)'),
       ('public.get_my_profile_draft()'),
       ('public.run_my_recommendations(uuid)'),
       ('public.record_recommendation_feedback(uuid,uuid,public.feedback_response,text)')
@@ -559,6 +556,61 @@ select set_config(
   true
 );
 
+set local role anon;
+
+select throws_ok(
+  $$select public.claim_profile_draft(current_setting('mainstation_test.claim_payload')::jsonb, '81000000-0000-4000-8000-000000000001')$$,
+  '42501',
+  'permission denied for function claim_profile_draft',
+  'anonymous callers cannot create a profile through the account RPC'
+);
+
+select throws_ok(
+  $$select public.save_my_profile_draft(current_setting('mainstation_test.claim_payload')::jsonb, '81000000-0000-4000-8000-000000000001')$$,
+  '42501',
+  'permission denied for function save_my_profile_draft',
+  'anonymous callers cannot save account changes'
+);
+
+select throws_ok(
+  $$insert into public.profiles (id, handle, display_name) values ('10000000-0000-4000-8000-000000000003', 'claim-owner', 'Claim Owner')$$,
+  '42501',
+  'permission denied for table profiles',
+  'anonymous callers cannot bypass the create RPC with a profile insert'
+);
+
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '', true);
+
+select throws_ok(
+  $$select public.claim_profile_draft(current_setting('mainstation_test.claim_payload')::jsonb, '81000000-0000-4000-8000-000000000001')$$,
+  '42501',
+  'Authentication required.',
+  'profile creation rejects an authenticated role without a user session'
+);
+
+select throws_ok(
+  $$select public.save_my_profile_draft(current_setting('mainstation_test.claim_payload')::jsonb, '81000000-0000-4000-8000-000000000001')$$,
+  '42501',
+  'Authentication required.',
+  'profile save rejects an authenticated role without a user session'
+);
+
+select throws_ok(
+  $$select public.get_my_profile_draft()$$,
+  '42501',
+  'Authentication is required.',
+  'private profile reload rejects an authenticated role without a user session'
+);
+
+reset role;
+select results_eq(
+  $$select count(*)::integer from public.profile_claims where owner_id = '10000000-0000-4000-8000-000000000003'$$,
+  array[0::integer],
+  'rejected requests leave no profile creation receipts'
+);
+
 set local role authenticated;
 do $$
 begin
@@ -566,13 +618,20 @@ begin
 end;
 $$;
 
+select throws_ok(
+  $$select public.save_my_profile_draft(current_setting('mainstation_test.claim_payload')::jsonb, '81000000-0000-4000-8000-000000000001')$$,
+  'P0002',
+  'Create your MainStation profile before saving changes.',
+  'a signed-in new user must create their initial profile before registered save'
+);
+
 select results_eq(
   $$select public.claim_profile_draft(
       current_setting('mainstation_test.claim_payload')::jsonb,
       '81000000-0000-4000-8000-000000000001'
     ) ->> 'handle'$$,
   array['claim-owner'::text],
-  'an authenticated Player can atomically claim a valid guest draft'
+  'an authenticated Player can atomically create a valid profile and Mainline'
 );
 
 select results_eq(
@@ -668,76 +727,6 @@ select results_eq(
       public.get_my_profile_draft() -> 'lineups' -> 0 ->> 'id'$$,
   $$values ('Claim Owner Updated'::text, 1::integer, 'private'::text, '80000000-0000-4000-8000-000000000001'::text)$$,
   'the owner reload includes private Lineups and their stable client lineage IDs'
-);
-
-select is(
-  public.merge_my_guest_draft(
-        jsonb_set(
-          jsonb_set(
-            jsonb_set(
-              current_setting('mainstation_test.claim_payload')::jsonb,
-              '{requestId}', '"81000000-0000-4000-8000-000000000020"'::jsonb
-            ),
-            '{profile,displayName}', '"Guest name must not replace account"'::jsonb
-          ),
-          '{lineups}',
-          '[{"id":"80000000-0000-4000-8000-000000000020","gameSlug":"test-verified","category":"secondary","lifecycle":"active","visibility":"private","teamOption":"Speed","createdAt":"2026-08-25T00:00:00.000Z","picks":[{"slotId":"slot-a","characterSlug":"alpha","option":"Assist A"},{"slotId":"slot-b","characterSlug":"beta","option":"Assist B"}]}]'::jsonb
-        ),
-        '81000000-0000-4000-8000-000000000020'
-      ) ->> 'addedLineupCount',
-  '1'::text,
-  'merge reports the appended guest Lineup'
-);
-
-select results_eq(
-  $$select profiles.display_name, count(lineups.id)::integer
-    from public.profiles
-    left join public.lineups on lineups.owner_id = profiles.id
-    where profiles.id = '10000000-0000-4000-8000-000000000003'
-    group by profiles.display_name$$,
-  $$values ('Claim Owner Updated'::text, 2::integer)$$,
-  'merge preserves registered identity and appends a distinct guest Lineup'
-);
-
-select results_eq(
-  $$select (public.merge_my_guest_draft(
-        jsonb_set(
-          jsonb_set(
-            jsonb_set(
-              current_setting('mainstation_test.claim_payload')::jsonb,
-              '{requestId}', '"81000000-0000-4000-8000-000000000020"'::jsonb
-            ),
-            '{profile,displayName}', '"Guest name must not replace account"'::jsonb
-          ),
-          '{lineups}',
-          '[{"id":"80000000-0000-4000-8000-000000000020","gameSlug":"test-verified","category":"secondary","lifecycle":"active","visibility":"private","teamOption":"Speed","createdAt":"2026-08-25T00:00:00.000Z","picks":[{"slotId":"slot-a","characterSlug":"alpha","option":"Assist A"},{"slotId":"slot-b","characterSlug":"beta","option":"Assist B"}]}]'::jsonb
-        ),
-        '81000000-0000-4000-8000-000000000020'
-      ) = (
-        select response from public.profile_claims
-        where owner_id = '10000000-0000-4000-8000-000000000003'
-          and request_id = '81000000-0000-4000-8000-000000000020'
-      ))::integer$$,
-  array[1::integer],
-  'a duplicate merge request returns its original successful receipt'
-);
-
-select results_eq(
-  $$select
-      public.merge_my_guest_draft(
-        jsonb_set(
-          jsonb_set(
-            current_setting('mainstation_test.claim_payload')::jsonb,
-            '{requestId}', '"81000000-0000-4000-8000-000000000021"'::jsonb
-          ),
-          '{lineups}',
-          '[{"id":"80000000-0000-4000-8000-000000000021","gameSlug":"test-verified","category":"secondary","lifecycle":"active","visibility":"private","teamOption":"Speed","createdAt":"2026-08-25T03:00:00.000Z","picks":[{"slotId":"slot-a","characterSlug":"alpha","option":"Assist A"},{"slotId":"slot-b","characterSlug":"beta","option":"Assist B"}]}]'::jsonb
-        ),
-        '81000000-0000-4000-8000-000000000021'
-      ) ->> 'duplicateLineupCount',
-      (select count(*)::integer from public.lineups where owner_id = '10000000-0000-4000-8000-000000000003')$$,
-  $$values ('1'::text, 2::integer)$$,
-  'merge stores a semantic duplicate once even when guest lineage and timestamp differ'
 );
 
 select throws_ok(
@@ -898,7 +887,7 @@ select results_eq(
     left join public.lineups l on l.owner_id = p.id
     where p.id = '10000000-0000-4000-8000-000000000003'
     group by p.display_name$$,
-  $$values ('Claim Owner Updated'::text, 2::integer, 2::integer)$$,
+  $$values ('Claim Owner Updated'::text, 1::integer, 1::integer)$$,
   'rejected option and size attacks leave the registered profile unchanged'
 );
 
