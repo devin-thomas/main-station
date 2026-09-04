@@ -94,7 +94,7 @@ export interface DraftProfile {
   bio: string;
 }
 
-export interface GuestDraft {
+export interface ProfileDraft {
   version: 1;
   requestId: string;
   profile: DraftProfile;

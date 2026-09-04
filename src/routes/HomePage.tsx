@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { BuildLink } from '../components/BuildLink';
 import { CatalogRail } from '../components/CatalogRail';
 import { CharacterStage } from '../components/CharacterStage';
 import { Mainline } from '../components/Mainline';
@@ -19,7 +20,7 @@ export function HomePage() {
             Track your characters and teams across games.
           </p>
           <div className="command-row">
-            <Link className="button-primary" to="/build">Build your Mainline</Link>
+            <BuildLink className="button-primary">Build your Mainline</BuildLink>
             <Link className="button-secondary" to="/p/station-zero">View preview profile</Link>
           </div>
         </div>

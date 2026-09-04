@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { AppShell } from '../components/AppShell';
+import { RequireAccount } from '../features/auth/RequireAccount';
 import { AuthCallbackPage } from '../routes/AuthCallbackPage';
 import { BuilderPage } from '../routes/BuilderPage';
 import { CharacterPage } from '../routes/CharacterPage';
@@ -16,7 +17,7 @@ export function App() {
       <Route path="auth/callback" element={<AuthCallbackPage />} />
       <Route element={<AppShell />}>
         <Route index element={<HomePage />} />
-        <Route path="build" element={<BuilderPage />} />
+        <Route path="build" element={<RequireAccount><BuilderPage /></RequireAccount>} />
         <Route path="recommend" element={<RecommendationPage />} />
         <Route path="p/:handle" element={<ProfilePage />} />
         <Route path="games/:gameSlug" element={<GamePage />} />

@@ -1,9 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { friendlyAuthError } from '../features/auth/auth';
-import { discardGuestAccountTransition, loadGuestAccountTransition } from '../features/auth/guestAccountTransition';
-import { clearGuestDraft, preserveRecoveryDraft, saveGuestDraft } from '../features/draft/draftStore';
-import { getMyRegisteredHandle, loadMyProfileDraft, mergeGuestDraft } from '../features/profile/profile';
+import { completeSignIn, friendlyAuthError } from '../features/auth/auth';
 import { supabase } from '../lib/supabase';
 import { Wordmark } from '../components/Wordmark';
 
@@ -11,113 +8,45 @@ const safeDestinations = new Set(['/settings', '/build', '/recommend']);
 
 function readAuthParams(search: string, hash: string): URLSearchParams {
   const params = new URLSearchParams(search);
-  const hashParams = new URLSearchParams(hash.replace(/^#/, ''));
-  hashParams.forEach((value, key) => {
+  new URLSearchParams(hash.replace(/^#/, '')).forEach((value, key) => {
     if (!params.has(key)) params.set(key, value);
   });
   return params;
-}
-
-function providerErrorMessage(params: URLSearchParams): string | null {
-  const error = params.get('error');
-  if (!error) return null;
-  if (error === 'access_denied') return 'Sign-in was cancelled. Your local draft is unchanged.';
-  return 'That sign-in link could not be used. Your local draft is unchanged.';
 }
 
 export function AuthCallbackPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const params = useMemo(() => readAuthParams(location.search, location.hash), [location.hash, location.search]);
-  const providerError = providerErrorMessage(params);
-  const [error, setError] = useState<string | null>(() => providerError ?? (supabase ? null : 'Account features are not available in this release. Your local draft is unchanged.'));
-  const [retry, setRetry] = useState(0);
-  const [canRetryTransition, setCanRetryTransition] = useState(false);
+  const providerError = params.get('error');
+  const initialError = providerError
+    ? providerError === 'access_denied' ? 'Sign-in was cancelled.' : 'That sign-in link could not be used.'
+    : supabase ? null : 'Sign-in is unavailable. Please try again later.';
+  const [error, setError] = useState<string | null>(initialError);
 
   useEffect(() => {
     let active = true;
+    if (initialError) return;
     const requested = params.get('next') ?? '/settings';
     const destination = safeDestinations.has(requested) ? requested : '/settings';
-    const code = params.get('code');
-    const client = supabase;
-    if (!client) return;
-    if (providerError) {
-      void discardGuestAccountTransition();
-      return;
-    }
-
-    const complete = async () => {
-      try {
-        const result = code ? await client.auth.exchangeCodeForSession(code) : await client.auth.getSession();
+    void completeSignIn(params.get('code'))
+      .then((result) => {
         if (!active) return;
-        if (result.error) {
-          setError(friendlyAuthError(result.error, 'callback'));
-          return;
-        }
-        if (!result.data.session) {
-          setError('We could not confirm your sign-in. Your local draft is unchanged.');
-          return;
-        }
-        const transition = await loadGuestAccountTransition();
-        if (!active) return;
-        if (!transition) {
-          navigate(destination, { replace: true });
-          return;
-        }
-
-        const handle = await getMyRegisteredHandle(result.data.session.user.id);
-        if (!active) return;
-        if (transition.decision === 'discard') {
-          const registeredDraft = handle ? await loadMyProfileDraft() : null;
-          if (!active) return;
-          if (registeredDraft) await saveGuestDraft(registeredDraft);
-          else await clearGuestDraft();
-          await discardGuestAccountTransition();
-          navigate('/settings?discarded=1', { replace: true });
-          return;
-        }
-
-        if (!handle) {
-          await discardGuestAccountTransition();
-          navigate('/settings?merge=profile-setup', { replace: true });
-          return;
-        }
-
-        // Recovery is written before the server mutation so a failed or interrupted
-        // handoff leaves the guest work available on this device.
-        await preserveRecoveryDraft(transition.draft);
-        const receipt = await mergeGuestDraft(transition.draft);
-        const mergedDraft = await loadMyProfileDraft();
-        if (!mergedDraft) throw new Error('The merged profile could not be loaded.');
-        if (!active) return;
-        await saveGuestDraft(mergedDraft);
-        await discardGuestAccountTransition();
-        const mergeQuery = new URLSearchParams({
-          merged: String(receipt.addedLineupCount),
-          duplicates: String(receipt.duplicateLineupCount),
-          conflicts: String(receipt.conflictingLineupCount),
-        });
-        navigate(`/settings?${mergeQuery.toString()}`, { replace: true });
-      } catch (callbackError) {
-        if (active) {
-          setCanRetryTransition(true);
-          setError(callbackError instanceof Error && callbackError.message === 'The merged profile could not be loaded.'
-            ? 'Your account was updated, but your merged profile could not be loaded on this device.'
-            : 'You are signed in, but your draft could not be transferred. Your local draft is unchanged.');
-        }
-      }
-    };
-    void complete();
-    return () => {
-      active = false;
-    };
-  }, [navigate, params, providerError, retry]);
+        if (result.error) setError(friendlyAuthError(result.error, 'callback'));
+        else if (!result.data.session) setError('We could not confirm your sign-in. Please try again.');
+        else navigate(destination, { replace: true });
+      })
+      .catch((cause: unknown) => {
+        if (active) setError(friendlyAuthError(cause, 'callback'));
+      });
+    return () => { active = false; };
+  }, [initialError, navigate, params]);
 
   return (
     <main className="auth-callback" aria-labelledby="auth-callback-heading">
       <Wordmark />
       <section className="auth-callback__panel">
-        {error ? <><h1 id="auth-callback-heading">{canRetryTransition ? 'Draft transfer incomplete' : 'Sign-in incomplete'}</h1><p role="alert">{error}</p><div className="command-row">{canRetryTransition ? <button type="button" className="button-primary" onClick={() => { setCanRetryTransition(false); setError(null); setRetry((value) => value + 1); }}>Retry draft transfer</button> : <Link className="button-primary" to="/settings">Try again</Link>}<Link className="button-secondary" to="/build">Back to your draft</Link></div></> : <h1 id="auth-callback-heading" aria-live="polite">Signing you in...</h1>}
+        {error ? <><h1 id="auth-callback-heading">Sign-in incomplete</h1><p role="alert">{error}</p><div className="command-row"><Link className="button-primary" to="/settings">Try again</Link><Link className="button-secondary" to="/">Back to home</Link></div></> : <h1 id="auth-callback-heading" aria-live="polite">Signing you in...</h1>}
       </section>
     </main>
   );

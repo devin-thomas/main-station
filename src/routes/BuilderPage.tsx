@@ -227,12 +227,12 @@ export function BuilderPage() {
 
       <section className="draft-line" aria-labelledby="draft-line-heading">
         <div className="section-heading section-heading--split">
-          <h2 id="draft-line-heading">Your draft</h2>
+          <h2 id="draft-line-heading">Your Mainline</h2>
           <div className="draft-claim">{accountPresentation.reviewDescription && <p>{accountPresentation.reviewDescription}</p>}{accountPresentation.reviewActionLabel && <Link className="button-primary" to="/settings">{accountPresentation.reviewActionLabel}</Link>}</div>
         </div>
         <Mainline lineups={draft.lineups} label={accountPresentation.mainlineLabel} />
         {draft.lineups.length > 0 && (
-          <div className="draft-action-ledger" aria-label="Edit and reorder local draft entries">
+          <div className="draft-action-ledger" aria-label="Edit and reorder your entries">
             {draft.lineups.map((lineup, index) => {
               const lineupGame = catalogBySlug.get(lineup.gameSlug);
               return (
@@ -242,9 +242,9 @@ export function BuilderPage() {
                     <button type="button" className="icon-button" aria-label="Edit" title="Edit" onClick={() => beginEdit(lineup)}><Icon name="pencil" /></button>
                     <button type="button" onClick={() => void patchLineup(lineup, { visibility: lineup.visibility === 'public' ? 'private' : 'public' }, lineup.visibility === 'public' ? 'Entry made private on this device.' : 'Entry made public on this device.')}>{lineup.visibility === 'public' ? 'Hide' : 'Make public'}</button>
                     <button type="button" onClick={() => void patchLineup(lineup, { lifecycle: lineup.lifecycle === 'active' ? 'retired' : 'active' }, lineup.lifecycle === 'active' ? 'Entry marked Retired.' : 'Entry marked Active.')}>{lineup.lifecycle === 'active' ? 'Retire' : 'Reactivate'}</button>
-                    <button type="button" className="icon-button" aria-label="Move up" title="Move up" disabled={index === 0} onClick={() => void moveLineup(lineup.id, -1)}><Icon name="arrow-up" /></button>
-                    <button type="button" className="icon-button" aria-label="Move down" title="Move down" disabled={index === draft.lineups.length - 1} onClick={() => void moveLineup(lineup.id, 1)}><Icon name="arrow-down" /></button>
-                    <button type="button" className="icon-button" aria-label="Remove" title="Remove" onClick={() => void removeLineup(lineup.id)}><Icon name="trash-2" /></button>
+                    <button type="button" className="icon-button" aria-label="Move up" title="Move up" disabled={index === 0} onClick={() => void moveLineup(lineup.id, -1).catch(() => setMessage(null))}><Icon name="arrow-up" /></button>
+                    <button type="button" className="icon-button" aria-label="Move down" title="Move down" disabled={index === draft.lineups.length - 1} onClick={() => void moveLineup(lineup.id, 1).catch(() => setMessage(null))}><Icon name="arrow-down" /></button>
+                    <button type="button" className="icon-button" aria-label="Remove" title="Remove" onClick={() => void removeLineup(lineup.id).catch(() => setMessage(null))}><Icon name="trash-2" /></button>
                   </div>
                 </div>
               );

@@ -1,4 +1,4 @@
-export type BuilderAccountState = 'checking' | 'guest' | 'profile-setup' | 'registered' | 'account-check-needed';
+export type BuilderAccountState = 'checking' | 'signed-out' | 'profile-setup' | 'registered' | 'account-check-needed';
 
 export interface BuilderAccountPresentation {
   state: BuilderAccountState;
@@ -29,20 +29,20 @@ export function getBuilderAccountPresentation(input: BuilderAccountInput): Build
       visibilityNote: 'We will show the right save step once your account is ready.',
       reviewDescription: 'Checking your account before showing save options.',
       reviewActionLabel: null,
-      mainlineLabel: 'Your draft',
+      mainlineLabel: 'Your Mainline',
     };
   }
 
   if (!input.hasSession) {
     return {
-      state: 'guest',
+      state: 'signed-out',
       heading: 'Build your Mainline',
-      description: 'Drafts stay on this device until you sign in and save your profile.',
-      actionLabel: 'Sign in to save & share',
+      description: 'Sign in before creating your Mainline.',
+      actionLabel: 'Sign in to build',
       visibilityNote: 'Public entries appear on your profile and contribute to recommendations once saved online.',
       reviewDescription: '',
-      reviewActionLabel: 'Sign in to save this draft',
-      mainlineLabel: 'Your draft',
+      reviewActionLabel: 'Sign in to build',
+      mainlineLabel: 'Your Mainline',
     };
   }
 
@@ -50,12 +50,12 @@ export function getBuilderAccountPresentation(input: BuilderAccountInput): Build
     return {
       state: 'account-check-needed',
       heading: 'Check your account.',
-      description: 'We could not load your account. Your draft is safe on this device.',
+      description: 'We could not load your account. Your Mainline is safe on this device.',
       actionLabel: 'Check your account',
       visibilityNote: 'Check your account before saving this entry online.',
       reviewDescription: '',
       reviewActionLabel: 'Check your account',
-      mainlineLabel: 'Your draft',
+      mainlineLabel: 'Your Mainline',
     };
   }
 
@@ -76,11 +76,11 @@ export function getBuilderAccountPresentation(input: BuilderAccountInput): Build
   return {
     state: 'profile-setup',
     heading: 'Finish your profile.',
-    description: 'Choose your public name and handle to save this draft online and use it across devices.',
+    description: 'Choose your public name and handle to save your Mainline online and use it across devices.',
     actionLabel: 'Finish profile setup',
     visibilityNote: 'This entry can be shared after you finish your profile setup.',
     reviewDescription: '',
     reviewActionLabel: 'Finish profile setup',
-    mainlineLabel: 'Your draft',
+    mainlineLabel: 'Your Mainline',
   };
 }

@@ -1,18 +1,12 @@
-import { requireSupabase } from '../../lib/supabase';
+import { accountAuthorization, requireSupabase } from '../../lib/supabase';
 import type { Json } from '../../types/database';
-import type { CharacterPick, GuestDraft, Lineup } from '../../types/domain';
+import type { CharacterPick, ProfileDraft, Lineup } from '../../types/domain';
 
 export interface DraftReceipt {
   profileId: string;
   handle: string;
   profilePath: string;
   lineupCount: number;
-}
-
-export interface DraftMergeReceipt extends DraftReceipt {
-  addedLineupCount: number;
-  duplicateLineupCount: number;
-  conflictingLineupCount: number;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -36,25 +30,6 @@ function parseReceipt(value: unknown): DraftReceipt {
     handle: requireString(value, 'handle'),
     profilePath: requireString(value, 'profilePath'),
     lineupCount,
-  };
-}
-
-function requireCount(record: Record<string, unknown>, key: string): number {
-  const value = record[key];
-  if (typeof value !== 'number' || !Number.isInteger(value) || value < 0) {
-    throw new Error(`Supabase returned an invalid ${key} value.`);
-  }
-  return value;
-}
-
-function parseMergeReceipt(value: unknown): DraftMergeReceipt {
-  const receipt = parseReceipt(value);
-  if (!isRecord(value)) throw new Error('Supabase returned an invalid merge receipt.');
-  return {
-    ...receipt,
-    addedLineupCount: requireCount(value, 'addedLineupCount'),
-    duplicateLineupCount: requireCount(value, 'duplicateLineupCount'),
-    conflictingLineupCount: requireCount(value, 'conflictingLineupCount'),
   };
 }
 
@@ -119,7 +94,7 @@ function parseDraftLineup(value: unknown): Lineup {
   };
 }
 
-function parseRegisteredDraft(value: unknown): GuestDraft | null {
+function parseRegisteredDraft(value: unknown): ProfileDraft | null {
   if (value === null) return null;
   if (!isRecord(value) || value.version !== 1) throw new Error('Supabase returned an invalid registered draft.');
   const profile = value.profile;
@@ -153,17 +128,18 @@ export async function getMyRegisteredHandle(userId: string): Promise<string | nu
   return requireString(value, 'handle');
 }
 
-export async function writeProfileDraft(draft: GuestDraft, replace: boolean): Promise<DraftReceipt> {
+export async function writeProfileDraft(draft: ProfileDraft, replace: boolean, userId: string): Promise<DraftReceipt> {
+  const authorization = await accountAuthorization(userId);
   const payload = draftPayload(draft);
   const { data, error } = await requireSupabase().rpc(
     replace ? 'save_my_profile_draft' : 'claim_profile_draft',
     { p_payload: payload, p_request_id: draft.requestId },
-  );
+  ).setHeader('Authorization', authorization);
   if (error) throw error;
   return parseReceipt(data);
 }
 
-function draftPayload(draft: GuestDraft): Json {
+function draftPayload(draft: ProfileDraft): Json {
   return {
     version: draft.version,
     requestId: draft.requestId,
@@ -190,29 +166,21 @@ function draftPayload(draft: GuestDraft): Json {
   };
 }
 
-export async function mergeGuestDraft(draft: GuestDraft): Promise<DraftMergeReceipt> {
-  const payload = draftPayload(draft);
-  const { data, error } = await requireSupabase().rpc('merge_my_guest_draft', {
-    p_payload: payload,
-    p_request_id: draft.requestId,
-  });
-  if (error) throw error;
-  return parseMergeReceipt(data);
-}
-
-export async function loadMyProfileDraft(): Promise<GuestDraft | null> {
-  const { data, error } = await requireSupabase().rpc('get_my_profile_draft');
+export async function loadMyProfileDraft(userId: string): Promise<ProfileDraft | null> {
+  const authorization = await accountAuthorization(userId);
+  const { data, error } = await requireSupabase().rpc('get_my_profile_draft').setHeader('Authorization', authorization);
   if (error) throw error;
   return parseRegisteredDraft(data);
 }
 
-export async function exportMyProfileData(): Promise<Json> {
-  const { data, error } = await requireSupabase().rpc('export_my_profile');
+export async function exportMyProfileData(userId: string): Promise<Json> {
+  const authorization = await accountAuthorization(userId);
+  const { data, error } = await requireSupabase().rpc('export_my_profile').setHeader('Authorization', authorization);
   if (error) throw error;
   return data;
 }
 
-export async function loadPublicProfile(handle: string): Promise<GuestDraft | null> {
+export async function loadPublicProfile(handle: string): Promise<ProfileDraft | null> {
   const client = requireSupabase();
   const [profileResult, lineupsResult] = await Promise.all([
     client.from('profiles').select('handle, display_name, bio, updated_at').eq('handle', handle).maybeSingle(),

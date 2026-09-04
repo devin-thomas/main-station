@@ -450,7 +450,7 @@ button:disabled {
 .site-footer__brand img {
   width: 42px;
   height: 42px;
-  border-radius: 50%;
+  border-radius: 0;
   object-fit: contain;
 }
 
@@ -1939,45 +1939,7 @@ select:hover {
   gap: clamp(28px, 5vw, 72px);
 }
 
-.draft-sign-in-decision {
-  display: grid;
-  gap: 14px;
-  border: 1px solid var(--rule-dim);
-  border-left: 3px solid var(--signal);
-  padding: 20px;
-  background: var(--surface-deep);
-}
 
-.draft-sign-in-decision h3 {
-  margin: 0;
-  font-family: var(--display);
-  font-size: clamp(1.45rem, 2.25vw, 2rem);
-  text-transform: uppercase;
-}
-
-.draft-sign-in-decision p,
-.draft-sign-in-decision__selected p {
-  margin: 0;
-  color: var(--text-muted);
-}
-
-.draft-sign-in-decision__actions {
-  display: grid;
-  gap: 8px;
-  align-items: start;
-  justify-items: start;
-}
-
-.draft-sign-in-decision__actions .button-quiet {
-  min-height: 44px;
-}
-
-.draft-sign-in-decision__selected {
-  display: grid;
-  gap: 8px;
-  border-left: 2px solid var(--signal);
-  padding-left: 14px;
-}
 
 .account-card .auth-controls {
   grid-template-columns: 1fr;

@@ -1,135 +1,97 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import type { DraftProfile, GuestDraft, Lineup } from '../../types/domain';
-import { clearGuestDraft, discardRecoveryDraft, loadGuestDraft, loadRecoveryDraft, preserveRecoveryDraft, saveGuestDraft } from './draftStore';
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import type { ProfileDraft, Lineup } from '../../types/domain';
+import { emptyDraft } from '../../data/demo';
+import { useAuth } from '../auth/AuthProvider';
+import { loadMyProfileDraft } from '../profile/profile';
+import { loadAccountDraft, saveAccountDraft } from './draftStore';
 
 interface DraftContextValue {
-  draft: GuestDraft;
+  draft: ProfileDraft;
   ready: boolean;
   storageError: string | null;
-  hasRecovery: boolean;
-  updateProfile(profile: DraftProfile): Promise<void>;
+  reload(): void;
   addLineup(lineup: Lineup): Promise<void>;
   updateLineup(lineup: Lineup): Promise<void>;
   moveLineup(lineupId: string, direction: -1 | 1): Promise<void>;
   removeLineup(lineupId: string): Promise<void>;
-  replaceDraft(draft: GuestDraft): Promise<void>;
-  preserveRecovery(): Promise<void>;
-  restoreRecovery(): Promise<boolean>;
-  discardRecovery(): Promise<void>;
-  clearDraft(): Promise<void>;
+  replaceDraft(draft: ProfileDraft): Promise<void>;
 }
-
-const initialDraft: GuestDraft = {
-  version: 1,
-  requestId: '00000000-0000-4000-8000-000000000000',
-  profile: { displayName: '', handle: '', bio: '' },
-  lineups: [],
-  updatedAt: new Date(0).toISOString(),
-};
 
 const DraftContext = createContext<DraftContextValue | null>(null);
 
 export function DraftProvider({ children }: { children: ReactNode }) {
-  const [draft, setDraft] = useState<GuestDraft>(initialDraft);
+  const { session } = useAuth();
+  // Remount every consumer on an identity change, including unfinished form fields.
+  return <AccountDraftProvider key={session?.user.id ?? 'signed-out'} userId={session?.user.id ?? null}>{children}</AccountDraftProvider>;
+}
+
+function AccountDraftProvider({ userId, children }: { userId: string | null; children: ReactNode }) {
+  const [draft, setDraft] = useState<ProfileDraft>(() => structuredClone(emptyDraft));
+  const currentDraft = useRef(draft);
   const [ready, setReady] = useState(false);
   const [storageError, setStorageError] = useState<string | null>(null);
-  const [hasRecovery, setHasRecovery] = useState(false);
+  const [attempt, setAttempt] = useState(0);
+  const active = useRef(false);
+  const pendingWrite = useRef<Promise<void>>(Promise.resolve());
 
   useEffect(() => {
-    let active = true;
-    loadGuestDraft()
-      .then((stored) => {
-        if (active) setDraft(stored);
-        return loadRecoveryDraft();
-      })
-      .then((recovery) => {
-        if (active) setHasRecovery(Boolean(recovery));
-      })
-      .catch((error: unknown) => {
-        if (active) setStorageError(error instanceof Error && error.message === 'This guest draft uses an unsupported data version. Export or clear it before continuing.'
-          ? 'This version of MainStation cannot open the saved draft.'
-          : 'Your draft could not be opened on this device.');
-      })
-      .finally(() => {
-        if (active) setReady(true);
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  const commit = useCallback(async (nextDraft: GuestDraft) => {
-    const versionedDraft = { ...nextDraft, requestId: crypto.randomUUID() };
-    try {
-      await saveGuestDraft(versionedDraft);
-      setDraft(versionedDraft);
-      setStorageError(null);
-    } catch (error) {
-      setStorageError('Your draft could not be saved on this device.');
-      throw error;
+    active.current = true;
+    let cancelled = false;
+    if (userId) {
+      void (async () => {
+        try {
+          const stored = await loadAccountDraft(userId) ?? await loadMyProfileDraft(userId) ?? {
+            ...structuredClone(emptyDraft), requestId: crypto.randomUUID(),
+          };
+          if (cancelled) return;
+          currentDraft.current = stored;
+          setDraft(stored);
+          setStorageError(null);
+          setReady(true);
+        } catch {
+          if (!cancelled) setStorageError('Your account changes could not be loaded. Reconnect and try again.');
+        }
+      })();
     }
-  }, []);
+    return () => { cancelled = true; active.current = false; };
+  }, [attempt, userId]);
+
+  const commit = useCallback((change: (current: ProfileDraft) => ProfileDraft): Promise<void> => {
+    const write = pendingWrite.current.then(async () => {
+      if (!userId || !ready || !active.current) throw new Error('Sign in and load your account before editing.');
+      const nextDraft = { ...change(currentDraft.current), requestId: crypto.randomUUID(), updatedAt: new Date().toISOString() };
+      await saveAccountDraft(userId, nextDraft);
+      if (!active.current) return;
+      currentDraft.current = nextDraft;
+      setDraft(nextDraft);
+      setStorageError(null);
+    });
+    // Keep writes ordered without poisoning the queue after a reported failure.
+    pendingWrite.current = write.catch(() => {
+      if (active.current) setStorageError('Your changes could not be saved on this device. Try again.');
+    });
+    return write;
+  }, [ready, userId]);
 
   const value = useMemo<DraftContextValue>(() => ({
-    draft,
-    ready,
-    storageError,
-    hasRecovery,
-    async updateProfile(profile) {
-      await commit({ ...draft, profile, updatedAt: new Date().toISOString() });
-    },
-    async addLineup(lineup) {
-      await commit({ ...draft, lineups: [...draft.lineups, lineup], updatedAt: new Date().toISOString() });
-    },
-    async updateLineup(lineup) {
-      if (!draft.lineups.some((candidate) => candidate.id === lineup.id)) {
-        throw new Error('The Character or Team no longer exists in this local draft.');
-      }
-      await commit({
-        ...draft,
-        lineups: draft.lineups.map((candidate) => candidate.id === lineup.id ? lineup : candidate),
-        updatedAt: new Date().toISOString(),
-      });
-    },
-    async moveLineup(lineupId, direction) {
-      const currentIndex = draft.lineups.findIndex((lineup) => lineup.id === lineupId);
-      const targetIndex = currentIndex + direction;
-      if (currentIndex < 0 || targetIndex < 0 || targetIndex >= draft.lineups.length) return;
-      const lineups = [...draft.lineups];
-      [lineups[currentIndex], lineups[targetIndex]] = [lineups[targetIndex], lineups[currentIndex]];
-      await commit({ ...draft, lineups, updatedAt: new Date().toISOString() });
-    },
-    async removeLineup(lineupId) {
-      await commit({ ...draft, lineups: draft.lineups.filter((lineup) => lineup.id !== lineupId), updatedAt: new Date().toISOString() });
-    },
-    async replaceDraft(nextDraft) {
-      await commit({ ...nextDraft, updatedAt: new Date().toISOString() });
-    },
-    async preserveRecovery() {
-      await preserveRecoveryDraft(draft);
-      setHasRecovery(true);
-    },
-    async restoreRecovery() {
-      const recovery = await loadRecoveryDraft();
-      if (!recovery) return false;
-      await commit({ ...recovery, updatedAt: new Date().toISOString() });
-      return true;
-    },
-    async discardRecovery() {
-      await discardRecoveryDraft();
-      setHasRecovery(false);
-    },
-    async clearDraft() {
-      try {
-        const cleared = await clearGuestDraft();
-        setDraft(cleared);
-        setStorageError(null);
-      } catch (error) {
-        setStorageError('Your draft could not be cleared on this device.');
-        throw error;
-      }
-    },
-  }), [commit, draft, hasRecovery, ready, storageError]);
+    draft, ready: Boolean(userId && ready), storageError,
+    reload() { setStorageError(null); setReady(false); setAttempt((value) => value + 1); },
+    addLineup: (lineup) => commit((current) => ({ ...current, lineups: [...current.lineups, lineup] })),
+    updateLineup: (lineup) => commit((current) => {
+      if (!current.lineups.some((candidate) => candidate.id === lineup.id)) throw new Error('This entry no longer exists.');
+      return { ...current, lineups: current.lineups.map((candidate) => candidate.id === lineup.id ? lineup : candidate) };
+    }),
+    moveLineup: (lineupId, direction) => commit((current) => {
+      const index = current.lineups.findIndex((lineup) => lineup.id === lineupId);
+      const target = index + direction;
+      if (index < 0 || target < 0 || target >= current.lineups.length) throw new Error('This entry cannot move in that direction.');
+      const lineups = [...current.lineups];
+      [lineups[index], lineups[target]] = [lineups[target], lineups[index]];
+      return { ...current, lineups };
+    }),
+    removeLineup: (lineupId) => commit((current) => ({ ...current, lineups: current.lineups.filter((lineup) => lineup.id !== lineupId) })),
+    replaceDraft: (nextDraft) => commit(() => nextDraft),
+  }), [commit, draft, ready, storageError, userId]);
 
   return <DraftContext.Provider value={value}>{children}</DraftContext.Provider>;
 }

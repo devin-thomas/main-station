@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { BuildLink } from './BuildLink';
 import { catalogBySlug } from '../data/catalog';
 import type { Lineup } from '../types/domain';
 
@@ -8,7 +9,7 @@ export function Mainline({ lineups, label = 'Player Mainline' }: { lineups: Line
       <div className="empty-line">
         <span className="empty-line__marker" aria-hidden="true" />
         <p>No entries yet.</p>
-        <Link className="text-link" to="/build">Add a character or team</Link>
+        <BuildLink className="text-link">Add a character or team</BuildLink>
       </div>
     );
   }

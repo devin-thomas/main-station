@@ -4,8 +4,8 @@ import { getBuilderAccountPresentation } from '../src/features/auth/accountPrese
 describe('Builder account presentation', () => {
   it('keeps the account-creation prompt for a guest only', () => {
     const presentation = getBuilderAccountPresentation({ hasSession: false, sessionLoading: false, profileLoading: false, profileLookupFailed: false, registeredHandle: null });
-    expect(presentation.state).toBe('guest');
-    expect(presentation.actionLabel).toBe('Sign in to save & share');
+    expect(presentation.state).toBe('signed-out');
+    expect(presentation.actionLabel).toBe('Sign in to build');
   });
 
   it('asks a signed-in person without a profile to finish setup', () => {

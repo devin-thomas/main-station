@@ -458,7 +458,7 @@ Policy ID: `association-v1`.
 - Public server data may show the last safe same-origin read model only when labeled with its retrieval time; launch may instead show an unavailable-online state.
 - Profile creation, registered saves, feedback, export, deletion, and fresh recommendations are visibly unavailable offline.
 - `navigator.onLine` is a hint only; request results determine reachability.
-- Storage quota, IndexedDB migration, blocked database, and cleared-storage states have explicit recovery copy.
+- Storage quota, IndexedDB migration, blocked database, and cleared-storage failures show a clear error and retry action.
 
 ### 15.4 Installation
 

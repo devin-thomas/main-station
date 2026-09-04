@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Mainline } from '../components/Mainline';
+import { BuildLink } from '../components/BuildLink';
 import { demoProfile } from '../data/demo';
 import { useAuth } from '../features/auth/AuthProvider';
 import { loadPublicProfile } from '../features/profile/profile';
 import { getProfileBuildAction } from '../features/profile/profilePresentation';
 import { supabaseConfigured } from '../lib/supabase';
-import type { GuestDraft } from '../types/domain';
+import type { ProfileDraft } from '../types/domain';
 
 interface ProfileResult {
   handle: string;
-  profile: GuestDraft | null;
+  profile: ProfileDraft | null;
   error: string | null;
 }
 
@@ -55,7 +56,7 @@ export function ProfilePage() {
     return (
       <div className="state-page page-frame">
         <h1>Profile not found</h1>
-        <Link className="button-primary" to="/build">Build your Mainline</Link>
+        <BuildLink className="button-primary">Build your Mainline</BuildLink>
       </div>
     );
   }
@@ -71,7 +72,7 @@ export function ProfilePage() {
           <p className="profile-identity__handle">@{profile.profile.handle}</p>
         </div>
         {profile.profile.bio && <p className="profile-identity__bio">{profile.profile.bio}</p>}
-        <Link className="button-secondary" to="/build">{buildAction}</Link>
+        <BuildLink className="button-secondary">{buildAction}</BuildLink>
       </header>
       <section className="profile-mainline" aria-labelledby="profile-line-heading">
         <div className="section-heading section-heading--split">

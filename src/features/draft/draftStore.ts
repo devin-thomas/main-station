@@ -1,103 +1,40 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
-import { emptyDraft } from '../../data/demo';
-import type { GuestDraft } from '../../types/domain';
+import type { ProfileDraft } from '../../types/domain';
 
-interface MainStationDatabase extends DBSchema {
-  drafts: {
-    key: 'active' | 'recovery';
-    value: GuestDraft;
-  };
-  accountTransitions: {
-    key: 'pending';
-    value: GuestAccountTransition;
-  };
+interface AccountDatabase extends DBSchema {
+  drafts: { key: string; value: ProfileDraft };
 }
 
-export type GuestAccountDecision = 'merge' | 'discard';
+let databasePromise: Promise<IDBPDatabase<AccountDatabase>> | undefined;
 
-export interface GuestAccountTransition {
-  version: 1;
-  decision: GuestAccountDecision;
-  draft: GuestDraft;
-  startedAt: string;
-}
-
-let databasePromise: Promise<IDBPDatabase<MainStationDatabase>> | undefined;
-
-function database(): Promise<IDBPDatabase<MainStationDatabase>> {
-  databasePromise ??= openDB<MainStationDatabase>('mainstation', 2, {
-    upgrade(db) {
-      if (!db.objectStoreNames.contains('drafts')) db.createObjectStore('drafts');
-      if (!db.objectStoreNames.contains('accountTransitions')) db.createObjectStore('accountTransitions');
-    },
+function database() {
+  // A separate database prevents legacy anonymous data from becoming account data.
+  databasePromise ??= openDB<AccountDatabase>('mainstation-accounts', 1, {
+    upgrade(db) { db.createObjectStore('drafts'); },
   });
   return databasePromise;
 }
 
-function cloneEmptyDraft(): GuestDraft {
-  return { ...structuredClone(emptyDraft), requestId: crypto.randomUUID() };
+function requireOwner(userId: string) {
+  if (!userId) throw new Error('Sign in before editing your Mainline.');
 }
 
-export async function loadGuestDraft(): Promise<GuestDraft> {
-  const stored = await (await database()).get('drafts', 'active');
-  if (!stored) return cloneEmptyDraft();
-  if (stored.version !== 1) throw new Error('This guest draft uses an unsupported data version. Export or clear it before continuing.');
-  return { ...stored, requestId: stored.requestId || crypto.randomUUID() };
+export async function loadAccountDraft(userId: string): Promise<ProfileDraft | null> {
+  requireOwner(userId);
+  const stored = await (await database()).get('drafts', userId);
+  if (!stored) return null;
+  if (stored.version !== 1) throw new Error('This version of MainStation cannot open your saved changes.');
+  return stored;
 }
 
-export async function saveGuestDraft(draft: GuestDraft): Promise<void> {
-  const db = await database();
-  const transaction = db.transaction('drafts', 'readwrite', { durability: 'strict' });
-  await transaction.store.put(draft, 'active');
+export async function saveAccountDraft(userId: string, draft: ProfileDraft): Promise<void> {
+  requireOwner(userId);
+  const transaction = (await database()).transaction('drafts', 'readwrite', { durability: 'strict' });
+  await transaction.store.put(draft, userId);
   await transaction.done;
 }
 
-export async function preserveRecoveryDraft(draft: GuestDraft): Promise<void> {
-  const db = await database();
-  const transaction = db.transaction('drafts', 'readwrite', { durability: 'strict' });
-  await transaction.store.put(draft, 'recovery');
-  await transaction.done;
-}
-
-export async function loadRecoveryDraft(): Promise<GuestDraft | null> {
-  return (await (await database()).get('drafts', 'recovery')) ?? null;
-}
-
-export async function discardRecoveryDraft(): Promise<void> {
-  const db = await database();
-  const transaction = db.transaction('drafts', 'readwrite', { durability: 'strict' });
-  await transaction.store.delete('recovery');
-  await transaction.done;
-}
-
-export async function clearGuestDraft(): Promise<GuestDraft> {
-  const next = cloneEmptyDraft();
-  const db = await database();
-  const transaction = db.transaction('drafts', 'readwrite', { durability: 'strict' });
-  await transaction.store.delete('active');
-  await transaction.done;
-  return next;
-}
-
-export async function beginGuestAccountTransition(transition: GuestAccountTransition): Promise<void> {
-  const db = await database();
-  const transaction = db.transaction('accountTransitions', 'readwrite', { durability: 'strict' });
-  await transaction.store.put(transition, 'pending');
-  await transaction.done;
-}
-
-export async function loadGuestAccountTransition(): Promise<GuestAccountTransition | null> {
-  const transition = await (await database()).get('accountTransitions', 'pending');
-  if (!transition) return null;
-  if (transition.version !== 1 || (transition.decision !== 'merge' && transition.decision !== 'discard')) {
-    throw new Error('This saved sign-in decision is unsupported. Your local draft is unchanged.');
-  }
-  return transition;
-}
-
-export async function discardGuestAccountTransition(): Promise<void> {
-  const db = await database();
-  const transaction = db.transaction('accountTransitions', 'readwrite', { durability: 'strict' });
-  await transaction.store.delete('pending');
-  await transaction.done;
+export async function clearAccountDraft(userId: string): Promise<void> {
+  requireOwner(userId);
+  await (await database()).delete('drafts', userId);
 }

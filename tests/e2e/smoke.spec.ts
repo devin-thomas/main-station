@@ -1,5 +1,9 @@
 import { expect, test } from '@playwright/test';
 import { catalog } from '../../src/data/catalog';
+import { firstUserId, mockAccount, secondUserId, switchAccount } from './auth-fixture';
+
+// Service workers can bypass Playwright network mocks, particularly in WebKit.
+test.use({ serviceWorkers: 'block' });
 
 test('home, catalog, and cleared imagery render', async ({ page }) => {
   await page.goto('/');
@@ -8,6 +12,9 @@ test('home, catalog, and cleared imagery render', async ({ page }) => {
   await expect(page.getByRole('navigation', { name: 'Games' })).toBeVisible();
   await expect(page.getByAltText(/Hyde from/)).toBeVisible();
   await expect(page.getByText('Developed by Uppercut Labs')).toBeVisible();
+  const studioLogo = page.locator('img[src="/uppercut-labs-logo.png"]');
+  await expect(studioLogo).toBeVisible();
+  await expect(studioLogo).toHaveCSS('border-radius', '0px');
 
   await page.goto('/games/uni2');
   await expect(page.getByRole('heading', { name: 'Official roster' })).toBeVisible();
@@ -51,8 +58,9 @@ test('every founding game renders reviewed art and provenance on a Character pag
   }
 });
 
-test('guest can select and save a valid roster entry for every founding game', async ({ page }) => {
+test('signed-in member can select and save a valid roster entry for every founding game', async ({ page }) => {
   test.setTimeout(60_000);
+  await mockAccount(page);
   await page.goto('/build');
 
   for (const game of catalog) {
@@ -79,12 +87,11 @@ test('guest can select and save a valid roster entry for every founding game', a
   }
 });
 
-test('guest can save a valid solo Character and reload it from IndexedDB', async ({ page }) => {
+test('signed-in member can save a valid solo Character and reload it from IndexedDB', async ({ page }) => {
+  await mockAccount(page);
   await page.goto('/build');
   await expect(page.getByRole('button', { name: 'Save identity' })).toHaveCount(0);
-  await expect(page.getByText('Drafts stay on this device until you sign in and save your profile.')).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Sign in', exact: true })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Sign in to save & share' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Sign in to save & share' })).toHaveCount(0);
   await page.getByLabel('Character').selectOption('hyde');
   await page.getByRole('button', { name: 'Save Character' }).click();
   await expect(page.getByText('Hyde', { exact: true }).last()).toBeVisible();
@@ -92,7 +99,8 @@ test('guest can save a valid solo Character and reload it from IndexedDB', async
   await expect(page.getByText('Hyde', { exact: true }).last()).toBeVisible();
 });
 
-test('guest can save a source-checked 2XKO team and Fuse', async ({ page }) => {
+test('signed-in member can save a source-checked 2XKO team and Fuse', async ({ page }) => {
+  await mockAccount(page);
   await page.goto('/build');
   await page.getByRole('button', { name: '2XKO', exact: true }).click();
   const point = page.locator('fieldset').filter({ hasText: 'Point' }).getByRole('combobox');
@@ -101,14 +109,15 @@ test('guest can save a source-checked 2XKO team and Fuse', async ({ page }) => {
   await assist.selectOption('ahri');
   await page.getByLabel('Fuse').selectOption('Double Down');
   await page.getByRole('button', { name: 'Save Team' }).click();
-  await expect(page.getByRole('alert')).toContainText('A Character can appear only once in this Team.');
+  await expect(page.locator('.validation-block')).toContainText('A Character can appear only once in this Team.');
   await assist.selectOption('akali');
   await page.getByRole('button', { name: 'Save Team' }).click();
   await expect(page.getByRole('link', { name: 'Ahri / Akali' })).toBeVisible();
   await expect(page.getByText('Fuse: Double Down')).toBeVisible();
 });
 
-test('guest can edit, hide, restore, retire, reorder, and remove saved entries', async ({ page }, testInfo) => {
+test('signed-in member can edit, hide, restore, retire, reorder, and remove saved entries', async ({ page }, testInfo) => {
+  await mockAccount(page);
   await page.goto('/build');
   await page.getByLabel('Character').selectOption('hyde');
   await page.getByRole('button', { name: 'Save Character' }).click();
@@ -162,42 +171,184 @@ test('unknown public route shows a real product 404', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
 });
 
-test('cancelled sign-in stops on a focused recovery screen without touching the guest draft', async ({ page }) => {
-  await page.goto('/auth/callback?error=access_denied&next=%2Fsettings');
+test('signed-out visitors must sign in before opening the editor', async ({ page }) => {
+  await page.goto('/build');
+  await expect(page).toHaveURL(/\/settings\?next=%2Fbuild$/);
+  await expect(page.getByRole('heading', { name: 'Sign in or create an account' })).toBeVisible();
+  await expect(page.locator('.game-selector, fieldset.slot-row, .draft-action-ledger')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /Save Character|Create profile|Clear local draft/ })).toHaveCount(0);
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Sign in to build', exact: true }).first().click();
+  await expect(page).toHaveURL(/\/settings\?next=%2Fbuild$/);
+});
+
+for (const errorLocation of ['?error=access_denied&next=%2Fbuild', '#error=access_denied']) {
+  test(`cancelled sign-in stays on a focused error screen (${errorLocation})`, async ({ page }) => {
+    await page.goto(`/auth/callback${errorLocation}`);
+    await expect(page.getByRole('heading', { name: 'Sign-in incomplete' })).toBeVisible();
+    await expect(page.getByRole('alert')).toContainText('Sign-in was cancelled.');
+    await expect(page.getByRole('link', { name: 'Try again' })).toBeVisible();
+    await expect(page.getByText(/local draft|draft transfer/i)).toHaveCount(0);
+    await expect(page.getByRole('navigation', { name: 'Primary' })).toHaveCount(0);
+    await expect(page).toHaveURL(/\/auth\/callback/);
+  });
+}
+
+for (const destination of ['/build', 'https://example.test/steal', '//example.test/steal']) {
+  test(`successful PKCE callback uses a safe destination (${destination})`, async ({ page }) => {
+    const account = await mockAccount(page, { signedIn: false });
+    await page.goto(`/auth/callback?code=e2e-code&next=${encodeURIComponent(destination)}`);
+    await expect(page).toHaveURL(destination === '/build' ? /\/build$/ : /\/settings$/);
+    await expect(page.getByRole('button', { name: destination === '/build' ? 'Save Character' : 'Create profile', exact: true })).toBeVisible();
+    expect(account.requests.filter((request) => request.path === '/auth/v1/token')).toHaveLength(1);
+    expect(account.requests.filter((request) => /merge|claim|save/.test(request.path))).toHaveLength(0);
+  });
+}
+
+test('email sign-in preserves the builder destination without a draft decision', async ({ page }) => {
+  const account = await mockAccount(page, { signedIn: false });
+  await page.goto('/build');
+  await page.getByLabel('Email address').fill('e2e@example.test');
+  await page.getByRole('button', { name: 'Continue with email' }).click();
+  await expect(page.getByRole('heading', { name: 'Check your email' })).toBeVisible();
+  const emailRequest = account.requests.find((request) => request.path === '/auth/v1/otp');
+  expect(emailRequest).toBeDefined();
+  const callback = new URL(new URL(emailRequest!.url).searchParams.get('redirect_to')!);
+  expect(callback.pathname).toBe('/auth/callback');
+  expect(callback.searchParams.get('next')).toBe('/build');
+});
+
+test('a rejected sign-in code never opens the editor', async ({ page }) => {
+  await mockAccount(page, { signedIn: false });
+  await page.route('**/auth/v1/token?**', (route) => route.fulfill({ status: 400, json: { error_code: 'otp_expired', msg: 'The sign-in code is expired.' } }));
+  await page.goto('/auth/callback?code=expired-code&next=%2Fbuild');
   await expect(page.getByRole('heading', { name: 'Sign-in incomplete' })).toBeVisible();
-  await expect(page.getByRole('alert')).toContainText('Sign-in was cancelled. Your local draft is unchanged.');
-  await expect(page.getByRole('link', { name: 'Try again' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Back to your draft' })).toBeVisible();
-  await expect(page.getByRole('navigation', { name: 'Primary' })).toHaveCount(0);
-  await expect(page).toHaveURL(/\/auth\/callback/);
+  await expect(page.getByRole('alert')).toContainText('That sign-in link is no longer valid.');
+  await expect(page.locator('fieldset.slot-row')).toHaveCount(0);
+  await page.goto('/build');
+  await expect(page).toHaveURL(/\/settings\?next=%2Fbuild$/);
 });
 
-test('Builder offers a prominent account path before and after drafting', async ({ page }) => {
+test('account load failure keeps the creation controls unavailable', async ({ page }) => {
+  await mockAccount(page);
+  await page.route('**/rest/v1/rpc/get_my_profile_draft', (route) => route.fulfill({ status: 500, json: { message: 'Account temporarily unavailable.' } }));
   await page.goto('/build');
-  await page.getByRole('link', { name: 'Sign in to save & share' }).click();
-  await expect(page).toHaveURL(/\/settings$/);
-  await page.goto('/build');
-  await expect(page.getByRole('link', { name: 'Sign in to save this draft' })).toBeVisible();
+  await expect(page.getByRole('alert').filter({ hasText: 'Your account changes could not be loaded.' })).toBeVisible();
+  await expect(page.locator('.game-selector, fieldset.slot-row, .draft-action-ledger')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Save Character' })).toHaveCount(0);
 });
 
-test('a non-empty guest draft requires an explicit merge, account, or editing choice before sign-in', async ({ page }) => {
+test('legacy guest drafts and pending merges are never imported after sign-in', async ({ page }) => {
+  const account = await mockAccount(page, { signedIn: false });
+  await page.goto('/');
+  await page.evaluate(async () => {
+    const draft = {
+      version: 1, requestId: '00000000-0000-4000-8000-000000000003',
+      profile: { handle: 'legacy-guest', displayName: 'Legacy Guest', bio: '' },
+      lineups: [{ id: '00000000-0000-4000-8000-000000000004', gameSlug: 'uni2', category: 'main', lifecycle: 'active', visibility: 'public', picks: [{ slotId: 'character', characterSlug: 'hyde' }], createdAt: '2026-01-01T00:00:00Z' }],
+      updatedAt: '2026-01-01T00:00:00Z',
+    };
+    await new Promise<void>((resolve, reject) => {
+      const open = indexedDB.open('mainstation', 2);
+      open.onupgradeneeded = () => {
+        open.result.createObjectStore('drafts');
+        open.result.createObjectStore('accountTransitions');
+      };
+      open.onerror = () => reject(open.error);
+      open.onsuccess = () => {
+        const db = open.result;
+        const transaction = db.transaction(['drafts', 'accountTransitions'], 'readwrite');
+        transaction.objectStore('drafts').put(draft, 'active');
+        transaction.objectStore('drafts').put(draft, 'recovery');
+        transaction.objectStore('accountTransitions').put({ version: 1, decision: 'merge', draft, startedAt: draft.updatedAt }, 'pending');
+        transaction.oncomplete = () => { db.close(); resolve(); };
+        transaction.onerror = () => reject(transaction.error);
+      };
+    });
+  });
+  await switchAccount(page, firstUserId);
+  await page.goto('/auth/callback?next=%2Fbuild');
+  await expect(page).toHaveURL(/\/build$/);
+  await expect(page.getByRole('button', { name: 'Save Character' })).toBeVisible();
+  await expect(page.locator('.draft-action-ledger__row')).toHaveCount(0);
+  await page.goto('/settings');
+  await expect(page.getByLabel('Display name')).toHaveValue('');
+  await expect(page.getByLabel('Handle', { exact: true })).toHaveValue('');
+  await expect(page.getByText(/Recovery copy|What should happen after sign-in/)).toHaveCount(0);
+  expect(account.requests.filter((request) => /merge|claim|save/.test(request.path))).toHaveLength(0);
+});
+
+test('sign-out locks creation and a different account cannot see the previous account draft', async ({ page }) => {
+  await mockAccount(page);
   await page.goto('/build');
   await page.getByLabel('Character').selectOption('hyde');
   await page.getByRole('button', { name: 'Save Character' }).click();
-  await page.getByRole('link', { name: 'Sign in to save this draft' }).click();
-
-  await expect(page.getByRole('heading', { name: 'What should happen after sign-in?' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Merge this draft and sign in' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Discard this draft and sign in' })).toBeVisible();
-  await page.getByRole('link', { name: 'Keep editing' }).click();
-  await expect(page).toHaveURL(/\/build$/);
-  await expect(page.getByText('Hyde', { exact: true }).last()).toBeVisible();
+  await expect(page.locator('.draft-action-ledger__row')).toHaveCount(1);
+  await page.goto('/settings');
+  await page.getByRole('button', { name: 'Sign out', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Sign in or create an account' })).toBeVisible();
+  await expect(page.getByLabel('Display name')).toHaveCount(0);
+  await page.goto('/build');
+  await expect(page).toHaveURL(/\/settings\?next=%2Fbuild$/);
+  await switchAccount(page, secondUserId);
+  await page.goto('/build');
+  await expect(page.getByRole('button', { name: 'Save Character' })).toBeVisible();
+  await expect(page.locator('.draft-action-ledger__row')).toHaveCount(0);
+  await page.getByLabel('Character').selectOption('linne');
+  await page.getByRole('button', { name: 'Save Character' }).click();
+  await expect(page.locator('.draft-action-ledger__row')).toContainText('Linne');
+  await switchAccount(page, firstUserId);
+  await expect(page.locator('.draft-action-ledger__row')).toHaveCount(1);
+  await expect(page.locator('.draft-action-ledger__row')).toContainText('Hyde');
 });
 
-test('fragment sign-in errors use the same provider-neutral recovery', async ({ page }) => {
-  await page.goto('/auth/callback#error=access_denied');
-  await expect(page.getByRole('heading', { name: 'Sign-in incomplete' })).toBeVisible();
-  await expect(page.getByRole('alert')).toContainText('Sign-in was cancelled. Your local draft is unchanged.');
+test('signed-in creation is local until the member explicitly creates a public profile', async ({ page }) => {
+  const account = await mockAccount(page);
+  await page.goto('/build');
+  await page.getByLabel('Character').selectOption('hyde');
+  await page.getByRole('button', { name: 'Save Character' }).click();
+  await expect(page.locator('.draft-action-ledger__row')).toHaveCount(1);
+  expect(account.requests.filter((request) => /claim|save/.test(request.path))).toHaveLength(0);
+  await page.goto('/settings');
+  await page.getByLabel('Display name').fill('E2E Player');
+  await page.getByLabel('Handle', { exact: true }).fill('e2e-player');
+  await page.getByRole('button', { name: 'Create profile', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Profile saved' })).toBeVisible();
+  expect(account.requests.filter((request) => request.path === '/rest/v1/rpc/claim_profile_draft')).toHaveLength(1);
+});
+
+test('an existing member loads their saved profile and explicitly saves edits online', async ({ page }) => {
+  const account = await mockAccount(page, { savedDraft: {
+    version: 1,
+    requestId: '00000000-0000-4000-8000-000000000005',
+    profile: { handle: 'returning-player', displayName: 'Returning Player', bio: '' },
+    lineups: [],
+    updatedAt: '2026-01-01T00:00:00Z',
+  } });
+  await page.goto('/build');
+  await page.getByLabel('Character').selectOption('hyde');
+  await page.getByRole('button', { name: 'Save Character' }).click();
+  await expect(page.locator('.draft-action-ledger__row')).toHaveCount(1);
+  await page.goto('/settings');
+  await expect(page.getByRole('heading', { name: '@returning-player' })).toBeVisible();
+  expect(account.requests.filter((request) => request.path === '/rest/v1/rpc/get_my_profile_draft')).toHaveLength(1);
+  expect(account.requests.filter((request) => request.path === '/rest/v1/rpc/save_my_profile_draft')).toHaveLength(0);
+  await page.getByRole('button', { name: 'Save changes', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Saved 1 entry to @returning-player.' })).toBeVisible();
+  expect(account.requests.filter((request) => request.path === '/rest/v1/rpc/save_my_profile_draft')).toHaveLength(1);
+});
+
+test('signing out in another tab immediately closes the open editor', async ({ page, context }) => {
+  await mockAccount(page);
+  await page.goto('/build');
+  await expect(page.getByRole('button', { name: 'Save Character' })).toBeVisible();
+  const accountPage = await context.newPage();
+  await mockAccount(accountPage);
+  await accountPage.goto('/settings');
+  await accountPage.getByRole('button', { name: 'Sign out', exact: true }).click();
+  await expect(page).toHaveURL(/\/settings\?next=%2Fbuild$/);
+  await expect(page.getByRole('button', { name: 'Save Character' })).toHaveCount(0);
+  await expect(page.locator('fieldset.slot-row')).toHaveCount(0);
 });
 
 test('account route leads with the focused account state', async ({ page }) => {
@@ -219,6 +370,7 @@ test('manifest and service worker are emitted in production', async ({ request }
 
 test('primary routes keep accessible icon controls and fit mobile viewports', async ({ page }, testInfo) => {
   test.setTimeout(60_000);
+  await mockAccount(page);
   const mobile = testInfo.project.use.isMobile;
   for (const route of ['/', '/build', '/settings', '/p/station-zero', '/recommend', '/games/uni2', '/games/uni2/characters/hyde']) {
     await page.goto(route);
@@ -254,27 +406,45 @@ test('primary routes keep accessible icon controls and fit mobile viewports', as
   }
 });
 
-test('guest drafts save offline and persist through a shell reload', async ({ page, context, browserName }, testInfo) => {
+test('signed-in local changes save offline and persist after reconnecting', async ({ page, context }) => {
+  await mockAccount(page);
   await page.goto('/build');
-  await page.evaluate(async () => {
-    if (!('serviceWorker' in navigator)) throw new Error('Service workers are unavailable.');
-    await navigator.serviceWorker.ready;
-  });
-  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   await page.getByLabel('Character').selectOption('hyde');
   await context.setOffline(true);
   try {
     await page.getByRole('button', { name: 'Save Character' }).click();
-    await expect(page.getByText('Hyde', { exact: true }).last()).toBeVisible();
-    if (browserName === 'webkit' && testInfo.config.metadata.hostPlatform === 'win32') {
-      // Windows WebKit also fails a minimal cache-only service-worker fixture offline.
-      testInfo.annotations.push({ type: 'limitation', description: 'Windows WebKit cannot reload offline; offline save is verified, then persistence is checked after reconnecting. Physical Safari offline reload remains unverified.' });
-      await context.setOffline(false);
-    }
-    await page.reload();
-    await expect(page.getByRole('heading', { name: 'Build your Mainline' })).toBeVisible();
-    await expect(page.getByText('Hyde', { exact: true }).last()).toBeVisible();
+    await expect(page.locator('.draft-action-ledger__row')).toContainText('Hyde');
   } finally {
     await context.setOffline(false);
   }
+  await page.reload();
+  await expect(page.locator('.draft-action-ledger__row')).toContainText('Hyde');
+});
+
+test.describe('real service worker without mocked authentication', () => {
+  test.use({ serviceWorkers: 'allow' });
+
+  test('cached public shell stays browsable offline and creation stays locked', async ({ page, context, browserName }, testInfo) => {
+    await page.goto('/');
+    await page.evaluate(async () => {
+      if (!('serviceWorker' in navigator)) throw new Error('Service workers are unavailable.');
+      await navigator.serviceWorker.ready;
+    });
+    await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+    await context.setOffline(true);
+    try {
+      if (browserName === 'webkit' && testInfo.config.metadata.hostPlatform === 'win32') {
+        testInfo.annotations.push({ type: 'limitation', description: 'Windows WebKit cannot reload even a cache-only service-worker fixture offline. Offline navigation and the guest creation gate are verified here; physical Safari offline reload remains unverified.' });
+      } else {
+        await page.reload();
+      }
+      await expect(page.getByRole('heading', { level: 1 })).toContainText('Your mains');
+      await page.getByRole('link', { name: 'Build', exact: true }).click();
+      await expect(page).toHaveURL(/\/settings\?next=%2Fbuild$/);
+      await expect(page.getByRole('heading', { name: 'Sign in or create an account' })).toBeVisible();
+      await expect(page.locator('fieldset.slot-row, .draft-action-ledger')).toHaveCount(0);
+    } finally {
+      await context.setOffline(false);
+    }
+  });
 });

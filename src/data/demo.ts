@@ -1,4 +1,4 @@
-import type { GuestDraft, Lineup } from '../types/domain';
+import type { ProfileDraft, Lineup } from '../types/domain';
 
 const createdAt = '2026-08-24T12:00:00.000Z';
 
@@ -44,7 +44,7 @@ export const demoLineups: Lineup[] = [
   },
 ];
 
-export const emptyDraft: GuestDraft = {
+export const emptyDraft: ProfileDraft = {
   version: 1,
   requestId: '00000000-0000-4000-8000-000000000000',
   profile: { displayName: '', handle: '', bio: '' },
@@ -52,7 +52,7 @@ export const emptyDraft: GuestDraft = {
   updatedAt: createdAt,
 };
 
-export const demoProfile: GuestDraft = {
+export const demoProfile: ProfileDraft = {
   version: 1,
   requestId: '00000000-0000-4000-8000-000000000001',
   profile: {

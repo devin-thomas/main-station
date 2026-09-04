@@ -19,8 +19,18 @@ export const supabase: SupabaseClient<Database> | null = projectUrl && publishab
   : null;
 
 export function requireSupabase(): SupabaseClient<Database> {
-  if (!supabase) throw new Error('Account features are not configured on this release yet. Your local draft is still available.');
+  if (!supabase) throw new Error('Sign-in is unavailable. Please try again later.');
   return supabase;
+}
+
+export async function accountAuthorization(userId: string): Promise<string> {
+  const { data, error } = await requireSupabase().auth.getSession();
+  if (error) throw error;
+  if (!userId || !data.session || data.session.user.id !== userId) {
+    throw new Error('Your account changed. Sign in again before continuing.');
+  }
+  // Bind the request to this identity even if another tab switches accounts.
+  return `Bearer ${data.session.access_token}`;
 }
 
 export function safeAppRedirect(pathname = '/settings'): string {

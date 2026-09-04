@@ -18,7 +18,17 @@ export function friendlyAuthError(error: unknown, action: AuthAction): string {
   }
   if (action === 'email') return 'Your sign-in link could not be sent.';
   if (action === 'discord') return 'Discord sign-in could not be started.';
-  return 'Sign-in could not be completed. Your local draft is unchanged.';
+  return 'Sign-in could not be completed. Please try again.';
+}
+
+let exchange: { code: string; result: ReturnType<ReturnType<typeof requireSupabase>['auth']['exchangeCodeForSession']> } | null = null;
+
+export function completeSignIn(code: string | null) {
+  const client = requireSupabase();
+  if (!code) return client.auth.getSession();
+  // PKCE codes are single use, including across StrictMode and account remounts.
+  if (exchange?.code !== code) exchange = { code, result: client.auth.exchangeCodeForSession(code) };
+  return exchange.result;
 }
 
 export async function signInWithDiscord(next = '/settings'): Promise<void> {

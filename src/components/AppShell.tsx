@@ -35,7 +35,7 @@ export function AppShell() {
       {!online && (
         <div className="system-rail system-rail--warning" role="status">
           <span>OFFLINE</span>
-          <p>Your guest draft remains available on this device. Account saves and fresh recommendations need a connection.</p>
+          <p>Browsing remains available offline. Sign-in, account saves, and fresh recommendations need a connection.</p>
         </div>
       )}
       {lifecycle.updateReady && !isFocusRoute && (
