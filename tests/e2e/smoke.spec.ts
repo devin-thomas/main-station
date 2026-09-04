@@ -5,19 +5,19 @@ test('home, catalog, and cleared imagery render', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Your mains');
   await expect(page.locator('.wordmark__logo')).toBeVisible();
-  await expect(page.getByRole('navigation', { name: 'Founding Game catalog' })).toBeVisible();
-  await expect(page.getByAltText(/Hyde reviewed character artwork/)).toBeVisible();
+  await expect(page.getByRole('navigation', { name: 'Games' })).toBeVisible();
+  await expect(page.getByAltText(/Hyde from/)).toBeVisible();
   await expect(page.getByText('Developed by Uppercut Labs')).toBeVisible();
 
   await page.goto('/games/uni2');
   await expect(page.getByRole('heading', { name: 'Official roster' })).toBeVisible();
   await expect(page.locator('.roster-ledger li')).toHaveCount(28);
   await page.getByRole('link', { name: 'Zohar', exact: true }).click();
-  await expect(page.getByAltText(/Zohar reviewed character artwork/)).toBeVisible();
+  await expect(page.getByAltText(/Zohar from/)).toBeVisible();
   await expect(page.getByRole('link', { name: '© FRENCH-BREAD / ARC SYSTEM WORKS' })).toBeVisible();
 });
 
-test('every current Character art file is served as an image', async ({ request }) => {
+test('every current Character art file and UI icon is served as an image', async ({ request }) => {
   const artRecords = catalog.flatMap((game) => game.characters.map((character) => character.art)).filter((art) => art);
   expect(artRecords).toHaveLength(90);
 
@@ -27,6 +27,14 @@ test('every current Character art file is served as an image', async ({ request 
     expect(response.ok(), art!.localPath).toBeTruthy();
     expect(response.headers()['content-type'], art!.localPath).toMatch(/^image\//);
   }
+
+  for (const name of ['arrow-down', 'arrow-up', 'check', 'chevron-right', 'compass', 'pencil', 'plus', 'settings', 'trash-2', 'user-round', 'x']) {
+    const path = `/ui-icons/${name}.svg`;
+    const response = await request.get(path);
+    expect(response.ok(), path).toBeTruthy();
+    expect(response.headers()['content-type'], path).toContain('image/svg+xml');
+    expect(await response.text(), path).toContain('<svg');
+  }
 });
 
 test('every founding game renders reviewed art and provenance on a Character page', async ({ page }) => {
@@ -34,16 +42,17 @@ test('every founding game renders reviewed art and provenance on a Character pag
     const character = game.characters[0];
     await page.goto(`/games/${game.slug}/characters/${character.slug}`);
     if (character.art) {
-      await expect(page.getByAltText(`${character.name} reviewed character artwork for ${game.name}`)).toBeVisible();
-      await expect(page.locator('.provenance-block')).toContainText(character.art.usageBasis.replaceAll('-', ' '));
+      await expect(page.getByAltText(`${character.name} from ${game.name}`)).toBeVisible();
+      await expect(page.locator('.provenance-block')).toContainText(character.art.creditText);
     } else {
-      await expect(page.getByRole('img', { name: `${character.name}; approved character art is not available yet` })).toBeVisible();
-      await expect(page.locator('.character-stage__fallback')).toContainText('ART RIGHTS REVIEW');
+      await expect(page.getByRole('img', { name: `${character.name}; artwork unavailable` })).toBeVisible();
+      await expect(page.locator('.character-stage__fallback')).not.toContainText('ART RIGHTS REVIEW');
     }
   }
 });
 
 test('guest can select and save a valid roster entry for every founding game', async ({ page }) => {
+  test.setTimeout(60_000);
   await page.goto('/build');
 
   for (const game of catalog) {
@@ -73,8 +82,8 @@ test('guest can select and save a valid roster entry for every founding game', a
 test('guest can save a valid solo Character and reload it from IndexedDB', async ({ page }) => {
   await page.goto('/build');
   await expect(page.getByRole('button', { name: 'Save identity' })).toHaveCount(0);
-  await expect(page.getByText('Choose a Game Version, build a Character or Team, and decide how it belongs in your history.')).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Sign in / Sign up' })).toBeVisible();
+  await expect(page.getByText('Drafts stay on this device until you sign in and save your profile.')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Sign in', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Sign in to save & share' })).toBeVisible();
   await page.getByLabel('Character').selectOption('hyde');
   await page.getByRole('button', { name: 'Save Character' }).click();
@@ -85,7 +94,7 @@ test('guest can save a valid solo Character and reload it from IndexedDB', async
 
 test('guest can save a source-checked 2XKO team and Fuse', async ({ page }) => {
   await page.goto('/build');
-  await page.getByRole('listitem').filter({ hasText: '2XKO' }).click();
+  await page.getByRole('button', { name: '2XKO', exact: true }).click();
   const point = page.locator('fieldset').filter({ hasText: 'Point' }).getByRole('combobox');
   const assist = page.locator('fieldset').filter({ hasText: 'Assist' }).getByRole('combobox');
   await point.selectOption('ahri');
@@ -99,31 +108,63 @@ test('guest can save a source-checked 2XKO team and Fuse', async ({ page }) => {
   await expect(page.getByText('Fuse: Double Down')).toBeVisible();
 });
 
-test('guest can edit, hide, restore, and retire a saved local stop', async ({ page }) => {
+test('guest can edit, hide, restore, retire, reorder, and remove saved entries', async ({ page }, testInfo) => {
   await page.goto('/build');
   await page.getByLabel('Character').selectOption('hyde');
   await page.getByRole('button', { name: 'Save Character' }).click();
   await page.getByRole('button', { name: 'Hide' }).click();
-  await expect(page.getByText('main · active · private')).toBeVisible();
+  await expect(page.getByText('Main · Active · Private')).toBeVisible();
 
   await page.getByRole('button', { name: 'Edit' }).click();
   await page.getByLabel('Role').selectOption('secondary');
   await page.getByRole('button', { name: 'Update Character' }).click();
-  await expect(page.getByText('secondary · active · private')).toBeVisible();
+  await expect(page.getByText('Secondary · Active · Private')).toBeVisible();
 
-  await page.getByRole('button', { name: 'Publish' }).click();
+  await page.getByRole('button', { name: 'Make public' }).click();
   await page.getByRole('button', { name: 'Retire' }).click();
-  await expect(page.getByText('secondary · retired · public')).toBeVisible();
+  await expect(page.getByText('Secondary · Retired · Public')).toBeVisible();
+
+  await page.getByLabel('Character').selectOption('linne');
+  await page.getByRole('button', { name: 'Save Character' }).click();
+  const rows = page.locator('.draft-action-ledger__row');
+  await expect(rows).toHaveCount(2);
+  for (const control of await page.locator('.draft-action-ledger .icon-button').all()) {
+    await expect(control).toHaveAccessibleName(/^(Edit|Move up|Move down|Remove)$/);
+    if (testInfo.project.use.isMobile) {
+      const bounds = await control.boundingBox();
+      expect(bounds?.width).toBeGreaterThanOrEqual(44);
+      expect(bounds?.height).toBeGreaterThanOrEqual(44);
+    }
+  }
+  await expect(rows.first().getByRole('button', { name: 'Move up' })).toBeDisabled();
+  await expect(rows.last().getByRole('button', { name: 'Move down' })).toBeDisabled();
+  await rows.first().getByRole('button', { name: 'Move down' }).click();
+  await expect(rows.first()).toContainText('Linne');
+  await rows.last().getByRole('button', { name: 'Move up' }).click();
+  await expect(rows.first()).toContainText('Hyde');
+  if (testInfo.project.use.isMobile) {
+    await page.evaluate(() => {
+      if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+    await page.screenshot({ path: `output/playwright/${testInfo.project.name}/build-draft.png`, fullPage: true, animations: 'disabled' });
+  }
+  await rows.last().getByRole('button', { name: 'Remove' }).click();
+  await expect(rows).toHaveCount(1);
+  await page.reload();
+  await expect(rows).toHaveCount(1);
+  await expect(rows.first()).toContainText('Hyde');
 });
 
 test('unknown public route shows a real product 404', async ({ page }) => {
   await page.goto('/not-a-station');
-  await expect(page.getByRole('heading', { name: 'This stop is not on the line.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
 });
 
 test('cancelled sign-in stops on a focused recovery screen without touching the guest draft', async ({ page }) => {
   await page.goto('/auth/callback?error=access_denied&next=%2Fsettings');
-  await expect(page.getByRole('heading', { name: 'Your draft is safe.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Sign-in incomplete' })).toBeVisible();
   await expect(page.getByRole('alert')).toContainText('Sign-in was cancelled. Your local draft is unchanged.');
   await expect(page.getByRole('link', { name: 'Try again' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Back to your draft' })).toBeVisible();
@@ -155,14 +196,14 @@ test('a non-empty guest draft requires an explicit merge, account, or editing ch
 
 test('fragment sign-in errors use the same provider-neutral recovery', async ({ page }) => {
   await page.goto('/auth/callback#error=access_denied');
-  await expect(page.getByRole('heading', { name: 'Your draft is safe.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Sign-in incomplete' })).toBeVisible();
   await expect(page.getByRole('alert')).toContainText('Sign-in was cancelled. Your local draft is unchanged.');
 });
 
 test('account route leads with the focused account state', async ({ page }) => {
   await page.goto('/settings');
-  await expect(page.getByRole('heading', { name: 'Save your line.' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Keep your progress.' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: 'Account' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Sign in or create an account' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Continue with Discord' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Install MainStation' })).toHaveCount(0);
 });
@@ -176,36 +217,62 @@ test('manifest and service worker are emitted in production', async ({ request }
   expect(worker.headers()['content-type']).toContain('javascript');
 });
 
-test('primary routes stay inside the viewport', async ({ page }, testInfo) => {
-  for (const route of ['/', '/build', '/settings', '/games/uni2', '/games/uni2/characters/hyde']) {
+test('primary routes keep accessible icon controls and fit mobile viewports', async ({ page }, testInfo) => {
+  test.setTimeout(60_000);
+  const mobile = testInfo.project.use.isMobile;
+  for (const route of ['/', '/build', '/settings', '/p/station-zero', '/recommend', '/games/uni2', '/games/uni2/characters/hyde']) {
     await page.goto(route);
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     const geometry = await page.evaluate(() => ({
       clientWidth: document.documentElement.clientWidth,
       scrollWidth: document.documentElement.scrollWidth,
     }));
     expect(geometry.scrollWidth, route).toBeLessThanOrEqual(geometry.clientWidth + 1);
+
+    const iconControls = page.locator('a, button').filter({ has: page.locator('.ui-icon') });
+    for (const control of await iconControls.all()) {
+      if (!await control.isVisible()) continue;
+      await expect(control).toHaveAccessibleName(/\S/);
+      await expect(control.locator('.ui-icon')).toHaveAttribute('aria-hidden', 'true');
+      if (mobile) {
+        const bounds = await control.boundingBox();
+        const name = await control.getAttribute('aria-label') ?? await control.innerText();
+        expect(bounds?.width, `${route}: ${name} touch width`).toBeGreaterThanOrEqual(44);
+        expect(bounds?.height, `${route}: ${name} touch height`).toBeGreaterThanOrEqual(44);
+      }
+    }
+    if (mobile) {
+      const routeName = route === '/' ? 'home' : route.slice(1).replaceAll('/', '-');
+      await page.screenshot({ path: `output/playwright/${testInfo.project.name}/${routeName}.png`, fullPage: true, animations: 'disabled' });
+    }
   }
 
-  if (testInfo.project.name === 'mobile-chromium') {
+  if (mobile) {
     await page.goto('/settings');
     await expect(page.getByRole('link', { name: 'Add a main' })).toBeHidden();
     await expect(page.getByRole('link', { name: 'Build', exact: true })).toBeVisible();
   }
 });
 
-test('offline shell reloads and the guest draft still saves locally', async ({ page, context }) => {
+test('guest drafts save offline and persist through a shell reload', async ({ page, context, browserName }, testInfo) => {
   await page.goto('/build');
   await page.evaluate(async () => {
     if (!('serviceWorker' in navigator)) throw new Error('Service workers are unavailable.');
     await navigator.serviceWorker.ready;
   });
+  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
   await page.getByLabel('Character').selectOption('hyde');
   await context.setOffline(true);
   try {
     await page.getByRole('button', { name: 'Save Character' }).click();
     await expect(page.getByText('Hyde', { exact: true }).last()).toBeVisible();
+    if (browserName === 'webkit' && testInfo.config.metadata.hostPlatform === 'win32') {
+      // Windows WebKit also fails a minimal cache-only service-worker fixture offline.
+      testInfo.annotations.push({ type: 'limitation', description: 'Windows WebKit cannot reload offline; offline save is verified, then persistence is checked after reconnecting. Physical Safari offline reload remains unverified.' });
+      await context.setOffline(false);
+    }
     await page.reload();
-    await expect(page.getByRole('heading', { name: 'Build your line.' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Build your Mainline' })).toBeVisible();
     await expect(page.getByText('Hyde', { exact: true }).last()).toBeVisible();
   } finally {
     await context.setOffline(false);

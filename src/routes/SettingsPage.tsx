@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { getBuilderAccountPresentation } from '../features/auth/accountPresentation';
 import { useAuth } from '../features/auth/AuthProvider';
 import { friendlyAuthError, sendEmailLink, signInWithDiscord, signOut } from '../features/auth/auth';
 import { rememberGuestAccountDecision, type GuestAccountDecision } from '../features/auth/guestAccountTransition';
@@ -53,17 +52,6 @@ export function SettingsPage() {
   }, [draft.profile]);
 
   const hasRegisteredProfile = Boolean(session && registeredHandle);
-  const accountPresentation = getBuilderAccountPresentation({
-    hasSession: Boolean(session),
-    sessionLoading,
-    profileLoading,
-    profileLookupFailed,
-    registeredHandle,
-  });
-  const accountHeading = accountPresentation.state === 'guest' ? 'Save your line.' : accountPresentation.heading;
-  const accountDescription = accountPresentation.state === 'guest'
-    ? 'Build on this device first. Sign in when you want to save, share, or use your profile across devices.'
-    : accountPresentation.description;
   const profileForWrite = hasRegisteredProfile ? draft.profile : onboardingProfile;
 
   const readinessIssues = useMemo(() => {
@@ -143,8 +131,8 @@ export function SettingsPage() {
       await signOut();
       setClaimedHandle(null);
       setMessage('Signed out. Your local draft stays on this device.');
-    } catch (error) {
-      setAuthError(friendlyAuthError(error, 'callback'));
+    } catch {
+      setAuthError('You could not be signed out.');
     }
   }
 
@@ -167,7 +155,7 @@ export function SettingsPage() {
       if (replacing) setMessage(`Saved ${receipt.lineupCount} ${receipt.lineupCount === 1 ? 'entry' : 'entries'} to @${receipt.handle}.`);
       else setClaimedHandle(receipt.handle);
     } catch {
-      setAuthError('We could not save your profile online. Your local draft is unchanged; try again in a moment.');
+      setAuthError('Your profile could not be saved online. Your local draft is unchanged.');
     } finally {
       setSyncing(false);
     }
@@ -191,7 +179,7 @@ export function SettingsPage() {
       await replaceDraft(registeredDraft);
       setMessage(`Loaded @${registeredDraft.profile.handle} into this device’s editor.`);
     } catch {
-      setAuthError('We could not load your saved profile. Your local draft is unchanged; try again in a moment.');
+      setAuthError('Your saved profile could not be loaded. Your local draft is unchanged.');
     } finally {
       setSyncing(false);
     }
@@ -213,7 +201,7 @@ export function SettingsPage() {
       downloadJson('mainstation-registered-account.json', await exportMyProfileData());
       setMessage('Your account export is ready to download.');
     } catch {
-      setAuthError('We could not prepare your account export. Try again in a moment.');
+      setAuthError('Your account export could not be prepared.');
     }
   }
 
@@ -244,27 +232,25 @@ export function SettingsPage() {
   return (
     <div className="settings-page page-frame">
       <header className="page-title page-title--account">
-        <div><p className="eyebrow">{accountPresentation.state === 'guest' ? 'ACCOUNT' : accountPresentation.eyebrow}</p><h1>{accountHeading}</h1></div>
-        <p>{accountDescription}</p>
+        <h1>Account</h1>
       </header>
 
       <section className="account-card" aria-labelledby="account-heading">
         {!supabaseConfigured ? (
-          <><h2 id="account-heading">Account is not available in this preview</h2><p>You can still build a local draft on this device. Sign-in and online saving will appear when this release is connected.</p></>
+          <><h2 id="account-heading">Sign-in unavailable</h2><p>You can still save a draft on this device.</p></>
         ) : sessionLoading ? (
-          <><h2 id="account-heading">Checking your account</h2><p role="status">One moment…</p></>
+          <h2 id="account-heading" aria-live="polite">Checking your account...</h2>
         ) : !session ? emailSent ? (
           <div className="auth-sent" aria-live="polite">
-            <p className="eyebrow">CHECK YOUR EMAIL</p><h2 id="account-heading">Open your sign-in link.</h2>
-            <p>We sent a secure sign-in link to <strong>{email}</strong>. It will bring you back here, with your local draft untouched.</p>
+            <h2 id="account-heading">Check your email</h2>
+            <p>Sign-in link sent to <strong>{email}</strong>.</p>
             <button type="button" className="text-link" onClick={() => { setEmailSent(false); setEmail(''); }}>Use another email</button>
           </div>
         ) : (
           <div className="account-start">
-            <div><p className="eyebrow">CREATE OR SIGN IN</p><h2 id="account-heading">Keep your progress.</h2><p>{guestHasWork ? `This device has ${draft.lineups.length} local ${draft.lineups.length === 1 ? 'entry' : 'entries'}. Choose what happens to it before sign-in.` : 'Sign in to save, share, and use your profile across devices.'}</p></div>
+            <div><h2 id="account-heading">Sign in or create an account</h2><p>{guestHasWork ? `${draft.lineups.length} ${draft.lineups.length === 1 ? 'entry' : 'entries'} saved only on this device.` : 'Save and share your profile across devices.'}</p></div>
             {guestHasWork && !signInDecision ? (
               <section className="draft-sign-in-decision" aria-labelledby="draft-sign-in-decision-heading">
-                <p className="eyebrow">YOUR LOCAL DRAFT</p>
                 <h3 id="draft-sign-in-decision-heading">What should happen after sign-in?</h3>
                 <p>Your saved account will never be replaced by this device’s draft.</p>
                 <div className="draft-sign-in-decision__actions">
@@ -286,15 +272,15 @@ export function SettingsPage() {
             )}
           </div>
         ) : profileLoading ? (
-          <><h2 id="account-heading">Checking your profile</h2><p role="status">One moment…</p></>
+          <h2 id="account-heading" aria-live="polite">Checking your profile...</h2>
         ) : profileLookupFailed ? (
-          <div className="account-recovery"><h2 id="account-heading">We could not check your account</h2><p>Your local draft is safe. Retry before changing anything online.</p><div className="command-row"><button type="button" className="button-primary" onClick={() => void refreshProfile()}>Retry account check</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
+          <div className="account-recovery"><h2 id="account-heading">We could not check your account</h2><p>Your local draft is unchanged.</p><div className="command-row"><button type="button" className="button-primary" onClick={() => void refreshProfile()}>Retry account check</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
         ) : claimedHandle ? (
-          <div className="claim-success"><p className="eyebrow">PROFILE SAVED</p><h2 id="account-heading">You’re on the line.</h2><p>Your public profile is live as <strong>@{claimedHandle}</strong>. A recovery copy remains on this device until you remove it.</p><div className="command-row"><Link className="button-primary" to={`/p/${claimedHandle}`}>View your profile</Link><Link className="button-secondary" to="/build">Keep editing</Link></div></div>
+          <div className="claim-success"><h2 id="account-heading">Profile saved</h2><p>Your public profile is live as <strong>@{claimedHandle}</strong>. A recovery copy remains on this device until you remove it.</p><div className="command-row"><Link className="button-primary" to={`/p/${claimedHandle}`}>View your profile</Link><Link className="button-secondary" to="/build">Keep editing</Link></div></div>
         ) : hasRegisteredProfile ? (
-          <div className="account-session"><div><p className="eyebrow">SIGNED IN</p><h2 id="account-heading">@{registeredHandle}</h2><p>Your profile is saved online. Changes made in the builder stay on this device until you save them here.</p></div><div className="command-row"><Link className="button-secondary" to={`/p/${registeredHandle}`}>View profile</Link><button type="button" className="button-primary" disabled={syncing || !online || !draftCanSync} onClick={() => void requestProfileWrite()}>{syncing ? 'Saving…' : 'Save changes'}</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
+          <div className="account-session"><div><h2 id="account-heading">@{registeredHandle}</h2><p>Your profile is saved online. Changes made in the builder stay on this device until you save them here.</p></div><div className="command-row"><Link className="button-secondary" to={`/p/${registeredHandle}`}>View profile</Link><button type="button" className="button-primary" disabled={syncing || !online || !draftCanSync} onClick={() => void requestProfileWrite()}>{syncing ? 'Saving…' : 'Save changes'}</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
         ) : (
-          <div className="account-claim"><p className="eyebrow">PROFILE SETUP</p><h2 id="account-heading">Finish your public profile.</h2><p>Choose the name and handle people see. Your bio is optional, and private entries stay private.</p><div className="account-onboarding__form"><label>Display name<input required autoComplete="nickname" value={onboardingProfile.displayName} maxLength={48} onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, displayName: event.target.value }); }} /></label><label>Handle<input required autoCapitalize="none" autoComplete="username" spellCheck={false} value={onboardingProfile.handle} maxLength={32} pattern="[a-z0-9-]+" placeholder="your-handle" onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, handle: event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') }); }} /></label><label className="account-onboarding__bio">Bio (optional)<input value={onboardingProfile.bio} maxLength={160} onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, bio: event.target.value }); }} /></label></div>{!draftCanSync && <div className="claim-readiness" role="status"><strong>Finish setup</strong><ul>{readinessIssues.map((issue) => <li key={issue}>{issue}</li>)}</ul>{readinessIssues.some((issue) => issue.includes('incomplete')) && <Link className="button-secondary" to="/build">Continue building</Link>}</div>}<div className="command-row"><button type="button" className="button-primary" disabled={syncing || !online || !draftCanSync} onClick={() => void requestProfileWrite()}>{syncing ? 'Creating…' : 'Create profile'}</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
+          <div className="account-claim"><h2 id="account-heading">Create your public profile</h2><p>Private entries stay private.</p><div className="account-onboarding__form"><label>Display name<input required autoComplete="nickname" value={onboardingProfile.displayName} maxLength={48} onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, displayName: event.target.value }); }} /></label><label>Handle<input required autoCapitalize="none" autoComplete="username" spellCheck={false} value={onboardingProfile.handle} maxLength={32} pattern="[a-z0-9-]+" placeholder="your-handle" onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, handle: event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') }); }} /></label><label className="account-onboarding__bio">Bio (optional)<input value={onboardingProfile.bio} maxLength={160} onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, bio: event.target.value }); }} /></label></div>{!draftCanSync && <div className="claim-readiness" role="status"><ul>{readinessIssues.map((issue) => <li key={issue}>{issue}</li>)}</ul>{readinessIssues.some((issue) => issue.includes('incomplete')) && <Link className="button-secondary" to="/build">Continue building</Link>}</div>}<div className="command-row"><button type="button" className="button-primary" disabled={syncing || !online || !draftCanSync} onClick={() => void requestProfileWrite()}>{syncing ? 'Creating…' : 'Create profile'}</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
         )}
         {(message ?? transitionMessage) && <p className="inline-status" role="status">{message ?? transitionMessage}</p>}
         {authError && <p className="inline-error" role="alert">{authError}</p>}
@@ -303,10 +289,10 @@ export function SettingsPage() {
       {session && profileCheckReady && (
         <div className="account-management">
           {hasRecovery && <section aria-labelledby="recovery-heading"><h2 id="recovery-heading">Recovery copy</h2><p>A saved copy from before an online change is available on this device.</p><div className="command-row"><button type="button" className="button-secondary" onClick={() => void restoreRecoveryCopy()}>Restore recovery copy</button><button type="button" className="button-quiet" onClick={() => void discardRecovery()}>Remove recovery copy</button></div></section>}
-          {hasRegisteredProfile && <section aria-labelledby="saved-profile-heading"><h2 id="saved-profile-heading">Saved profile</h2><p>Load the version saved online into this device’s editor, or download a copy of your account data.</p><div className="command-row"><button type="button" className="button-secondary" disabled={syncing || !online} onClick={() => void loadRegisteredCopy()}>Load saved profile</button><button type="button" className="button-secondary" disabled={!online} onClick={() => void exportRegisteredData()}>Download account data</button></div></section>}
-          <section aria-labelledby="install-heading"><h2 id="install-heading">Install MainStation</h2>{install.installed ? <p className="inline-status">This window is running as an installed app.</p> : <><p>{install.guidance}</p>{install.canPrompt && <button type="button" className="button-secondary" onClick={() => void install.prompt()}>Install MainStation</button>}</>}</section>
+          {hasRegisteredProfile && <section aria-labelledby="saved-profile-heading"><h2 id="saved-profile-heading">Saved profile</h2><p>Loading replaces this device’s draft with your saved profile. A recovery copy is kept.</p><div className="command-row"><button type="button" className="button-secondary" disabled={syncing || !online} onClick={() => void loadRegisteredCopy()}>Load saved profile</button><button type="button" className="button-secondary" disabled={!online} onClick={() => void exportRegisteredData()}>Download account data</button></div></section>}
+          <section aria-labelledby="install-heading"><h2 id="install-heading">Install MainStation</h2>{install.installed ? <p className="inline-status">Installed</p> : <><p>{install.guidance}</p>{install.canPrompt && <button type="button" className="button-secondary" onClick={() => void install.prompt()}>Install MainStation</button>}</>}</section>
           <section aria-labelledby="local-data-heading"><h2 id="local-data-heading">This device’s draft</h2><p>{draft.lineups.length} {draft.lineups.length === 1 ? 'entry' : 'entries'} saved locally.</p><div className="command-row"><button type="button" className="button-secondary" onClick={() => downloadJson('mainstation-guest-draft.json', draft)}>Download local draft</button><button type="button" className="button-danger" onClick={() => void requestClearDraft()}>Clear local draft</button></div></section>
-          {hasRegisteredProfile && <section className="account-management__danger" aria-labelledby="delete-heading"><h2 id="delete-heading">Delete account</h2><p>Deletes your public profile, entries, contribution, and feedback. This cannot be undone.</p><button type="button" className="button-danger" onClick={() => void deleteAccount()}>Delete account</button></section>}
+          {hasRegisteredProfile && <section className="account-management__danger" aria-labelledby="delete-heading"><h2 id="delete-heading">Delete account</h2><p>Deletes your public profile, entries, recommendation contribution, and feedback. This cannot be undone.</p><button type="button" className="button-danger" onClick={() => void deleteAccount()}>Delete account</button></section>}
         </div>
       )}
     </div>

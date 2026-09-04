@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
 import { catalog } from '../data/catalog';
+import { Icon } from './Icon';
 
 export function CatalogRail({ current }: { current?: string }) {
   return (
-    <nav className="catalog-rail" aria-label="Founding Game catalog">
+    <nav className="catalog-rail" aria-label="Games">
       <ol>
-        {catalog.map((game, index) => (
+        {catalog.map((game) => (
           <li key={game.slug}>
             <Link to={`/games/${game.slug}`} aria-current={current === game.slug ? 'page' : undefined}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
               <strong>{game.shortName}</strong>
-              <small>{game.catalogStatus === 'verified' ? 'VERIFIED' : 'PREVIEW'}</small>
+              <Icon name="chevron-right" />
             </Link>
           </li>
         ))}

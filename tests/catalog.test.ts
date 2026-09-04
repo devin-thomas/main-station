@@ -112,7 +112,7 @@ describe('founding catalog', () => {
     expect(twoXko?.schema.verified).toBe(true);
     expect(twoXko?.schema.slots.map((slot) => slot.id)).toEqual(['point', 'assist']);
     expect(twoXko?.schema.uniqueCharacters).toBe(true);
-    expect(twoXko?.schema.constraintNote).toContain('conservatively requires distinct');
+    expect(twoXko?.schema.constraintNote).toBe('Choose different champions for Point and Assist.');
     expect(twoXko?.schema.teamOptionValues).toEqual([
       'Double Down',
       'Juggernaut',

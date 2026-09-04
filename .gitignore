@@ -4,6 +4,7 @@ coverage/
 playwright-report/
 test-results/
 output/
+.playwright-cli/
 .wrangler/
 supabase/.temp/
 supabase/.branches/

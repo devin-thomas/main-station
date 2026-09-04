@@ -13,20 +13,17 @@ export function CharacterStage({ character, game, compact = false }: CharacterSt
 
   return (
     <figure className={`character-stage${compact ? ' character-stage--compact' : ''}`}>
-      <div className="character-stage__index" aria-hidden="true">{game.shortName}</div>
       {showImage ? (
         <img
           className={`character-stage__art${showImage.displayFit === 'cover' ? ' character-stage__art--cover' : ''}`}
           src={showImage.localPath}
-          alt={`${character.name} reviewed character artwork for ${game.name}`}
+          alt={`${character.name} from ${game.name}`}
           style={showImage.objectPosition ? { objectPosition: showImage.objectPosition } : undefined}
           onError={() => setFailedImagePath(showImage.localPath)}
         />
       ) : (
-        <div className="character-stage__fallback" role="img" aria-label={`${character.name}; approved character art is not available yet`}>
-          <span>{game.shortName}</span>
+        <div className="character-stage__fallback" role="img" aria-label={`${character.name}; artwork unavailable`}>
           <strong>{character.name}</strong>
-          <small>ART RIGHTS REVIEW</small>
         </div>
       )}
       <div className="character-stage__rail" aria-hidden="true">

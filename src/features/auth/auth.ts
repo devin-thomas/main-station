@@ -4,18 +4,21 @@ export type AuthAction = 'discord' | 'email' | 'callback';
 
 export function friendlyAuthError(error: unknown, action: AuthAction): string {
   const detail = error instanceof Error ? error.message.toLowerCase() : '';
+  if (detail === 'enter a valid email address.' || detail === 'invalid email address') {
+    return 'Enter a valid email address.';
+  }
   if (detail.includes('network') || detail.includes('fetch')) {
-    return 'We could not reach MainStation. Check your connection and try again.';
+    return 'MainStation could not be reached. Check your connection.';
   }
   if (detail.includes('rate') || detail.includes('too many')) {
-    return 'Please wait a moment before trying again.';
+    return 'Too many sign-in attempts. Please wait a moment.';
   }
   if (detail.includes('pkce') || detail.includes('code verifier') || detail.includes('expired') || detail.includes('invalid')) {
-    return 'That sign-in link is no longer valid. Start again to get a fresh link.';
+    return 'That sign-in link is no longer valid.';
   }
-  if (action === 'email') return 'We could not send that sign-in link. Check the address and try again.';
-  if (action === 'discord') return 'We could not start Discord sign-in. Try again in a moment.';
-  return 'We could not finish signing you in. Start again to keep your draft safe.';
+  if (action === 'email') return 'Your sign-in link could not be sent.';
+  if (action === 'discord') return 'Discord sign-in could not be started.';
+  return 'Sign-in could not be completed. Your local draft is unchanged.';
 }
 
 export async function signInWithDiscord(next = '/settings'): Promise<void> {

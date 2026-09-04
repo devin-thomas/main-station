@@ -3,6 +3,7 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../features/auth/AuthProvider';
 import { usePwaLifecycle } from '../features/pwa/usePwaLifecycle';
 import { Wordmark } from './Wordmark';
+import { Icon } from './Icon';
 
 function navClass({ isActive }: { isActive: boolean }) {
   return isActive ? 'site-nav__link site-nav__link--active' : 'site-nav__link';
@@ -40,34 +41,30 @@ export function AppShell() {
       {lifecycle.updateReady && !isFocusRoute && (
         <div className="system-rail" role="status">
           <span>UPDATE READY</span>
-          <p>A controlled new version is waiting.</p>
           <button type="button" onClick={() => void lifecycle.applyUpdate?.()}>Update now</button>
           <button type="button" className="button-quiet" onClick={lifecycle.deferUpdate}>Later</button>
         </div>
       )}
       {lifecycle.offlineReady && !isFocusRoute && (
         <div className="system-rail system-rail--ready" role="status">
-          <span>OFFLINE READY</span>
-          <p>The app shell can now reopen without a connection.</p>
-          <button type="button" className="button-quiet" onClick={lifecycle.dismissOfflineReady}>Dismiss</button>
+          <p>Ready to open offline.</p>
+          <button type="button" className="button-quiet icon-button" aria-label="Dismiss" onClick={lifecycle.dismissOfflineReady}><Icon name="x" /></button>
         </div>
       )}
       {lifecycle.registrationError && (
         <div className="system-rail system-rail--error" role="alert">
-          <span>OFFLINE SETUP FAILED</span>
-          <p>{lifecycle.registrationError}</p>
+          <p>Offline access could not be enabled.</p>
         </div>
       )}
       <header className="site-header">
         <Wordmark compact />
         <nav className="site-nav" aria-label="Primary">
-          <NavLink className={navClass} to="/build">Build</NavLink>
-          <NavLink className={navClass} to="/recommend">Recommend</NavLink>
-          <NavLink className={navClass} to={profilePath}>Profile</NavLink>
+          <NavLink className={navClass} to="/build"><Icon name="plus" />Build</NavLink>
+          <NavLink className={navClass} to="/recommend"><Icon name="compass" />Recommend</NavLink>
+          <NavLink className={navClass} to={profilePath}><Icon name="user-round" />Profile</NavLink>
         </nav>
         <div className="header-actions">
-          {location.pathname !== '/build' && <NavLink className="header-command" to="/build">Add a main</NavLink>}
-          <NavLink className="header-auth" to="/settings">{session ? accountLabel : 'Sign in / Sign up'}</NavLink>
+          <NavLink className="header-auth" to="/settings" aria-label={session ? accountLabel : undefined}>{session ? <Icon name="settings" /> : 'Sign in'}</NavLink>
         </div>
       </header>
       <main id="main-content" tabIndex={-1}>
@@ -75,10 +72,9 @@ export function AppShell() {
       </main>
       <footer className="site-footer">
         <div className="site-footer__brand">
-          <img src="/uppercut-labs-logo.png" alt="Uppercut Labs" />
+          <img src="/uppercut-labs-logo.png" alt="" />
           <span>Developed by Uppercut Labs</span>
         </div>
-        <p>MainStation preview · Character imagery is published only with a recorded usage basis.</p>
       </footer>
     </div>
   );

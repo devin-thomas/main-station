@@ -7,15 +7,15 @@ export function Mainline({ lineups, label = 'Player Mainline' }: { lineups: Line
     return (
       <div className="empty-line">
         <span className="empty-line__marker" aria-hidden="true" />
-        <p>No stops yet. Choose a Game and record the first Character that feels like yours.</p>
-        <Link className="text-link" to="/build">Add your first stop</Link>
+        <p>No entries yet.</p>
+        <Link className="text-link" to="/build">Add a character or team</Link>
       </div>
     );
   }
 
   return (
     <ol className="mainline" aria-label={label}>
-      {lineups.map((lineup, index) => {
+      {lineups.map((lineup) => {
         const game = catalogBySlug.get(lineup.gameSlug);
         if (!game) return null;
         const names = lineup.picks.map((pick) => game.characters.find((character) => character.slug === pick.characterSlug)?.name).filter(Boolean);
@@ -23,22 +23,21 @@ export function Mainline({ lineups, label = 'Player Mainline' }: { lineups: Line
         return (
           <li className="mainline__stop" key={lineup.id}>
             <div className="mainline__track" aria-hidden="true">
-              <span className="mainline__sequence">{String(index + 1).padStart(2, '0')}</span>
               <span className="mainline__node" />
             </div>
             <div className="mainline__body">
               <div className="mainline__meta">
                 <Link to={`/games/${game.slug}`}>{game.shortName}</Link>
-                <span>{lineup.category}</span>
-                <span>{lineup.lifecycle}</span>
-                {lineup.visibility === 'private' && <span>private</span>}
+                <span>{lineup.category === 'main' ? 'Main' : 'Secondary'}</span>
+                <span>{lineup.lifecycle === 'active' ? 'Active' : 'Retired'}</span>
+                {lineup.visibility === 'private' && <span>Private</span>}
               </div>
               {firstPick ? (
                 <Link className="mainline__characters" to={`/games/${game.slug}/characters/${firstPick.characterSlug}`}>
                   {names.join(' / ')}
                 </Link>
               ) : (
-                <span className="mainline__characters">Incomplete stop</span>
+                <span className="mainline__characters">Incomplete entry</span>
               )}
               {lineup.teamOption && <span className="mainline__option">{game.schema.teamOptionLabel}: {lineup.teamOption}</span>}
             </div>

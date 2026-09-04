@@ -22,7 +22,7 @@ function providerErrorMessage(params: URLSearchParams): string | null {
   const error = params.get('error');
   if (!error) return null;
   if (error === 'access_denied') return 'Sign-in was cancelled. Your local draft is unchanged.';
-  return 'That sign-in link could not be used. Start again to get a fresh link; your local draft is unchanged.';
+  return 'That sign-in link could not be used. Your local draft is unchanged.';
 }
 
 export function AuthCallbackPage() {
@@ -55,7 +55,7 @@ export function AuthCallbackPage() {
           return;
         }
         if (!result.data.session) {
-          setError('We could not confirm your sign-in. Start again; your local draft is unchanged.');
+          setError('We could not confirm your sign-in. Your local draft is unchanged.');
           return;
         }
         const transition = await loadGuestAccountTransition();
@@ -102,8 +102,8 @@ export function AuthCallbackPage() {
         if (active) {
           setCanRetryTransition(true);
           setError(callbackError instanceof Error && callbackError.message === 'The merged profile could not be loaded.'
-            ? 'Your account was updated, but this browser could not load the merged profile. Retry to finish safely.'
-            : 'You are signed in, but we could not finish the draft handoff. Your local draft is unchanged; retry to continue.');
+            ? 'Your account was updated, but your merged profile could not be loaded on this device.'
+            : 'You are signed in, but your draft could not be transferred. Your local draft is unchanged.');
         }
       }
     };
@@ -117,7 +117,7 @@ export function AuthCallbackPage() {
     <main className="auth-callback" aria-labelledby="auth-callback-heading">
       <Wordmark />
       <section className="auth-callback__panel">
-        {error ? <><p className="eyebrow">SIGN-IN NEEDS ANOTHER TRY</p><h1 id="auth-callback-heading">Your draft is safe.</h1><p role="alert">{error}</p><div className="command-row">{canRetryTransition ? <button type="button" className="button-primary" onClick={() => { setCanRetryTransition(false); setError(null); setRetry((value) => value + 1); }}>Retry draft handoff</button> : <Link className="button-primary" to="/settings">Try again</Link>}<Link className="button-secondary" to="/build">Back to your draft</Link></div></> : <><p className="eyebrow">SIGNING YOU IN</p><h1 id="auth-callback-heading">One moment.</h1><p role="status">Confirming your secure session and applying your saved draft decision.</p></>}
+        {error ? <><h1 id="auth-callback-heading">{canRetryTransition ? 'Draft transfer incomplete' : 'Sign-in incomplete'}</h1><p role="alert">{error}</p><div className="command-row">{canRetryTransition ? <button type="button" className="button-primary" onClick={() => { setCanRetryTransition(false); setError(null); setRetry((value) => value + 1); }}>Retry draft transfer</button> : <Link className="button-primary" to="/settings">Try again</Link>}<Link className="button-secondary" to="/build">Back to your draft</Link></div></> : <h1 id="auth-callback-heading" aria-live="polite">Signing you in...</h1>}
       </section>
     </main>
   );

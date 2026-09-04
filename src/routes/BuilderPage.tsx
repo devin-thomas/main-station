@@ -1,6 +1,7 @@
 import { useMemo, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Mainline } from '../components/Mainline';
+import { Icon } from '../components/Icon';
 import { catalog, catalogBySlug } from '../data/catalog';
 import { getBuilderAccountPresentation } from '../features/auth/accountPresentation';
 import { useAuth } from '../features/auth/AuthProvider';
@@ -93,7 +94,7 @@ export function BuilderPage() {
     setTeamOption(lineup.teamOption ?? '');
     setEditingLineupId(lineup.id);
     setAttempted(false);
-    setMessage('Editing this local stop. Save the editor to keep the changes.');
+    setMessage(null);
     document.querySelector('.lineup-editor')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
@@ -110,7 +111,6 @@ export function BuilderPage() {
     <div className="builder-page page-frame">
       <header className="page-title page-title--builder">
         <div>
-          <p className="eyebrow">{accountPresentation.eyebrow}</p>
           <h1>{accountPresentation.heading}</h1>
         </div>
         <div className="builder-intro">
@@ -119,25 +119,23 @@ export function BuilderPage() {
         </div>
       </header>
 
-      {storageError && <div className="notice notice--error" role="alert"><strong>Draft storage failed</strong><p>{storageError}</p></div>}
-      {message && <div className="notice" role="status"><strong>Saved</strong><p>{message}</p></div>}
+      {storageError && <div className="notice notice--error" role="alert"><p>{storageError}</p></div>}
+      {message && <div className="notice" role="status"><p>{message}</p></div>}
 
       <section className="builder-workbench" aria-labelledby="select-game-heading">
         <div className="builder-workbench__games">
-          <h2 id="select-game-heading">01 / Game Version</h2>
-          <div className="game-selector" role="list" aria-label="Choose a Game Version">
-            {catalog.map((catalogGame, index) => (
+          <h2 id="select-game-heading">Game</h2>
+          <div className="game-selector" role="group" aria-label="Choose a game">
+            {catalog.map((catalogGame) => (
               <button
                 type="button"
-                role="listitem"
                 className={catalogGame.slug === game.slug ? 'game-selector__item game-selector__item--active' : 'game-selector__item'}
                 key={catalogGame.slug}
                 onClick={() => chooseGame(catalogGame.slug)}
                 aria-pressed={catalogGame.slug === game.slug}
               >
-                <span>{String(index + 1).padStart(2, '0')}</span>
+                <span className="game-selector__check">{catalogGame.slug === game.slug && <Icon name="check" />}</span>
                 <strong>{catalogGame.shortName}</strong>
-                <small>{catalogGame.schema.verified ? catalogGame.schema.noun : 'REVIEW'}</small>
               </button>
             ))}
           </div>
@@ -146,12 +144,8 @@ export function BuilderPage() {
         <form className="lineup-editor" onSubmit={(event) => void saveLineup(event)}>
           <div className="lineup-editor__heading">
             <div>
-              <p className="eyebrow">02 / {game.schema.noun.toUpperCase()} CONSTRUCTION</p>
               <h2>{game.name}</h2>
             </div>
-            <span className={game.schema.verified ? 'status-mark status-mark--ready' : 'status-mark status-mark--review'}>
-              {game.schema.verified ? 'SCHEMA READY' : 'SCHEMA REVIEW'}
-            </span>
           </div>
 
           {!game.schema.verified && (
@@ -163,13 +157,12 @@ export function BuilderPage() {
 
           {game.schema.constraintNote && (
             <div className="notice" role="note">
-              <strong>Conservative save rule</strong>
               <p>{game.schema.constraintNote}</p>
             </div>
           )}
 
           <div className="slot-ledger">
-            {game.schema.slots.map((slot, index) => {
+            {game.schema.slots.map((slot) => {
               const pick = picks.find((candidatePick) => candidatePick.slotId === slot.id);
               const availableCharacters = game.characters.filter((character) => slot.allowedRoles.includes(character.role));
               const optionValues = pick?.characterSlug
@@ -177,7 +170,7 @@ export function BuilderPage() {
                 : slot.optionValues;
               return (
                 <fieldset className="slot-row" key={slot.id}>
-                  <legend><span>{String(index + 1).padStart(2, '0')}</span>{slot.label}</legend>
+                  <legend className={game.schema.slots.length === 1 ? 'sr-only' : undefined}>{slot.label}</legend>
                   <label>
                     <span>Character</span>
                     <select value={pick?.characterSlug ?? ''} onChange={(event) => updatePick(slot.id, { characterSlug: event.target.value, option: undefined })}>
@@ -211,13 +204,13 @@ export function BuilderPage() {
 
           <div className="classification-grid">
             <label>Role<select value={category} onChange={(event) => setCategory(event.target.value as LineupCategory)}><option value="main">Main</option><option value="secondary">Secondary</option></select></label>
-            <label>Lifecycle<select value={lifecycle} onChange={(event) => setLifecycle(event.target.value as LineupLifecycle)}><option value="active">Active</option><option value="retired">Retired</option></select></label>
-            <label>Profile visibility<select value={visibility} onChange={(event) => setVisibility(event.target.value as LineupVisibility)}><option value="public">Show on profile · contributes</option><option value="private">Keep private · excluded</option></select></label>
+            <label>Status<select value={lifecycle} onChange={(event) => setLifecycle(event.target.value as LineupLifecycle)}><option value="active">Active</option><option value="retired">Retired</option></select></label>
+            <label>Profile visibility<select value={visibility} onChange={(event) => setVisibility(event.target.value as LineupVisibility)}><option value="public">Public</option><option value="private">Private</option></select></label>
           </div>
 
           {attempted && !validation.valid && (
             <div className="validation-block" role="alert" tabIndex={-1}>
-              <strong>Complete this stop</strong>
+              <strong>Complete this entry</strong>
               <ul>{validation.errors.map((error) => <li key={error}>{error}</li>)}</ul>
             </div>
           )}
@@ -234,8 +227,8 @@ export function BuilderPage() {
 
       <section className="draft-line" aria-labelledby="draft-line-heading">
         <div className="section-heading section-heading--split">
-          <div><p className="eyebrow">03 / REVIEW DRAFT</p><h2 id="draft-line-heading">Your draft</h2></div>
-          <div className="draft-claim"><p>{accountPresentation.reviewDescription}</p>{accountPresentation.reviewActionLabel && <Link className="button-primary" to="/settings">{accountPresentation.reviewActionLabel}</Link>}</div>
+          <h2 id="draft-line-heading">Your draft</h2>
+          <div className="draft-claim">{accountPresentation.reviewDescription && <p>{accountPresentation.reviewDescription}</p>}{accountPresentation.reviewActionLabel && <Link className="button-primary" to="/settings">{accountPresentation.reviewActionLabel}</Link>}</div>
         </div>
         <Mainline lineups={draft.lineups} label={accountPresentation.mainlineLabel} />
         {draft.lineups.length > 0 && (
@@ -244,15 +237,14 @@ export function BuilderPage() {
               const lineupGame = catalogBySlug.get(lineup.gameSlug);
               return (
                 <div className={editingLineupId === lineup.id ? 'draft-action-ledger__row draft-action-ledger__row--editing' : 'draft-action-ledger__row'} key={lineup.id}>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  <div><strong>{lineupGame?.shortName ?? 'Entry'}</strong><small>{lineup.category} · {lineup.lifecycle} · {lineup.visibility}</small></div>
+                  <div><strong>{lineupGame?.shortName ?? 'Entry'}</strong><span>{lineup.picks.map((pick) => lineupGame?.characters.find((character) => character.slug === pick.characterSlug)?.name).filter(Boolean).join(' / ')}</span><small>{lineup.category === 'main' ? 'Main' : 'Secondary'} · {lineup.lifecycle === 'active' ? 'Active' : 'Retired'} · {lineup.visibility === 'public' ? 'Public' : 'Private'}</small></div>
                   <div className="draft-action-ledger__commands">
-                    <button type="button" onClick={() => beginEdit(lineup)}>Edit</button>
-                    <button type="button" onClick={() => void patchLineup(lineup, { visibility: lineup.visibility === 'public' ? 'private' : 'public' }, lineup.visibility === 'public' ? 'Stop hidden from the public profile and recommendation graph.' : 'Stop restored to public contribution.')}>{lineup.visibility === 'public' ? 'Hide' : 'Publish'}</button>
-                    <button type="button" onClick={() => void patchLineup(lineup, { lifecycle: lineup.lifecycle === 'active' ? 'retired' : 'active' }, lineup.lifecycle === 'active' ? 'Stop marked Retired.' : 'Stop restored to Active.')}>{lineup.lifecycle === 'active' ? 'Retire' : 'Reactivate'}</button>
-                    <button type="button" disabled={index === 0} onClick={() => void moveLineup(lineup.id, -1)}>Move up</button>
-                    <button type="button" disabled={index === draft.lineups.length - 1} onClick={() => void moveLineup(lineup.id, 1)}>Move down</button>
-                    <button type="button" onClick={() => void removeLineup(lineup.id)}>Remove</button>
+                    <button type="button" className="icon-button" aria-label="Edit" title="Edit" onClick={() => beginEdit(lineup)}><Icon name="pencil" /></button>
+                    <button type="button" onClick={() => void patchLineup(lineup, { visibility: lineup.visibility === 'public' ? 'private' : 'public' }, lineup.visibility === 'public' ? 'Entry made private on this device.' : 'Entry made public on this device.')}>{lineup.visibility === 'public' ? 'Hide' : 'Make public'}</button>
+                    <button type="button" onClick={() => void patchLineup(lineup, { lifecycle: lineup.lifecycle === 'active' ? 'retired' : 'active' }, lineup.lifecycle === 'active' ? 'Entry marked Retired.' : 'Entry marked Active.')}>{lineup.lifecycle === 'active' ? 'Retire' : 'Reactivate'}</button>
+                    <button type="button" className="icon-button" aria-label="Move up" title="Move up" disabled={index === 0} onClick={() => void moveLineup(lineup.id, -1)}><Icon name="arrow-up" /></button>
+                    <button type="button" className="icon-button" aria-label="Move down" title="Move down" disabled={index === draft.lineups.length - 1} onClick={() => void moveLineup(lineup.id, 1)}><Icon name="arrow-down" /></button>
+                    <button type="button" className="icon-button" aria-label="Remove" title="Remove" onClick={() => void removeLineup(lineup.id)}><Icon name="trash-2" /></button>
                   </div>
                 </div>
               );

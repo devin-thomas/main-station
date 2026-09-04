@@ -2,7 +2,6 @@ export type BuilderAccountState = 'checking' | 'guest' | 'profile-setup' | 'regi
 
 export interface BuilderAccountPresentation {
   state: BuilderAccountState;
-  eyebrow: string;
   heading: string;
   description: string;
   actionLabel: string | null;
@@ -24,9 +23,8 @@ export function getBuilderAccountPresentation(input: BuilderAccountInput): Build
   if (input.sessionLoading || (input.hasSession && input.profileLoading)) {
     return {
       state: 'checking',
-      eyebrow: 'CHECKING ACCOUNT',
-      heading: 'Build your line.',
-      description: 'Checking how this draft connects to your account.',
+      heading: 'Build your Mainline',
+      description: 'Checking your account...',
       actionLabel: null,
       visibilityNote: 'We will show the right save step once your account is ready.',
       reviewDescription: 'Checking your account before showing save options.',
@@ -38,12 +36,11 @@ export function getBuilderAccountPresentation(input: BuilderAccountInput): Build
   if (!input.hasSession) {
     return {
       state: 'guest',
-      eyebrow: 'DRAFT SAVED ON THIS DEVICE',
-      heading: 'Build your line.',
-      description: 'Choose a Game Version, build a Character or Team, and decide how it belongs in your history.',
+      heading: 'Build your Mainline',
+      description: 'Drafts stay on this device until you sign in and save your profile.',
       actionLabel: 'Sign in to save & share',
-      visibilityNote: 'Sign in and save your profile when you are ready to share this entry.',
-      reviewDescription: 'Save this draft online to use it across devices and share your profile when you are ready.',
+      visibilityNote: 'Public entries appear on your profile and contribute to recommendations once saved online.',
+      reviewDescription: '',
       reviewActionLabel: 'Sign in to save this draft',
       mainlineLabel: 'Your draft',
     };
@@ -52,12 +49,11 @@ export function getBuilderAccountPresentation(input: BuilderAccountInput): Build
   if (input.profileLookupFailed) {
     return {
       state: 'account-check-needed',
-      eyebrow: 'ACCOUNT CHECK NEEDED',
       heading: 'Check your account.',
-      description: 'Your draft is still safe on this device. Open your account to retry before saving changes.',
+      description: 'We could not load your account. Your draft is safe on this device.',
       actionLabel: 'Check your account',
       visibilityNote: 'Check your account before saving this entry online.',
-      reviewDescription: 'Check your account before choosing how to save this draft.',
+      reviewDescription: '',
       reviewActionLabel: 'Check your account',
       mainlineLabel: 'Your draft',
     };
@@ -67,12 +63,11 @@ export function getBuilderAccountPresentation(input: BuilderAccountInput): Build
     const handle = `@${input.registeredHandle}`;
     return {
       state: 'registered',
-      eyebrow: `SIGNED IN AS ${handle}`,
-      heading: 'Keep your line current.',
-      description: `You are signed in as ${handle}. Changes stay on this device until you save them to your profile.`,
+      heading: 'Your Mainline',
+      description: `Changes to ${handle} stay on this device until you save them to your profile.`,
       actionLabel: 'Save changes to profile',
-      visibilityNote: 'This entry stays on this device until you save changes to your profile.',
-      reviewDescription: `Your latest edits are on this device. Save changes to update ${handle}.`,
+      visibilityNote: 'Public entries appear on your profile and contribute to recommendations once saved online.',
+      reviewDescription: '',
       reviewActionLabel: 'Save changes to profile',
       mainlineLabel: 'Your local changes',
     };
@@ -80,12 +75,11 @@ export function getBuilderAccountPresentation(input: BuilderAccountInput): Build
 
   return {
     state: 'profile-setup',
-    eyebrow: 'SIGNED IN',
     heading: 'Finish your profile.',
     description: 'Choose your public name and handle to save this draft online and use it across devices.',
     actionLabel: 'Finish profile setup',
     visibilityNote: 'This entry can be shared after you finish your profile setup.',
-    reviewDescription: 'Finish your profile setup to save this draft online.',
+    reviewDescription: '',
     reviewActionLabel: 'Finish profile setup',
     mainlineLabel: 'Your draft',
   };

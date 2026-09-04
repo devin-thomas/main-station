@@ -46,7 +46,9 @@ export function DraftProvider({ children }: { children: ReactNode }) {
         if (active) setHasRecovery(Boolean(recovery));
       })
       .catch((error: unknown) => {
-        if (active) setStorageError(error instanceof Error ? error.message : 'The guest draft could not be opened.');
+        if (active) setStorageError(error instanceof Error && error.message === 'This guest draft uses an unsupported data version. Export or clear it before continuing.'
+          ? 'This version of MainStation cannot open the saved draft.'
+          : 'Your draft could not be opened on this device.');
       })
       .finally(() => {
         if (active) setReady(true);
@@ -63,8 +65,7 @@ export function DraftProvider({ children }: { children: ReactNode }) {
       setDraft(versionedDraft);
       setStorageError(null);
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'The guest draft could not be saved.';
-      setStorageError(message);
+      setStorageError('Your draft could not be saved on this device.');
       throw error;
     }
   }, []);
@@ -124,8 +125,7 @@ export function DraftProvider({ children }: { children: ReactNode }) {
         setDraft(cleared);
         setStorageError(null);
       } catch (error) {
-        const message = error instanceof Error ? error.message : 'The guest draft could not be cleared.';
-        setStorageError(message);
+        setStorageError('Your draft could not be cleared on this device.');
         throw error;
       }
     },
