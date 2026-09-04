@@ -23,7 +23,18 @@ npm run lint:db
 node C:\Users\lilgo\.codex\skills\pwa-development\scripts\audit-manifest.mjs --manifest dist\manifest.webmanifest --root dist
 ```
 
-`validate` runs lint, strict TypeScript, unit/domain tests, and the production PWA build. The Playwright suite uses the production preview at desktop Chromium and Pixel 7 dimensions.
+`validate` runs lint, strict TypeScript, unit/domain tests, and the production PWA build. The Playwright suite uses the production preview with desktop Chromium and these portrait mobile targets:
+
+| Device / browser engine | CSS viewport | Device pixel ratio | Native display | Density |
+| --- | --- | --- | --- | --- |
+| iPhone 16 Pro / WebKit | 402 x 874 | 3 | 1206 x 2622 | 460 ppi |
+| Galaxy S21 Ultra / Chromium | 384 x 854 | 3.75 | 1440 x 3200 | 515 ppi |
+
+Native display specifications: [Apple](https://support.apple.com/en-ie/121031) and [Samsung](https://news.samsung.com/uk/samsung-galaxy-s21-ultra-5g-the-ultimate-smartphone-experience-designed-to-be-epic-in-every-way). CSS dimensions and scale are the configured emulation targets.
+
+PPI describes the physical display; responsive layout uses CSS pixels. These full-screen emulations check navigation, accessible icon controls, touch targets, overflow, and guest-draft flows. Actual browser toolbars, display/zoom settings, the iPhone safe area, and installed-PWA behavior still require physical-device acceptance. Set `PLAYWRIGHT_BASE_URL` to test a deployed origin. Mobile screenshots are saved under ignored `output/playwright/`.
+
+On Windows, Playwright WebKit reports an internal error when reloading offline, also reproduced with a minimal cache-only service worker after confirming its active controller and cached HTML. That project verifies offline saving and reload persistence after reconnecting, with an explicit test annotation. Chromium verifies the full offline reload; physical Safari offline reload remains unverified.
 
 ## Supabase
 
@@ -54,6 +65,7 @@ Preview origin: `https://mainstation-preview.uppercut-labs.workers.dev`.
 
 ## Identity and imagery
 
+- UI controls use 11 selected Lucide SVGs (3,652 bytes) copied from the local icon library into `public/ui-icons/`, alongside their original ISC/MIT license. Only icons used by the interface are included.
 - Uppercut Labs appears only as the developer credit, using `public/uppercut-labs-logo.png` unchanged.
 - The supplied MainStation mark is tracked canonically at `assets/brand/mainstation-logo.png` (SHA-256 `7BCACF1A848FC405483844588E0790DB64C6CD76E8BCC2326C00C1C63C55D732`). The original root-level drop remains ignored.
 - `npm run generate:icons` derives the runtime mark, ordinary and maskable launcher icons, Apple touch icon, and favicon without redrawing the identity. Installed-surface visual acceptance remains open until physical-device testing.

@@ -3,6 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 const deployedBaseUrl = process.env.PLAYWRIGHT_BASE_URL;
 
 export default defineConfig({
+  metadata: { hostPlatform: process.platform },
   testDir: './tests/e2e',
   fullyParallel: true,
   retries: 0,
@@ -19,6 +20,27 @@ export default defineConfig({
     },
   projects: [
     { name: 'desktop-chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'mobile-chromium', use: { ...devices['Pixel 7'] } },
+    {
+      name: 'iphone-16-pro-webkit',
+      use: {
+        ...devices['iPhone 16 Pro'],
+        browserName: 'webkit',
+        viewport: { width: 402, height: 874 },
+        contextOptions: { screen: { width: 402, height: 874 } },
+        deviceScaleFactor: 3,
+      },
+    },
+    {
+      name: 'galaxy-s21-ultra-chromium',
+      use: {
+        browserName: 'chromium',
+        userAgent: devices['Galaxy S24'].userAgent.replace('SM-S921U', 'SM-G998B'),
+        viewport: { width: 384, height: 854 },
+        contextOptions: { screen: { width: 384, height: 854 } },
+        deviceScaleFactor: 3.75,
+        isMobile: true,
+        hasTouch: true,
+      },
+    },
   ],
 });
