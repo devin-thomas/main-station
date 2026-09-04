@@ -1,5 +1,7 @@
 # MainStation preview release evidence
 
+Current release: [2026-09-04 authenticated creation](docs/releases/2026-09-04-authenticated-creation.md).
+
 Historical snapshot of the release identified below. Guest-draft flows and their acceptance results were superseded by ADR-028 on 2026-09-04; they are retained as evidence of that earlier build, not current product requirements or verification. See `docs/releases/` for later release records.
 
 Captured: `2026-08-25T16:28:20Z`

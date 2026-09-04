@@ -375,6 +375,7 @@ test('primary routes keep accessible icon controls and fit mobile viewports', as
   for (const route of ['/', '/build', '/settings', '/p/station-zero', '/recommend', '/games/uni2', '/games/uni2/characters/hyde']) {
     await page.goto(route);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await page.evaluate(async () => { await document.fonts.ready; });
     const geometry = await page.evaluate(() => ({
       clientWidth: document.documentElement.clientWidth,
       scrollWidth: document.documentElement.scrollWidth,

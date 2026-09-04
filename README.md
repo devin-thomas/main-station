@@ -6,10 +6,14 @@ The current release is an implementation preview. Visitors can browse public pro
 
 Guest creation, guest-draft import/merge/discard decisions, and guest recovery are outside scope. Old anonymous browser storage is not loaded into an account or deleted by the editor. Sign-out, session loss, and account switching remove the previous owner's editing state from view; public browsing remains available.
 
+Current deployment and verification: [Sign-in-first release](docs/releases/2026-09-04-authenticated-creation.md).
+
 ## Local development
 
 ```powershell
 npm install
+Copy-Item .env.example .env.local
+# Set VITE_SUPABASE_PUBLISHABLE_KEY in .env.local before running.
 npm run dev
 ```
 
@@ -42,7 +46,7 @@ On Windows, Playwright WebKit reports an internal error when reloading offline, 
 
 The hosted project is `bqfzzrasfunysseoogcg`. Its schema provides owner/public RLS, authenticated profile creation and save, public data-product RPCs, and the generated complete catalog seed. The catalog contains 13 game versions, 410 Character records, and 90 active primary art records. Discord OAuth completed its callback and PKCE token exchange successfully on 2026-08-25; that historical provider check does not by itself prove the current complete account workflow. Authentication now precedes all creation and editing, and callbacks never import or publish profile work.
 
-For another checkout, copy `.env.example` to `.env.production.local` and set only the modern publishable key. This working copy already has that ignored browser configuration. Regenerate `src/types/database.ts` after every hosted schema migration.
+For another checkout, copy `.env.example` to `.env.local` and set only the modern publishable key. Vite loads `.env.local` for development and production; `.env.production.local` is an optional production-only override. Without configuration, public browsing remains available and creation stays blocked. Regenerate `src/types/database.ts` after every hosted schema migration.
 
 ```powershell
 npx supabase start
