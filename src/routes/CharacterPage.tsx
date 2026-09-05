@@ -52,8 +52,8 @@ export function CharacterPage() {
           <div className="character-dossier__route"><span aria-hidden="true" /><Link to={`/games/${game.slug}`}>{game.shortName}</Link><VersionLabel label={game.releaseLabel} /></div>
           {character.role !== 'fighter' && <p className="eyebrow">{character.role}</p>}
           <h1 id="character-heading">{character.name}</h1>
-          {character.summary && <p className="character-summary">{character.summary}</p>}
-          <a className="source-line" href={character.sourceUrl} target="_blank" rel="noreferrer">{character.summary ? 'Summary source' : 'Roster source'} · {new URL(character.sourceUrl).hostname}</a>
+          <p className="character-summary">{character.summary}</p>
+          <a className="source-line" href={character.sourceUrl} target="_blank" rel="noreferrer">Summary source · {new URL(character.sourceUrl).hostname}</a>
 
           <dl className="character-stat-ledger">
             <div><dt>Public players</dt><dd>{stats ? stats.publicPlayerCount.toLocaleString() : unavailableLabel}</dd></div>

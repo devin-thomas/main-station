@@ -2,7 +2,7 @@
 begin;
 
 insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)
-values ('2xko', '2XKO', '2XKO', 'Current live roster', 1, '{"version":1,"noun":"Team","verified":true,"ordered":true,"uniqueCharacters":true,"slots":[{"id":"point","label":"Point","allowedRoles":["fighter"]},{"id":"assist","label":"Assist","allowedRoles":["fighter"]}],"teamOptionLabel":"Fuse","teamOptionValues":["Double Down","Juggernaut","Sidekick","2X Assist","Freestyle","Teamfight"],"constraintNote":"Riot does not publish a same-Champion team rule. MainStation conservatively requires distinct Point and Assist picks so saved teams remain valid under either outcome."}'::jsonb, 'https://2xko.riotgames.com/en-us/champions/', 'verified', '2026-08-25T00:00:00Z')
+values ('2xko', '2XKO', '2XKO', 'Current live roster', 1, '{"version":1,"noun":"Team","verified":true,"ordered":true,"uniqueCharacters":true,"slots":[{"id":"point","label":"Point","allowedRoles":["fighter"]},{"id":"assist","label":"Assist","allowedRoles":["fighter"]}],"teamOptionLabel":"Fuse","teamOptionValues":["Double Down","Juggernaut","Sidekick","2X Assist","Freestyle","Teamfight"],"constraintNote":"Choose different champions for Point and Assist."}'::jsonb, 'https://2xko.riotgames.com/en-us/champions/', 'verified', '2026-08-25T00:00:00Z')
 on conflict (slug) do update set
   name = excluded.name, short_name = excluded.short_name, release_label = excluded.release_label,
   launch_order = excluded.launch_order, selection_schema = excluded.selection_schema,
@@ -301,7 +301,7 @@ on conflict (slug) do update set
   catalog_source_url = excluded.catalog_source_url, catalog_status = excluded.catalog_status, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'captain-america', 'Captain America', 'fighter', 'released', true, 1, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'captain-america', 'Captain America', 'fighter', 'released', true, 1, 'A durable shield fighter who controls approach with thrown-shield pressure and turns disciplined defense into team-friendly counterattacks.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -309,7 +309,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'iron-man', 'Iron Man', 'fighter', 'released', true, 2, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'iron-man', 'Iron Man', 'fighter', 'released', true, 2, 'A ranged armored fighter who uses repulsor shots and air control to keep opponents at the distance where his team can convert safely.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -328,7 +328,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'hulk', 'Hulk', 'fighter', 'released', true, 3, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'hulk', 'Hulk', 'fighter', 'released', true, 3, 'A heavyweight bruiser who advances behind powerful strikes and turns close-range openings into high-damage team sequences.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -336,7 +336,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'black-panther', 'Black Panther', 'fighter', 'released', true, 4, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'black-panther', 'Black Panther', 'fighter', 'released', true, 4, 'A fast claw fighter who uses pouncing movement and close-range strings to break through space and maintain momentum.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -355,7 +355,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'storm', 'Storm', 'fighter', 'released', true, 5, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'storm', 'Storm', 'fighter', 'released', true, 5, 'An aerial space controller who combines weather projectiles with strong movement to shape where both teams can safely fight.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -374,7 +374,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'magik', 'Magik', 'fighter', 'released', true, 6, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'magik', 'Magik', 'fighter', 'released', true, 6, 'A sword-and-portal fighter who mixes grounded slashes with portal setups and quick approach routes for layered team pressure.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -393,7 +393,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'wolverine', 'Wolverine', 'fighter', 'released', true, 7, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'wolverine', 'Wolverine', 'fighter', 'released', true, 7, 'A relentless claw rushdown fighter who relies on fast advancing attacks and close-range conversions to stay on top of the opponent.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -401,7 +401,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'danger', 'Danger', 'fighter', 'released', true, 8, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'danger', 'Danger', 'fighter', 'released', true, 8, 'A technical robotic fighter who uses ranged weapons and deployable gadgets to support controlled approaches and team extensions.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -409,7 +409,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'spider-man', 'Spider-Man', 'fighter', 'released', true, 9, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'spider-man', 'Spider-Man', 'fighter', 'released', true, 9, 'A mobile web-slinging fighter who changes trajectory quickly and converts evasive movement into scramble-heavy offense.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -428,7 +428,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ms-marvel', 'Ms. Marvel', 'fighter', 'released', true, 10, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ms-marvel', 'Ms. Marvel', 'fighter', 'released', true, 10, 'A flexible close-range fighter whose elastic limbs extend her buttons and let her turn unusual angles into continued pressure.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -436,7 +436,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'star-lord', 'Star-Lord', 'fighter', 'released', true, 11, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'star-lord', 'Star-Lord', 'fighter', 'released', true, 11, 'A projectile-focused blaster who controls lanes with ranged shots and uses mobility to reposition before confirming damage.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -444,7 +444,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'peni-parker', 'Peni Parker', 'fighter', 'released', true, 12, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'peni-parker', 'Peni Parker', 'fighter', 'released', true, 12, 'A mech-based fighter who combines armored robot attacks with ranged tools to cover space while her team rotates in.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -452,7 +452,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ghost-rider', 'Ghost Rider', 'fighter', 'released', true, 13, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ghost-rider', 'Ghost Rider', 'fighter', 'released', true, 13, 'A long-reaching chain fighter who uses fire-based attacks and wide control zones to make approaches costly.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -460,7 +460,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'blade', 'Blade', 'fighter', 'released', true, 14, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'blade', 'Blade', 'fighter', 'released', true, 14, 'A weapon fighter who blends sword strings with firearm pressure, giving his team a grounded way to contest both close and mid range.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -468,7 +468,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'loki', 'Loki', 'fighter', 'released', true, 15, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'loki', 'Loki', 'fighter', 'released', true, 15, 'A deceptive control fighter who uses trickery and ranged magic to create uncertain approach timings for the opposing team.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -476,7 +476,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'deadpool', 'Deadpool', 'fighter', 'released', true, 16, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'deadpool', 'Deadpool', 'fighter', 'released', true, 16, 'A fast weapon-and-firearm fighter who switches between sword pressure and gunfire to keep offense unpredictable.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -484,7 +484,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'doctor-doom', 'Doctor Doom', 'fighter', 'released', true, 17, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'doctor-doom', 'Doctor Doom', 'fighter', 'released', true, 17, 'A versatile armored fighter who uses energy projectiles and summoned technology to control space and extend team offense.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -503,7 +503,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'magneto', 'Magneto', 'fighter', 'released', true, 18, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'magneto', 'Magneto', 'fighter', 'released', true, 18, 'A highly mobile magnetic fighter who combines airborne movement with projectile control to attack from changing angles.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -511,7 +511,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'green-goblin', 'Green Goblin', 'fighter', 'released', true, 19, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'green-goblin', 'Green Goblin', 'fighter', 'released', true, 19, 'A gadget fighter who uses explosive pumpkin attacks and glider mobility to harass opponents while controlling the screen.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -519,7 +519,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'carnage', 'Carnage', 'fighter', 'released', true, 20, 'Selectable Marvel Tokon roster entry for the checked version boundary.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'carnage', 'Carnage', 'fighter', 'released', true, 20, 'A symbiote weapon fighter who extends attacks with tendrils and traps movement with persistent, difficult-to-ignore pressure.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -534,7 +534,7 @@ on conflict (slug) do update set
   catalog_source_url = excluded.catalog_source_url, catalog_status = excluded.catalog_status, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'blackheart', 'Blackheart', 'fighter', 'released', true, 1, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'blackheart', 'Blackheart', 'fighter', 'released', true, 1, 'A summon-based zoner who fills the screen with dark projectiles and traps before using his assist to preserve space.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -542,7 +542,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'cable', 'Cable', 'fighter', 'released', true, 2, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'cable', 'Cable', 'fighter', 'released', true, 2, 'A long-range gunner who controls neutral with grenades and beam supers, especially the assist-friendly Air Hyper Viper Beam.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -561,7 +561,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'captain-america', 'Captain America', 'fighter', 'released', true, 3, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'captain-america', 'Captain America', 'fighter', 'released', true, 3, 'A shield specialist who converts sturdy normals, shield throws, and charging attacks into straightforward team pressure.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -569,7 +569,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'colossus', 'Colossus', 'fighter', 'released', true, 4, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'colossus', 'Colossus', 'fighter', 'released', true, 4, 'A large armored rushdown fighter who uses super armor and rushing command attacks to force his way into close range.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -577,7 +577,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'cyclops', 'Cyclops', 'fighter', 'released', true, 5, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'cyclops', 'Cyclops', 'fighter', 'released', true, 5, 'A well-rounded beam fighter whose optic blasts, fast normals, and strong anti-air assist make him useful from any team position.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -585,7 +585,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'doctor-doom', 'Doctor Doom', 'fighter', 'released', true, 6, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'doctor-doom', 'Doctor Doom', 'fighter', 'released', true, 6, 'A versatile projectile fighter who combines rocks, hidden missiles, and beam attacks to control space and extend combos.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -593,7 +593,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'gambit', 'Gambit', 'fighter', 'released', true, 7, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'gambit', 'Gambit', 'fighter', 'released', true, 7, 'A mid-range pressure fighter who throws charged cards and uses staff attacks to turn controlled pokes into explosive supers.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -601,7 +601,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'hulk', 'Hulk', 'fighter', 'released', true, 8, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'hulk', 'Hulk', 'fighter', 'released', true, 8, 'A high-damage bruiser who relies on armored normals, Gamma Wave, and an imposing assist to make close exchanges dangerous.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -609,7 +609,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'iceman', 'Iceman', 'fighter', 'released', true, 9, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'iceman', 'Iceman', 'fighter', 'released', true, 9, 'A projectile specialist who uses ice beams and hail to dominate lanes while threatening long-range DHCs and assists.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -617,7 +617,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'iron-man', 'Iron Man', 'fighter', 'released', true, 10, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'iron-man', 'Iron Man', 'fighter', 'released', true, 10, 'A technical flight-capable fighter who layers repulsor beams and air movement into precise confirms and team extensions.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -625,7 +625,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'juggernaut', 'Juggernaut', 'fighter', 'released', true, 11, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'juggernaut', 'Juggernaut', 'fighter', 'released', true, 11, 'A heavy armored fighter who turns forward-moving strikes, headcrush attacks, and a damaging assist into blunt-force offense.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -633,7 +633,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'magneto', 'Magneto', 'fighter', 'released', true, 12, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'magneto', 'Magneto', 'fighter', 'released', true, 12, 'A fast flight fighter who uses magnetic projectiles, tri-dash movement, and air strings to maintain relentless pressure.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -652,7 +652,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'marrow', 'Marrow', 'fighter', 'released', true, 13, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'marrow', 'Marrow', 'fighter', 'released', true, 13, 'A mid-range mutant who creates bone weapons and projectiles to control space before cashing out with grounded combos.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -660,7 +660,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'omega-red', 'Omega Red', 'fighter', 'released', true, 14, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'omega-red', 'Omega Red', 'fighter', 'released', true, 14, 'A setplay fighter who uses carbonadium coils and long-reaching tentacles to restrict movement and lock down approaches.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -668,7 +668,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'psylocke', 'Psylocke', 'fighter', 'released', true, 15, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'psylocke', 'Psylocke', 'fighter', 'released', true, 15, 'A quick ninja fighter who uses psychic blades, mobility, and a reliable anti-air assist to start and sustain rushdown.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -676,7 +676,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'rogue', 'Rogue', 'fighter', 'released', true, 16, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'rogue', 'Rogue', 'fighter', 'released', true, 16, 'A close-range power-copy fighter who steals useful properties through contact and converts strong buttons into flexible offense.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -684,7 +684,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sabretooth', 'Sabretooth', 'fighter', 'released', true, 17, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sabretooth', 'Sabretooth', 'fighter', 'released', true, 17, 'A rushdown fighter who uses claw strings and Berserker-style pressure to turn a clean approach into extended corner offense.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -692,7 +692,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sentinel', 'Sentinel', 'fighter', 'released', true, 18, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sentinel', 'Sentinel', 'fighter', 'released', true, 18, 'A giant zoning fighter who uses drones, rockets, flight, and large normals to dominate both screen space and team neutral.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -711,7 +711,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'shuma-gorath', 'Shuma-Gorath', 'fighter', 'released', true, 19, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'shuma-gorath', 'Shuma-Gorath', 'fighter', 'released', true, 19, 'A strange space-control fighter who combines tentacles, eye beams, and teleporting movement with disruptive assists.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -719,7 +719,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'silver-samurai', 'Silver Samurai', 'fighter', 'released', true, 20, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'silver-samurai', 'Silver Samurai', 'fighter', 'released', true, 20, 'A stance-based sword fighter who changes elemental weapon properties to vary neutral control and combo routes.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -727,7 +727,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'spider-man', 'Spider-Man', 'fighter', 'released', true, 21, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'spider-man', 'Spider-Man', 'fighter', 'released', true, 21, 'A mobile rushdown fighter who uses web balls, wall movement, and fast air strings to convert scrambles into pressure.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -735,7 +735,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'spiral', 'Spiral', 'fighter', 'released', true, 22, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'spiral', 'Spiral', 'fighter', 'released', true, 22, 'A weapon-summoning fighter who creates sword storms and weapon patterns to overwhelm opponents from multiple ranges.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -743,7 +743,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'storm', 'Storm', 'fighter', 'released', true, 23, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'storm', 'Storm', 'fighter', 'released', true, 23, 'A mobile weather fighter who controls the screen with wind, lightning, ice, and flight before routing into team supers.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -762,7 +762,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'thanos', 'Thanos', 'fighter', 'released', true, 24, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'thanos', 'Thanos', 'fighter', 'released', true, 24, 'A large power fighter who cycles Infinity Gems to change his neutral tools and punish opponents with huge normals and supers.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -770,7 +770,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'venom', 'Venom', 'fighter', 'released', true, 25, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'venom', 'Venom', 'fighter', 'released', true, 25, 'A mid-range symbiote fighter who uses web projectiles, long limbs, and Venom Fang pressure to control grounded exchanges.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -778,7 +778,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'war-machine', 'War Machine', 'fighter', 'released', true, 26, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'war-machine', 'War Machine', 'fighter', 'released', true, 26, 'A heavy gunner who saturates the screen with bullets, missiles, and armor-breaking supers while contributing a strong projectile assist.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -786,7 +786,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'wolverine', 'Wolverine', 'fighter', 'released', true, 27, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'wolverine', 'Wolverine', 'fighter', 'released', true, 27, 'A premier claw rushdown fighter who uses Berserker Barrage, drill attacks, and fast normals to convert any close opening.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -794,7 +794,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'wolverine-bone', 'Wolverine (Bone Claws)', 'fighter', 'released', true, 28, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'wolverine-bone', 'Wolverine (Bone Claws)', 'fighter', 'released', true, 28, 'A shorter-claw Wolverine variant that keeps the same close-range rushdown identity while changing reach and combo spacing from the metal-claw form.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -802,7 +802,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'akuma', 'Akuma', 'fighter', 'released', true, 29, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'akuma', 'Akuma', 'fighter', 'released', true, 29, 'A glass-cannon rushdown fighter who combines air fireballs, teleport movement, and Shun Goku Satsu threat to attack from unexpected angles.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -810,7 +810,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'amingo', 'Amingo', 'fighter', 'released', true, 30, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'amingo', 'Amingo', 'fighter', 'released', true, 30, 'A summon fighter who calls cactus helpers and uses unusual projectiles and command attacks to create awkward mid-range situations.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -818,7 +818,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'anakaris', 'Anakaris', 'fighter', 'released', true, 31, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'anakaris', 'Anakaris', 'fighter', 'released', true, 31, 'A large curse-and-setplay fighter who uses transformation, mummy projectiles, and teleports to disrupt normal defense.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -826,7 +826,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'bulleta', 'B.B. Hood (Bulleta)', 'fighter', 'released', true, 32, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'bulleta', 'B.B. Hood (Bulleta)', 'fighter', 'released', true, 32, 'A trap-heavy gunner who mixes firearms, bombs, and fast approach options to make every blocked sequence hard to read.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -834,7 +834,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'cammy', 'Cammy', 'fighter', 'released', true, 33, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'cammy', 'Cammy', 'fighter', 'released', true, 33, 'A fast rushdown fighter who uses Cannon Spike, Spiral Arrow, and Hooligan movement to attack low, high, and from the air.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -842,7 +842,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'captain-commando', 'Captain Commando', 'fighter', 'released', true, 34, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'captain-commando', 'Captain Commando', 'fighter', 'released', true, 34, 'A balanced brawler who combines punches, fire, and electric attacks with a dependable assist that covers advancing teammates.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -850,7 +850,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'charlie', 'Charlie', 'fighter', 'released', true, 35, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'charlie', 'Charlie', 'fighter', 'released', true, 35, 'A charge-based footsie fighter who uses Sonic Boom and Flash Kick to control lanes and punish careless jumps.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -858,7 +858,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'chun-li', 'Chun-Li', 'fighter', 'released', true, 36, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'chun-li', 'Chun-Li', 'fighter', 'released', true, 36, 'A technical neutral fighter whose long-reaching normals, Kikoken, and lightning-leg pressure support both pokes and combos.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -866,7 +866,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'dan', 'Dan', 'fighter', 'released', true, 37, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'dan', 'Dan', 'fighter', 'released', true, 37, 'A compact pressure fighter who uses Gadoken, Dankukyaku, and Shoryuken-style counters to turn close reads into expressive offense.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -874,7 +874,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'dhalsim', 'Dhalsim', 'fighter', 'released', true, 38, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'dhalsim', 'Dhalsim', 'fighter', 'released', true, 38, 'A long-range zoner who controls space with stretchy limbs, Yoga Fire, teleport movement, and difficult-to-approach angles.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -882,7 +882,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'felicia', 'Felicia', 'fighter', 'released', true, 39, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'felicia', 'Felicia', 'fighter', 'released', true, 39, 'A mobile cat fighter who uses rolling attacks, wall movement, and rapid close-range strings to keep opponents scrambling.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -890,7 +890,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'guile', 'Guile', 'fighter', 'released', true, 40, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'guile', 'Guile', 'fighter', 'released', true, 40, 'A charge-based defensive fighter who builds a wall with Sonic Boom and Flash Kick before advancing behind disciplined spacing.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -898,7 +898,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'hayato', 'Hayato Kanzaki', 'fighter', 'released', true, 41, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'hayato', 'Hayato Kanzaki', 'fighter', 'released', true, 41, 'A sword rushdown fighter who uses plasma blade slashes, projectiles, and fast advancing attacks to punish gaps in defense.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -906,7 +906,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jill-valentine', 'Jill Valentine', 'fighter', 'released', true, 42, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jill-valentine', 'Jill Valentine', 'fighter', 'released', true, 42, 'A setup fighter who combines firearm attacks with zombie and creature calls to create layered pressure and unusual screen control.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -914,7 +914,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jin-saotome', 'Jin Saotome', 'fighter', 'released', true, 43, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jin-saotome', 'Jin Saotome', 'fighter', 'released', true, 43, 'A close-range brawler who uses explosive punches, rocket attacks, and fiery supers to convert aggressive reads into damage.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -922,7 +922,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ken', 'Ken', 'fighter', 'released', true, 44, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ken', 'Ken', 'fighter', 'released', true, 44, 'A direct shoto fighter who uses Hadoken, Shoryuken, and Tatsumaki Senpukyaku to cover neutral, anti-air, and combo needs.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -930,7 +930,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'm-bison', 'M. Bison', 'fighter', 'released', true, 45, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'm-bison', 'M. Bison', 'fighter', 'released', true, 45, 'A rushdown dictator who uses Psycho Crusher, Scissor Kicks, and teleport movement to stay mobile and pressure the corner.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -938,7 +938,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'mega-man', 'Mega Man', 'fighter', 'released', true, 46, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'mega-man', 'Mega Man', 'fighter', 'released', true, 46, 'A projectile-focused fighter who uses lemons, charged shots, and weapon-copy supers to control the screen from a safe distance.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -946,7 +946,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'morrigan', 'Morrigan', 'fighter', 'released', true, 47, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'morrigan', 'Morrigan', 'fighter', 'released', true, 47, 'A flight-and-projectile fighter who fills the screen with Soul Fists and uses air movement to attack from ambiguous angles.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -954,7 +954,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'roll', 'Roll', 'fighter', 'released', true, 48, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'roll', 'Roll', 'fighter', 'released', true, 48, 'A small technical fighter who uses broom attacks, compact hurtbox movement, and unusual normals to frustrate conventional spacing.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -962,7 +962,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ruby-heart', 'Ruby Heart', 'fighter', 'released', true, 49, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ruby-heart', 'Ruby Heart', 'fighter', 'released', true, 49, 'A versatile mid-range fighter who uses summoned spells, an anchor, and flexible movement to control space and set up confirms.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -970,7 +970,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ryu', 'Ryu', 'fighter', 'released', true, 50, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ryu', 'Ryu', 'fighter', 'released', true, 50, 'A well-rounded shoto fighter who uses Hadoken, Shoryuken, and Tatsumaki routes to cover neutral and convert clean hits.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -978,7 +978,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sakura', 'Sakura', 'fighter', 'released', true, 51, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sakura', 'Sakura', 'fighter', 'released', true, 51, 'A fast close-range shoto who uses compact fireballs, Shouoken, and rapid pressure to turn momentum into long combos.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -986,7 +986,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'servbot', 'Servbot', 'fighter', 'released', true, 52, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'servbot', 'Servbot', 'fighter', 'released', true, 52, 'A small trickster fighter who relies on bombs, odd movement, and a difficult-to-hit body to create scrambles and punish whiffs.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -994,7 +994,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sonson', 'SonSon', 'fighter', 'released', true, 53, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sonson', 'SonSon', 'fighter', 'released', true, 53, 'A staff-wielding fighter who changes size and uses projectiles, long pokes, and transformation options to vary her neutral game.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1002,7 +1002,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'strider-hiryu', 'Strider Hiryu', 'fighter', 'released', true, 54, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'strider-hiryu', 'Strider Hiryu', 'fighter', 'released', true, 54, 'A highly mobile sword fighter who uses Formation summons, wall movement, and teleports to attack from every angle.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1010,7 +1010,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'tron-bonne', 'Tron Bonne', 'fighter', 'released', true, 55, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'tron-bonne', 'Tron Bonne', 'fighter', 'released', true, 55, 'A trap-and-summon fighter who uses Servbots, Gustaff armor, and projectile gadgets to control space before rushing in.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1018,7 +1018,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'zangief', 'Zangief', 'fighter', 'released', true, 56, 'Selectable Marvel vs. Capcom 2 roster entry for the checked version boundary.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'zangief', 'Zangief', 'fighter', 'released', true, 56, 'A grappler who uses Spinning Piledriver, Green Hand, and armored lariats to turn one close read into sustained threat.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1033,7 +1033,7 @@ on conflict (slug) do update set
   catalog_source_url = excluded.catalog_source_url, catalog_status = excluded.catalog_status, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'strider-hiryu', 'Strider Hiryu', 'fighter', 'released', true, 1, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'strider-hiryu', 'Strider Hiryu', 'fighter', 'released', true, 1, 'A hyper-mobile sword fighter who uses Formation summons, wall movement, and teleports to create rapid cross-screen pressure.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1041,7 +1041,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'iron-fist', 'Iron Fist', 'fighter', 'released', true, 2, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'iron-fist', 'Iron Fist', 'fighter', 'released', true, 2, 'A close-range martial artist who builds damage through Rekku and Immortal Weapon pressure after forcing his way inside.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1049,7 +1049,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'nova', 'Nova', 'fighter', 'released', true, 3, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'nova', 'Nova', 'fighter', 'released', true, 3, 'A mid-range space fighter who uses gravimetric projectiles, flight movement, and powerful normals to control approach lanes.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1057,7 +1057,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'phoenix-wright', 'Phoenix Wright', 'fighter', 'released', true, 4, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'phoenix-wright', 'Phoenix Wright', 'fighter', 'released', true, 4, 'A stance-based investigator who gathers evidence, then turns a successful case into an unpredictable turnabout offense.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1065,7 +1065,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'doctor-strange', 'Doctor Strange', 'fighter', 'released', true, 5, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'doctor-strange', 'Doctor Strange', 'fighter', 'released', true, 5, 'A long-range mystic who uses multiple spell patterns, teleport movement, and projectile control to dictate neutral.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1073,7 +1073,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'vergil', 'Vergil', 'fighter', 'released', true, 6, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'vergil', 'Vergil', 'fighter', 'released', true, 6, 'A high-damage stance fighter who combines rapid sword slashes, teleporting movement, and Spiral Swords lockdown.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1092,7 +1092,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ghost-rider', 'Ghost Rider', 'fighter', 'released', true, 7, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ghost-rider', 'Ghost Rider', 'fighter', 'released', true, 7, 'A long-range chain fighter who uses fire, vertical control, and wide normals to make approaching his team difficult.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1100,7 +1100,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'frank-west', 'Frank West', 'fighter', 'released', true, 8, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'frank-west', 'Frank West', 'fighter', 'released', true, 8, 'A resource fighter who levels up through photographs and then uses weapons, items, and stronger normals to snowball offense.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1108,7 +1108,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'firebrand', 'Firebrand', 'fighter', 'released', true, 9, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'firebrand', 'Firebrand', 'fighter', 'released', true, 9, 'An aerial rushdown fighter who uses flight, wall cling movement, and fireball pressure to keep opponents trapped above or below.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1116,7 +1116,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'hawkeye', 'Hawkeye', 'fighter', 'released', true, 10, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'hawkeye', 'Hawkeye', 'fighter', 'released', true, 10, 'A precision zoner who switches arrow types to cover horizontal, vertical, and delayed spaces before confirming from safety.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1124,7 +1124,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'rocket-raccoon', 'Rocket Raccoon', 'fighter', 'released', true, 11, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'rocket-raccoon', 'Rocket Raccoon', 'fighter', 'released', true, 11, 'A trap-focused small-body fighter who fills the screen with gadgets, log traps, and projectiles to control movement.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1132,7 +1132,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'nemesis-t-type', 'Nemesis T-Type', 'fighter', 'released', true, 12, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'nemesis-t-type', 'Nemesis T-Type', 'fighter', 'released', true, 12, 'A heavyweight weapon fighter who uses armor, rockets, and long-reaching punches to force slow but dangerous approaches.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1140,7 +1140,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'captain-america', 'Captain America', 'fighter', 'released', true, 13, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'captain-america', 'Captain America', 'fighter', 'released', true, 13, 'A durable shield fighter who uses charging strikes, shield throws, and defensive normals to provide stable team pressure.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1148,7 +1148,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ryu', 'Ryu', 'fighter', 'released', true, 14, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ryu', 'Ryu', 'fighter', 'released', true, 14, 'A balanced shoto fighter who uses Hadoken, Shoryuken, and Tatsumaki routes before changing power through his available modes.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1156,7 +1156,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'chun-li', 'Chun-Li', 'fighter', 'released', true, 15, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'chun-li', 'Chun-Li', 'fighter', 'released', true, 15, 'A technical neutral fighter whose long normals, Kikoken, and lightning-leg pressure convert grounded control into team damage.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1164,7 +1164,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'thor', 'Thor', 'fighter', 'released', true, 16, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'thor', 'Thor', 'fighter', 'released', true, 16, 'A heavyweight thunder fighter who uses armored hammer attacks, lightning, and command-grab threat to dominate close range.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1172,7 +1172,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'spider-man', 'Spider-Man', 'fighter', 'released', true, 17, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'spider-man', 'Spider-Man', 'fighter', 'released', true, 17, 'A mobile web fighter who uses web swings, wall movement, and fast air strings to turn evasive movement into rushdown.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1180,7 +1180,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'dante', 'Dante', 'fighter', 'released', true, 18, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'dante', 'Dante', 'fighter', 'released', true, 18, 'A stance-rich weapon fighter who switches styles and weapons to cover neutral, setplay, and high-expression combo routes.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1199,7 +1199,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'trish', 'Trish', 'fighter', 'released', true, 19, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'trish', 'Trish', 'fighter', 'released', true, 19, 'A trap-and-sword fighter who uses delayed round-trip attacks, lightning, and teleport movement to create layered pressure.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1207,7 +1207,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'storm', 'Storm', 'fighter', 'released', true, 20, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'storm', 'Storm', 'fighter', 'released', true, 20, 'A flight-capable weather fighter who combines wind, lightning, and ice projectiles with strong air movement and team supers.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1215,7 +1215,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'crimson-viper', 'Crimson Viper', 'fighter', 'released', true, 21, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'crimson-viper', 'Crimson Viper', 'fighter', 'released', true, 21, 'A mobility fighter who uses feints, seismic attacks, and burning kicks to create sudden left-right pressure and conversions.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1223,7 +1223,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'viewtiful-joe', 'Viewtiful Joe', 'fighter', 'released', true, 22, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'viewtiful-joe', 'Viewtiful Joe', 'fighter', 'released', true, 22, 'A small rushdown fighter who uses Slow, Mach Speed, and Zoom to change attack timing and amplify close-range conversions.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1231,7 +1231,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'spencer', 'Spencer', 'fighter', 'released', true, 23, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'spencer', 'Spencer', 'fighter', 'released', true, 23, 'A grappling-arm fighter who uses Bionic Maneuvers to swing through space, extend combos, and punish careless positioning.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1239,7 +1239,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'amaterasu', 'Amaterasu', 'fighter', 'released', true, 24, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'amaterasu', 'Amaterasu', 'fighter', 'released', true, 24, 'A stance-based sword fighter who changes divine instruments to gain projectiles, traps, and close-range pressure.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1247,7 +1247,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'magneto', 'Magneto', 'fighter', 'released', true, 25, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'magneto', 'Magneto', 'fighter', 'released', true, 25, 'A flight fighter who uses magnetic projectiles, fast air movement, and repulsion tools to maintain offense from any angle.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1255,7 +1255,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'iron-man', 'Iron Man', 'fighter', 'released', true, 26, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'iron-man', 'Iron Man', 'fighter', 'released', true, 26, 'A technical armored fighter who uses repulsor beams, flight, and precise air routes to control space and extend team combos.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1263,7 +1263,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'wolverine', 'Wolverine', 'fighter', 'released', true, 27, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'wolverine', 'Wolverine', 'fighter', 'released', true, 27, 'A fast claw rushdown fighter who uses Berserker Charge, drill attacks, and close-range normals to stay on top of opponents.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1271,7 +1271,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'deadpool', 'Deadpool', 'fighter', 'released', true, 28, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'deadpool', 'Deadpool', 'fighter', 'released', true, 28, 'A weapon-switching rushdown fighter who blends katanas, pistols, teleport movement, and quick mix-ups into constant pressure.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1279,7 +1279,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'super-skrull', 'Super-Skrull', 'fighter', 'released', true, 29, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'super-skrull', 'Super-Skrull', 'fighter', 'released', true, 29, 'A versatile grappler who combines elastic limbs, fire, rock armor, and command attacks to threaten at multiple ranges.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1287,7 +1287,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'modok', 'M.O.D.O.K.', 'fighter', 'released', true, 30, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'modok', 'M.O.D.O.K.', 'fighter', 'released', true, 30, 'A technical screen controller who uses floating movement, psychic projectiles, and barriers to make approach routes highly deliberate.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1295,7 +1295,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'tron-bonne', 'Tron Bonne', 'fighter', 'released', true, 31, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'tron-bonne', 'Tron Bonne', 'fighter', 'released', true, 31, 'A gadget-based setplay fighter who uses Servbots, Gustaff armor, and Bonne Strike pressure to control space and start offense.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1303,7 +1303,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'morrigan', 'Morrigan', 'fighter', 'released', true, 32, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'morrigan', 'Morrigan', 'fighter', 'released', true, 32, 'A flight-and-projectile specialist who uses Soul Fists, air movement, and Astral Vision to overwhelm opponents with layered patterns.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1311,7 +1311,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'phoenix', 'Phoenix', 'fighter', 'released', true, 33, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'phoenix', 'Phoenix', 'fighter', 'released', true, 33, 'A resource-sensitive fighter who builds meter and then uses Dark Phoenix or resurrection threat to turn a fragile neutral game into momentum.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1319,7 +1319,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'felicia', 'Felicia', 'fighter', 'released', true, 34, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'felicia', 'Felicia', 'fighter', 'released', true, 34, 'A mobile rushdown fighter who uses rolling movement, wall attacks, and quick normals to force scrambles at close range.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1327,7 +1327,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'x-23', 'X-23', 'fighter', 'released', true, 35, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'x-23', 'X-23', 'fighter', 'released', true, 35, 'A fast claw fighter who uses teleporting movement, dive attacks, and Ankle Slicer pressure to create ambiguous rushdown.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1335,7 +1335,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'doom', 'Doctor Doom', 'fighter', 'released', true, 36, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'doom', 'Doctor Doom', 'fighter', 'released', true, 36, 'A versatile armored fighter who uses Hidden Missiles, rocks, and Plasma Beam to control space and provide exceptional team support.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1354,7 +1354,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'dormammu', 'Dormammu', 'fighter', 'released', true, 37, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'dormammu', 'Dormammu', 'fighter', 'released', true, 37, 'A spell-stacking zoner who combines dark projectiles, Liberation charges, and teleports to build layered screen control.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1362,7 +1362,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'haggar', 'Mike Haggar', 'fighter', 'released', true, 38, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'haggar', 'Mike Haggar', 'fighter', 'released', true, 38, 'A grappler who uses pipe normals, Lariat, and Spinning Piledriver to turn armored approaches into damaging corner pressure.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1370,7 +1370,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'hulk', 'Hulk', 'fighter', 'released', true, 39, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'hulk', 'Hulk', 'fighter', 'released', true, 39, 'A heavyweight rushdown fighter who uses super armor, Gamma Wave, and large normals to make close-range trades heavily favor him.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1378,7 +1378,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'arthur', 'Arthur', 'fighter', 'released', true, 40, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'arthur', 'Arthur', 'fighter', 'released', true, 40, 'A projectile-and-resource fighter who cycles armor and weapons while using daggers, axes, and shield tools to control space.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1386,7 +1386,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'she-hulk', 'She-Hulk', 'fighter', 'released', true, 41, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'she-hulk', 'She-Hulk', 'fighter', 'released', true, 41, 'A mobile grappler who uses command grabs, armored approaches, and torpedo movement to convert pressure into strong corner carry.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1394,7 +1394,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'akuma', 'Akuma', 'fighter', 'released', true, 42, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'akuma', 'Akuma', 'fighter', 'released', true, 42, 'A fast glass-cannon fighter who uses air fireballs, teleport movement, and high-damage demon supers to attack from changing angles.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1402,7 +1402,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'taskmaster', 'Taskmaster', 'fighter', 'released', true, 43, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'taskmaster', 'Taskmaster', 'fighter', 'released', true, 43, 'A weapon-copy fighter who uses arrows, sword normals, and shield attacks to borrow familiar tools and adapt to matchups.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1410,7 +1410,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'hsien-ko', 'Hsien-Ko', 'fighter', 'released', true, 44, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'hsien-ko', 'Hsien-Ko', 'fighter', 'released', true, 44, 'A stance-and-projectile fighter who uses talismans, sentinels, and armored special attacks to create awkward layered offense.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1418,7 +1418,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sentinel', 'Sentinel', 'fighter', 'released', true, 45, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sentinel', 'Sentinel', 'fighter', 'released', true, 45, 'A giant zoning fighter who uses drones, rockets, flight, and huge normals to dominate screen space and support team conversions.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1426,7 +1426,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'chris-redfield', 'Chris Redfield', 'fighter', 'released', true, 46, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'chris-redfield', 'Chris Redfield', 'fighter', 'released', true, 46, 'A methodical gunner who switches firearms and explosives to control lanes, punish approaches, and convert grounded hits.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1434,7 +1434,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'wesker', 'Wesker', 'fighter', 'released', true, 47, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'wesker', 'Wesker', 'fighter', 'released', true, 47, 'A fast teleporting rushdown fighter who uses gunshots, Samurai Edge pressure, and wall-bounce routes to stay unpredictable.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1442,7 +1442,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'zero', 'Zero', 'fighter', 'released', true, 48, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'zero', 'Zero', 'fighter', 'released', true, 48, 'A high-execution sword fighter who chains Rekkoha, Raikousen, and projectile specials into relentless confirms and mix-ups.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1461,7 +1461,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jill-valentine', 'Jill Valentine', 'fighter', 'released', true, 49, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jill-valentine', 'Jill Valentine', 'fighter', 'released', true, 49, 'A setup fighter who combines guns, knives, and creature summons to create layered pressure and unusual neutral patterns.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -1469,7 +1469,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'shuma-gorath', 'Shuma-Gorath', 'fighter', 'released', true, 50, 'Selectable Ultimate Marvel vs. Capcom 3 roster entry for the checked version boundary.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'shuma-gorath', 'Shuma-Gorath', 'fighter', 'released', true, 50, 'A strange space-control fighter who uses tentacles, eye beams, and teleport movement to disrupt standard approaches.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2016,14 +2016,14 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)
-values ('avatar-legends', 'Avatar Legends: The Fighting Game', 'AVATAR', 'Launch roster + support pools', 6, '{"version":1,"noun":"Character","verified":true,"ordered":false,"uniqueCharacters":true,"slots":[{"id":"fighter","label":"Character","allowedRoles":["fighter"],"optionLabel":"Support","optionValues":["Gyatso","Momo","Appa","Mai","Ran & Shaw","June","Kanna","Hakoda","Master Pakku","Badgermole","The Boulder","The Hippo","Master Piandao","Suki","Princess Yue","Lo and Li","Joo Dee","Ursa","Rangi","Kelsang","Yun","Firelord Sozin","Admiral Zhao","Imperial Firebender","Naga","Tonraq","Raava","P''Li","Ming-Hua","Ghazan","Vaatu","Dark Spirit","Dark Avatar Unalaq","Katara","Avatar Roku","Guru Pathik"],"optionValuesByCharacter":{"aang":["Gyatso","Momo","Appa"],"zuko":["Mai","Ran & Shaw","June"],"katara":["Kanna","Hakoda","Master Pakku"],"toph":["Badgermole","The Boulder","The Hippo"],"sokka":["Master Piandao","Suki","Princess Yue"],"azula":["Lo and Li","Joo Dee","Ursa"],"kyoshi":["Rangi","Kelsang","Yun"],"ozai":["Firelord Sozin","Admiral Zhao","Imperial Firebender"],"korra":["Naga","Tonraq","Raava"],"zaheer":["P''Li","Ming-Hua","Ghazan"],"nightmare-korra":["Vaatu","Dark Spirit","Dark Avatar Unalaq"],"avatar-aang":["Katara","Avatar Roku","Guru Pathik"]}}],"constraintNote":"Each fighter exposes the three support choices published for the launch build. Supports change the fighter loadout; they are not separate roster slots."}'::jsonb, 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'verified', '2026-08-25T00:00:00Z')
+values ('avatar-legends', 'Avatar Legends: The Fighting Game', 'AVATAR', 'Launch roster + support pools', 6, '{"version":1,"noun":"Character","verified":true,"ordered":false,"uniqueCharacters":true,"slots":[{"id":"fighter","label":"Character","allowedRoles":["fighter"],"optionLabel":"Support","optionValues":["Gyatso","Momo","Appa","Mai","Ran & Shaw","June","Kanna","Hakoda","Master Pakku","Badgermole","The Boulder","The Hippo","Master Piandao","Suki","Princess Yue","Lo and Li","Joo Dee","Ursa","Rangi","Kelsang","Yun","Firelord Sozin","Admiral Zhao","Imperial Firebender","Naga","Tonraq","Raava","P''Li","Ming-Hua","Ghazan","Vaatu","Dark Spirit","Dark Avatar Unalaq","Katara","Avatar Roku","Guru Pathik"],"optionValuesByCharacter":{"aang":["Gyatso","Momo","Appa"],"zuko":["Mai","Ran & Shaw","June"],"katara":["Kanna","Hakoda","Master Pakku"],"toph":["Badgermole","The Boulder","The Hippo"],"sokka":["Master Piandao","Suki","Princess Yue"],"azula":["Lo and Li","Joo Dee","Ursa"],"kyoshi":["Rangi","Kelsang","Yun"],"ozai":["Firelord Sozin","Admiral Zhao","Imperial Firebender"],"korra":["Naga","Tonraq","Raava"],"zaheer":["P''Li","Ming-Hua","Ghazan"],"nightmare-korra":["Vaatu","Dark Spirit","Dark Avatar Unalaq"],"avatar-aang":["Katara","Avatar Roku","Guru Pathik"]}}],"constraintNote":"Each fighter has three support choices. Support is part of the fighter loadout."}'::jsonb, 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'verified', '2026-08-25T00:00:00Z')
 on conflict (slug) do update set
   name = excluded.name, short_name = excluded.short_name, release_label = excluded.release_label,
   launch_order = excluded.launch_order, selection_schema = excluded.selection_schema,
   catalog_source_url = excluded.catalog_source_url, catalog_status = excluded.catalog_status, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'aang', 'Aang', 'fighter', 'released', true, 1, 'Selectable Avatar Legends roster entry for the checked version boundary.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'aang', 'Aang', 'fighter', 'released', true, 1, 'An airbending mobility fighter who uses evasive movement and gust-based attacks to create space for his chosen Support.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2042,7 +2042,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'zuko', 'Zuko', 'fighter', 'released', true, 2, 'Selectable Avatar Legends roster entry for the checked version boundary.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'zuko', 'Zuko', 'fighter', 'released', true, 2, 'A firebending rushdown fighter who combines close sword strings with flame pressure and a Support that extends his approach.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2061,7 +2061,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'katara', 'Katara', 'fighter', 'released', true, 3, 'Selectable Avatar Legends roster entry for the checked version boundary.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'katara', 'Katara', 'fighter', 'released', true, 3, 'A waterbending control fighter who uses flowing projectiles and defensive space management to set up Support-assisted offense.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2069,7 +2069,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'toph', 'Toph', 'fighter', 'released', true, 4, 'Selectable Avatar Legends roster entry for the checked version boundary.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'toph', 'Toph', 'fighter', 'released', true, 4, 'An earthbending heavyweight who uses grounded force and armor-like pressure to make close exchanges favor her team.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2077,7 +2077,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sokka', 'Sokka', 'fighter', 'released', true, 5, 'Selectable Avatar Legends roster entry for the checked version boundary.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sokka', 'Sokka', 'fighter', 'released', true, 5, 'A weapon-focused all-rounder who mixes boomerang zoning with sword attacks and Support calls to cover his approach.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2085,7 +2085,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'azula', 'Azula', 'fighter', 'released', true, 6, 'Selectable Avatar Legends roster entry for the checked version boundary.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'azula', 'Azula', 'fighter', 'released', true, 6, 'A fast firebending pressure fighter who uses aggressive flame attacks and lightning-based threat to force quick defensive decisions.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2104,7 +2104,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'kyoshi', 'Avatar Kyoshi', 'fighter', 'released', true, 7, 'Selectable Avatar Legends roster entry for the checked version boundary.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'kyoshi', 'Avatar Kyoshi', 'fighter', 'released', true, 7, 'A powerful earthbending fighter who uses broad grounded attacks and Support coverage to control the center of the stage.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2112,7 +2112,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ozai', 'Fire Lord Ozai', 'fighter', 'released', true, 8, 'Selectable Avatar Legends roster entry for the checked version boundary.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ozai', 'Fire Lord Ozai', 'fighter', 'released', true, 8, 'A firebending zoner who uses sustained flame pressure and long-range attacks to keep opponents from starting their offense.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2120,7 +2120,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'korra', 'Korra', 'fighter', 'released', true, 9, 'Selectable Avatar Legends roster entry for the checked version boundary.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'korra', 'Korra', 'fighter', 'released', true, 9, 'A versatile bending fighter who shifts between elemental tools and uses her Support loadout to adapt to different ranges.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2139,7 +2139,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'zaheer', 'Zaheer', 'fighter', 'released', true, 10, 'Selectable Avatar Legends roster entry for the checked version boundary.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'zaheer', 'Zaheer', 'fighter', 'released', true, 10, 'An aerial airbender who uses unusual movement and wind attacks to attack from above while Support options cover his landings.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2147,7 +2147,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'nightmare-korra', 'Nightmare Korra', 'fighter', 'released', true, 11, 'Selectable Avatar Legends roster entry for the checked version boundary.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'nightmare-korra', 'Nightmare Korra', 'fighter', 'released', true, 11, 'A corrupted Korra form that emphasizes aggressive elemental pressure and dangerous close-range conversions with its Support choices.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2155,7 +2155,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'avatar-aang', 'Avatar Aang', 'fighter', 'released', true, 12, 'Selectable Avatar Legends roster entry for the checked version boundary.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'avatar-aang', 'Avatar Aang', 'fighter', 'released', true, 12, 'An advanced Aang form that draws on multiple elements to switch between mobility, zoning, and pressure within the Support system.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2170,7 +2170,7 @@ on conflict (slug) do update set
   catalog_source_url = excluded.catalog_source_url, catalog_status = excluded.catalog_status, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'dr-mario', 'Dr. Mario', 'fighter', 'released', true, 1, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'dr-mario', 'Dr. Mario', 'fighter', 'released', true, 1, 'A Mario variant who trades mobility for stronger pills, heavier close-range hits, and reliable pill-to-aerial conversions.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2178,7 +2178,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'mario', 'Mario', 'fighter', 'released', true, 2, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'mario', 'Mario', 'fighter', 'released', true, 2, 'A balanced platform fighter who uses fireballs, quick aerials, and up-special recovery to convert neutral wins into edge pressure.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2186,7 +2186,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'luigi', 'Luigi', 'fighter', 'released', true, 3, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'luigi', 'Luigi', 'fighter', 'released', true, 3, 'A slippery brawler who uses fireballs, strong aerials, and wavedash movement to create unusual approach angles and grab pressure.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2194,7 +2194,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'bowser', 'Bowser', 'fighter', 'released', true, 4, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'bowser', 'Bowser', 'fighter', 'released', true, 4, 'A heavyweight fighter who uses armored-looking fire and claw attacks, powerful throws, and high knockback to punish close commitments.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2202,7 +2202,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'peach', 'Peach', 'fighter', 'released', true, 5, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'peach', 'Peach', 'fighter', 'released', true, 5, 'A float-based fighter who controls the air with turnips and disjointed aerials while converting float movement into pressure.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2210,7 +2210,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'yoshi', 'Yoshi', 'fighter', 'released', true, 6, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'yoshi', 'Yoshi', 'fighter', 'released', true, 6, 'A mobile fighter with an armored double jump who uses eggs, crouch movement, and strong aerials to contest space unexpectedly.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2218,7 +2218,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'donkey-kong', 'Donkey Kong', 'fighter', 'released', true, 7, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'donkey-kong', 'Donkey Kong', 'fighter', 'released', true, 7, 'A heavyweight grappler who uses cargo throws, Giant Punch, and long-reaching normals to carry opponents toward the edge.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2226,7 +2226,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'captain-falcon', 'Captain Falcon', 'fighter', 'released', true, 8, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'captain-falcon', 'Captain Falcon', 'fighter', 'released', true, 8, 'A fast rushdown fighter who combines strong aerials, knee pressure, and burst movement with devastating punish conversions.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2234,7 +2234,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ganondorf', 'Ganondorf', 'fighter', 'released', true, 9, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ganondorf', 'Ganondorf', 'fighter', 'released', true, 9, 'A slow powerhouse who uses large disjointed strikes and Dark Dive to turn a single hard read into heavy knockback.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2242,7 +2242,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'falco', 'Falco', 'fighter', 'released', true, 10, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'falco', 'Falco', 'fighter', 'released', true, 10, 'A fast spacer who uses lasers, Shine, and high-falling aerials to start pillar combos and edgeguarding sequences.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2261,7 +2261,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'fox', 'Fox', 'fighter', 'released', true, 11, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'fox', 'Fox', 'fighter', 'released', true, 11, 'A high-speed glass cannon who uses lasers, Shine, and up-smash confirms to overwhelm grounded defense before recovering with Fire Fox.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2280,7 +2280,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ness', 'Ness', 'fighter', 'released', true, 12, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ness', 'Ness', 'fighter', 'released', true, 12, 'A floaty pressure fighter who uses PK Fire, yo-yo attacks, and magnetic recovery to create awkward traps around the ledge.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2288,7 +2288,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ice-climbers', 'Ice Climbers', 'fighter', 'released', true, 13, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ice-climbers', 'Ice Climbers', 'fighter', 'released', true, 13, 'A partner-based fighter who uses Blizzard, desynchronized movement, and grab conversions to make coordinated pressure snowball.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2296,7 +2296,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'kirby', 'Kirby', 'fighter', 'released', true, 14, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'kirby', 'Kirby', 'fighter', 'released', true, 14, 'A small aerial fighter who uses Copy abilities, flexible jumps, and compact normals to punish overextended opponents.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2304,7 +2304,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'samus', 'Samus', 'fighter', 'released', true, 15, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'samus', 'Samus', 'fighter', 'released', true, 15, 'A projectile-based fighter who uses Charge Shot, missiles, bombs, and grapple recovery to control approach lanes.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2312,7 +2312,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'zelda', 'Zelda', 'fighter', 'released', true, 16, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'zelda', 'Zelda', 'fighter', 'released', true, 16, 'A magic-based zoner who uses Din''s Fire and Nayru''s Love before transforming into Sheik for faster close-range options.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2320,7 +2320,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sheik', 'Sheik', 'fighter', 'released', true, 17, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sheik', 'Sheik', 'fighter', 'released', true, 17, 'A fast technical fighter who uses needles, long-reaching aerials, and chain throws to convert neutral wins into edgeguards.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2339,7 +2339,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'link', 'Link', 'fighter', 'released', true, 18, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'link', 'Link', 'fighter', 'released', true, 18, 'A weapon-and-projectile fighter who uses bombs, boomerangs, arrows, and a disjointed sword to control grounded approaches.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2347,7 +2347,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'young-link', 'Young Link', 'fighter', 'released', true, 19, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'young-link', 'Young Link', 'fighter', 'released', true, 19, 'A faster Link variant who uses quick fire arrows, boomerangs, bombs, and nimble aerials to keep opponents at mid range.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2355,7 +2355,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'mewtwo', 'Mewtwo', 'fighter', 'released', true, 20, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'mewtwo', 'Mewtwo', 'fighter', 'released', true, 20, 'A light psychic fighter who uses Shadow Ball, teleport movement, and a long tail to create floaty spacing and edgeguard traps.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2363,7 +2363,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'marth', 'Marth', 'fighter', 'released', true, 21, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'marth', 'Marth', 'fighter', 'released', true, 21, 'A precise sword fighter who rewards spacing at the blade tip and converts disjointed aerials into grabs and edge pressure.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2382,7 +2382,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'roy', 'Roy', 'fighter', 'released', true, 22, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'roy', 'Roy', 'fighter', 'released', true, 22, 'A close-range sword fighter whose hilt-centered sweet spots reward aggressive spacing and explosive jab-to-aerial conversions.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2390,7 +2390,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'pichu', 'Pichu', 'fighter', 'released', true, 23, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'pichu', 'Pichu', 'fighter', 'released', true, 23, 'A tiny electric rushdown fighter who uses Quick Attack and fast aerials to scramble around opponents while taking self-damage.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2398,7 +2398,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'pikachu', 'Pikachu', 'fighter', 'released', true, 24, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'pikachu', 'Pikachu', 'fighter', 'released', true, 24, 'A mobile electric fighter who uses Quick Attack, Thunder Jolt, and edgeguarding aerials to control both stage and recovery routes.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2406,7 +2406,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jigglypuff', 'Jigglypuff', 'fighter', 'released', true, 25, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jigglypuff', 'Jigglypuff', 'fighter', 'released', true, 25, 'A highly aerial fighter who uses drift, repeated jumps, and Rest confirms to turn patient edge pressure into sudden stocks.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2414,7 +2414,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'mr-game-and-watch', 'Mr. Game & Watch', 'fighter', 'released', true, 26, 'Selectable Super Smash Bros. Melee roster entry for the checked version boundary.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'mr-game-and-watch', 'Mr. Game & Watch', 'fighter', 'released', true, 26, 'A floaty multi-tool fighter who uses unusual disjoints, Bucket, and Judge to create matchup-specific pressure and punishment.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2429,7 +2429,7 @@ on conflict (slug) do update set
   catalog_source_url = excluded.catalog_source_url, catalog_status = excluded.catalog_status, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sol', 'Sol Badguy', 'fighter', 'released', true, 1, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sol', 'Sol Badguy', 'fighter', 'released', true, 1, 'A close-range powerhouse who uses Gunflame, Bandit Revolver, and strong frame traps to turn a grounded opening into knockdown pressure.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2448,7 +2448,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ky', 'Ky Kiske', 'fighter', 'released', true, 2, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ky', 'Ky Kiske', 'fighter', 'released', true, 2, 'A balanced sword fighter who controls space with Stun Edge and Vapor Thrust before using Greed Sever and Stun Dipper to vary offense.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2467,7 +2467,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'may', 'May', 'fighter', 'released', true, 3, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'may', 'May', 'fighter', 'released', true, 3, 'A charge-based rushdown fighter who uses Mr. Dolphin, beach balls, and strong aerials to approach from unpredictable angles.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2475,7 +2475,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'millia', 'Millia Rage', 'fighter', 'released', true, 4, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'millia', 'Millia Rage', 'fighter', 'released', true, 4, 'A fast setplay fighter who uses Tandem Top and summoned hair discs to create repeated left-right and high-low pressure after knockdowns.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2483,7 +2483,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'zato-1', 'Eddie / Zato=1', 'fighter', 'released', true, 5, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'zato-1', 'Eddie / Zato=1', 'fighter', 'released', true, 5, 'A summon fighter who manages Eddie''s gauge to layer drills, oppose attacks, and command-grab pressure over Zato''s own buttons.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2491,7 +2491,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'baiken', 'Baiken', 'fighter', 'released', true, 6, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'baiken', 'Baiken', 'fighter', 'released', true, 6, 'A defensive sword fighter who uses Tatami Gaeshi, parries, and tether-based follow-ups to punish approaches and force close decisions.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2499,7 +2499,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'faust', 'Faust', 'fighter', 'released', true, 7, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'faust', 'Faust', 'fighter', 'released', true, 7, 'A disruptive item-throw fighter who uses random objects, long pokes, and pogo movement to make every round play out differently.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2507,7 +2507,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'anji', 'Anji Mito', 'fighter', 'released', true, 8, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'anji', 'Anji Mito', 'fighter', 'released', true, 8, 'A counter-oriented fighter who uses autoguard fans and Fuujin follow-ups to absorb predictable attacks and open defensive gaps.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2515,7 +2515,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'johnny', 'Johnny', 'fighter', 'released', true, 9, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'johnny', 'Johnny', 'fighter', 'released', true, 9, 'A mid-range sword fighter who stocks coins and uses Mist Finer stance attacks to control space and threaten high-damage confirms.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2523,7 +2523,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jam', 'Jam Kuradoberi', 'fighter', 'released', true, 10, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jam', 'Jam Kuradoberi', 'fighter', 'released', true, 10, 'A close-range martial artist who stocks special move enhancements and uses fast kicks, Rekka pressure, and frame traps to stay active.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2531,7 +2531,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'venom', 'Venom', 'fighter', 'released', true, 11, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'venom', 'Venom', 'fighter', 'released', true, 11, 'A technical zoner who places billiard balls at chosen angles, then uses ball returns and charged shots to build layered offense.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2539,7 +2539,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'dizzy', 'Dizzy', 'fighter', 'released', true, 12, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'dizzy', 'Dizzy', 'fighter', 'released', true, 12, 'A summon-and-projectile fighter who combines fish, fire, and ice attacks to control multiple lanes and punish impatient approaches.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2547,7 +2547,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'testament', 'Testament', 'fighter', 'released', true, 13, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'testament', 'Testament', 'fighter', 'released', true, 13, 'A trap fighter who plants seals and uses Grave Reaper, webs, and succubus pressure to make grounded movement unsafe.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2566,7 +2566,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'slayer', 'Slayer', 'fighter', 'released', true, 14, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'slayer', 'Slayer', 'fighter', 'released', true, 14, 'A close-range counter fighter who uses Dandy Step, backdash invulnerability, and Pilebunker to turn reads into huge damage.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2574,7 +2574,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'i-no', 'I-No', 'fighter', 'released', true, 15, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'i-no', 'I-No', 'fighter', 'released', true, 15, 'A hover-dash rushdown fighter who uses musical notes, Chemical Love, and fast overhead routes to attack from changing heights.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2582,7 +2582,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'zappa', 'Zappa', 'fighter', 'released', true, 16, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'zappa', 'Zappa', 'fighter', 'released', true, 16, 'A stance-based setplay fighter who cycles spirit summons to gain different attacks, movement patterns, and pressure sequences.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2601,7 +2601,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'bridget', 'Bridget', 'fighter', 'released', true, 17, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'bridget', 'Bridget', 'fighter', 'released', true, 17, 'A mobile yo-yo fighter who places setplay tools and uses rolling movement to approach, retreat, and attack from awkward angles.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2609,7 +2609,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'robo-ky', 'Robo-Ky', 'fighter', 'released', true, 18, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'robo-ky', 'Robo-Ky', 'fighter', 'released', true, 18, 'A resource fighter who charges his electric gauge to improve specials and then spends that power on stronger pressure and conversions.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2617,7 +2617,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'aba', 'A.B.A', 'fighter', 'released', true, 19, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'aba', 'A.B.A', 'fighter', 'released', true, 19, 'A resource fighter who manages key and blood states to shift between a slower neutral mode and a powerful aggressive transformation.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2625,7 +2625,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'order-sol', 'Order-Sol', 'fighter', 'released', true, 20, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'order-sol', 'Order-Sol', 'fighter', 'released', true, 20, 'A charge-based sword fighter who stores power for stronger specials and uses Dragon Install threat to amplify close-range offense.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2633,7 +2633,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'kliff', 'Kliff Undersn', 'fighter', 'released', true, 21, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'kliff', 'Kliff Undersn', 'fighter', 'released', true, 21, 'A slow, high-damage veteran who uses an enormous sword and powerful anti-airs to make every grounded approach a serious risk.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2641,7 +2641,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'justice', 'Justice', 'fighter', 'released', true, 22, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'justice', 'Justice', 'fighter', 'released', true, 22, 'A projectile trap fighter who layers missiles and laser swords across the screen before cashing out with explosive conversions.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2649,7 +2649,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'potemkin', 'Potemkin', 'fighter', 'released', true, 23, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'potemkin', 'Potemkin', 'fighter', 'released', true, 23, 'A heavyweight grappler who uses Hammer Fall armor, Slide Head, and Potemkin Buster to force respect at close range.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2657,7 +2657,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'chipp', 'Chipp Zanuff', 'fighter', 'released', true, 24, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'chipp', 'Chipp Zanuff', 'fighter', 'released', true, 24, 'A fragile speed fighter who uses Alpha Blade, teleports, and wall movement to create rapid cross-ups and relentless mix-ups.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2665,7 +2665,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'axl', 'Axl Low', 'fighter', 'released', true, 25, 'Selectable Guilty Gear XX Accent Core Plus R roster entry for the checked version boundary.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'axl', 'Axl Low', 'fighter', 'released', true, 25, 'A long-range chain fighter who uses sickle attacks, Rensen, and time-control pressure to punish movement from across the screen.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2680,7 +2680,7 @@ on conflict (slug) do update set
   catalog_source_url = excluded.catalog_source_url, catalog_status = excluded.catalog_status, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'anakaris', 'Anakaris', 'fighter', 'released', true, 1, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'anakaris', 'Anakaris', 'fighter', 'released', true, 1, 'A large setplay fighter who uses coffin attacks, curses, transformation, and teleport movement to make conventional defense unreliable.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2688,7 +2688,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'bishamon', 'Bishamon', 'fighter', 'released', true, 2, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'bishamon', 'Bishamon', 'fighter', 'released', true, 2, 'A sword rushdown fighter who uses long katana normals, armor, and unblockable-looking pressure to turn close openings into knockdowns.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2696,7 +2696,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'demitri', 'Demitri Maximoff', 'fighter', 'released', true, 3, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'demitri', 'Demitri Maximoff', 'fighter', 'released', true, 3, 'A well-rounded vampire who uses fireballs, teleport movement, and command grabs to threaten both grounded space and close defense.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2704,7 +2704,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'felicia', 'Felicia', 'fighter', 'released', true, 4, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'felicia', 'Felicia', 'fighter', 'released', true, 4, 'A mobile rushdown fighter who uses rolling attacks, wall movement, and fast normals to force scrambles at close range.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2712,7 +2712,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'hsien-ko', 'Hsien-Ko', 'fighter', 'released', true, 5, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'hsien-ko', 'Hsien-Ko', 'fighter', 'released', true, 5, 'A projectile-and-item fighter who throws talismans and weapons while using armored specials to disrupt the opponent''s timing.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2720,7 +2720,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jon-talbain', 'Jon Talbain', 'fighter', 'released', true, 6, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jon-talbain', 'Jon Talbain', 'fighter', 'released', true, 6, 'A fast werewolf rushdown fighter who uses air mobility, Beast Cannon, and rekka-like attacks to keep pressure moving forward.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2728,7 +2728,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'lord-raptor', 'Lord Raptor', 'fighter', 'released', true, 7, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'lord-raptor', 'Lord Raptor', 'fighter', 'released', true, 7, 'A weapon rushdown fighter who combines chainsaws, projectiles, and fast air movement to make close-range pressure hard to escape.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2736,7 +2736,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'morrigan', 'Morrigan Aensland', 'fighter', 'released', true, 8, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'morrigan', 'Morrigan Aensland', 'fighter', 'released', true, 8, 'A mobile succubus who uses Soul Fist projectiles, air dashes, and flight-like movement to attack from ambiguous heights.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2755,7 +2755,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'rikuo', 'Rikuo', 'fighter', 'released', true, 9, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'rikuo', 'Rikuo', 'fighter', 'released', true, 9, 'A water-based space controller who uses bubbles, aquatic movement, and long-reaching normals to punish approaches and shape neutral.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2763,7 +2763,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sasquatch', 'Sasquatch', 'fighter', 'released', true, 10, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sasquatch', 'Sasquatch', 'fighter', 'released', true, 10, 'A fast heavyweight who uses ice projectiles, powerful limbs, and sudden aerial movement to turn momentum into corner pressure.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2771,7 +2771,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'victor', 'Victor von Gerdenheim', 'fighter', 'released', true, 11, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'victor', 'Victor von Gerdenheim', 'fighter', 'released', true, 11, 'A large electric bruiser who uses armor, long-reaching punches, and command attacks to win trades and force close-range respect.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2779,7 +2779,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'bulleta', 'B.B. Hood', 'fighter', 'released', true, 12, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'bulleta', 'B.B. Hood', 'fighter', 'released', true, 12, 'A trap-heavy gunner who uses firearms, grenades, and deceptive movement to turn prepared space into explosive pressure.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2798,7 +2798,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jedah', 'Jedah Dohma', 'fighter', 'released', true, 13, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jedah', 'Jedah Dohma', 'fighter', 'released', true, 13, 'A flight-capable setplay fighter who uses scythes, soul traps, and unusual movement to control where the opponent can stand.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2817,7 +2817,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'lilith', 'Lilith', 'fighter', 'released', true, 14, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'lilith', 'Lilith', 'fighter', 'released', true, 14, 'A fast projectile fighter who uses Soul Flash, air movement, and close-range mix-ups to convert mobility into sustained offense.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2825,7 +2825,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'q-bee', 'Q-Bee', 'fighter', 'released', true, 15, 'Selectable Vampire Savior roster entry for the checked version boundary.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'q-bee', 'Q-Bee', 'fighter', 'released', true, 15, 'A highly mobile rushdown fighter who uses flight, air dashes, and bee-based attacks to swarm opponents from changing angles.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2851,7 +2851,7 @@ on conflict (slug) do update set
   catalog_source_url = excluded.catalog_source_url, catalog_status = excluded.catalog_status, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ryu', 'Ryu', 'fighter', 'released', true, 1, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ryu', 'Ryu', 'fighter', 'released', true, 1, 'A disciplined shoto who uses Hadoken, Denjin charge, and Hashogeki to control space before converting a Drive-enhanced opening.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2859,7 +2859,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'luke', 'Luke', 'fighter', 'released', true, 2, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'luke', 'Luke', 'fighter', 'released', true, 2, 'A mid-range boxer who uses charged Flash Knuckle follow-ups, Sand Blast, and advancing normals to turn whiff punishes into pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2867,7 +2867,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'chun-li', 'Chun-Li', 'fighter', 'released', true, 3, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'chun-li', 'Chun-Li', 'fighter', 'released', true, 3, 'A technical stance fighter who combines Kikoken, Spinning Bird Kick, and Serenity Stream to vary her neutral and close pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2886,7 +2886,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jamie', 'Jamie', 'fighter', 'released', true, 4, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jamie', 'Jamie', 'fighter', 'released', true, 4, 'A stance-and-resource fighter who raises his drink level to unlock stronger moves while using Rekka attacks and dives to stay close.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2894,7 +2894,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'guile', 'Guile', 'fighter', 'released', true, 5, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'guile', 'Guile', 'fighter', 'released', true, 5, 'A charge-based zoner who builds a wall with Sonic Boom and Flash Kick, then uses Drive Rush to turn controlled space into offense.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2902,7 +2902,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'kimberly', 'Kimberly', 'fighter', 'released', true, 6, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'kimberly', 'Kimberly', 'fighter', 'released', true, 6, 'A mobile ninja who uses spray-can setups, run special moves, and teleport-style movement to create sudden left-right pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2910,7 +2910,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'juri', 'Juri', 'fighter', 'released', true, 7, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'juri', 'Juri', 'fighter', 'released', true, 7, 'A flexible rushdown fighter who stores Fuha stocks and spends them on fireball, dive-kick, and Fuha-enhanced pressure routes.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2929,7 +2929,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ken', 'Ken', 'fighter', 'released', true, 8, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ken', 'Ken', 'fighter', 'released', true, 8, 'A forward-driving shoto who combines Hadoken and Shoryuken with Jinrai kicks, run pressure, and corner-carrying Drive Rush routes.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2948,7 +2948,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'blanka', 'Blanka', 'fighter', 'released', true, 9, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'blanka', 'Blanka', 'fighter', 'released', true, 9, 'A trickster charge fighter who uses Blanka-chan dolls, rolling attacks, and Electric Thunder to make approach timing hard to predict.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2956,7 +2956,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'dhalsim', 'Dhalsim', 'fighter', 'released', true, 10, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'dhalsim', 'Dhalsim', 'fighter', 'released', true, 10, 'A long-range yoga fighter who controls space with stretched limbs, Yoga Fire, teleport movement, and Drive-enhanced approach traps.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2964,7 +2964,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'e-honda', 'E. Honda', 'fighter', 'released', true, 11, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'e-honda', 'E. Honda', 'fighter', 'released', true, 11, 'A heavyweight charge fighter who uses Headbutt, Hundred Hand Slap, and Sumo Dash to force grounded respect and corner pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2972,7 +2972,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'dee-jay', 'Dee Jay', 'fighter', 'released', true, 12, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'dee-jay', 'Dee Jay', 'fighter', 'released', true, 12, 'A feint-heavy mid-range fighter who uses Air Slasher, Sobat attacks, and sway-based follow-ups to make his offense difficult to call out.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2980,7 +2980,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'cammy', 'Cammy', 'fighter', 'released', true, 13, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'cammy', 'Cammy', 'fighter', 'released', true, 13, 'A fast rushdown fighter who uses Spiral Arrow, Cannon Strike, and Hooligan Combination to attack from grounded and aerial angles.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2988,7 +2988,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'manon', 'Manon', 'fighter', 'released', true, 14, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'manon', 'Manon', 'fighter', 'released', true, 14, 'A grappling footsie fighter who builds medal levels through command grabs and hit confirms, increasing the reward for every clean read.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -2996,7 +2996,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'marisa', 'Marisa', 'fighter', 'released', true, 15, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'marisa', 'Marisa', 'fighter', 'released', true, 15, 'A heavyweight boxer who uses armored Gladius, charged strikes, and Scutum movement to turn one close-range hit into massive damage.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3004,7 +3004,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'lily', 'Lily', 'fighter', 'released', true, 16, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'lily', 'Lily', 'fighter', 'released', true, 16, 'A small rushdown fighter who stores wind stocks to strengthen Condor Spire, Condor Wind, and her forward-moving pressure routes.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3012,7 +3012,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jp', 'JP', 'fighter', 'released', true, 17, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jp', 'JP', 'fighter', 'released', true, 17, 'A long-range control fighter who uses portals, Partisan projectiles, and Departure traps to force careful movement before opening defense.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3020,7 +3020,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'zangief', 'Zangief', 'fighter', 'released', true, 18, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'zangief', 'Zangief', 'fighter', 'released', true, 18, 'A classic grappler who uses Spinning Piledriver, Screw Piledriver, and Drive Rush to turn a single approach into devastating pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3028,7 +3028,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'rashid', 'Rashid', 'fighter', 'released', true, 19, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'rashid', 'Rashid', 'fighter', 'released', true, 19, 'A mobile wind fighter who builds tornado setups and uses parkour movement, Whirlwind Shot, and Arabian Cyclone to attack from shifting angles.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3036,7 +3036,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'aki', 'A.K.I.', 'fighter', 'released', true, 20, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'aki', 'A.K.I.', 'fighter', 'released', true, 20, 'A poison-focused setplay fighter who applies toxins with Serpent Lash and then uses long-range tentacles and command movement to exploit them.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3044,7 +3044,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ed', 'Ed', 'fighter', 'released', true, 21, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ed', 'Ed', 'fighter', 'released', true, 21, 'A mid-range boxer who uses Psycho Flicker, Kill Rush, and shadow-based follow-ups to pull opponents into close pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3052,7 +3052,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'akuma', 'Akuma', 'fighter', 'released', true, 22, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'akuma', 'Akuma', 'fighter', 'released', true, 22, 'A high-damage shoto who combines grounded and aerial fireballs with demon-flip movement and Adamant Flame to keep neutral volatile.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3071,7 +3071,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'm-bison', 'M. Bison', 'fighter', 'released', true, 23, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'm-bison', 'M. Bison', 'fighter', 'released', true, 23, 'A pressure fighter who plants Psycho Mines and uses Scissor Kicks, Head Press, and explosive Drive conversions to maintain momentum.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3079,7 +3079,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'terry', 'Terry', 'fighter', 'released', true, 24, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'terry', 'Terry', 'fighter', 'released', true, 24, 'A well-rounded brawler who uses Power Wave, Burn Knuckle, and Crack Shoot to cover grounded, advancing, and anti-air interactions.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3087,7 +3087,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'mai', 'Mai', 'fighter', 'released', true, 25, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'mai', 'Mai', 'fighter', 'released', true, 25, 'A mobile weapon fighter who uses fans, fire projectiles, and aerial movement to control lanes before rushing down behind Drive pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3095,7 +3095,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'elena', 'Elena', 'fighter', 'released', true, 26, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'elena', 'Elena', 'fighter', 'released', true, 26, 'A rhythm-based footwork fighter who uses long-reaching kicks, healing options, and mobile pokes to control the pace of neutral exchanges.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3103,7 +3103,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sagat', 'Sagat', 'fighter', 'released', true, 27, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sagat', 'Sagat', 'fighter', 'released', true, 27, 'A charge-and-space fighter who uses high and low Tiger Shots, Tiger Knee, and Tiger Uppercut to control lanes and punish jumps.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3111,7 +3111,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'c-viper', 'C. Viper', 'fighter', 'released', true, 28, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'c-viper', 'C. Viper', 'fighter', 'released', true, 28, 'A feint-oriented pressure fighter who uses burning kicks, seismic attacks, and sudden movement to turn Drive Rush approaches into mix-ups.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3119,7 +3119,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'alex', 'Alex', 'fighter', 'released', true, 29, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'alex', 'Alex', 'fighter', 'released', true, 29, 'A close-range grappler who combines long-reaching strikes, command grabs, and Power Bomb pressure to reward decisive forward movement.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3127,7 +3127,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ingrid', 'Ingrid', 'fighter', 'released', true, 30, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ingrid', 'Ingrid', 'fighter', 'released', true, 30, 'A close-range power fighter whose light-based attacks, advancing normals, and Drive Gauge management are used to force compact exchanges.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3135,7 +3135,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'yasmine', 'Yasmine', 'fighter', 'released', true, 31, 'Selectable Street Fighter 6 roster entry for the checked version boundary.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'yasmine', 'Yasmine', 'fighter', 'released', true, 31, 'A spacing-focused SF6 roster entry that emphasizes whiff punishment, Drive Rush conversions, and controlled close-range pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3150,7 +3150,7 @@ on conflict (slug) do update set
   catalog_source_url = excluded.catalog_source_url, catalog_status = excluded.catalog_status, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'liu-kang', 'Liu Kang', 'fighter', 'released', true, 1, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'liu-kang', 'Liu Kang', 'fighter', 'released', true, 1, 'A fire-and-space fighter who uses low and high fireballs, bicycle kicks, and air control to convert patient neutral into pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3158,7 +3158,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'scorpion', 'Scorpion', 'fighter', 'released', true, 2, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'scorpion', 'Scorpion', 'fighter', 'released', true, 2, 'A weapon rushdown fighter who uses the Spear, teleport attacks, and fiery sword strings to pull opponents into close offense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3177,7 +3177,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sub-zero', 'Sub-Zero', 'fighter', 'released', true, 3, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sub-zero', 'Sub-Zero', 'fighter', 'released', true, 3, 'An ice-based setup fighter who uses frozen clones, slides, and ice projectiles to control movement and create layered pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3196,7 +3196,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'raiden', 'Raiden', 'fighter', 'released', true, 4, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'raiden', 'Raiden', 'fighter', 'released', true, 4, 'An electric rushdown fighter who uses torpedoes, lightning attacks, and charged specials to make forward movement difficult to stop.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3204,7 +3204,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'kung-lao', 'Kung Lao', 'fighter', 'released', true, 5, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'kung-lao', 'Kung Lao', 'fighter', 'released', true, 5, 'A fast weapon fighter who uses hat attacks, teleport movement, and spinning pressure to open defense from multiple ranges.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3212,7 +3212,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'kitana', 'Kitana', 'fighter', 'released', true, 6, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'kitana', 'Kitana', 'fighter', 'released', true, 6, 'A mid-range fan fighter who uses Fan Toss, Fan-Nado, and aerial fan attacks to control lanes and convert whiff punishes.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3220,7 +3220,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'mileena', 'Mileena', 'fighter', 'released', true, 7, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'mileena', 'Mileena', 'fighter', 'released', true, 7, 'A mobile rushdown fighter who uses sais, Teleport Kick, and Ball Roll to close distance and turn openings into brutal corner pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3239,7 +3239,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'johnny-cage', 'Johnny Cage', 'fighter', 'released', true, 8, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'johnny-cage', 'Johnny Cage', 'fighter', 'released', true, 8, 'A close-range pressure fighter who builds Star Power through taunts and attacks, then uses enhanced specials to extend his offense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3247,7 +3247,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'kenshi', 'Kenshi', 'fighter', 'released', true, 9, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'kenshi', 'Kenshi', 'fighter', 'released', true, 9, 'A stance-and-sword fighter who calls his ancestral spirit to extend attacks, control space, and create layered pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3255,7 +3255,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'smoke', 'Smoke', 'fighter', 'released', true, 10, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'smoke', 'Smoke', 'fighter', 'released', true, 10, 'A deceptive ninja who uses teleport attacks, invisibility, and smoke-based movement to create ambiguous approaches and whiff punishes.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3263,7 +3263,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'rain', 'Rain', 'fighter', 'released', true, 11, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'rain', 'Rain', 'fighter', 'released', true, 11, 'A water-magic fighter who uses portals, projectiles, and stance-like movement to redirect attacks and control the ground.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3271,7 +3271,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'li-mei', 'Li Mei', 'fighter', 'released', true, 12, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'li-mei', 'Li Mei', 'fighter', 'released', true, 12, 'A mid-range brawler who uses lantern projectiles, explosive attacks, and strong kicks to turn grounded control into pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3279,7 +3279,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'tanya', 'Tanya', 'fighter', 'released', true, 13, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'tanya', 'Tanya', 'fighter', 'released', true, 13, 'A mobile weapon fighter who uses staff attacks, aerial movement, and safe advancing specials to maintain close-range momentum.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3287,7 +3287,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'baraka', 'Baraka', 'fighter', 'released', true, 14, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'baraka', 'Baraka', 'fighter', 'released', true, 14, 'A blade rushdown fighter who uses arm blades, projectile slashes, and advancing attacks to overwhelm opponents at close range.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3295,7 +3295,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'geras', 'Geras', 'fighter', 'released', true, 15, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'geras', 'Geras', 'fighter', 'released', true, 15, 'A heavyweight setup fighter who uses sand constructs, command grabs, and time-based resets to make his pressure difficult to escape.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3303,7 +3303,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'reptile', 'Reptile', 'fighter', 'released', true, 16, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'reptile', 'Reptile', 'fighter', 'released', true, 16, 'A transforming rushdown fighter who uses acid, invisibility, and lizard movement to approach from deceptive angles.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3311,7 +3311,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ashrah', 'Ashrah', 'fighter', 'released', true, 17, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ashrah', 'Ashrah', 'fighter', 'released', true, 17, 'A sword fighter who manages holy and demonic damage states to vary her specials, neutral control, and combo reward.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3319,7 +3319,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'havik', 'Havik', 'fighter', 'released', true, 18, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'havik', 'Havik', 'fighter', 'released', true, 18, 'A chaotic pressure fighter who uses dismemberment-based attacks, body-part projectiles, and unusual resets to keep defense unstable.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3327,7 +3327,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'general-shao', 'General Shao', 'fighter', 'released', true, 19, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'general-shao', 'General Shao', 'fighter', 'released', true, 19, 'A heavy weapon fighter who uses an axe, hammering pressure, and weapon-enhanced attacks to win slow, damaging exchanges.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3335,7 +3335,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sindel', 'Sindel', 'fighter', 'released', true, 20, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sindel', 'Sindel', 'fighter', 'released', true, 20, 'A control fighter who uses scream projectiles, levitation, hair attacks, and mobility to pressure from both ground and air.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3343,7 +3343,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'reiko', 'Reiko', 'fighter', 'released', true, 21, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'reiko', 'Reiko', 'fighter', 'released', true, 21, 'A grappling rushdown fighter who uses command grabs, spear attacks, and advancing strikes to force repeated close-range guesses.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3351,7 +3351,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'nitara', 'Nitara', 'fighter', 'released', true, 22, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'nitara', 'Nitara', 'fighter', 'released', true, 22, 'An aerial rushdown fighter who uses flight, blood-based attacks, and sharp dive-ins to attack from unusual heights.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3359,7 +3359,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'shang-tsung', 'Shang Tsung', 'fighter', 'released', true, 23, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'shang-tsung', 'Shang Tsung', 'fighter', 'released', true, 23, 'A stance-switching sorcerer who morphs between forms and uses skull projectiles, ground traps, and stolen attacks to vary offense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3367,7 +3367,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'omni-man', 'Omni-Man', 'fighter', 'released', true, 24, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'omni-man', 'Omni-Man', 'fighter', 'released', true, 24, 'A heavyweight rushdown fighter who uses Viltrumite strength, flight-like movement, and brutal advancing strikes to carry opponents cornerward.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3375,7 +3375,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'quan-chi', 'Quan Chi', 'fighter', 'released', true, 25, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'quan-chi', 'Quan Chi', 'fighter', 'released', true, 25, 'A portal-and-trap fighter who uses skulls, portals, and summoned hazards to make neutral space dangerous before opening defense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3383,7 +3383,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'peacemaker', 'Peacemaker', 'fighter', 'released', true, 26, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'peacemaker', 'Peacemaker', 'fighter', 'released', true, 26, 'A gadget gunner who combines firearms, force fields, and anti-air tools with aggressive close-range pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3391,7 +3391,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ermac', 'Ermac', 'fighter', 'released', true, 27, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ermac', 'Ermac', 'fighter', 'released', true, 27, 'A spirit-based mobility fighter who uses teleports, soul attacks, and possession-style movement to create layered offense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3399,7 +3399,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'homelander', 'Homelander', 'fighter', 'released', true, 28, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'homelander', 'Homelander', 'fighter', 'released', true, 28, 'An aerial pressure fighter who uses flight, heat vision, and strong mid-range attacks to harass opponents from changing heights.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3407,7 +3407,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'takeda-takahashi', 'Takeda Takahashi', 'fighter', 'released', true, 29, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'takeda-takahashi', 'Takeda Takahashi', 'fighter', 'released', true, 29, 'A weapon-and-whip fighter who uses kunai, chained attacks, and agile movement to control space and extend corner combos.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3415,7 +3415,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'cyrax', 'Cyrax', 'fighter', 'released', true, 30, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'cyrax', 'Cyrax', 'fighter', 'released', true, 30, 'A gadget fighter who uses bombs, traps, and explosive armor attacks to create delayed pressure and team openings.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3423,7 +3423,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sektor', 'Sektor', 'fighter', 'released', true, 31, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sektor', 'Sektor', 'fighter', 'released', true, 31, 'A missile-and-armor fighter who uses rockets, flamethrowers, and powered movement to control approach lanes and force corner pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3431,7 +3431,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'noob-saibot', 'Noob Saibot', 'fighter', 'released', true, 32, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'noob-saibot', 'Noob Saibot', 'fighter', 'released', true, 32, 'A shadow-clone fighter who uses portals, sickle attacks, and a controllable shadow to attack from two angles at once.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3439,7 +3439,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ghostface', 'Ghostface', 'fighter', 'released', true, 33, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ghostface', 'Ghostface', 'fighter', 'released', true, 33, 'A weapon-based stance fighter who uses ambush attacks, hidden weapons, and identity-swapping pressure to create unpredictable offense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3447,7 +3447,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'conan', 'Conan the Barbarian', 'fighter', 'released', true, 34, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'conan', 'Conan the Barbarian', 'fighter', 'released', true, 34, 'A heavy sword fighter who uses broad weapon swings, armor, and grappling attacks to turn close-range reads into high damage.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3455,7 +3455,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 't-1000', 'T-1000 Terminator', 'fighter', 'released', true, 35, 'Selectable Mortal Kombat 1 roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 't-1000', 'T-1000 Terminator', 'fighter', 'released', true, 35, 'A shapeshifting weapon fighter who uses liquid-metal attacks, blades, and body-morphing movement to vary pressure and punish whiffs.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3463,7 +3463,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sub-zero-kameo', 'Sub-Zero', 'kameo', 'released', true, 36, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sub-zero-kameo', 'Sub-Zero', 'kameo', 'released', true, 36, 'A defensive Kameo who adds ice armor and freezing attacks that help a fighter challenge pressure or extend a safe approach.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3471,7 +3471,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'shujinko', 'Shujinko', 'kameo', 'released', true, 37, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'shujinko', 'Shujinko', 'kameo', 'released', true, 37, 'A mimic Kameo who cycles through borrowed techniques to give the paired fighter changing neutral, combo, and punish options.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3479,7 +3479,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'scorpion-kameo', 'Scorpion', 'kameo', 'released', true, 38, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'scorpion-kameo', 'Scorpion', 'kameo', 'released', true, 38, 'An offensive Kameo who uses spear pulls and fiery strikes to extend combos, cover approaches, and reposition the opponent.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3487,7 +3487,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'motaro', 'Motaro', 'kameo', 'released', true, 39, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'motaro', 'Motaro', 'kameo', 'released', true, 39, 'A utility Kameo who uses teleporting movement, projectile reflection, and long-reaching attacks to change how the paired fighter controls space.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3495,7 +3495,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'kung-lao-kameo', 'Kung Lao', 'kameo', 'released', true, 40, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'kung-lao-kameo', 'Kung Lao', 'kameo', 'released', true, 40, 'A flexible Kameo who adds hat throws, teleport pressure, and low-to-high coverage to extend the paired fighter''s offense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3503,7 +3503,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'cyrax-kameo', 'Cyrax', 'kameo', 'released', true, 41, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'cyrax-kameo', 'Cyrax', 'kameo', 'released', true, 41, 'A trap-oriented Kameo who adds bombs and explosive attacks that delay pressure and create combo extensions.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3511,7 +3511,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'frost', 'Frost', 'kameo', 'released', true, 42, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'frost', 'Frost', 'kameo', 'released', true, 42, 'A control Kameo who contributes ice projectiles and freezing ground attacks that help the paired fighter restrict movement.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3519,7 +3519,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'goro', 'Goro', 'kameo', 'released', true, 43, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'goro', 'Goro', 'kameo', 'released', true, 43, 'A heavyweight Kameo who adds command grabs, stomps, and armored-looking pressure to make close-range offense more threatening.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3527,7 +3527,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jax', 'Jax', 'kameo', 'released', true, 44, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jax', 'Jax', 'kameo', 'released', true, 44, 'A pressure Kameo who contributes ground pounds, throws, and high-impact attacks that help the paired fighter force defensive reactions.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3535,7 +3535,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'kano', 'Kano', 'kameo', 'released', true, 45, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'kano', 'Kano', 'kameo', 'released', true, 45, 'A projectile Kameo who uses knives, a rolling ball, and grounded pressure to cover movement and extend attacks.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3554,7 +3554,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'darrius', 'Darrius', 'kameo', 'released', true, 46, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'darrius', 'Darrius', 'kameo', 'released', true, 46, 'A close-range Kameo who adds advancing kicks and follow-up attacks that create extra pressure after the paired fighter commits.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3562,7 +3562,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sareena', 'Sareena', 'kameo', 'released', true, 47, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sareena', 'Sareena', 'kameo', 'released', true, 47, 'A projectile Kameo who throws returning blades and demon attacks that extend combos and cover retreating or airborne opponents.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3570,7 +3570,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sektor-kameo', 'Sektor', 'kameo', 'released', true, 48, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sektor-kameo', 'Sektor', 'kameo', 'released', true, 48, 'A gadget Kameo who adds missiles, rocket movement, and armor-breaking coverage to help the paired fighter control approach lanes.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3578,7 +3578,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sonya', 'Sonya', 'kameo', 'released', true, 49, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sonya', 'Sonya', 'kameo', 'released', true, 49, 'A versatile Kameo who contributes energy rings, anti-air attacks, and advancing strikes for neutral coverage and combo support.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3597,7 +3597,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'stryker', 'Stryker', 'kameo', 'released', true, 50, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'stryker', 'Stryker', 'kameo', 'released', true, 50, 'A firearm-and-grenade Kameo who adds delayed explosives and ranged shots that make the paired fighter''s pressure harder to challenge.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3605,7 +3605,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'tremor', 'Tremor', 'kameo', 'released', true, 51, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'tremor', 'Tremor', 'kameo', 'released', true, 51, 'A stance-based Kameo who cycles elemental attacks and armor options to give the paired fighter flexible neutral and defensive support.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3613,7 +3613,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'khameleon', 'Khameleon', 'kameo', 'released', true, 52, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'khameleon', 'Khameleon', 'kameo', 'released', true, 52, 'A morphing Kameo who rotates between ninja tools to supply different approach, zoning, and combo-extension options.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3621,7 +3621,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'janet-cage', 'Janet Cage', 'kameo', 'released', true, 53, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'janet-cage', 'Janet Cage', 'kameo', 'released', true, 53, 'A close-range Kameo who adds energetic strikes and launcher support that help the paired fighter extend pressure and juggle routes.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3629,7 +3629,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'mavado', 'Mavado', 'kameo', 'released', true, 54, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'mavado', 'Mavado', 'kameo', 'released', true, 54, 'A weapon Kameo who uses hooks, traps, and mobility tools to alter spacing and create unusual combo extensions.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3637,7 +3637,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ferra', 'Ferra', 'kameo', 'released', true, 55, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ferra', 'Ferra', 'kameo', 'released', true, 55, 'A setup Kameo who adds low-profile attacks and throw-based assistance that help the paired fighter create layered close pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3645,7 +3645,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'madam-bo', 'Madam Bo', 'kameo', 'released', true, 56, 'Selectable Mortal Kombat 1 Kameo roster entry for the checked version boundary.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'madam-bo', 'Madam Bo', 'kameo', 'released', true, 56, 'A support Kameo who adds grounded strikes, launcher coverage, and utility attacks that help the paired fighter maintain momentum.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3660,7 +3660,7 @@ on conflict (slug) do update set
   catalog_source_url = excluded.catalog_source_url, catalog_status = excluded.catalog_status, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'kazuya', 'Kazuya', 'fighter', 'released', true, 1, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'kazuya', 'Kazuya', 'fighter', 'released', true, 1, 'A precise Mishima fighter who uses Electric Wind God Fist, wavedash pressure, and Devil tools to turn small openings into oppressive offense.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3668,7 +3668,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jin', 'Jin', 'fighter', 'released', true, 2, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jin', 'Jin', 'fighter', 'released', true, 2, 'A versatile Mishima fighter who combines disciplined pokes, stance transitions, and Devil Jin-inspired tools to control neutral and Heat pressure.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3687,7 +3687,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'king', 'King', 'fighter', 'released', true, 3, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'king', 'King', 'fighter', 'released', true, 3, 'A grappler who uses chain throws, giant swings, and strong pokes to make every close-range opening lead to a damaging decision tree.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3706,7 +3706,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jun', 'Jun', 'fighter', 'released', true, 4, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jun', 'Jun', 'fighter', 'released', true, 4, 'A balanced martial artist who uses Kazama techniques, healing properties, and stance transitions to convert careful pokes into pressure.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3714,7 +3714,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'paul', 'Paul', 'fighter', 'released', true, 5, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'paul', 'Paul', 'fighter', 'released', true, 5, 'A heavyweight striker who uses Phoenix Smasher, Deathfist, and powerful whiff punishment to make mid-range mistakes extremely costly.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3722,7 +3722,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'law', 'Law', 'fighter', 'released', true, 6, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'law', 'Law', 'fighter', 'released', true, 6, 'A fast martial artist who uses Dragon Tail, flips, and nunchaku strings to rush down opponents and carry hits toward the wall.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3730,7 +3730,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jack-8', 'Jack-8', 'fighter', 'released', true, 7, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jack-8', 'Jack-8', 'fighter', 'released', true, 7, 'A large robot who uses long limbs, guns, and armored Heat-enhanced attacks to control space and punish approaches.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3738,7 +3738,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'lars', 'Lars', 'fighter', 'released', true, 8, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'lars', 'Lars', 'fighter', 'released', true, 8, 'A mobile stance fighter who uses Dynamic Entry, Silent Entry, and Storm Gear transitions to attack quickly from changing angles.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3746,7 +3746,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'xiaoyu', 'Xiaoyu', 'fighter', 'released', true, 9, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'xiaoyu', 'Xiaoyu', 'fighter', 'released', true, 9, 'A nimble stance fighter who uses Art of Phoenix evasion, Rain Dance, and low-profile movement to create awkward close-range openings.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3754,7 +3754,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'nina', 'Nina', 'fighter', 'released', true, 10, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'nina', 'Nina', 'fighter', 'released', true, 10, 'A precise assassin who uses fast strings, throws, and gun-based extensions to keep pressure active after small neutral wins.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3762,7 +3762,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'leroy', 'Leroy', 'fighter', 'released', true, 11, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'leroy', 'Leroy', 'fighter', 'released', true, 11, 'A defensive martial artist who uses parries, cane strikes, and compact pressure to punish predictable offense and control close range.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3770,7 +3770,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'asuka', 'Asuka', 'fighter', 'released', true, 12, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'asuka', 'Asuka', 'fighter', 'released', true, 12, 'A counter-oriented fighter who uses sabaki attacks, command throws, and strong mid-range strikes to punish overaggressive approaches.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3778,7 +3778,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'lili', 'Lili', 'fighter', 'released', true, 13, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'lili', 'Lili', 'fighter', 'released', true, 13, 'A mobile footwork fighter who uses evasive movement, long kicks, and wall carry to whiff-punish and sustain graceful pressure.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3797,7 +3797,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'bryan', 'Bryan', 'fighter', 'released', true, 14, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'bryan', 'Bryan', 'fighter', 'released', true, 14, 'A counter-hit specialist who uses long limbs, taunt pressure, and explosive launchers to make defensive hesitation dangerous.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3805,7 +3805,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'hwoarang', 'Hwoarang', 'fighter', 'released', true, 15, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'hwoarang', 'Hwoarang', 'fighter', 'released', true, 15, 'A stance-heavy kickboxer who cycles Left Flamingo and Right Flamingo attacks to maintain relentless high-low pressure.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3813,7 +3813,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'claudio', 'Claudio', 'fighter', 'released', true, 16, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'claudio', 'Claudio', 'fighter', 'released', true, 16, 'A mid-range exorcist who uses Starburst-powered attacks, projectiles, and strong launchers to make neutral wins highly rewarding.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3821,7 +3821,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'azucena', 'Azucena', 'fighter', 'released', true, 17, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'azucena', 'Azucena', 'fighter', 'released', true, 17, 'A mobile striker who uses Libertador stance evasions, coffee-fueled pressure, and fast pokes to force awkward counter-hit situations.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3829,7 +3829,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'raven', 'Raven', 'fighter', 'released', true, 18, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'raven', 'Raven', 'fighter', 'released', true, 18, 'A stealthy ninja who uses shadow clones, teleport movement, and long-reaching attacks to create deceptive whiff-punish routes.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3837,7 +3837,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'leo', 'Leo', 'fighter', 'released', true, 19, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'leo', 'Leo', 'fighter', 'released', true, 19, 'A stance-based martial artist who uses Bajiquan power strikes and KNK transitions to pressure from grounded and close-range angles.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3845,7 +3845,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'steve', 'Steve', 'fighter', 'released', true, 20, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'steve', 'Steve', 'fighter', 'released', true, 20, 'A boxing specialist who uses weaving, ducking, and counter-hit punches to slip under attacks and build pressure without conventional kicks.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3853,7 +3853,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'kuma', 'Kuma', 'fighter', 'released', true, 21, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'kuma', 'Kuma', 'fighter', 'released', true, 21, 'A bear fighter who uses unusual stances, hunting attacks, and large swings to make spacing and punish timing unfamiliar.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3861,7 +3861,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'yoshimitsu', 'Yoshimitsu', 'fighter', 'released', true, 22, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'yoshimitsu', 'Yoshimitsu', 'fighter', 'released', true, 22, 'A trickster sword fighter who uses stance changes, spins, teleport-like movement, and health-risk attacks to disrupt standard defense.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3869,7 +3869,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'shaheen', 'Shaheen', 'fighter', 'released', true, 23, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'shaheen', 'Shaheen', 'fighter', 'released', true, 23, 'A grounded rushdown fighter who uses slide transitions, stealth stance pressure, and efficient pokes to control the space in front of him.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3877,7 +3877,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'dragunov', 'Dragunov', 'fighter', 'released', true, 24, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'dragunov', 'Dragunov', 'fighter', 'released', true, 24, 'A pressure grappler who uses Running Two, strong lows, and command throws to keep opponents pinned after every approach.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3885,7 +3885,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'feng', 'Feng', 'fighter', 'released', true, 25, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'feng', 'Feng', 'fighter', 'released', true, 25, 'A counter-hit martial artist who uses Kenpo evasions, shoulder attacks, and stance movement to punish buttons and reclaim space.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3893,7 +3893,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'panda', 'Panda', 'fighter', 'released', true, 26, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'panda', 'Panda', 'fighter', 'released', true, 26, 'A bear variant who uses large swings, unusual stance interactions, and matchup-specific movement to create offbeat neutral exchanges.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3901,7 +3901,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'lee', 'Lee', 'fighter', 'released', true, 27, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'lee', 'Lee', 'fighter', 'released', true, 27, 'A precision martial artist who uses just-frame attacks, Mist Step movement, and elegant launchers to reward exact execution.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3909,7 +3909,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'alisa', 'Alisa', 'fighter', 'released', true, 28, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'alisa', 'Alisa', 'fighter', 'released', true, 28, 'A mobile robot who uses detachable chainsaws, rocket movement, and aerial attacks to harass opponents and carry them to the wall.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3917,7 +3917,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'zafina', 'Zafina', 'fighter', 'released', true, 29, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'zafina', 'Zafina', 'fighter', 'released', true, 29, 'A stance-heavy fighter who uses evasive postures, acrobatic attacks, and Azazel-linked powers to create difficult-to-track offense.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3925,7 +3925,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'devil-jin', 'Devil Jin', 'fighter', 'released', true, 30, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'devil-jin', 'Devil Jin', 'fighter', 'released', true, 30, 'An aerial Mishima fighter who combines Electric Wind God Fist, lasers, flight, and powerful Heat conversions to attack from every range.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3933,7 +3933,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'victor', 'Victor', 'fighter', 'released', true, 31, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'victor', 'Victor', 'fighter', 'released', true, 31, 'A weapon specialist who uses a sword, firearms, and teleporting movement to control mid range and punish failed approaches.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3941,7 +3941,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'reina', 'Reina', 'fighter', 'released', true, 32, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'reina', 'Reina', 'fighter', 'released', true, 32, 'A fast Mishima fighter who combines electric attacks with stance transitions and aggressive pressure to turn neutral wins into Heat momentum.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3960,7 +3960,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'eddy', 'Eddy', 'fighter', 'released', true, 33, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'eddy', 'Eddy', 'fighter', 'released', true, 33, 'A capoeira stance fighter who switches between grounded and handstand attacks to create flowing pressure and evasive approach routes.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3968,7 +3968,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'lidia', 'Lidia', 'fighter', 'released', true, 34, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'lidia', 'Lidia', 'fighter', 'released', true, 34, 'A karate fighter who uses stance transitions, strong fundamentals, and power-enhanced Heat attacks to make disciplined pressure snowball.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3976,7 +3976,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'heihachi', 'Heihachi', 'fighter', 'released', true, 35, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'heihachi', 'Heihachi', 'fighter', 'released', true, 35, 'A classic Mishima powerhouse who uses electric uppercuts, wavedash pressure, and hard-hitting mids to dominate close neutral exchanges.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3984,7 +3984,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'clive', 'Clive', 'fighter', 'released', true, 36, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'clive', 'Clive', 'fighter', 'released', true, 36, 'A long-reaching sword fighter who uses Phoenix Shift movement, ranged blade attacks, and Heat-enhanced pressure to control the middle of the stage.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -3992,7 +3992,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'anna', 'Anna', 'fighter', 'released', true, 37, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'anna', 'Anna', 'fighter', 'released', true, 37, 'A close-range assassin who uses deceptive strings, explosive launchers, and stance-like transitions to keep pressure difficult to predict.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4000,7 +4000,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'fahkumram', 'Fahkumram', 'fighter', 'released', true, 38, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'fahkumram', 'Fahkumram', 'fighter', 'released', true, 38, 'A long-limbed Muay Thai fighter who uses powerful kicks, knee pressure, and wall carry to make blocked movement increasingly dangerous.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4008,7 +4008,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'armor-king', 'Armor King', 'fighter', 'released', true, 39, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'armor-king', 'Armor King', 'fighter', 'released', true, 39, 'A masked grappler who combines chain throws, dark uppercuts, and armored strikes to punish close-range mistakes with heavy damage.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4016,7 +4016,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'miary-zo', 'Miary Zo', 'fighter', 'released', true, 40, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'miary-zo', 'Miary Zo', 'fighter', 'released', true, 40, 'A nimble acrobatic fighter who uses fast stance transitions, evasive movement, and animal-assisted attacks to create unusual approach timings.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4024,7 +4024,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'kunimitsu', 'Kunimitsu', 'fighter', 'released', true, 41, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'kunimitsu', 'Kunimitsu', 'fighter', 'released', true, 41, 'A fast ninja fighter who uses teleporting movement, kunai, and stance transitions to attack from changing sides and distances.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4032,7 +4032,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'bob', 'Bob', 'fighter', 'released', true, 42, 'Selectable Tekken 8 roster entry for the checked version boundary.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'bob', 'Bob', 'fighter', 'released', true, 42, 'A speed-focused heavyweight who uses fast rushing strings, spin movement, and weight-backed launchers to make his offense unusually mobile.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4047,7 +4047,7 @@ on conflict (slug) do update set
   catalog_source_url = excluded.catalog_source_url, catalog_status = excluded.catalog_status, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'robo-ky', 'Robo-Ky', 'fighter', 'released', true, 1, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'robo-ky', 'Robo-Ky', 'fighter', 'released', true, 1, 'A resource fighter who charges an electric gauge to improve specials, then spends that power on stronger pressure and conversions.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4055,7 +4055,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jam', 'Jam Kuradoberi', 'fighter', 'released', true, 2, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jam', 'Jam Kuradoberi', 'fighter', 'released', true, 2, 'A fast martial artist who stocks enhancements for her special moves and uses kick pressure to convert close openings into offense.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4063,7 +4063,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'lucy', 'Lucy', 'fighter', 'released', true, 3, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'lucy', 'Lucy', 'fighter', 'released', true, 3, 'A mobile cybernetic fighter who uses hacking tools and quick close-range attacks to create sudden approach and pressure sequences.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4071,7 +4071,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'unika', 'Unika', 'fighter', 'released', true, 4, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'unika', 'Unika', 'fighter', 'released', true, 4, 'A versatile fighter who shifts between ranged weapon pressure and close attacks to keep opponents guessing about her next approach.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4079,7 +4079,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'venom', 'Venom', 'fighter', 'released', true, 5, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'venom', 'Venom', 'fighter', 'released', true, 5, 'A technical zoner who places billiard balls at chosen angles and then redirects them to build layered neutral and pressure patterns.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4087,7 +4087,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'dizzy', 'Queen Dizzy', 'fighter', 'released', true, 6, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'dizzy', 'Queen Dizzy', 'fighter', 'released', true, 6, 'A summon-and-projectile fighter who combines fish, fire, and ice effects to control multiple lanes and punish impatient approaches.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4095,7 +4095,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'slayer', 'Slayer', 'fighter', 'released', true, 7, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'slayer', 'Slayer', 'fighter', 'released', true, 7, 'A close-range counter fighter who uses Dandy Step, evasive movement, and Pilebunker to turn reads into explosive damage.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4103,7 +4103,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'aba', 'A.B.A', 'fighter', 'released', true, 8, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'aba', 'A.B.A', 'fighter', 'released', true, 8, 'A resource fighter who manages her key and blood states to shift from a slower neutral mode into a powerful aggressive transformation.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4111,7 +4111,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'elphelt', 'Elphelt Valentine', 'fighter', 'released', true, 9, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'elphelt', 'Elphelt Valentine', 'fighter', 'released', true, 9, 'A weapon-stance fighter who switches between grenade, shotgun, and rifle pressure to create varied blockstrings and corner setups.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4119,7 +4119,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'johnny', 'Johnny', 'fighter', 'released', true, 10, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'johnny', 'Johnny', 'fighter', 'released', true, 10, 'A mid-range sword fighter who uses Mist Finer cards and coins to control space, set up pressure, and cash out on clean confirms.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4127,7 +4127,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'asuka-r', 'Asuka R#', 'fighter', 'released', true, 11, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'asuka-r', 'Asuka R#', 'fighter', 'released', true, 11, 'A spellbook resource fighter who manages mana and randomized spells to build flexible zoning, defense, and combo routes.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4135,7 +4135,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'bedman', 'Bedman?', 'fighter', 'released', true, 12, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'bedman', 'Bedman?', 'fighter', 'released', true, 12, 'A setplay fighter whose error follow-ups and autonomous attacks let the bed keep pressure active while Bedman? repositions.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4143,7 +4143,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sin', 'Sin Kiske', 'fighter', 'released', true, 13, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sin', 'Sin Kiske', 'fighter', 'released', true, 13, 'A mobile spear fighter who spends stamina on special attacks and uses Beak Driver to carry grounded openings into corner pressure.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4151,7 +4151,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'bridget', 'Bridget', 'fighter', 'released', true, 14, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'bridget', 'Bridget', 'fighter', 'released', true, 14, 'A mobile yo-yo fighter who places setplay tools and uses rolling movement, Roman Cancels, and wall-break routes to attack from awkward angles.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4170,7 +4170,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'testament', 'Testament', 'fighter', 'released', true, 15, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'testament', 'Testament', 'fighter', 'released', true, 15, 'A trap fighter who applies Stain and uses Grave Reaper, succubi, and teleport movement to make grounded defense uncertain.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4178,7 +4178,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'baiken', 'Baiken', 'fighter', 'released', true, 16, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'baiken', 'Baiken', 'fighter', 'released', true, 16, 'A defensive sword fighter who uses Tatami Gaeshi, parries, and tethered follow-ups to punish approaches and force close decisions.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4186,7 +4186,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'happy-chaos', 'Happy Chaos', 'fighter', 'released', true, 17, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'happy-chaos', 'Happy Chaos', 'fighter', 'released', true, 17, 'A gun-resource fighter who aims his revolver and manages concentration to control neutral with bullets and flexible curse pressure.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4194,7 +4194,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'jack-o', 'Jack-O''', 'fighter', 'released', true, 18, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'jack-o', 'Jack-O''', 'fighter', 'released', true, 18, 'A minion setplay fighter who builds and commands servants to occupy space, then uses their formations to extend offense.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4202,7 +4202,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'goldlewis', 'Goldlewis Dickinson', 'fighter', 'released', true, 19, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'goldlewis', 'Goldlewis Dickinson', 'fighter', 'released', true, 19, 'A heavyweight who uses Behemoth Typhoon swings and security-level management to turn corner pressure into huge damage.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4210,7 +4210,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'i-no', 'I-No', 'fighter', 'released', true, 20, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'i-no', 'I-No', 'fighter', 'released', true, 20, 'A hover-dash rushdown fighter who uses musical notes, Chemical Love, and Roman Cancel routes to attack from changing heights and carry pressure to the wall.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4218,7 +4218,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'anji', 'Anji Mito', 'fighter', 'released', true, 21, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'anji', 'Anji Mito', 'fighter', 'released', true, 21, 'A counter-oriented fighter who uses Fuujin follow-ups, projectile butterflies, and autoguard movement to absorb predictable attacks.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4226,7 +4226,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'giovanna', 'Giovanna', 'fighter', 'released', true, 22, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'giovanna', 'Giovanna', 'fighter', 'released', true, 22, 'A close-range rushdown fighter who uses Sol Poente, Trovao, and strong plus-frame pressure to stay attached to opponents.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4234,7 +4234,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'nagoriyuki', 'Nagoriyuki', 'fighter', 'released', true, 23, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'nagoriyuki', 'Nagoriyuki', 'fighter', 'released', true, 23, 'A powerful sword fighter who manages the Blood Gauge while using Fukyo and wide slashes to control mid range and burst damage.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4253,7 +4253,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'leo', 'Leo Whitefang', 'fighter', 'released', true, 24, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'leo', 'Leo Whitefang', 'fighter', 'released', true, 24, 'A stance-heavy sword fighter who uses Brynhildr transitions, cross-up attacks, and projectile pressure to keep offense active.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4261,7 +4261,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ramlethal', 'Ramlethal Valentine', 'fighter', 'released', true, 25, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ramlethal', 'Ramlethal Valentine', 'fighter', 'released', true, 25, 'A sword-throwing fighter who places her greatswords around the opponent, then uses rekka pressure and corner control to cash out.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4280,7 +4280,7 @@ on conflict (character_id, asset_sha256) do update set
   is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'zato-1', 'Zato=1 / Eddie', 'fighter', 'released', true, 26, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'zato-1', 'Zato=1 / Eddie', 'fighter', 'released', true, 26, 'A summon fighter who manages Eddie''s gauge to layer drills, flight, and command-grab pressure over Zato''s own attacks.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4288,7 +4288,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'millia', 'Millia Rage', 'fighter', 'released', true, 27, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'millia', 'Millia Rage', 'fighter', 'released', true, 27, 'A fast setplay fighter who uses Tandem Top and hair discs to create repeated high-low and left-right pressure after knockdowns.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4296,7 +4296,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'faust', 'Faust', 'fighter', 'released', true, 28, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'faust', 'Faust', 'fighter', 'released', true, 28, 'A disruptive item-throw fighter who uses random objects, long pokes, and pogo movement to make neutral timing unpredictable.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4304,7 +4304,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'potemkin', 'Potemkin', 'fighter', 'released', true, 29, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'potemkin', 'Potemkin', 'fighter', 'released', true, 29, 'A heavyweight grappler who uses Hammer Fall armor, Garuda Impact, and Potemkin Buster to force respect at close range before a wall break.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4312,7 +4312,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'chipp', 'Chipp Zanuff', 'fighter', 'released', true, 30, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'chipp', 'Chipp Zanuff', 'fighter', 'released', true, 30, 'A fragile speed fighter who uses Alpha Blade, teleports, and wall movement to create rapid cross-ups and layered mix-ups.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4320,7 +4320,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'axl', 'Axl Low', 'fighter', 'released', true, 31, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'axl', 'Axl Low', 'fighter', 'released', true, 31, 'A long-range chain fighter who uses sickle attacks, Rensen, and time-control pressure to punish movement across the screen.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4328,7 +4328,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'may', 'May', 'fighter', 'released', true, 32, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'may', 'May', 'fighter', 'released', true, 32, 'A charge-based rushdown fighter who uses Mr. Dolphin, beach-ball returns, and wall-break routes to approach from unpredictable angles.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4336,7 +4336,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'ky', 'Ky Kiske', 'fighter', 'released', true, 33, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'ky', 'Ky Kiske', 'fighter', 'released', true, 33, 'A balanced sword fighter who uses Stun Edge, Vapor Thrust, and Dire Eclat to control space before turning a knockdown into pressure.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
@@ -4344,7 +4344,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
-select id, 'sol', 'Sol Badguy', 'fighter', 'released', true, 34, 'Selectable Guilty Gear -Strive- roster entry for the checked version boundary.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
+select id, 'sol', 'Sol Badguy', 'fighter', 'released', true, 34, 'A close-range powerhouse who uses Gunflame, Bandit Revolver, and strong frame traps to turn grounded openings into knockdown pressure.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
 on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,

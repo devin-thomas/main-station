@@ -52,6 +52,15 @@ describe('founding catalog', () => {
     expect(new Set(catalog.flatMap((game) => game.characters.map((character) => `${game.slug}/${character.slug}`))).size).toBe(410);
   });
 
+  it('provides a gameplay summary for every version-scoped Character', () => {
+    const entries = catalog.flatMap((game) => game.characters.map((character) => ({ game, character })));
+    expect(entries).toHaveLength(410);
+    for (const { game, character } of entries) {
+      expect(character.summary.trim(), `${game.slug}/${character.slug}`).not.toBe('');
+      expect(character.summary.trim(), `${game.slug}/${character.slug}`).toMatch(/[.!?]$/);
+    }
+  });
+
   it('records the complete verified UNI2 roster with unchanged fan-kit art provenance', () => {
     const uni2 = catalog.find((game) => game.slug === 'uni2');
     const artCharacters = uni2?.characters.filter((character) => character.art) ?? [];

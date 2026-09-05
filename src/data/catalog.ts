@@ -1,5 +1,6 @@
 import type { Character, GameVersion, RosterRole, SelectionSchema } from '../types/domain';
 import { avatarSupportOptions, avatarSupportOptionsByFighter, completeRosters, type RosterEntry } from './completeRosters';
+import { characterSummariesByGame } from './characterSummaries';
 import { promotionalArtByCharacter } from './promotionalArt';
 
 const fighter = (
@@ -13,7 +14,14 @@ const fighter = (
 const rosterCheckedAt = '2026-08-25';
 const twoXkoSourceCheckedAt = rosterCheckedAt;
 
+const summaryFor = (gameSlug: string, characterSlug: string): string => {
+  const summary = characterSummariesByGame[gameSlug]?.[characterSlug];
+  if (!summary) throw new Error(`Missing gameplay summary for ${gameSlug}/${characterSlug}.`);
+  return summary;
+};
+
 const sourcedRoster = (
+  gameSlug: string,
   sourceUrl: string,
   sourcePublisher: string,
   entries: readonly RosterEntry[],
@@ -21,7 +29,7 @@ const sourcedRoster = (
 ): Character[] => entries.map(({ slug, name }) => fighter(
   slug,
   name,
-  '',
+  summaryFor(gameSlug, slug),
   sourceUrl,
   { role, sourcePublisher, sourceCheckedAt: rosterCheckedAt },
 ));
@@ -153,7 +161,7 @@ const catalogBase: GameVersion[] = [
     catalogStatus: 'verified',
     playerCount: null,
     schema: teamSchema(4),
-    characters: sourcedRoster('https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', completeRosters.marvelTokon),
+    characters: sourcedRoster('marvel-tokon', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', completeRosters.marvelTokon),
   },
   {
     slug: 'mvc2',
@@ -165,7 +173,7 @@ const catalogBase: GameVersion[] = [
     catalogStatus: 'verified',
     playerCount: null,
     schema: mvcSchema(['Assist A', 'Assist B', 'Assist C']),
-    characters: sourcedRoster('https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', completeRosters.mvc2),
+    characters: sourcedRoster('mvc2', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', completeRosters.mvc2),
   },
   {
     slug: 'umvc3',
@@ -177,7 +185,7 @@ const catalogBase: GameVersion[] = [
     catalogStatus: 'verified',
     playerCount: null,
     schema: mvcSchema(['Assist alpha', 'Assist beta', 'Assist gamma']),
-    characters: sourcedRoster('https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', completeRosters.umvc3),
+    characters: sourcedRoster('umvc3', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', completeRosters.umvc3),
   },
   {
     slug: 'uni2',
@@ -241,7 +249,7 @@ const catalogBase: GameVersion[] = [
       }],
       constraintNote: 'Each fighter has three support choices. Support is part of the fighter loadout.',
     },
-    characters: sourcedRoster('https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', completeRosters.avatarFighters),
+    characters: sourcedRoster('avatar-legends', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', completeRosters.avatarFighters),
   },
   {
     slug: 'melee',
@@ -253,7 +261,7 @@ const catalogBase: GameVersion[] = [
     catalogStatus: 'verified',
     playerCount: null,
     schema: soloSchema(),
-    characters: sourcedRoster('https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', completeRosters.melee),
+    characters: sourcedRoster('melee', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', completeRosters.melee),
   },
   {
     slug: 'ggxxacpr',
@@ -265,7 +273,7 @@ const catalogBase: GameVersion[] = [
     catalogStatus: 'verified',
     playerCount: null,
     schema: soloSchema(),
-    characters: sourcedRoster('https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', completeRosters.ggxxacpr),
+    characters: sourcedRoster('ggxxacpr', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', completeRosters.ggxxacpr),
   },
   {
     slug: 'vampire-savior',
@@ -277,7 +285,7 @@ const catalogBase: GameVersion[] = [
     catalogStatus: 'verified',
     playerCount: null,
     schema: soloSchema(),
-    characters: sourcedRoster('https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', completeRosters.vampireSavior),
+    characters: sourcedRoster('vampire-savior', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', completeRosters.vampireSavior),
   },
   {
     slug: 'sf6',
@@ -289,7 +297,7 @@ const catalogBase: GameVersion[] = [
     catalogStatus: 'verified',
     playerCount: null,
     schema: soloSchema(),
-    characters: sourcedRoster('https://news.capcomusa.com/street_fighter', 'Capcom', completeRosters.sf6),
+    characters: sourcedRoster('sf6', 'https://news.capcomusa.com/street_fighter', 'Capcom', completeRosters.sf6),
   },
   {
     slug: 'mk1',
@@ -312,8 +320,8 @@ const catalogBase: GameVersion[] = [
       ],
     },
     characters: [
-      ...sourcedRoster('https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', completeRosters.mk1Fighters),
-      ...sourcedRoster('https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', completeRosters.mk1Kameos, 'kameo'),
+      ...sourcedRoster('mk1', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', completeRosters.mk1Fighters),
+      ...sourcedRoster('mk1', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', completeRosters.mk1Kameos, 'kameo'),
     ],
   },
   {
@@ -326,7 +334,7 @@ const catalogBase: GameVersion[] = [
     catalogStatus: 'verified',
     playerCount: null,
     schema: soloSchema(),
-    characters: sourcedRoster('https://tekken.com/fighters', 'Bandai Namco Entertainment', completeRosters.tekken8),
+    characters: sourcedRoster('tekken-8', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', completeRosters.tekken8),
   },
   {
     slug: 'ggst',
@@ -338,7 +346,7 @@ const catalogBase: GameVersion[] = [
     catalogStatus: 'verified',
     playerCount: null,
     schema: soloSchema(),
-    characters: sourcedRoster('https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', completeRosters.ggst),
+    characters: sourcedRoster('ggst', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', completeRosters.ggst),
   },
 ];
 
