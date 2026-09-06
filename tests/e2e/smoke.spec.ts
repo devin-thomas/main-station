@@ -11,6 +11,7 @@ test('home, catalog, and cleared imagery render', async ({ page }) => {
   await expect(page.locator('.wordmark__logo')).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Games' })).toBeVisible();
   await expect(page.getByAltText(/Hyde from/)).toBeVisible();
+  await expect(page.locator('.character-stage__credit')).toHaveCount(0);
   await expect(page.getByText('Developed by Uppercut Labs')).toBeVisible();
   const studioLogo = page.locator('img[src="/uppercut-labs-logo.png"]');
   await expect(studioLogo).toBeVisible();
@@ -21,7 +22,7 @@ test('home, catalog, and cleared imagery render', async ({ page }) => {
   await expect(page.locator('.roster-ledger li')).toHaveCount(28);
   await page.getByRole('link', { name: 'Zohar', exact: true }).click();
   await expect(page.getByAltText(/Zohar from/)).toBeVisible();
-  await expect(page.getByRole('link', { name: '© FRENCH-BREAD / ARC SYSTEM WORKS' })).toBeVisible();
+  await expect(page.locator('.provenance-block')).toContainText('© FRENCH-BREAD / ARC SYSTEM WORKS');
 });
 
 test('every current Character art file and UI icon is served as an image', async ({ request }) => {
@@ -50,6 +51,7 @@ test('every founding game renders reviewed art and provenance on a Character pag
     await page.goto(`/games/${game.slug}/characters/${character.slug}`);
     if (character.art) {
       await expect(page.getByAltText(`${character.name} from ${game.name}`)).toBeVisible();
+      await expect(page.locator('.character-stage__credit')).toHaveCount(0);
       await expect(page.locator('.provenance-block')).toContainText(character.art.creditText);
     } else {
       await expect(page.getByRole('img', { name: `${character.name}; artwork unavailable` })).toBeVisible();

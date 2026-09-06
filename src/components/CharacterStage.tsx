@@ -29,11 +29,6 @@ export function CharacterStage({ character, game, compact = false }: CharacterSt
       <div className="character-stage__rail" aria-hidden="true">
         <span />
       </div>
-      {showImage && (
-        <figcaption className="character-stage__credit">
-          <a href={showImage.reviewUrl} target="_blank" rel="noreferrer">{showImage.creditText}</a>
-        </figcaption>
-      )}
     </figure>
   );
 }
