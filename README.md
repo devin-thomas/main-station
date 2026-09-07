@@ -65,9 +65,9 @@ npm run build
 npx wrangler deploy
 ```
 
-The Worker applies CSP and related security headers, delegates static bodies to the assets binding, and uses SPA not-found handling. A generic `workers.dev` origin is expected until a domain is selected.
+The Worker applies CSP and related security headers, delegates static bodies to the assets binding, and uses SPA not-found handling. The public Worker uses a generic `workers.dev` origin until a custom domain is selected.
 
-Preview origin: `https://mainstation-preview.uppercut-labs.workers.dev`.
+Public origin: `https://mainstation.uppercut-labs.workers.dev`.
 
 ## Identity and imagery
 

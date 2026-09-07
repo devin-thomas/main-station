@@ -20,7 +20,7 @@ The release gate is a fresh reset, all current pgTAP assertions, and a clean dat
 
 ## Hosted Auth configuration
 
-The production Site URL is `https://mainstation-preview.uppercut-labs.workers.dev`, and `https://mainstation-preview.uppercut-labs.workers.dev/auth/callback` is allowlisted. Add `http://127.0.0.1:4173/auth/callback` only when testing local sign-in.
+The production Site URL is `https://mainstation.uppercut-labs.workers.dev`, and `https://mainstation.uppercut-labs.workers.dev/auth/callback` is allowlisted. Add `http://127.0.0.1:4173/auth/callback` only when testing local sign-in.
 
 The Discord provider uses callback `https://bqfzzrasfunysseoogcg.supabase.co/auth/v1/callback`. Live acceptance passed on 2026-08-25: Supabase completed the provider callback with HTTP `302`, exchanged the PKCE authorization code at `/token` with HTTP `200`, and created one Discord identity without creating a public profile. This is historical provider evidence. Current sign-in confirms the session and returns to a safe app route without importing or publishing anything. Only then can the owner start creating or editing, followed by an explicit online save.
 

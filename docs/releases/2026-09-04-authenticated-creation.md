@@ -1,10 +1,11 @@
 # Sign-in-first creation release - 2026-09-04
 
-Public deployment: https://mainstation-preview.uppercut-labs.workers.dev
+Public deployment: https://mainstation.uppercut-labs.workers.dev
 
-Runtime commit: `fbd90d2e6ef54cae7e514ab45c35ef611ae778cb` on `main`.
-Cloudflare Worker version: `d33e8609-9c0c-46fc-bc91-4ae8c97dff3d`.
-Runtime assets: `index-Dw45lQII.js`, `index-dnOfgF21.css`.
+Hosting update: the active Worker moved from the preview hostname to `mainstation` on 2026-09-07.
+Runtime commit: `0daa8726e2335cc8d8be36880d5acd393f525a45` on `main`.
+Cloudflare Worker version: `f232406c-9628-4709-bf1a-09928a62624a`.
+Runtime assets: `index-BB_Vy3Rv.js`, `index-Bwj2EBHD.css`.
 Supabase project: `bqfzzrasfunysseoogcg`; migration `202609040001_authenticated_creation` applied.
 
 ## Delivered scope
