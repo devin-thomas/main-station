@@ -1,6 +1,8 @@
 # Sign-in-first creation release - 2026-09-04
 
-Public deployment: https://mainstation-preview.uppercut-labs.workers.dev
+Current production origin: https://mainstation.uppercut-labs.workers.dev
+
+The preview Worker used for the original verification was retired on 2026-09-08.
 
 Runtime commit: `fbd90d2e6ef54cae7e514ab45c35ef611ae778cb` on `main`.
 Cloudflare Worker version: `d33e8609-9c0c-46fc-bc91-4ae8c97dff3d`.

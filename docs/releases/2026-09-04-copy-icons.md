@@ -2,7 +2,9 @@
 
 Historical snapshot of the release identified below. ADR-028 subsequently removed guest creation and pre-auth draft decisions. The recorded guest workflow and its acceptance results describe this earlier deployment; they do not establish acceptance of the current authenticated editor.
 
-Public deployment: https://mainstation-preview.uppercut-labs.workers.dev
+Current production origin: https://mainstation.uppercut-labs.workers.dev
+
+The preview Worker used for the original verification was retired on 2026-09-08.
 
 Runtime commit: `08ac2a9` on `main`.
 Cloudflare Worker version: `bdc12d7f-659c-402d-9799-589b32a11fed`.
