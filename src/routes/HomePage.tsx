@@ -1,15 +1,11 @@
 import { Link } from 'react-router-dom';
+import heroArt from '../../assets/brand/ekko vs magik.png';
 import { BuildLink } from '../components/BuildLink';
 import { CatalogRail } from '../components/CatalogRail';
-import { CharacterStage } from '../components/CharacterStage';
 import { Mainline } from '../components/Mainline';
-import { catalogBySlug } from '../data/catalog';
 import { demoProfile } from '../data/demo';
 
 export function HomePage() {
-  const uni2 = catalogBySlug.get('uni2');
-  const hyde = uni2?.characters.find((character) => character.slug === 'hyde');
-
   return (
     <div className="home-page">
       <section className="entry-stage" aria-labelledby="entry-title">
@@ -24,7 +20,9 @@ export function HomePage() {
             <Link className="button-secondary" to="/p/station-zero">View preview profile</Link>
           </div>
         </div>
-        {uni2 && hyde && <CharacterStage character={hyde} game={uni2} />}
+        <figure className="entry-stage__visual">
+          <img className="entry-stage__art" src={heroArt} alt="Ekko and Magik clash in battle" />
+        </figure>
       </section>
 
       <section className="section-block section-block--line" aria-labelledby="preview-line-title">
