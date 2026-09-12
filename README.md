@@ -29,7 +29,7 @@ npm run lint:db
 node C:\Users\lilgo\.codex\skills\pwa-development\scripts\audit-manifest.mjs --manifest dist\manifest.webmanifest --root dist
 ```
 
-`validate` runs lint, strict TypeScript, unit/domain tests, and the production PWA build. The Playwright suite uses the production preview with desktop Chromium and these portrait mobile targets:
+`validate` runs lint, strict TypeScript, unit/domain tests, and the production PWA build. The Playwright suite can target the deployed production origin with desktop Chromium and these portrait mobile targets:
 
 | Device / browser engine | CSS viewport | Device pixel ratio | Native display | Density |
 | --- | --- | --- | --- | --- |
@@ -65,9 +65,9 @@ npm run build
 npx wrangler deploy
 ```
 
-The Worker applies CSP and related security headers, delegates static bodies to the assets binding, and uses SPA not-found handling. The public Worker uses a generic `workers.dev` origin until a custom domain is selected.
+The Worker applies CSP and related security headers, delegates static bodies to the assets binding, and uses SPA not-found handling. Production currently uses a generic `workers.dev` origin until a custom domain is selected.
 
-Public origin: `https://mainstation.uppercut-labs.workers.dev`.
+Production origin: `https://mainstation.uppercut-labs.workers.dev`.
 
 ## Identity and imagery
 

@@ -1,6 +1,8 @@
 # Sign-in-first creation release - 2026-09-04
 
-Public deployment: https://mainstation.uppercut-labs.workers.dev
+Current production origin: https://mainstation.uppercut-labs.workers.dev
+
+The preview Worker used for the original verification was retired on 2026-09-08.
 
 Hosting update: the active Worker moved from the preview hostname to `mainstation` on 2026-09-07.
 Runtime commit: `0daa8726e2335cc8d8be36880d5acd393f525a45` on `main`.

@@ -4,11 +4,13 @@ Current release: [2026-09-04 authenticated creation](docs/releases/2026-09-04-au
 
 Historical snapshot of the release identified below. Guest-draft flows and their acceptance results were superseded by ADR-028 on 2026-09-04; they are retained as evidence of that earlier build, not current product requirements or verification. See `docs/releases/` for later release records.
 
+Current production origin: `https://mainstation.uppercut-labs.workers.dev`
+
 Captured: `2026-08-25T16:28:20Z`
 
 ## Release identity
 
-- Historical Cloudflare origin: `https://mainstation-preview.uppercut-labs.workers.dev`
+- Historical Cloudflare origin: the retired preview Worker, removed on 2026-09-08
 - Cloudflare Worker version: `d5d186c3-c4c7-4f69-9561-60b2fb541843`
 - Deployed application commit: `60882b084613e9d973643c444d0671a914a0e226`
 - Supabase project: `bqfzzrasfunysseoogcg`
@@ -75,5 +77,5 @@ Captured: `2026-08-25T16:28:20Z`
 - Avatar's 12 launch fighters and 36 support choices are represented conditionally in the UI; the fighter names and support transcription retain the secondary-source boundary documented in `research/character-roster-completeness-2026-08-25.md` because the accessible first-party pages do not publish a complete text index.
 - Re-review promotional-art policy and remove affected assets promptly if a publisher requests it or the app's operator, monetization, or distribution model changes. The four GGST fan-kit records remain conditional on noncommercial eligibility, and Riot's required 2XKO notice must remain visible.
 - Replace the five explicitly labeled cross-version fallbacks when version-matched official art becomes available: UMVC3 Doctor Doom currently uses MVC2 art, and the four Melee entries use official Smash Ultimate renders.
-- Choose a permanent custom domain after the generic Worker origin has enough usage evidence.
+- A custom domain can replace the generic production Worker origin later if desired.
 - The production build emits a non-blocking `>500 kB` chunk warning and the current PWA plugin emits an upstream `inlineDynamicImports` deprecation warning. Revisit code splitting and plugin configuration based on observed load/update data.

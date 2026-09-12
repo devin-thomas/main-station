@@ -10,7 +10,7 @@ test('home, catalog, and cleared imagery render', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Your mains');
   await expect(page.locator('.wordmark__logo')).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Games' })).toBeVisible();
-  await expect(page.getByAltText(/Hyde from/)).toBeVisible();
+  await expect(page.getByAltText('Ekko and Magik clash in battle')).toBeVisible();
   await expect(page.locator('.character-stage__credit')).toHaveCount(0);
   await expect(page.getByText('Developed by Uppercut Labs')).toBeVisible();
   const studioLogo = page.locator('img[src="/uppercut-labs-logo.png"]');
