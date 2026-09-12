@@ -1,4 +1,4 @@
-import { useMemo, useState, type FormEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Mainline } from '../components/Mainline';
 import { Icon } from '../components/Icon';
@@ -26,6 +26,7 @@ export function BuilderPage() {
   const [message, setMessage] = useState<string | null>(null);
   const [attempted, setAttempted] = useState(false);
   const [editingLineupId, setEditingLineupId] = useState<string | null>(null);
+  const gameSelectorRef = useRef<HTMLDivElement | null>(null);
   const game = catalogBySlug.get(selectedGame) ?? catalog[0];
   const accountPresentation = getBuilderAccountPresentation({
     hasSession: Boolean(session),
@@ -46,6 +47,20 @@ export function BuilderPage() {
     createdAt: new Date().toISOString(),
   }), [category, game.slug, lifecycle, picks, teamOption, visibility]);
   const validation = validateLineup(candidate);
+
+  useEffect(() => {
+    const selector = gameSelectorRef.current;
+    const selected = selector?.querySelector<HTMLButtonElement>('[aria-pressed="true"]');
+    if (!selector || !selected) return;
+
+    const selectorBounds = selector.getBoundingClientRect();
+    const selectedBounds = selected.getBoundingClientRect();
+    if (selectedBounds.left < selectorBounds.left) {
+      selector.scrollLeft -= selectorBounds.left - selectedBounds.left;
+    } else if (selectedBounds.right > selectorBounds.right) {
+      selector.scrollLeft += selectedBounds.right - selectorBounds.right;
+    }
+  }, [selectedGame]);
 
   function chooseGame(gameSlug: string) {
     setSelectedGame(gameSlug);
@@ -125,7 +140,7 @@ export function BuilderPage() {
       <section className="builder-workbench" aria-labelledby="select-game-heading">
         <div className="builder-workbench__games">
           <h2 id="select-game-heading">Game</h2>
-          <div className="game-selector" role="group" aria-label="Choose a game">
+          <div className="game-selector" ref={gameSelectorRef} role="group" aria-label="Choose a game">
             {catalog.map((catalogGame) => (
               <button
                 type="button"

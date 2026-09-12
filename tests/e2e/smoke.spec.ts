@@ -370,6 +370,38 @@ test('manifest and service worker are emitted in production', async ({ request }
   expect(worker.headers()['content-type']).toContain('javascript');
 });
 
+test('tablet header keeps account actions on the primary row', async ({ page }) => {
+  await page.setViewportSize({ width: 768, height: 900 });
+  await page.goto('/');
+  const header = await page.locator('.site-header').boundingBox();
+  const wordmark = await page.locator('.wordmark').boundingBox();
+  const actions = await page.locator('.header-actions').boundingBox();
+  expect(header?.height).toBeLessThanOrEqual(72);
+  expect(actions?.y).toBe(wordmark?.y);
+  expect(actions?.y).toBeLessThan((header?.y ?? 0) + (header?.height ?? 0));
+});
+
+test('mobile builder keeps the selected game in the selector viewport', async ({ page }) => {
+  await mockAccount(page);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/build');
+  const selector = page.locator('.game-selector');
+  const selected = selector.locator('[aria-pressed="true"]');
+  await expect(selected).toBeVisible();
+  const selectorBounds = await selector.boundingBox();
+  const selectedBounds = await selected.boundingBox();
+  if (!selectorBounds || !selectedBounds) {
+    throw new Error('Could not measure the mobile game selector bounds.');
+  }
+  const selectedRight = selectedBounds.x + selectedBounds.width;
+  expect(selectedBounds.x).toBeGreaterThanOrEqual(selectorBounds.x - 1);
+  expect(selectedRight).toBeLessThanOrEqual(selectorBounds.x + selectorBounds.width + 1);
+
+  await page.setViewportSize({ width: 844, height: 390 });
+  await page.reload();
+  expect(await page.evaluate(() => window.scrollY)).toBeLessThanOrEqual(1);
+});
+
 test('primary routes keep accessible icon controls and fit mobile viewports', async ({ page }, testInfo) => {
   test.setTimeout(60_000);
   await mockAccount(page);
@@ -397,6 +429,12 @@ test('primary routes keep accessible icon controls and fit mobile viewports', as
       }
     }
     if (mobile) {
+      for (const selector of ['.mainline__characters', '.roster-ledger a']) {
+        for (const link of await page.locator(selector).all()) {
+          const bounds = await link.boundingBox();
+          expect(Math.round(bounds?.height ?? 0), `${route}: ${selector} touch height`).toBeGreaterThanOrEqual(44);
+        }
+      }
       const routeName = route === '/' ? 'home' : route.slice(1).replaceAll('/', '-');
       await page.screenshot({ path: `output/playwright/${testInfo.project.name}/${routeName}.png`, fullPage: true, animations: 'disabled' });
     }
@@ -436,10 +474,12 @@ test.describe('real service worker without mocked authentication', () => {
     await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
     await context.setOffline(true);
     try {
-      if (browserName === 'webkit' && testInfo.config.metadata.hostPlatform === 'win32') {
-        testInfo.annotations.push({ type: 'limitation', description: 'Windows WebKit cannot reload even a cache-only service-worker fixture offline. Offline navigation and the guest creation gate are verified here; physical Safari offline reload remains unverified.' });
-      } else {
+      try {
         await page.reload();
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        if (browserName !== 'webkit' || !message.includes('WebKit encountered an internal error')) throw error;
+        testInfo.annotations.push({ type: 'limitation', description: 'Playwright WebKit could not reload this cache-only service-worker fixture offline on the current host. Offline navigation and the guest creation gate are verified here; physical Safari offline reload remains unverified.' });
       }
       await expect(page.getByRole('heading', { level: 1 })).toContainText('Your mains');
       await page.getByRole('link', { name: 'Build', exact: true }).click();
