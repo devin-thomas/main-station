@@ -1458,21 +1458,29 @@ select:hover {
   color: var(--signal);
 }
 
-.recommend-results__via {
-  margin: 0;
-  font-size: .64rem;
+.recommend-results__because {
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 14px;
+}
+
+.recommend-results__because > li {
   color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .64rem;
+  text-transform: uppercase;
 }
 
-.recommend-results__via a {
+.recommend-results__because a {
   color: inherit;
-  text-decoration: underline;
-  text-decoration-color: var(--rule-dim);
+  text-underline-offset: 3px;
 }
 
-.recommend-results__via a:hover {
+.recommend-results__because a:hover {
   color: var(--signal);
-  text-decoration-color: var(--signal);
 }
 
 .recommend-results__feedback {

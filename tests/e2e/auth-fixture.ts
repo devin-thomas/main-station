@@ -24,7 +24,7 @@ function sessionFor(userId: string) {
 }
 
 /** Mock the configured Supabase origin; no real authentication or profile writes occur. */
-export async function mockAccount(page: Page, { signedIn = true, userId = firstUserId, savedDraft = null }: { signedIn?: boolean; userId?: string; savedDraft?: ProfileDraft | null } = {}) {
+export async function mockAccount(page: Page, { signedIn = true, userId = firstUserId, savedDraft = null, recommendationRun = null }: { signedIn?: boolean; userId?: string; savedDraft?: ProfileDraft | null; recommendationRun?: unknown } = {}) {
   const session = sessionFor(userId);
   const requests: { path: string; method: string; body: unknown; url: string }[] = [];
   let handle: string | null = savedDraft?.profile.handle ?? null;
@@ -51,6 +51,11 @@ export async function mockAccount(page: Page, { signedIn = true, userId = firstU
       await route.fulfill({ json: null });
     } else if (url.pathname === '/rest/v1/character_picks') {
       await route.fulfill({ json: [] });
+    } else if (url.pathname === '/rest/v1/rpc/run_my_recommendations') {
+      if (!recommendationRun) throw new Error('This test did not stage a recommendation run.');
+      await route.fulfill({ json: recommendationRun });
+    } else if (url.pathname === '/rest/v1/rpc/record_recommendation_feedback') {
+      await route.fulfill({ json: { feedbackId: '70000000-0000-4000-8000-000000000001' } });
     } else if (url.pathname === '/rest/v1/rpc/get_my_profile_draft') {
       await route.fulfill({ json: savedDraft });
     } else if (url.pathname === '/rest/v1/rpc/claim_profile_draft' || url.pathname === '/rest/v1/rpc/save_my_profile_draft') {

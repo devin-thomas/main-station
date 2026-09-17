@@ -3,11 +3,14 @@ import type { Database } from '../../types/database';
 
 export type RecommendationFeedback = Database['public']['Enums']['feedback_response'];
 
+/** One observed source Character behind a candidate, as required by SPEC 11.2. */
 export interface RecommendationContribution {
   characterId: string;
-  characterName: string;
   characterSlug: string;
+  characterName: string;
+  gameSlug: string;
   contribution: number;
+  supportCount: number;
 }
 
 export interface RecommendationCandidate {
@@ -17,14 +20,18 @@ export interface RecommendationCandidate {
   rank: number;
   score: number;
   supportCount: number;
-  policyVersion: string;
   contributions: RecommendationContribution[];
+  policyVersion: string;
 }
+
+/** ADR-018: zero observed support is a named state, never a popularity fallback. */
+export type RecommendationState = 'ok' | 'not_enough_data';
 
 export interface RecommendationRun {
   runId: string;
   targetGameVersionId: string;
   policyVersion: string;
+  state: RecommendationState;
   candidates: RecommendationCandidate[];
   createdAt: string;
 }
@@ -47,11 +54,17 @@ function requireNumber(record: Record<string, unknown>, key: string): number {
 
 function parseContribution(value: unknown): RecommendationContribution {
   if (!isRecord(value)) throw new Error('Supabase returned an invalid recommendation contribution.');
+  const supportCount = requireNumber(value, 'supportCount');
+  if (!Number.isInteger(supportCount) || supportCount < 1) {
+    throw new Error('Supabase returned an invalid recommendation contribution support count.');
+  }
   return {
     characterId: requireString(value, 'characterId'),
-    characterName: requireString(value, 'characterName'),
     characterSlug: requireString(value, 'characterSlug'),
+    characterName: requireString(value, 'characterName'),
+    gameSlug: requireString(value, 'gameSlug'),
     contribution: requireNumber(value, 'contribution'),
+    supportCount,
   };
 }
 
@@ -59,12 +72,12 @@ function parseCandidate(value: unknown): RecommendationCandidate {
   if (!isRecord(value)) throw new Error('Supabase returned an invalid recommendation candidate.');
   const rank = requireNumber(value, 'rank');
   const supportCount = requireNumber(value, 'supportCount');
-  if (!Number.isInteger(rank) || rank < 1 || !Number.isInteger(supportCount)) {
+  if (!Number.isInteger(rank) || rank < 1 || !Number.isInteger(supportCount) || supportCount < 1) {
     throw new Error('Supabase returned invalid recommendation support metadata.');
   }
-  const contributions = Array.isArray(value.contributions)
-    ? value.contributions.map(parseContribution)
-    : [];
+  if (!Array.isArray(value.contributions)) {
+    throw new Error('Supabase returned a recommendation candidate without its contributing associations.');
+  }
   return {
     characterId: requireString(value, 'characterId'),
     characterSlug: requireString(value, 'characterSlug'),
@@ -72,20 +85,34 @@ function parseCandidate(value: unknown): RecommendationCandidate {
     rank,
     score: requireNumber(value, 'score'),
     supportCount,
+    contributions: value.contributions.map(parseContribution),
     policyVersion: requireString(value, 'policyVersion'),
-    contributions,
   };
+}
+
+function parseState(value: Record<string, unknown>): RecommendationState {
+  const state = requireString(value, 'state');
+  if (state !== 'ok' && state !== 'not_enough_data') {
+    throw new Error('Supabase returned an unknown recommendation state.');
+  }
+  return state;
 }
 
 function parseRun(value: unknown): RecommendationRun {
   if (!isRecord(value) || !Array.isArray(value.candidates)) {
     throw new Error('Supabase returned an invalid recommendation run.');
   }
+  const state = parseState(value);
+  const candidates = value.candidates.map(parseCandidate);
+  if ((state === 'not_enough_data') !== (candidates.length === 0)) {
+    throw new Error('Supabase returned a recommendation state that contradicts its candidates.');
+  }
   return {
     runId: requireString(value, 'runId'),
     targetGameVersionId: requireString(value, 'targetGameVersionId'),
     policyVersion: requireString(value, 'policyVersion'),
-    candidates: value.candidates.map(parseCandidate),
+    state,
+    candidates,
     createdAt: requireString(value, 'createdAt'),
   };
 }

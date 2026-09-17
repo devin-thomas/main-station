@@ -5,7 +5,6 @@ import { useAuth } from '../features/auth/AuthProvider';
 import {
   runRecommendations,
   saveRecommendationFeedback,
-  type RecommendationContribution,
   type RecommendationFeedback,
   type RecommendationRun,
 } from '../features/recommendations/recommendations';
@@ -16,21 +15,6 @@ const feedbackLabels: Record<RecommendationFeedback, string> = {
   not_for_me: 'Not for me',
   already_play: 'Already play',
 };
-
-function ContributionVia({ contributions, targetSlug }: { contributions: RecommendationContribution[]; targetSlug: string }) {
-  if (contributions.length === 0) return null;
-  return (
-    <p className="recommend-results__via">
-      Via{' '}
-      {contributions.map((c, i) => (
-        <span key={c.characterId}>
-          {i > 0 && ', '}
-          <Link to={`/games/${targetSlug}/characters/${c.characterSlug}`}>{c.characterName}</Link>
-        </span>
-      ))}
-    </p>
-  );
-}
 
 export function RecommendationPage() {
   const { session, sessionLoading, registeredHandle, profileLoading } = useAuth();
@@ -138,7 +122,7 @@ export function RecommendationPage() {
             <div className="inline-error" role="alert"><h2 id="result-heading">{error}</h2></div>
           ) : loading ? (
             <h2 id="result-heading" aria-live="polite">Finding matches...</h2>
-          ) : run?.candidates.length ? (
+          ) : run && run.state === 'ok' ? (
             <>
               <h2 id="result-heading">{targetGame.shortName} matches</h2>
               <p>Each count shows the players behind that match. Feedback does not affect rankings.</p>
@@ -148,7 +132,21 @@ export function RecommendationPage() {
                     <span className="recommend-results__rank">{String(candidate.rank).padStart(2, '0')}</span>
                     <div>
                       <Link to={`/games/${targetGame.slug}/characters/${candidate.characterSlug}`}>{candidate.characterName}</Link>
-                      <ContributionVia contributions={candidate.contributions} targetSlug={targetGame.slug} />
+                      {candidate.contributions.length > 0 && (
+                        <ul
+                          className="recommend-results__because"
+                          aria-label={`Your characters behind ${candidate.characterName}`}
+                        >
+                          {candidate.contributions.map((contribution) => (
+                            <li key={contribution.characterId}>
+                              <Link to={`/games/${contribution.gameSlug}/characters/${contribution.characterSlug}`}>
+                                {contribution.characterName}
+                              </Link>
+                              <span> shared by {contribution.supportCount} {contribution.supportCount === 1 ? 'player' : 'players'}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                     <strong>{candidate.supportCount} {candidate.supportCount === 1 ? 'player' : 'players'}</strong>
                     <div className="recommend-results__feedback" aria-label={`Feedback for ${candidate.characterName}`}>

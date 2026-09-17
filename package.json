@@ -20,7 +20,8 @@
     "test:db": "supabase test db",
     "lint:db": "supabase db lint --local --schema public --level warning --fail-on error",
     "test:e2e": "npm run build && playwright test",
-    "validate": "npm run lint && npm run typecheck && npm run verify:art && npm test && npm run build",
+    "validate:db": "npm run lint:db && npm run test:db",
+    "validate": "npm run lint && npm run typecheck && npm run verify:art && npm test && npm run validate:db && npm run build",
     "deploy": "npm run validate && wrangler deploy"
   },
   "dependencies": {

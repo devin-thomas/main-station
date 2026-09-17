@@ -638,6 +638,7 @@ export type Database = {
         Returns: {
           character_id: string
           character_name: string
+          contributions: Json
           policy_version: string
           rank: number
           score: number
