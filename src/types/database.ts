@@ -10,7 +10,32 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.15"
+    PostgrestVersion: "14.5"
+  }
+  graphql_public: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      graphql: {
+        Args: {
+          extensions?: Json
+          operationName?: string
+          query?: string
+          variables?: Json
+        }
+        Returns: Json
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
   }
   public: {
     Tables: {
@@ -384,7 +409,7 @@ export type Database = {
           created_at: string
           id: string
           owner_id: string
-          reason_code: Database["public"]["Enums"]["feedback_reason"] | null
+          reason_code: string | null
           recommendation_run_id: string
           response: Database["public"]["Enums"]["feedback_response"]
           updated_at: string
@@ -394,7 +419,7 @@ export type Database = {
           created_at?: string
           id?: string
           owner_id: string
-          reason_code?: Database["public"]["Enums"]["feedback_reason"] | null
+          reason_code?: string | null
           recommendation_run_id: string
           response: Database["public"]["Enums"]["feedback_response"]
           updated_at?: string
@@ -404,7 +429,7 @@ export type Database = {
           created_at?: string
           id?: string
           owner_id?: string
-          reason_code?: Database["public"]["Enums"]["feedback_reason"] | null
+          reason_code?: string | null
           recommendation_run_id?: string
           response?: Database["public"]["Enums"]["feedback_response"]
           updated_at?: string
@@ -638,7 +663,6 @@ export type Database = {
         Returns: {
           character_id: string
           character_name: string
-          contributions: Json
           policy_version: string
           rank: number
           score: number
@@ -648,7 +672,7 @@ export type Database = {
       record_recommendation_feedback: {
         Args: {
           p_character_id: string
-          p_reason_code?: Database["public"]["Enums"]["feedback_reason"] | null
+          p_reason_code?: string
           p_recommendation_run_id: string
           p_response: Database["public"]["Enums"]["feedback_response"]
         }
@@ -667,13 +691,6 @@ export type Database = {
     Enums: {
       art_review_state: "pending" | "approved" | "disabled" | "replaced"
       character_role: "fighter" | "kameo"
-      feedback_reason:
-        | "too_complex"
-        | "not_my_style"
-        | "poor_matchups"
-        | "looks_fun"
-        | "fits_my_team"
-        | "want_to_learn"
       feedback_response: "would_try" | "not_for_me" | "already_play"
       lineup_category: "main" | "secondary"
       lineup_lifecycle: "active" | "retired"
@@ -693,12 +710,12 @@ export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -722,11 +739,11 @@ export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -747,11 +764,11 @@ export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -772,11 +789,11 @@ export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
     | { schema: keyof DatabaseWithoutInternals },
-  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+  EnumName extends (DefaultSchemaEnumNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaEnumNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -789,11 +806,11 @@ export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof DatabaseWithoutInternals },
-  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-    : never = never,
+    : never) = never,
 > = PublicCompositeTypeNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -803,18 +820,13 @@ export type CompositeTypes<
     : never
 
 export const Constants = {
+  graphql_public: {
+    Enums: {},
+  },
   public: {
     Enums: {
       art_review_state: ["pending", "approved", "disabled", "replaced"],
       character_role: ["fighter", "kameo"],
-      feedback_reason: [
-        "too_complex",
-        "not_my_style",
-        "poor_matchups",
-        "looks_fun",
-        "fits_my_team",
-        "want_to_learn",
-      ],
       feedback_response: ["would_try", "not_for_me", "already_play"],
       lineup_category: ["main", "secondary"],
       lineup_lifecycle: ["active", "retired"],
