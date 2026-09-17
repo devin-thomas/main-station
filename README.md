@@ -29,7 +29,7 @@ npm run lint:db
 node C:\Users\lilgo\.codex\skills\pwa-development\scripts\audit-manifest.mjs --manifest dist\manifest.webmanifest --root dist
 ```
 
-`validate` runs lint, strict TypeScript, unit/domain tests, and the production PWA build. The Playwright suite can target the deployed production origin with desktop Chromium and these portrait mobile targets:
+`validate` runs lint, strict TypeScript, unit/domain tests, the pgTAP database suite (`validate:db`), and the production PWA build. The database gate needs Docker and a running local stack (`npx supabase start`), because the signature, association, feedback-isolation, and hide/delete propagation guarantees are only provable against real SQL. The Playwright suite can target the deployed production origin with desktop Chromium and these portrait mobile targets:
 
 | Device / browser engine | CSS viewport | Device pixel ratio | Native display | Density |
 | --- | --- | --- | --- | --- |

@@ -1458,6 +1458,31 @@ select:hover {
   color: var(--signal);
 }
 
+.recommend-results__because {
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 14px;
+}
+
+.recommend-results__because > li {
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .64rem;
+  text-transform: uppercase;
+}
+
+.recommend-results__because a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+.recommend-results__because a:hover {
+  color: var(--signal);
+}
+
 .recommend-results__feedback {
   grid-column: 2 / -1;
   display: flex;
