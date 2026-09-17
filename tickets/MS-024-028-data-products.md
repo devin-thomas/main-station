@@ -12,17 +12,21 @@ Acceptance evidence: `docs/releases/2026-09-17-data-products-acceptance.md`.
 
 | Ticket | Scope | Status |
 | --- | --- | --- |
-| MS-024 | Version and test Player-Game Signatures | Acceptance met 2026-09-17 |
-| MS-025 | Cross-game association scoring | Acceptance met 2026-09-17 |
-| MS-026 | Recommendation support disclosure | Acceptance met 2026-09-17 |
+| MS-024 | Version and test Player-Game Signatures | **Closed 2026-09-17** |
+| MS-025 | Cross-game association scoring | **Closed 2026-09-17** |
+| MS-026 | Recommendation support disclosure | **Closed 2026-09-17** |
 | MS-027 | Analytics-only feedback | **Closed 2026-09-17** |
-| MS-028 | Immediate source exclusion and deletion propagation | Acceptance met 2026-09-17 |
+| MS-028 | Immediate source exclusion and deletion propagation | **Closed 2026-09-17** |
+
+All five are verified against the deployed release, not only against local tests:
+migration `202609170001` is applied to the hosted project and the Worker serves the
+client that consumes it. MS-019–023 and MS-024–028 are complete; MS-029 is unblocked.
 
 MS-027 closed on its original review: feedback is a bounded enum, unique and upserted per
 owner/run/candidate, writable only through `record_recommendation_feedback` after ownership and
 candidate-membership checks, and unreachable from `signature-v1` or `association-v1` SQL.
 
-The other four were revised before their evidence was recorded:
+The other four were revised before they were closed:
 
 - MS-024 — the only signature tests exercised `src/lib/signature.ts`, a TypeScript
   reimplementation with no caller that had already drifted from the SQL it mirrored. It was

@@ -373,6 +373,8 @@ test('manifest and service worker are emitted in production', async ({ request }
 test('tablet header keeps account actions on the primary row', async ({ page }) => {
   await page.setViewportSize({ width: 768, height: 900 });
   await page.goto('/');
+  // Measure only once webfonts have settled; display-font metrics shift the header rows.
+  await page.evaluate(async () => { await document.fonts.ready; });
   const header = await page.locator('.site-header').boundingBox();
   const wordmark = await page.locator('.wordmark').boundingBox();
   const actions = await page.locator('.header-actions').boundingBox();
@@ -385,6 +387,7 @@ test('mobile builder keeps the selected game in the selector viewport', async ({
   await mockAccount(page);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/build');
+  await page.evaluate(async () => { await document.fonts.ready; });
   const selector = page.locator('.game-selector');
   const selected = selector.locator('[aria-pressed="true"]');
   await expect(selected).toBeVisible();

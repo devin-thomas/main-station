@@ -1,11 +1,43 @@
 # MS-024–028 data-product acceptance — 2026-09-17
 
 Acceptance evidence for the statistical policy and data-lifecycle tickets, recorded as required by
-`tickets/README.md`. Verified against a local Supabase stack (CLI 2.117.0, Postgres 17) with every
-migration applied from empty, not against the hosted project.
+`tickets/README.md`. MS-024 through MS-028 are closed on this evidence.
+
+Verified twice: against a local Supabase stack (CLI 2.117.0, Postgres 17) with every migration
+applied from empty, and against the deployed release described under **Release** below.
 
 Migration added: `202609170001_recommendation_support_disclosure`. It is additive — it replaces two
 functions and adds two comments. No table, column, policy, or grant changed.
+
+## Release
+
+Applied to the hosted project `bqfzzrasfunysseoogcg` (`mainstation`, us-east-1, Postgres
+17.6.1.155) on 2026-09-17, inside an explicit `BEGIN`/`COMMIT` together with its
+`supabase_migrations.schema_migrations` row, so local and hosted migration history match and a
+later `supabase db push` will not re-apply it. Hosted history now ends at `202609170001`.
+
+Confirmed against production after the apply:
+
+- `recommend_characters` returns `TABLE(character_id uuid, character_name text, rank integer,
+  score numeric, support_count bigint, contributions jsonb, policy_version text)`.
+- `run_my_recommendations` carries the `not_enough_data` state, and neither function references
+  `recommendation_feedback`.
+- Execute grants are unchanged by the drop and recreate: `authenticated` only, with `anon` and
+  `service_role` denied on all three recommendation RPCs.
+- `public_lineups` still filters on visibility and carries its RLS-dependency comment.
+
+Worker `mainstation` deployed to `https://mainstation.uppercut-labs.workers.dev`, version
+`a9cd4de8-88c4-4b2a-98d2-14903b85b7a0`, through `npm run deploy` so the full `validate` gate
+including the pgTAP suite ran ahead of it. The full Playwright suite passes against that deployed
+origin, 31 specs, three consecutive runs.
+
+`src/types/database.ts` was checked against types generated from the migrated hosted schema; the
+`recommend_characters` block matches exactly.
+
+The `supabase db push` path is unavailable from a cloud session: the container reaches Supabase
+over HTTPS only, so the hosted apply went through the Management API query endpoint. Direct
+Postgres (5432) and pooler (6543) connections are not routable, which makes `SUPABASE_DB_PASSWORD`
+unnecessary for this workflow.
 
 ## Commands
 
@@ -16,7 +48,7 @@ npm run test:db      # 136 assertions across 2 files
 npm run lint:db      # no schema errors
 npm test             # 34 unit tests
 npm run lint && npm run typecheck && npm run build
-npx playwright test  # 31 specs, desktop Chromium
+npx playwright test  # 31 specs, desktop Chromium, local and deployed origins
 ```
 
 `npm run validate` now includes `validate:db`, so the pgTAP gate runs before `npm run deploy`
