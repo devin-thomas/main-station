@@ -3,6 +3,13 @@ import type { Database } from '../../types/database';
 
 export type RecommendationFeedback = Database['public']['Enums']['feedback_response'];
 
+export interface RecommendationContribution {
+  characterId: string;
+  characterName: string;
+  characterSlug: string;
+  contribution: number;
+}
+
 export interface RecommendationCandidate {
   characterId: string;
   characterSlug: string;
@@ -11,6 +18,7 @@ export interface RecommendationCandidate {
   score: number;
   supportCount: number;
   policyVersion: string;
+  contributions: RecommendationContribution[];
 }
 
 export interface RecommendationRun {
@@ -37,6 +45,16 @@ function requireNumber(record: Record<string, unknown>, key: string): number {
   return parsed;
 }
 
+function parseContribution(value: unknown): RecommendationContribution {
+  if (!isRecord(value)) throw new Error('Supabase returned an invalid recommendation contribution.');
+  return {
+    characterId: requireString(value, 'characterId'),
+    characterName: requireString(value, 'characterName'),
+    characterSlug: requireString(value, 'characterSlug'),
+    contribution: requireNumber(value, 'contribution'),
+  };
+}
+
 function parseCandidate(value: unknown): RecommendationCandidate {
   if (!isRecord(value)) throw new Error('Supabase returned an invalid recommendation candidate.');
   const rank = requireNumber(value, 'rank');
@@ -44,6 +62,9 @@ function parseCandidate(value: unknown): RecommendationCandidate {
   if (!Number.isInteger(rank) || rank < 1 || !Number.isInteger(supportCount)) {
     throw new Error('Supabase returned invalid recommendation support metadata.');
   }
+  const contributions = Array.isArray(value.contributions)
+    ? value.contributions.map(parseContribution)
+    : [];
   return {
     characterId: requireString(value, 'characterId'),
     characterSlug: requireString(value, 'characterSlug'),
@@ -52,6 +73,7 @@ function parseCandidate(value: unknown): RecommendationCandidate {
     score: requireNumber(value, 'score'),
     supportCount,
     policyVersion: requireString(value, 'policyVersion'),
+    contributions,
   };
 }
 

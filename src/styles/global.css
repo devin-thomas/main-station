@@ -1458,6 +1458,23 @@ select:hover {
   color: var(--signal);
 }
 
+.recommend-results__via {
+  margin: 0;
+  font-size: .64rem;
+  color: var(--text-muted);
+}
+
+.recommend-results__via a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule-dim);
+}
+
+.recommend-results__via a:hover {
+  color: var(--signal);
+  text-decoration-color: var(--signal);
+}
+
 .recommend-results__feedback {
   grid-column: 2 / -1;
   display: flex;

@@ -5,6 +5,7 @@ import { useAuth } from '../features/auth/AuthProvider';
 import {
   runRecommendations,
   saveRecommendationFeedback,
+  type RecommendationContribution,
   type RecommendationFeedback,
   type RecommendationRun,
 } from '../features/recommendations/recommendations';
@@ -15,6 +16,21 @@ const feedbackLabels: Record<RecommendationFeedback, string> = {
   not_for_me: 'Not for me',
   already_play: 'Already play',
 };
+
+function ContributionVia({ contributions, targetSlug }: { contributions: RecommendationContribution[]; targetSlug: string }) {
+  if (contributions.length === 0) return null;
+  return (
+    <p className="recommend-results__via">
+      Via{' '}
+      {contributions.map((c, i) => (
+        <span key={c.characterId}>
+          {i > 0 && ', '}
+          <Link to={`/games/${targetSlug}/characters/${c.characterSlug}`}>{c.characterName}</Link>
+        </span>
+      ))}
+    </p>
+  );
+}
 
 export function RecommendationPage() {
   const { session, sessionLoading, registeredHandle, profileLoading } = useAuth();
@@ -132,6 +148,7 @@ export function RecommendationPage() {
                     <span className="recommend-results__rank">{String(candidate.rank).padStart(2, '0')}</span>
                     <div>
                       <Link to={`/games/${targetGame.slug}/characters/${candidate.characterSlug}`}>{candidate.characterName}</Link>
+                      <ContributionVia contributions={candidate.contributions} targetSlug={targetGame.slug} />
                     </div>
                     <strong>{candidate.supportCount} {candidate.supportCount === 1 ? 'player' : 'players'}</strong>
                     <div className="recommend-results__feedback" aria-label={`Feedback for ${candidate.characterName}`}>
