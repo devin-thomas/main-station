@@ -384,7 +384,7 @@ export type Database = {
           created_at: string
           id: string
           owner_id: string
-          reason_code: string | null
+          reason_code: Database["public"]["Enums"]["feedback_reason"] | null
           recommendation_run_id: string
           response: Database["public"]["Enums"]["feedback_response"]
           updated_at: string
@@ -394,7 +394,7 @@ export type Database = {
           created_at?: string
           id?: string
           owner_id: string
-          reason_code?: string | null
+          reason_code?: Database["public"]["Enums"]["feedback_reason"] | null
           recommendation_run_id: string
           response: Database["public"]["Enums"]["feedback_response"]
           updated_at?: string
@@ -404,7 +404,7 @@ export type Database = {
           created_at?: string
           id?: string
           owner_id?: string
-          reason_code?: string | null
+          reason_code?: Database["public"]["Enums"]["feedback_reason"] | null
           recommendation_run_id?: string
           response?: Database["public"]["Enums"]["feedback_response"]
           updated_at?: string
@@ -648,7 +648,7 @@ export type Database = {
       record_recommendation_feedback: {
         Args: {
           p_character_id: string
-          p_reason_code?: string
+          p_reason_code?: Database["public"]["Enums"]["feedback_reason"] | null
           p_recommendation_run_id: string
           p_response: Database["public"]["Enums"]["feedback_response"]
         }
@@ -667,6 +667,13 @@ export type Database = {
     Enums: {
       art_review_state: "pending" | "approved" | "disabled" | "replaced"
       character_role: "fighter" | "kameo"
+      feedback_reason:
+        | "too_complex"
+        | "not_my_style"
+        | "poor_matchups"
+        | "looks_fun"
+        | "fits_my_team"
+        | "want_to_learn"
       feedback_response: "would_try" | "not_for_me" | "already_play"
       lineup_category: "main" | "secondary"
       lineup_lifecycle: "active" | "retired"
@@ -800,6 +807,14 @@ export const Constants = {
     Enums: {
       art_review_state: ["pending", "approved", "disabled", "replaced"],
       character_role: ["fighter", "kameo"],
+      feedback_reason: [
+        "too_complex",
+        "not_my_style",
+        "poor_matchups",
+        "looks_fun",
+        "fits_my_team",
+        "want_to_learn",
+      ],
       feedback_response: ["would_try", "not_for_me", "already_play"],
       lineup_category: ["main", "secondary"],
       lineup_lifecycle: ["active", "retired"],
