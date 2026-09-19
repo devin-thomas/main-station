@@ -12,7 +12,12 @@ const mocks = vi.hoisted(() => ({
   save: vi.fn<(id: string, draft: ProfileDraft) => Promise<void>>(),
 }));
 vi.mock('../src/features/auth/AuthProvider', () => ({ useAuth: () => ({ session: mocks.userId ? { user: { id: mocks.userId } } : null }) }));
-vi.mock('../src/features/draft/draftStore', () => ({ loadAccountDraft: mocks.load, saveAccountDraft: mocks.save }));
+vi.mock('../src/features/draft/draftStore', async (importOriginal) => ({
+  // Keep the real error types so the provider can still tell quota failures apart.
+  ...(await importOriginal<typeof import('../src/features/draft/draftStore')>()),
+  loadAccountDraft: mocks.load,
+  saveAccountDraft: mocks.save,
+}));
 vi.mock('../src/features/profile/profile', () => ({ loadMyProfileDraft: mocks.remote }));
 
 let editor: ReturnType<typeof useDraft>;

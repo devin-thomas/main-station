@@ -41,7 +41,7 @@ export function AppShell() {
       {lifecycle.updateReady && !isFocusRoute && (
         <div className="system-rail" role="status">
           <span>UPDATE READY</span>
-          <button type="button" onClick={() => void lifecycle.applyUpdate?.()}>Update now</button>
+          <button type="button" onClick={() => void lifecycle.applyUpdate?.()}>Reload now</button>
           <button type="button" className="button-quiet" onClick={lifecycle.deferUpdate}>Later</button>
         </div>
       )}

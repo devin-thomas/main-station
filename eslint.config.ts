@@ -23,4 +23,14 @@ export default tseslint.config(
       'react-refresh/only-export-components': 'off',
     },
   },
+  {
+    // Shipped as a service worker, not as part of the app bundle.
+    files: ['recovery/*.js'],
+    languageOptions: { ecmaVersion: 2022, globals: { ...globals.serviceworker } },
+  },
+  {
+    // Test fixture server; runs under Node, never in the browser.
+    files: ['tests/**/*.mjs'],
+    languageOptions: { ecmaVersion: 2022, sourceType: 'module', globals: { ...globals.node } },
+  },
 );

@@ -3,7 +3,7 @@ import type { ProfileDraft, Lineup } from '../../types/domain';
 import { emptyDraft } from '../../data/demo';
 import { useAuth } from '../auth/AuthProvider';
 import { loadMyProfileDraft } from '../profile/profile';
-import { loadAccountDraft, saveAccountDraft } from './draftStore';
+import { DraftStorageFullError, loadAccountDraft, saveAccountDraft } from './draftStore';
 
 interface DraftContextValue {
   draft: ProfileDraft;
@@ -67,8 +67,11 @@ function AccountDraftProvider({ userId, children }: { userId: string | null; chi
       setStorageError(null);
     });
     // Keep writes ordered without poisoning the queue after a reported failure.
-    pendingWrite.current = write.catch(() => {
-      if (active.current) setStorageError('Your changes could not be saved on this device. Try again.');
+    pendingWrite.current = write.catch((error: unknown) => {
+      if (!active.current) return;
+      setStorageError(error instanceof DraftStorageFullError
+        ? 'This device has no room left to save your changes. Free up storage, then try again. Your last saved entries are unchanged.'
+        : 'Your changes could not be saved on this device. Try again.');
     });
     return write;
   }, [ready, userId]);

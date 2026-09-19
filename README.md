@@ -26,8 +26,16 @@ npm run validate
 npm run test:e2e
 npm run test:db
 npm run lint:db
-node C:\Users\lilgo\.codex\skills\pwa-development\scripts\audit-manifest.mjs --manifest dist\manifest.webmanifest --root dist
+node <pwa-development-skill>/scripts/audit-manifest.mjs --manifest dist/manifest.webmanifest --root dist
+node <pwa-development-skill>/scripts/probe-release.mjs --url <deployed-origin>
 ```
+
+`tests/e2e/pwa-lifecycle.spec.ts` covers the worker lifecycle: fresh, returning, offline,
+waiting-worker update with deferral and one-reload adoption, two tabs crossing that
+boundary, quota refusal, the no-fetch recovery worker, and the assertion that no Supabase
+response or mutation reaches Cache Storage. It serves the build from its own origin so the
+worker bytes can change mid-test, so it runs locally even when `PLAYWRIGHT_BASE_URL` is
+set. Recovery and rollback: `docs/pwa-recovery.md`.
 
 `validate` runs lint, strict TypeScript, unit/domain tests, the pgTAP database suite (`validate:db`), and the production PWA build. The database gate needs Docker and a running local stack (`npx supabase start`), because the signature, association, feedback-isolation, and hide/delete propagation guarantees are only provable against real SQL. The Playwright suite can target the deployed production origin with desktop Chromium and these portrait mobile targets:
 
