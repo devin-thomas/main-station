@@ -40,6 +40,7 @@ Versions retained at the time of writing, newest last:
 | `a9cd4de8-88c4-4b2a-98d2-14903b85b7a0` | 2026-09-17 | MS-024–028 data products |
 | `6b57021b-c1c0-4259-8bf5-df70fcbf571f` | 2026-09-19 | MS-029 PWA lifecycle |
 | `e8b16983-c179-4235-80a4-eda44fb1cfef` | 2026-09-19 | MS-030 surface acceptance |
+| `e01883cf-8268-4aa3-875a-3eb2083e0170` | 2026-09-19 | MS-031 release, cross-browser sign-in message |
 
 A Worker rollback does not touch `/sw.js` behaviour beyond serving the older bytes. If the
 defect is in the service worker itself, run the recovery worker in `docs/pwa-recovery.md`

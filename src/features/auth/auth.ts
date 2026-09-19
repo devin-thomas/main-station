@@ -13,7 +13,13 @@ export function friendlyAuthError(error: unknown, action: AuthAction): string {
   if (detail.includes('rate') || detail.includes('too many')) {
     return 'Too many sign-in attempts. Please wait a moment.';
   }
-  if (detail.includes('pkce') || detail.includes('code verifier') || detail.includes('expired') || detail.includes('invalid')) {
+  // The PKCE verifier is stored by the browser that asked for the link, so opening the
+  // link somewhere else (an in-app mail browser, another device) cannot complete the
+  // exchange. The link itself is fine, and telling people it expired sends them in circles.
+  if (detail.includes('code verifier') || detail.includes('flow state') || detail.includes('pkce')) {
+    return 'Open the sign-in link in the same browser you requested it from. A link opened in a different browser cannot finish signing you in.';
+  }
+  if (detail.includes('expired') || detail.includes('invalid')) {
     return 'That sign-in link is no longer valid.';
   }
   if (action === 'email') return 'Your sign-in link could not be sent.';

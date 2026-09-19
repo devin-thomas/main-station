@@ -8,14 +8,13 @@ Release evidence for the first authorized public release, recorded as required b
 | Field | Value |
 | --- | --- |
 | Origin | `https://mainstation.uppercut-labs.workers.dev` (generic `workers.dev`, per SPEC 18) |
-| Worker version | `e8b16983-c179-4235-80a4-eda44fb1cfef` |
+| Worker version | `e01883cf-8268-4aa3-875a-3eb2083e0170` |
 | Supabase project | `bqfzzrasfunysseoogcg` (`mainstation`, us-east-1, Postgres 17.6.1.155) |
 | Migration head | `202609170001_recommendation_support_disclosure` |
 | Verified from | Chromium 141.0.7390.37, Playwright 1.62.1, Linux 6.18 x86_64 |
 
 Deployed bytes were checked against the committed source rather than assumed: a fresh build
-of `main` produces `index-B9U0A9es.js` and `index-T0CpU-VI.css`, and the live HTML references
-exactly those files.
+of `main` reproduces the asset hashes the live HTML references.
 
 ## Acceptance
 
@@ -43,10 +42,18 @@ Read back from the project's auth config:
 is configured and the redirect contract is correct; it does not prove a completed login,
 which needs a human with a Discord account.
 
-**Email endpoint — verified reachable.** `POST /auth/v1/otp` rejects a malformed address with
-`400` and accepts a valid one with `200`. A magic link was sent to the project owner's
-address against the deployed redirect target. **Delivery and the completed sign-in are
-pending the owner clicking that link**; see Open items.
+**Email delivery and verification — verified.** `POST /auth/v1/otp` rejects a malformed
+address with `400` and accepts a valid one with `200`. A confirmation email was delivered to
+the project owner, the link was opened, and the server side completed: `auth.users` shows the
+account created at 10:54:17, `email_confirmed_at` set, and `last_sign_in_at` at 10:55:28. So
+delivery, the verify endpoint, and session issuance all work on the deployed origin.
+
+**Browser session handoff — not completed in that test, by construction.** The request was
+made with `curl`, which sends no PKCE code challenge and leaves no code verifier in any
+browser. The app runs `flowType: 'pkce'` with `detectSessionInUrl: false`, so the callback had
+no `code` to exchange and correctly refused rather than signing anyone in. Completing the
+browser round trip requires requesting the link from the app UI and opening it in that same
+browser; see Open items.
 
 ### Live routes, assets, MIME, cache, CSP — verified
 
@@ -111,8 +118,8 @@ captures was traced to the scrollbar present in the headful window, not to resty
 
 Three prior Worker versions are retained and selectable:
 `a9cd4de8-88c4-4b2a-98d2-14903b85b7a0` (2026-09-17),
-`6b57021b-c1c0-4259-8bf5-df70fcbf571f` (2026-09-19), and the current
-`e8b16983-c179-4235-80a4-eda44fb1cfef`. Procedure, including why a Worker rollback alone is
+`6b57021b-c1c0-4259-8bf5-df70fcbf571f` and `e8b16983-c179-4235-80a4-eda44fb1cfef` (2026-09-19),
+and the current `e01883cf-8268-4aa3-875a-3eb2083e0170`. Procedure, including why a Worker rollback alone is
 safe against the current additive migration and why recovery never begins by clearing user
 storage, is in `docs/release-rollback.md`. Service-worker recovery is in
 `docs/pwa-recovery.md`.
@@ -120,7 +127,7 @@ storage, is in `docs/release-rollback.md`. Service-worker recovery is in
 ## Gates
 
 ```
-npm run validate         # lint, typecheck, verify:art, 38 unit tests, lint:db,
+npm run validate         # lint, typecheck, verify:art, 44 unit tests, lint:db,
                          # 136 pgTAP assertions, build - PASS
 npx playwright test      # 109 specs, local preview - PASS
 PLAYWRIGHT_BASE_URL=<deployed> npx playwright test   # 109 specs, deployed - PASS
@@ -132,17 +139,27 @@ node <skill>/scripts/probe-release.mjs    # PASS, 8 resources, 0 errors, 0 warni
 
 These are the only acceptance items not closed here, and none is a code defect.
 
-1. **Email sign-in end to end.** A magic link was sent to the project owner's address against
-   the deployed callback. Configuration and endpoint behaviour are verified; delivery and the
-   completed session need the owner to click the link. Supabase's built-in SMTP is rate
-   limited and intended for project-team addresses, so a custom SMTP provider is worth
-   configuring before wider signup.
-2. **Discord sign-in end to end.** The redirect contract is verified; completing a login needs
+1. **Custom SMTP is required before public email sign-in.** This is the one item that blocks
+   real users, and it is a provider limit rather than a defect:
+   - `rate_limit_email_sent` is **2 per hour for the whole project** on the built-in provider.
+   - Template and subject customisation is refused outright: *"Email template modification is
+     not available for free tier projects using the default email provider."* So the email
+     arrives as a generic "Confirm your email address" from `noreply@mail.app.supabase.io`
+     with nothing identifying MainStation, and that cannot be fixed by configuration.
+   - `smtp_sender_name` is likewise refused without custom SMTP.
+
+   Configuring any SMTP provider (Resend, Brevo, Mailgun and similar have usable free tiers)
+   lifts the rate limit, allows a sender name and address on your own domain, and unlocks the
+   branded templates. Until then email sign-in works but is not fit for public traffic.
+2. **Browser round trip for email sign-in.** Request a link from the deployed app's own
+   sign-in form and open it in that same browser. The server side is verified; this proves the
+   PKCE exchange in a real browser.
+3. **Discord sign-in end to end.** The redirect contract is verified; completing a login needs
    a human Discord account.
-3. **Installed-surface brand acceptance.** Per SPEC 20 this stays open until the generated
+4. **Installed-surface brand acceptance.** Per SPEC 20 this stays open until the generated
    ordinary, maskable, Apple-touch, and favicon artwork is tested on each claimed physical
    surface. No installed surface has been observed on any platform.
-4. **WebKit.** Unknown for the automated suites; the container has no WebKit build, and
+5. **WebKit.** Unknown for the automated suites; the container has no WebKit build, and
    Chromium mobile presets are emulation, not Safari.
 
 ## Release risks carried forward
