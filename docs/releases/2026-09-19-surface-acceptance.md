@@ -121,12 +121,17 @@ non-cropping `object-fit`, and a parent with no rounding. It appears only beside
 "Developed by Uppercut Labs" credit and is never used as the app icon. The existing smoke
 suite independently asserts its `border-radius`.
 
-### Dark Reader — guidance
+### Dark Reader — guidance at the time of this sweep; since verified
 
 `index.html` ships `<meta name="darkreader-lock" />` and `color-scheme: dark`, confirmed in
 the deployed HTML. Per the skill's browser-checks reference, a theme-lock meta tag proves
 markup only; extension API injection and a real extension run are different evidence. The
-extension was not run, so its behaviour is **unknown**.
+extension was not run during this sweep.
+
+**Superseded 2026-09-19 by MS-031**, which ran Dark Reader 4.9.132 as a real unpacked
+extension against the deployed origin, with a control page proving the extension was active.
+MainStation received zero injected style tags and kept its authored colour tokens exactly.
+See `docs/releases/2026-09-19-public-release.md`.
 
 ### Browser-tab matrix — partly verified
 
