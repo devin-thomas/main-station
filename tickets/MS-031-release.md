@@ -33,12 +33,16 @@ against the deployed origin with a control page; MainStation's authored tokens a
 
 None of these is a code defect; each needs a person or a device.
 
-1. **Custom SMTP, before public email sign-in.** Delivery, verification, and session issuance
-   are verified server-side: the test account was created, confirmed, and signed in at the
-   Supabase layer. What blocks real users is the built-in email provider, not the app. It caps
-   the whole project at two emails per hour, and Supabase refuses template or sender
-   customisation on the free tier with the default provider, so the email cannot identify
-   MainStation at all. Any SMTP provider lifts all three limits at once.
+1. **Custom SMTP, before public email sign-in — deferred 2026-09-19, waiting on a domain.**
+   Delivery, verification, and session issuance are verified server-side: the test account was
+   created, confirmed, and signed in at the Supabase layer. What blocks real users is the
+   built-in email provider, not the app. It caps the whole project at two emails per hour, and
+   Supabase refuses template or sender customisation on the free tier with the default
+   provider, so the mail cannot identify MainStation at all. A Resend account exists but has no
+   verified sending domain yet, and Resend's fallback sender only reaches the account holder,
+   so wiring it up now would change nothing for real users. Runbook, including the branded
+   templates already written: `docs/email-sender-setup.md`. **Discord is the sign-in path that
+   works for public traffic today.**
 2. **Browser round trip for email sign-in.** Request the link from the app's own sign-in form
    and open it in the same browser, which exercises the PKCE exchange a `curl`-initiated test
    cannot.

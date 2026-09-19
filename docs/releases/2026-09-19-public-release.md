@@ -148,9 +148,12 @@ These are the only acceptance items not closed here, and none is a code defect.
      with nothing identifying MainStation, and that cannot be fixed by configuration.
    - `smtp_sender_name` is likewise refused without custom SMTP.
 
-   Configuring any SMTP provider (Resend, Brevo, Mailgun and similar have usable free tiers)
-   lifts the rate limit, allows a sender name and address on your own domain, and unlocks the
-   branded templates. Until then email sign-in works but is not fit for public traffic.
+   Configuring an SMTP provider lifts all three at once. **Deferred 2026-09-19:** a Resend
+   account exists but has no verified sending domain, and Resend's fallback sender only
+   delivers to the account holder, so it would leave public sign-in equally restricted.
+   `docs/email-sender-setup.md` holds the runbook and the branded templates, ready to apply
+   once a domain is verified. Until then email sign-in works but is not fit for public
+   traffic, and **Discord is the sign-in path that is.**
 2. **Browser round trip for email sign-in.** Request a link from the deployed app's own
    sign-in form and open it in that same browser. The server side is verified; this proves the
    PKCE exchange in a real browser.
