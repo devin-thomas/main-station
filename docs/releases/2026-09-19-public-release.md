@@ -139,21 +139,12 @@ node <skill>/scripts/probe-release.mjs    # PASS, 8 resources, 0 errors, 0 warni
 
 These are the only acceptance items not closed here, and none is a code defect.
 
-1. **Custom SMTP is required before public email sign-in.** This is the one item that blocks
-   real users, and it is a provider limit rather than a defect:
-   - `rate_limit_email_sent` is **2 per hour for the whole project** on the built-in provider.
-   - Template and subject customisation is refused outright: *"Email template modification is
-     not available for free tier projects using the default email provider."* So the email
-     arrives as a generic "Confirm your email address" from `noreply@mail.app.supabase.io`
-     with nothing identifying MainStation, and that cannot be fixed by configuration.
-   - `smtp_sender_name` is likewise refused without custom SMTP.
-
-   Configuring an SMTP provider lifts all three at once. **Deferred 2026-09-19:** a Resend
-   account exists but has no verified sending domain, and Resend's fallback sender only
-   delivers to the account holder, so it would leave public sign-in equally restricted.
-   `docs/email-sender-setup.md` holds the runbook and the branded templates, ready to apply
-   once a domain is verified. Until then email sign-in works but is not fit for public
-   traffic, and **Discord is the sign-in path that is.**
+1. ~~Custom SMTP~~ — **closed 2026-09-19.** MainStation now sends through Resend as
+   `MainStation <mainstation@lilgohan.com>` from the verified domain `lilgohan.com`, with
+   `rate_limit_email_sent` raised from 2 to 30 per hour and the branded subjects and
+   templates applied. A live sign-in request produced a Resend delivery logged as
+   `delivered` with subject *"Your MainStation sign-in link"*. Details and rollback:
+   `docs/email-sender-setup.md`.
 2. **Browser round trip for email sign-in.** Request a link from the deployed app's own
    sign-in form and open it in that same browser. The server side is verified; this proves the
    PKCE exchange in a real browser.

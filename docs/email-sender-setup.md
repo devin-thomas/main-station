@@ -1,32 +1,48 @@
-# Email sender setup (deferred)
+# Email sender setup
 
-Email sign-in works, but it is not fit for public traffic until MainStation sends its own
-mail. This is the runbook for finishing that. **Deferred 2026-09-19: waiting on a domain.**
+MainStation sends its own authentication mail through Resend. **Configured and verified
+2026-09-19.**
 
-## Why it is blocked
+| Setting | Value |
+| --- | --- |
+| Provider | Resend, `smtp.resend.com:465`, user `resend` |
+| Sender | `MainStation <mainstation@lilgohan.com>` |
+| Domain | `lilgohan.com`, verified in Resend, sending enabled, us-east-1 |
+| DNS | DKIM, SPF, and bounce MX published via Cloudflare's Resend integration |
+| `rate_limit_email_sent` | 30 per hour |
 
-Supabase's built-in email provider imposes three limits at once, none of which the
-application can work around:
+Verified end to end: a sign-in request to the deployed origin produced a Resend delivery
+logged as `delivered`, from `"MainStation" <mainstation@lilgohan.com>` with subject
+*"Your MainStation sign-in link"*.
+
+## What this replaced
+
+Supabase's built-in provider imposed three limits at once, none of which the application
+could work around:
 
 | Limit | Effect |
 | --- | --- |
 | `rate_limit_email_sent = 2` | Two sign-in emails per hour, for the entire project |
-| Template customisation refused on free tier with the default provider | The mail cannot say MainStation anywhere |
-| `smtp_sender_name` refused without custom SMTP | Sender stays `Supabase Auth <noreply@mail.app.supabase.io>` |
+| Template customisation refused on free tier with the default provider | The mail could not say MainStation anywhere |
+| `smtp_sender_name` refused without custom SMTP | Sender was `Supabase Auth <noreply@mail.app.supabase.io>` |
 
 The exact refusal, from the Management API: *"Email template modification is not available
 for free tier projects using the default email provider. Please upgrade your plan or
 configure a custom SMTP provider."*
 
-Configuring any SMTP provider lifts all three together. A Resend account exists; what is
-missing is a verified sending domain. Resend's fallback sender, `onboarding@resend.dev`, only
-delivers to the account holder's own address, so wiring it up would leave public sign-in
-exactly as restricted as it is now. Verify a domain first.
+## Rollback
 
-Until then, **Discord is the sign-in path that works for real users.** It is fully configured
-and carries none of these limits.
+Clear the `smtp_*` fields on the project's auth config and Supabase falls back to its
+built-in provider, at two emails per hour with generic templates. Auth keeps working.
 
-## Finish it
+## Gotchas met on the way
+
+- `smtp_port` must be sent as a **string** (`"465"`); a number is rejected with
+  `smtp_port: Invalid input: expected string, received number`.
+- `api.resend.com` sits behind Cloudflare bot protection and returns `403 error code: 1010`
+  to a default Python user-agent. Send a normal browser user-agent when querying it.
+
+## Steps, for reference or a rebuild
 
 1. **Verify a domain in Resend** and add the DNS records it asks for. A subdomain such as
    `mail.<your-domain>` keeps sending reputation separate from your main domain.
@@ -37,7 +53,7 @@ and carries none of these limits.
    ```json
    {
      "smtp_host": "smtp.resend.com",
-     "smtp_port": 465,
+     "smtp_port": "465",
      "smtp_user": "resend",
      "smtp_pass": "<RESEND_API_KEY>",
      "smtp_admin_email": "noreply@mail.<your-domain>",
@@ -48,8 +64,8 @@ and carries none of these limits.
 
    Set `smtp_admin_email` to an address on the domain verified in step 1; Resend rejects
    anything else. Raise `rate_limit_email_sent` to whatever suits expected signup volume.
-4. **Apply the branded templates below**, in the same request or a follow-up. They are
-   refused until custom SMTP is configured.
+4. **Apply the branded templates below**, in the same request or a follow-up. Supabase
+   refuses them while the default provider is in use, so custom SMTP must land first.
 5. **Verify**: request a link from the deployed sign-in form, confirm the subject names
    MainStation and the sender is your domain, then open the link *in the same browser* and
    confirm it signs in. That also closes the browser round trip left open in
@@ -57,8 +73,8 @@ and carries none of these limits.
 
 ## Templates
 
-Written and validated against Supabase's template variables, held here because the API
-refuses them until custom SMTP exists. Subjects:
+Applied to the project on 2026-09-19 and recorded here so they can be rebuilt or edited.
+Subjects:
 
 | Key | Value |
 | --- | --- |
