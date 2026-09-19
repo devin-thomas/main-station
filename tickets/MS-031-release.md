@@ -16,7 +16,7 @@ Apply the reviewed migration/seed, configure Auth redirect URLs and Discord cred
 | --- | --- |
 | Target migration current | verified — hosted head is `202609170001`, matching local |
 | Auth redirect URLs configured | verified — site URL and `/auth/callback` allow-listed |
-| Email sender (custom SMTP) | verified — Resend, `MainStation <mainstation@lilgohan.com>`, delivery confirmed |
+| Email sign-in, end to end | verified — Resend delivery as `MainStation <mainstation@lilgohan.com>`, link opened, session issued |
 | Discord provider configured | verified — enabled, client id set, `authorize` returns the correct 302 |
 | Live routes, assets, MIME | verified — all routes 200, correct types |
 | Cache headers | verified — HTML/manifest/worker revalidate, hashed assets immutable |
@@ -38,9 +38,9 @@ None of these is a code defect; each needs a person or a device.
    `MainStation <mainstation@lilgohan.com>` through Resend on the verified domain
    `lilgohan.com`, branded templates applied, rate limit raised from 2 to 30 per hour, and a
    live send logged as `delivered`. Runbook and rollback: `docs/email-sender-setup.md`.
-2. **Browser round trip for email sign-in.** Request the link from the app's own sign-in form
-   and open it in the same browser, which exercises the PKCE exchange a `curl`-initiated test
-   cannot.
+2. ~~Browser round trip for email sign-in~~ — **closed 2026-09-19.** Requested from the live
+   form, opened in the same browser, PKCE exchange completed and a session issued. Email
+   sign-in is verified end to end.
 3. **Discord sign-in end to end.** The redirect contract is verified; completing a login needs
    a human Discord account.
 4. **Installed-surface brand acceptance**, which SPEC 20 keeps open until the generated

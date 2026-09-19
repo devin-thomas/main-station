@@ -48,12 +48,14 @@ the project owner, the link was opened, and the server side completed: `auth.use
 account created at 10:54:17, `email_confirmed_at` set, and `last_sign_in_at` at 10:55:28. So
 delivery, the verify endpoint, and session issuance all work on the deployed origin.
 
-**Browser session handoff — not completed in that test, by construction.** The request was
-made with `curl`, which sends no PKCE code challenge and leaves no code verifier in any
-browser. The app runs `flowType: 'pkce'` with `detectSessionInUrl: false`, so the callback had
-no `code` to exchange and correctly refused rather than signing anyone in. Completing the
-browser round trip requires requesting the link from the app UI and opening it in that same
-browser; see Open items.
+**Browser session handoff — verified 2026-09-19 17:45 UTC.** A sign-in requested from the
+deployed app's own form, with the link opened in the same browser, completed the PKCE
+exchange and issued a session: `auth.users.last_sign_in_at` updated for the signing-in
+account seconds after the tap. The email arrived branded and readable.
+
+An earlier `curl`-initiated attempt did not complete, by construction rather than by defect:
+`curl` sends no PKCE code challenge and leaves no code verifier in any browser, so the
+callback had no `code` to exchange and correctly refused rather than signing anyone in.
 
 ### Live routes, assets, MIME, cache, CSP — verified
 
@@ -145,9 +147,9 @@ These are the only acceptance items not closed here, and none is a code defect.
    templates applied. A live sign-in request produced a Resend delivery logged as
    `delivered` with subject *"Your MainStation sign-in link"*. Details and rollback:
    `docs/email-sender-setup.md`.
-2. **Browser round trip for email sign-in.** Request a link from the deployed app's own
-   sign-in form and open it in that same browser. The server side is verified; this proves the
-   PKCE exchange in a real browser.
+2. ~~Browser round trip for email sign-in~~ — **closed 2026-09-19.** Requested from the live
+   sign-in form and opened in the same browser; the PKCE exchange completed and a session was
+   issued. Email sign-in is now verified end to end, from send through to signed-in session.
 3. **Discord sign-in end to end.** The redirect contract is verified; completing a login needs
    a human Discord account.
 4. **Installed-surface brand acceptance.** Per SPEC 20 this stays open until the generated
