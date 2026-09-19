@@ -30,6 +30,11 @@ node <pwa-development-skill>/scripts/audit-manifest.mjs --manifest dist/manifest
 node <pwa-development-skill>/scripts/probe-release.mjs --url <deployed-origin>
 ```
 
+`tests/e2e/surface-sweep.spec.ts` covers MS-030 surface acceptance: geometry and overflow on
+seven surfaces across 320/360/390/768/1024/1440 and landscape, WCAG 2.2 AA via axe, 44px touch
+targets, keyboard focus, reduced motion, forced colors, 200% zoom, and the uncropped Uppercut
+Labs mark. Browser probes live in `tests/e2e/surface-probes.ts`.
+
 `tests/e2e/pwa-lifecycle.spec.ts` covers the worker lifecycle: fresh, returning, offline,
 waiting-worker update with deferral and one-reload adoption, two tabs crossing that
 boundary, quota refusal, the no-fetch recovery worker, and the assertion that no Supabase

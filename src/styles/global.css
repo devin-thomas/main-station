@@ -153,6 +153,9 @@ p {
   z-index: 1000;
   top: 8px;
   left: 8px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: 12px 16px;
   color: var(--canvas);
   background: var(--text);
@@ -343,6 +346,14 @@ button:disabled {
   letter-spacing: .08em;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+/* At 1440 the longest label leaves under 1px beside the cell rule. Wider gutters are
+   only affordable once there is room; at phone widths the nav would start scrolling. */
+@media (min-width: 768px) {
+  .site-nav__link {
+    padding: 0 14px;
+  }
 }
 
 .site-nav__link--active,
@@ -816,6 +827,9 @@ button:disabled {
 .mainline__meta {
   display: flex;
   flex-wrap: wrap;
+  /* The Game link carries a 44px touch target on phones; centre the row so the
+     metadata beside it stays on the same optical line instead of hanging at the top. */
+  align-items: center;
   gap: 8px;
   margin-bottom: 16px;
   color: var(--text-muted);
@@ -1809,6 +1823,7 @@ select:hover {
 .provenance-block__links {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 8px 18px;
 }
 
@@ -2574,5 +2589,28 @@ select:hover {
     forced-color-adjust: none;
     border-color: Canvas;
     background: Highlight;
+  }
+}
+
+/*
+ * SPEC 16 touch targets.
+ *
+ * These are standalone controls, not links sitting inside a sentence, so the WCAG 2.5.8
+ * inline exception does not cover them: each is the only content of its container and
+ * renders as a block, leaving a 14-18px tall tap target at phone widths. The typographic
+ * scale is deliberate, so the target grows rather than the text.
+ */
+@media (max-width: 768px) {
+  .mainline__meta a,
+  .character-dossier__route a,
+  .provenance-block__links a,
+  .source-line,
+  .empty-line .text-link,
+  .draft-action-ledger__row .text-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 44px;
+    min-height: 44px;
   }
 }
