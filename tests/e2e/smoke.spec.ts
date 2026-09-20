@@ -29,11 +29,11 @@ test('home, catalog, and cleared imagery render', async ({ page }) => {
 test('every current Character art file and UI icon is served as an image', async ({ request }) => {
   test.setTimeout(180_000);
   const artRecords = catalog.flatMap((game) => game.characters.map((character) => character.art)).filter((art) => art);
-  expect(artRecords).toHaveLength(395);
+  expect(artRecords).toHaveLength(410);
 
   // Both delivered copies: the Character page image and the roster thumbnail behind every grid.
   const paths = artRecords.flatMap((art) => [art!.localPath, characterArtThumbPath(art!)]);
-  expect(new Set(paths).size).toBe(790);
+  expect(new Set(paths).size).toBe(820);
 
   for (let index = 0; index < paths.length; index += 20) {
     const batch = paths.slice(index, index + 20);
@@ -56,15 +56,11 @@ test('every current Character art file and UI icon is served as an image', async
 test('every founding game renders reviewed art and provenance on a Character page', async ({ page }) => {
   for (const game of catalog) {
     const character = game.characters[0];
+    expect(character.art, `${game.slug}/${character.slug}`).toBeDefined();
     await page.goto(`/games/${game.slug}/characters/${character.slug}`);
-    if (character.art) {
-      await expect(page.getByAltText(`${character.name} from ${game.name}`)).toBeVisible();
-      await expect(page.locator('.character-stage__credit')).toHaveCount(0);
-      await expect(page.locator('.provenance-block')).toContainText(character.art.creditText);
-    } else {
-      await expect(page.getByRole('img', { name: `${character.name}; artwork unavailable` })).toBeVisible();
-      await expect(page.locator('.character-stage__fallback')).not.toContainText('ART RIGHTS REVIEW');
-    }
+    await expect(page.getByAltText(`${character.name} from ${game.name}`)).toBeVisible();
+    await expect(page.locator('.character-stage__credit')).toHaveCount(0);
+    await expect(page.locator('.provenance-block')).toContainText(character.art!.creditText);
   }
 });
 

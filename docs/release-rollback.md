@@ -43,12 +43,15 @@ Versions retained at the time of writing, newest last:
 | `e01883cf-8268-4aa3-875a-3eb2083e0170` | 2026-09-19 | MS-031 release, cross-browser sign-in message |
 | `c8a59030-c253-4c2a-b83f-545701fc510e` | 2026-09-20 | Feedback reason list, regenerated types |
 | `34dd3892-edb5-42dd-88de-23dad94526c1` | 2026-09-20 | Full-roster Character art, guided onboarding |
+| `f5a9c6ee-b2b1-4f89-a6f5-00365f7de9f3` | 2026-09-20 | UMVC3 Marvel-side art; roster art complete at 410 |
 
 A Worker rollback does not touch `/sw.js` behaviour beyond serving the older bytes. If the
 defect is in the service worker itself, run the recovery worker in `docs/pwa-recovery.md`
 first, because clients controlled by a broken worker may never fetch the rolled-back build.
 
-Rolling back past `34dd3892-edb5-42dd-88de-23dad94526c1` leaves the product working but artless.
+Rolling back past `f5a9c6ee-b2b1-4f89-a6f5-00365f7de9f3` costs UMVC3's 25 Marvel-side portraits:
+ten fall back to their Marvel vs. Capcom 2 render and fifteen to the Character's name. Rolling
+back past `34dd3892-edb5-42dd-88de-23dad94526c1` leaves the product working but artless.
 That release replaced every `/art/*.png` and `/art/*.jpg` file with a `.webp` of the same
 Character, so an older build asks for filenames the current deploy no longer serves. Those
 requests return a real `404`, `CharacterStage` and `CharacterPortrait` fall back to the
@@ -64,10 +67,14 @@ dropping data that the newer build wrote.
 A Worker rollback alone is safe against the two most recent migrations, and neither needs a
 database change to accompany it.
 
-`202609200002_full_roster_character_art` replaces the launch art ledger with full-roster
-coverage: it deletes every row of `character_art_assets` and inserts 395. It holds catalog rows
-only, no user data, and the browser reads art from its own bundled catalog rather than from the
-database, so an older Worker is unaffected by it either way. Re-running it is safe.
+`202609200003_complete_character_art` widens `character_art_reuse_mode` to admit
+`community-mirrored` and rewrites the art ledger at 410 rows, replacing UMVC3's 25 Marvel-side
+entries. `202609200002_full_roster_character_art` did the same at 395. Both delete every row of
+`character_art_assets` and re-insert, because a changed source changes the `storage_path` or
+`asset_sha256`. The table holds catalog rows only, no user data, and the browser reads art from
+its own bundled catalog rather than from the database, so an older Worker is unaffected by either.
+Both are safe to re-run. Rolling the constraint back would need a new forward migration, and only
+if a release ever stops using the value.
 
 `202609200001_feedback_reason_list` replaces `recommendation_feedback.reason_code` with a
 bounded `reason_codes text[]` and changes the `record_recommendation_feedback` signature to

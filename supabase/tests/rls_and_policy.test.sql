@@ -35,8 +35,8 @@ select results_eq(
 select results_eq(
   $$select count(*)::integer from public.character_art_assets
     where review_state = 'approved' and is_primary and disabled_at is null$$,
-  array[395::integer],
-  'the art ledger has 395 active approved primary art records'
+  array[410::integer],
+  'the art ledger has 410 active approved primary art records'
 );
 
 select results_eq(
@@ -61,10 +61,11 @@ select results_eq(
     group by asset_reuse_mode
     order by asset_reuse_mode$$,
   $$values
+    ('community-mirrored'::text, 25::bigint),
     ('conditional-community-policy'::text, 15::bigint),
     ('conditional-fan-kit'::text, 34::bigint),
     ('express-fan-kit'::text, 28::bigint),
-    ('publisher-promotional'::text, 318::bigint)$$,
+    ('publisher-promotional'::text, 308::bigint)$$,
   'art usage bases preserve fan-kit, community-policy, and ADR-023 promotional distinctions'
 );
 

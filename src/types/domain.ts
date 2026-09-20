@@ -9,7 +9,9 @@ export type CharacterArtUsageBasis =
   | 'conditional-fan-kit'
   | 'conditional-community-policy'
   | 'written-permission'
-  | 'community-licensed';
+  | 'community-licensed'
+  /** Publisher-owned art mirrored by a community wiki. The host grants nothing; it is the finder. */
+  | 'community-mirrored';
 
 export interface CharacterArtAsset {
   localPath: string;

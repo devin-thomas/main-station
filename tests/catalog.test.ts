@@ -86,13 +86,14 @@ describe('founding catalog', () => {
     }
 
     expect(entries).toHaveLength(410);
-    expect(artEntries).toHaveLength(395);
-    expect(new Set(artEntries.map(({ game, character }) => `${game.slug}/${character.slug}`)).size).toBe(395);
+    expect(artEntries).toHaveLength(410);
+    expect(new Set(artEntries.map(({ game, character }) => `${game.slug}/${character.slug}`)).size).toBe(410);
     expect(new Set(artEntries.map(({ game }) => game.slug)).size).toBe(13);
     expect(basisCounts.get('express-fan-kit')).toBe(28);
     expect(basisCounts.get('conditional-fan-kit')).toBe(34);
     expect(basisCounts.get('conditional-community-policy')).toBe(15);
-    expect(basisCounts.get('publisher-promotional')).toBe(318);
+    expect(basisCounts.get('community-mirrored')).toBe(25);
+    expect(basisCounts.get('publisher-promotional')).toBe(308);
 
     for (const { character } of artEntries) {
       expect(character.art?.assetHash).toMatch(/^sha256:[a-f0-9]{64}$/);
@@ -104,42 +105,41 @@ describe('founding catalog', () => {
       expect(character.art?.permissionEvidence.length).toBeGreaterThan(40);
     }
 
-    // Every Character carries its own file. Bytes repeat only where a labelled
-    // cross-version fallback serves another Game's official render.
-    expect(new Set(artEntries.map(({ character }) => character.art?.localPath)).size).toBe(395);
-    const byHash = new Map<string, string[]>();
-    for (const { game, character } of artEntries) {
-      const hash = character.art?.assetHash ?? '';
-      byHash.set(hash, [...(byHash.get(hash) ?? []), `${game.slug}/${character.slug}`]);
-    }
-    const shared = [...byHash.values()].filter((keys) => keys.length > 1);
-    expect(shared).toHaveLength(10);
-    for (const keys of shared) {
-      expect(keys).toHaveLength(2);
-      expect(keys.some((key) => key.startsWith('mvc2/'))).toBe(true);
-      const reused = keys.find((key) => key.startsWith('umvc3/'));
-      expect(reused).toBeDefined();
-      const slug = reused?.slice('umvc3/'.length);
-      const character = catalog.find((game) => game.slug === 'umvc3')?.characters.find((entry) => entry.slug === slug);
-      expect(character?.art?.creditText).toContain('cross-version');
-    }
+    // Every Character carries its own file, and no two share bytes.
+    expect(new Set(artEntries.map(({ character }) => character.art?.localPath)).size).toBe(410);
+    expect(new Set(artEntries.map(({ character }) => character.art?.assetHash)).size).toBe(410);
 
+    // Melee is the only Game still served by another version's official renders.
+    const crossVersion = artEntries.filter(({ character }) => character.art?.creditText.includes('cross-version'));
+    expect(crossVersion.map(({ game }) => game.slug)).toEqual(Array(26).fill('melee'));
     const melee = catalog.find((game) => game.slug === 'melee');
-    expect(melee?.characters.filter((character) => character.art).every((character) => character.art?.creditText.includes('cross-version'))).toBe(true);
-    const doom = catalog.find((game) => game.slug === 'umvc3')?.characters.find((character) => character.slug === 'doom');
-    expect(doom?.art?.creditText).toContain('cross-version');
+    expect(melee?.characters.every((character) => character.art?.creditText.includes('cross-version'))).toBe(true);
   });
 
-  it('covers every roster row except the UMVC3 Marvel half Capcom no longer publishes', () => {
+  it('covers every roster row in every Game', () => {
     const uncovered = catalog.flatMap((game) => game.characters
       .filter((character) => !character.art)
       .map((character) => `${game.slug}/${character.slug}`));
 
-    expect(uncovered).toHaveLength(15);
-    expect(uncovered.every((key) => key.startsWith('umvc3/'))).toBe(true);
+    expect(uncovered).toEqual([]);
     for (const game of catalog) {
-      if (game.slug === 'umvc3') continue;
       expect(game.characters.every((character) => Boolean(character.art))).toBe(true);
+    }
+  });
+
+  it('records the community mirror behind the UMVC3 Marvel half, and only there', () => {
+    const mirrored = catalog.flatMap((game) => game.characters
+      .filter((character) => character.art?.usageBasis === 'community-mirrored')
+      .map((character) => ({ game, character })));
+
+    expect(mirrored).toHaveLength(25);
+    expect(new Set(mirrored.map(({ game }) => game.slug))).toEqual(new Set(['umvc3']));
+    for (const { character } of mirrored) {
+      // The wiki is the finder, not the rights holder: the credit still names Capcom and Marvel.
+      expect(character.art?.sourceUrl).toMatch(/^https:\/\/wiki\.supercombo\.gg\/images\//);
+      expect(character.art?.reviewUrl).toMatch(/^https:\/\/wiki\.supercombo\.gg\/w\//);
+      expect(character.art?.creditText).toContain('© Capcom / Marvel');
+      expect(character.art?.permissionEvidence).toContain('grants no reuse licence of its own');
     }
   });
 

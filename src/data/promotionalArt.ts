@@ -21,6 +21,7 @@ const capcomPromotionalEvidence = `Official Capcom-hosted promotional art. Capco
 const playstationPromotionalEvidence = `Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. ${deliveryNote}`;
 const nintendoPromotionalEvidence = `Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. ${deliveryNote}`;
 const wbPromotionalEvidence = `Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. ${deliveryNote}`;
+const umvc3WikiEvidence = `Capcom's own high-resolution art post publishes only the Capcom half of the Ultimate Marvel vs. Capcom 3 cast; its Marvel-side links were removed by a moderator and the bulk download it offered has not resolved since 2012. This is the game's own character art, mirrored by the SuperCombo Wiki, which hosts it as a reference work and grants no reuse licence of its own. The rights remain with Capcom and Marvel; included under accepted ADR-023 with the limitation and a per-asset removal path recorded. Byte-verified against devin-thomas/fgc-assets \`catalog/manifests/357190.json\`. ${deliveryNote}`;
 const bandaiPromotionalEvidence = `Official TEKKEN 8 roster thumbnail served by Bandai Namco's own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. ${deliveryNote}`;
 
 type ArtInput = Omit<PromotionalArtRecord, 'reviewedAt'>;
@@ -127,16 +128,22 @@ const umvc3Art = (characterSlug: string, assetId: string, assetHash: string, thu
   thumbHash: `sha256:${thumbHash}`,
 });
 
-const umvc3CrossVersionArt = (characterSlug: string, sourceName: string, assetHash: string, thumbHash: string): PromotionalArtRecord => record({
+const umvc3WikiArt = (
+  characterSlug: string,
+  sourcePage: string,
+  imageUrl: string,
+  assetHash: string,
+  thumbHash: string,
+): PromotionalArtRecord => record({
   gameSlug: 'umvc3',
   characterSlug,
   localPath: `/art/umvc3-${characterSlug}.webp`,
-  sourceUrl: mvc2SourceUrl(sourceName),
-  sourcePublisher: 'Capcom / Marvel',
-  reviewUrl: 'https://www.capcom-games.com/en/terms/',
-  creditText: 'Marvel vs. Capcom 2 art via Capcom; clearly labeled cross-version identity fallback for UMVC3',
-  usageBasis: 'publisher-promotional',
-  permissionEvidence: `${capcomPromotionalEvidence} Capcom's own UMVC3 high-resolution art post no longer publishes the Marvel half of the cast, so this version-mismatched MVC2 render stands in and is labeled as such.`,
+  sourceUrl: imageUrl,
+  sourcePublisher: 'Capcom / Marvel, via the SuperCombo Wiki',
+  reviewUrl: sourcePage,
+  creditText: 'Ultimate Marvel vs. Capcom 3 character art © Capcom / Marvel',
+  usageBasis: 'community-mirrored',
+  permissionEvidence: `${umvc3WikiEvidence} Mirrored at ${sourcePage}.`,
   assetHash: `sha256:${assetHash}`,
   thumbHash: `sha256:${thumbHash}`,
 });
@@ -467,16 +474,31 @@ const records: PromotionalArtRecord[] = [
   umvc3Art('viewtiful-joe', 'eaf9efe63ea1d5a756c405753a39b064', '7fd537461c7f5bf3ca03850682ae1fa86e4acaa686c20519c3183547e4633618', '55b1de004ed0c64568b027b5099e9b7fbb22bd807a2deb27c078089a6831ea8d'),
   umvc3Art('wesker', '67dfdd8c21011b57a0d0aa63f23a94f5', '6b3c61abf53ac3b7c42e98dc01a2c6ff7f548bc94b07f279ca391fdb5884116e', '24d16a5cdb2b2279087a9e0aec28a6bd6c6a0483eba9dbbd1074e10bf75acb96'),
   umvc3Art('zero', '2f7319c0e9932a47d0e9db7ef453ec4f', '35fb23cca5e5748c248c078f4085c59e5af8fc7c5633d0a5f22aa1fe4f12ce15', '264ead543948a728e79bb2454e5cc68078eb71b8053edceee6e6f73a30dffac1'),
-  umvc3CrossVersionArt('captain-america', 'captain_america', 'ac477aed8fe6a2aaf27109ac7e06117d33bd61c97a7c6a54bcdfaa8259bde55f', '27802caf7ee10ce9bc0eee4f44364e882d975963fba010f7a31c0c4a7f436eb5'),
-  umvc3CrossVersionArt('doom', 'doctor_doom', 'f45ff27110e8507bce32db84e72c1e33d6e64f85829b358d8480f5cca0b71cc9', '6392423ffca48c30a8c6fcb3e0dc8bfaaeae4150f56c1c7ee8670d4cb63648f5'),
-  umvc3CrossVersionArt('hulk', 'hulk', '69a56daa6106b39ca6cfcc631c3eab0b4db46e39a6e6e5cb872667296badf804', 'd9ccbe27344fc933dbd7cbb7e6b619497ad0612e45cc60ddc5b25e7705f52537'),
-  umvc3CrossVersionArt('iron-man', 'ironman', '7c3f4609d88fc7249e5ea0daa340e669638447bd5332bf6389f338a85af81352', 'a1a646c1f12d7f3fe8a27ebc2c9447f888666ad1d0ec7d9d3a386c5356886cd2'),
-  umvc3CrossVersionArt('magneto', 'magneto', 'd07bed1e4ecba4a0f2322d3fe079512e02876d70084720e762d02716c5913107', 'd357da2f4b6850716c7834f2087b1b6ad6c78d68e4fbf491765e71de8c6095d9'),
-  umvc3CrossVersionArt('sentinel', 'sentinel', '3e81653c9325e6835ff2f84dc2d09f94fa2e0d05eb2b091b14b59ecb78166165', 'dc7258af77dbf1bf900b71e7567f942d0dc03f8809d0927b92ed63922a78a17c'),
-  umvc3CrossVersionArt('shuma-gorath', 'shumagorath', '1b7a3a1a8e2ce88565892b88dd1f6c63a370467a4f0f67d58ef0448eb5b11fb1', '63b73f8bdca0bff3876a56c1ee7809d92ece985537384f02cfb207314a00f5a0'),
-  umvc3CrossVersionArt('spider-man', 'spider_man', '29c2127d455febb787505981f90052c59e7a30bba2f812fb9926c6475f7f67e6', '08aa2cdb9021e896891fa52f435a5d6d0a219b3ae04d619919aaa7ee9644af33'),
-  umvc3CrossVersionArt('storm', 'storm', '23ea536eef73b1e30887bc5bf2847239ef0653a3161d5378b3c24a1348a241f8', 'b70d59eba8d4b4378524275555d975c3f16d6b014268fcaef6591d5128cd3d96'),
-  umvc3CrossVersionArt('wolverine', 'wolverine', '522f7fcca99bf3e38a44d7b2ffe00a6d59a1f70456f7fa62777c84749ecdf580', 'b0c189b19c8599d9f6c41deb173882ec662e09ff371570637ff47ea17d453c29'),
+  umvc3WikiArt('captain-america', 'https://wiki.supercombo.gg/w/UMVC3/Captain_America', 'https://wiki.supercombo.gg/images/0/04/UMVC3_Captain_America_Portrait.png', 'ffa47c2faed7ff1b585495e8cf947c064a38ebed85d3655ab73b5f2eadbf629b', 'c372658c37efe6d758b838d7e2f1efc4d1dc7f3fded33a037f936ad529789d66'),
+  umvc3WikiArt('deadpool', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Deadpool', 'https://wiki.supercombo.gg/images/e/e3/UMVC3_Deadpool_Portrait.png', 'e94ceb8a9eba3e2400df0027e190196e4de7374d3e59b91582ab833173b00a9a', '62c0aacfe6b7315a9fdee74f58bf9a56a1409cee4aef2e54397f9d60d53c1ba4'),
+  umvc3WikiArt('doctor-strange', 'https://wiki.supercombo.gg/w/UMVC3/Doctor_Strange', 'https://wiki.supercombo.gg/images/8/84/UMVC3_Doctor_Strange_Portrait.png', 'bf9e5578192d25123218858c5b8089e06a6c27130573c9b1de06f1555923f7da', 'e42bea7f854ab933c4777b82633eb8ccf7631ebe981f3a5a02c9513a3ea7d1eb'),
+  umvc3WikiArt('doom', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Doctor_Doom', 'https://wiki.supercombo.gg/images/7/7d/UMVC3_Doctor_Doom_Portrait.png', '61d6fcedd9d3bbf206b738cb8d2185d1aa8735a3ffcde4993f3c4a7315f12ddb', '25fbdb498c23fc65de963822c5003ea00c8d4360a731f20d3b4929e4e70da54d'),
+  umvc3WikiArt('dormammu', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Dormammu', 'https://wiki.supercombo.gg/images/0/05/UMVC3_Dormammu_Portrait.png', '27940784a6defea823e6d4690db7b1938b4ce63a535c55e267968d983b8aed11', 'a7f5428aebfbedb710ce5f667e43dcbd9af585cf9891eedfeabed715e8595586'),
+  umvc3WikiArt('ghost-rider', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Ghost_Rider', 'https://wiki.supercombo.gg/images/a/ad/UMVC3_Ghost_Rider_Portrait.png', '0feeec65a39ac2cd480618302e575d6c530cd667562d7d02cad5d3fbb2331bce', '599436efb5d00717ebe7de22155e85797874b1113ca809c99ad21c4d3669ecb9'),
+  umvc3WikiArt('hawkeye', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Hawkeye', 'https://wiki.supercombo.gg/images/e/e8/UMVC3_Hawkeye_Portrait.png', '95fe33d6b0f812555f5168914ab3d1eddd7d4c7c41b04d7545e704243692d6e3', 'b3dde164182f1cfc01e1f2c2f16d489f0fa2dd36137c1ab0919344ddcd5a7053'),
+  umvc3WikiArt('hulk', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Hulk', 'https://wiki.supercombo.gg/images/6/6c/UMVC3_Hulk_Portrait.png', '5b57e726aef845d73959407e3a53ba03db87bd6f1476d2d4a63088670252b045', '0ed04e9c401c460771a799f9684c47378ed10312e3fd63348b949fcdabd24aef'),
+  umvc3WikiArt('iron-fist', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Iron_Fist', 'https://wiki.supercombo.gg/images/5/5c/UMVC3_Iron_Fist_Portrait.png', 'f009cc7f7421cc9d80b4fce93dcdfb063660209115d081ce3024c0fa423264c3', '3769ff1651e2983e2b4c327faf47e83cb887f889773f7854313c13ffd6bf520f'),
+  umvc3WikiArt('iron-man', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Iron_Man', 'https://wiki.supercombo.gg/images/4/4c/UMVC3_Iron_Man_Portrait.png', 'c14f7c2b982d91906e2eedf7ab3027cf18360106e4a3d8662423da26ac661252', '45e546e65507cda65fc7cb17c7ff61eccb214341d978075d80a3f224a1447fe2'),
+  umvc3WikiArt('magneto', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Magneto', 'https://wiki.supercombo.gg/images/0/04/UMVC3_Magneto_Portrait.png', 'f7d9d0cc28ce6ed1adfa7337b5382b475921deb65ab94a909503ad4b676a8c5d', '70b93a3992208710f7cd0043f1c0d7431e713e2da9e6179f250f25ee7df30e5b'),
+  umvc3WikiArt('modok', 'https://wiki.supercombo.gg/w/UMVC3/M.O.D.O.K.', 'https://wiki.supercombo.gg/images/d/dc/UMVC3_M.O.D.O.K._Portrait.png', '251dc9ecec7e6c4080be79bdf369714249e6378e701ed0632968136f1e5659cc', '7e071f62fd91729bcc03e9d1af39ae01764de39e2156d34e05ee032915a364fd'),
+  umvc3WikiArt('nova', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Nova', 'https://wiki.supercombo.gg/images/6/6b/UMVC3_Nova_Portrait.png', '93053647800766be93f215f510a47798ef518be775728f3024b6eb6db03bd3d4', '96fd93db5d08fec8c12c204353f813df0f7cbc3bebe9b48e09e5986cb5db4a7e'),
+  umvc3WikiArt('phoenix', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Phoenix', 'https://wiki.supercombo.gg/images/7/79/UMVC3_Phoenix_Portrait.png', '712fda7bf4bdd5613629f2a951033461f0542c9e9f452e4c7cb5e380ef045024', 'a0e10c7522f20f590b96ac299c873f9f9889773f8ff366e2c17419ae66178853'),
+  umvc3WikiArt('rocket-raccoon', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Rocket_Raccoon', 'https://wiki.supercombo.gg/images/d/d2/UMVC3_Rocket_Raccoon_Portrait.png', 'ff6242f848ca11d89bc71d340e105cf9e8519b117b62fe77d87c940c9d18649f', '6a7ab7a52e277f68ecd343b5660bf4bbebe127b14bea54c4678b9f0ca44e1410'),
+  umvc3WikiArt('sentinel', 'https://wiki.supercombo.gg/w/UMVC3/Sentinel', 'https://wiki.supercombo.gg/images/6/6a/UMVC3_Sentinel_Portrait.png', 'c6f76fd9af8b11d0554fd094bb2697f5c533f84ed2e3f8edbf8dd868f68d8cad', '205bfd5c0c94893a6715d6766974f994f2377827dd40194c18d365b7d23f1b89'),
+  umvc3WikiArt('she-hulk', 'https://wiki.supercombo.gg/w/UMVC3/She-Hulk', 'https://wiki.supercombo.gg/images/7/74/UMVC3_She-Hulk_Portrait.png', 'c5f871b46d8f155fa344b6120d0a55c9457352d5272bdc7862c2782e2a3d4d93', 'f75ee5a55c656f10a5b7d1a94447a3166a1a63140bd5c84154c5141c47e63f1c'),
+  umvc3WikiArt('shuma-gorath', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Shuma-Gorath', 'https://wiki.supercombo.gg/images/f/f3/UMVC3_Shuma-Gorath_Portrait.png', '573d22edfd06b17e440318a5dcde79da7cc121297f1d2bb1e6b5f76379de6d76', '503ab659a0b12b5ac035e141701e35232eaeaf2f5d99e0c7f01f16333bcc4192'),
+  umvc3WikiArt('spider-man', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Spider-Man', 'https://wiki.supercombo.gg/images/1/1d/UMVC3_Spider-Man_Portrait.png', '094b2c284e46cfe047dfc0bb39322f80a936150b37591f0192c3c12a5b58d59d', 'f9314c9d5bc93309fe9e33a633de475df1423dd39e47b33465408dcea4f39b04'),
+  umvc3WikiArt('storm', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Storm', 'https://wiki.supercombo.gg/images/d/d8/UMVC3_Storm_Portrait.png', 'a4bbc45ab332d11d3c7d39eca90148d02f72894e18fedc35c1c4d6b0882de622', '07bcb931bdb440a074e604033060f0fec26a9ac99d46c52d07a87f036f97f1a8'),
+  umvc3WikiArt('super-skrull', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Super-Skrull', 'https://wiki.supercombo.gg/images/c/c8/UMVC3_Super-Skrull_Portrait.png', '20f6c5f3abe6270283ddc7a59f4d72a6da49ba0d7e40b09fe2c2bbc54f26c872', '79d8889ab55c550e370b4935d82339d619204d1f02858769447f6d92d8495246'),
+  umvc3WikiArt('taskmaster', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Taskmaster', 'https://wiki.supercombo.gg/images/1/11/UMVC3_Taskmaster_Portrait.png', '7998c05ef61f6340df07802b17fc65c638bea7c5d78b282e5a52139ffe44bce6', 'ef8724d85cc1ec871abea93a00ed4bbc08ee9375a41aadb9d3f2984ca082a0b0'),
+  umvc3WikiArt('thor', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Thor', 'https://wiki.supercombo.gg/images/e/ec/UMVC3_Thor_Portrait.png', '850cc56fb523b4549ca0637a4e139284d894949e4a410bd5c35f4f17147550ba', 'aeca6de608986578edcf4989e52b3ce1e631ab0f866292fe930b192715c26326'),
+  umvc3WikiArt('wolverine', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/Wolverine', 'https://wiki.supercombo.gg/images/d/d3/UMVC3_Wolverine_Portrait.png', '9f7973c1afb566922a117b7d4ec8d82b80bd8dd46ce0db07ce28f1daa0b7adf7', 'c3ebe7f59224576f66cd9d34fcf23187551a17428e256af719627351a9d7a1c8'),
+  umvc3WikiArt('x-23', 'https://wiki.supercombo.gg/w/Ultimate_Marvel_vs_Capcom_3/X-23', 'https://wiki.supercombo.gg/images/5/5b/UMVC3_X-23_Portrait.png', '745f16c65856dcd8dbbf4510976da5a19cd9cce0ddc2e0d57b58a83be93dff1f', '49c1a813b8029fa1bec919b70d845958a98f856b116ec3323f2c3ebcd79a001c'),
   ggstFanKitArt('aba', 'chara27_aba.png', 'e051ab70d3b01f0c956a86fa21ab879f6e697f3b550940629026b8baff455ed3', 'f8efa5540925850b53c0fcf1c381a953f783a2bc1efdacf8c70062a4f8154732'),
   ggstFanKitArt('anji', 'chara14_anj.png', '83c7f6830601861f48c05f70f0e7619aac5d6d374c22607440d03e80be0d59a0', '395f2a3766dc4e2bf27c81cf3e1382f2a2a84140bb7d37807e22945c34ec4690'),
   ggstFanKitArt('asuka-r', 'chara24_ask.png', 'cd8b1968ff406e0d37f8318480ba169618ea2beecee1169b271800fc17a89094', '67e39363431b11f52e5ee2b6f8764328378f68e7e6bdd5d603916bfe6ac69e53'),
