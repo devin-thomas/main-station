@@ -1,6 +1,6 @@
 begin;
 
-select plan(107);
+select plan(111);
 
 select has_table('public', 'profiles', 'profiles exists');
 select has_table('public', 'lineups', 'lineups exists');
@@ -15,7 +15,8 @@ select has_function('public', 'save_my_profile_draft', array['jsonb', 'uuid'], '
 select hasnt_function('public', 'merge_my_guest_draft', array['jsonb', 'uuid'], 'the retired guest merge RPC is absent');
 select has_function('public', 'get_my_profile_draft', array[]::text[], 'registered-draft read RPC exists');
 select has_function('public', 'run_my_recommendations', array['uuid'], 'audited recommendation RPC exists');
-select has_function('public', 'record_recommendation_feedback', array['uuid', 'uuid', 'feedback_response', 'text'], 'bounded feedback RPC exists');
+select has_function('public', 'record_recommendation_feedback', array['uuid', 'uuid', 'feedback_response', 'text[]'], 'bounded feedback RPC exists');
+select hasnt_function('public', 'record_recommendation_feedback', array['uuid', 'uuid', 'feedback_response', 'text'], 'the single-reason feedback signature is gone, not overloaded');
 
 select results_eq(
   $$select count(*)::integer from public.character_art_assets
@@ -243,7 +244,7 @@ select results_eq(
       ('public.save_my_profile_draft(jsonb,uuid)'),
       ('public.get_my_profile_draft()'),
       ('public.run_my_recommendations(uuid)'),
-      ('public.record_recommendation_feedback(uuid,uuid,public.feedback_response,text)')
+      ('public.record_recommendation_feedback(uuid,uuid,public.feedback_response,text[])')
     ) as rpc(signature)
     where has_function_privilege('anon', rpc.signature, 'EXECUTE')$$,
   array[0::integer],
@@ -261,7 +262,7 @@ select results_eq(
       ('public.save_my_profile_draft(jsonb,uuid)'),
       ('public.get_my_profile_draft()'),
       ('public.run_my_recommendations(uuid)'),
-      ('public.record_recommendation_feedback(uuid,uuid,public.feedback_response,text)')
+      ('public.record_recommendation_feedback(uuid,uuid,public.feedback_response,text[])')
     ) as rpc(signature)
     where has_function_privilege('authenticated', rpc.signature, 'EXECUTE')$$,
   array[9::integer],
@@ -279,7 +280,7 @@ select results_eq(
       ('public.save_my_profile_draft(jsonb,uuid)'),
       ('public.get_my_profile_draft()'),
       ('public.run_my_recommendations(uuid)'),
-      ('public.record_recommendation_feedback(uuid,uuid,public.feedback_response,text)')
+      ('public.record_recommendation_feedback(uuid,uuid,public.feedback_response,text[])')
     ) as rpc(signature)
     where has_function_privilege('service_role', rpc.signature, 'EXECUTE')$$,
   array[0::integer],
@@ -1202,9 +1203,40 @@ select lives_ok(
       '60000000-0000-4000-8000-000000000001',
       '30000000-0000-4000-8000-000000000001',
       'already_play',
-      null
+      array['Already-Main ', 'too-slow', 'already-main']
     )$$,
   'an owner can update analytics-only feedback through the bounded RPC'
+);
+
+select results_eq(
+  $$select reason_codes from public.recommendation_feedback
+    where id = '70000000-0000-4000-8000-000000000001'$$,
+  $$values (array['already-main', 'too-slow'])$$,
+  'the reason list is normalised to distinct lower-case slugs'
+);
+
+select throws_ok(
+  $$select public.record_recommendation_feedback(
+      '60000000-0000-4000-8000-000000000001',
+      '30000000-0000-4000-8000-000000000001',
+      'would_try',
+      array['a', 'b', 'c', 'd', 'e', 'f']
+    )$$,
+  '22023',
+  'Give at most five feedback reasons.',
+  'the reason list is bounded in length'
+);
+
+select throws_ok(
+  $$select public.record_recommendation_feedback(
+      '60000000-0000-4000-8000-000000000001',
+      '30000000-0000-4000-8000-000000000001',
+      'would_try',
+      array['Not A Slug!']
+    )$$,
+  '22023',
+  'Feedback reason code is invalid.',
+  'the reason list rejects a value that is not a slug'
 );
 
 select results_eq(
@@ -1219,7 +1251,7 @@ select throws_ok(
       '60000000-0000-4000-8000-000000000002',
       '30000000-0000-4000-8000-000000000001',
       'would_try',
-      null
+      '{}'
     )$$,
   '42501',
   'Recommendation candidate not found or not owned by the current user.',

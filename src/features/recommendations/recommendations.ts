@@ -129,15 +129,22 @@ export async function runRecommendations(targetGameSlug: string): Promise<Recomm
   return parseRun(data);
 }
 
+/**
+ * Records analytics-only feedback. SPEC 13 allows an optional structured reason list
+ * alongside the bounded response; the server normalises and bounds it, so callers may pass
+ * raw slugs. Feedback never affects ranking.
+ */
 export async function saveRecommendationFeedback(
   runId: string,
   characterId: string,
   response: RecommendationFeedback,
+  reasonCodes: string[] = [],
 ): Promise<void> {
   const { error } = await requireSupabase().rpc('record_recommendation_feedback', {
     p_recommendation_run_id: runId,
     p_character_id: characterId,
     p_response: response,
+    p_reason_codes: reasonCodes,
   });
   if (error) throw error;
 }

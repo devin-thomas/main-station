@@ -2,6 +2,8 @@
 
 Current release: [2026-09-19 public release](docs/releases/2026-09-19-public-release.md) — live at `https://mainstation.uppercut-labs.workers.dev`. Rollback: [docs/release-rollback.md](docs/release-rollback.md).
 
+Foundation tickets MS-001–023 record their acceptance retrospectively in [2026-09-20 foundation acceptance](docs/releases/2026-09-20-foundation-acceptance.md).
+
 Preceded by [surface acceptance](docs/releases/2026-09-19-surface-acceptance.md) and [PWA lifecycle acceptance](docs/releases/2026-09-19-pwa-lifecycle-acceptance.md).
 
 Historical snapshot of the release identified below. Guest-draft flows and their acceptance results were superseded by ADR-028 on 2026-09-04; they are retained as evidence of that earlier build, not current product requirements or verification. See `docs/releases/` for later release records.

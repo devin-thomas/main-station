@@ -38,8 +38,12 @@ The other four were revised before they were closed:
 - MS-028 — live views already made hide and delete immediate, but nothing proved it; the nearest
   test invalidated a catalog row rather than changing visibility.
 
-## Open follow-up
+## Follow-up, closed
 
-SPEC 13 describes "an optional structured reason **list**" for feedback; the schema stores a single
-`reason_code text`. Judged non-blocking for MS-027 because the bounded-enum response and analytics
-isolation both hold, but the column shape and the spec should be reconciled in a later ticket.
+SPEC 13 describes "an optional structured reason **list**" for feedback, where the launch schema
+stored a single `reason_code text`. Reconciled 2026-09-20 by migration `202609200001`:
+`reason_codes text[]`, bounded by a column constraint to at most five distinct slug-shaped
+values, with `record_recommendation_feedback` taking `text[]` and normalising case, padding and
+duplicates before validating. The old single-reason signature was dropped rather than
+overloaded, so no caller can reach an unbounded path. Applied to production and covered by
+pgTAP.

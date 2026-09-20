@@ -41,6 +41,7 @@ Versions retained at the time of writing, newest last:
 | `6b57021b-c1c0-4259-8bf5-df70fcbf571f` | 2026-09-19 | MS-029 PWA lifecycle |
 | `e8b16983-c179-4235-80a4-eda44fb1cfef` | 2026-09-19 | MS-030 surface acceptance |
 | `e01883cf-8268-4aa3-875a-3eb2083e0170` | 2026-09-19 | MS-031 release, cross-browser sign-in message |
+| `c8a59030-c253-4c2a-b83f-545701fc510e` | 2026-09-20 | Feedback reason list, regenerated types |
 
 A Worker rollback does not touch `/sw.js` behaviour beyond serving the older bytes. If the
 defect is in the service worker itself, run the recovery worker in `docs/pwa-recovery.md`
@@ -51,11 +52,18 @@ first, because clients controlled by a broken worker may never fetch the rolled-
 Migrations are forward-only. There is no down migration, and reverting one by hand risks
 dropping data that the newer build wrote.
 
-`202609170001_recommendation_support_disclosure`, the most recent, is additive: it replaces
-two functions and adds two comments, with no table, column, policy, or grant changed. The
-previous Worker build tolerates it, because the old client reads only the keys it knows and
-ignores the `state` and `contributions` fields the newer functions return. So a Worker
-rollback alone is safe and needs no database change.
+A Worker rollback alone is safe against the two most recent migrations, and neither needs a
+database change to accompany it.
+
+`202609200001_feedback_reason_list` replaces `recommendation_feedback.reason_code` with a
+bounded `reason_codes text[]` and changes the `record_recommendation_feedback` signature to
+match. It ran against zero feedback rows. An older client calling that RPC with three named
+arguments still resolves, because the reason list carries a default.
+
+`202609170001_recommendation_support_disclosure` is additive: it replaces two functions and
+adds two comments, with no table, column, policy, or grant changed. An older client reads only
+the keys it knows and ignores the `state` and `contributions` fields the newer functions
+return.
 
 If a future migration is not backward compatible, roll the Worker back first, then write a
 new forward migration that restores the needed behaviour. Record both in
