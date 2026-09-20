@@ -20,9 +20,17 @@ export interface CharacterArtAsset {
   usageBasis: CharacterArtUsageBasis;
   permissionEvidence: string;
   assetHash: string;
+  /** SHA-256 of the roster thumbnail served from `/art/thumb`, when one is published. */
+  thumbHash?: string;
   reviewedAt: string;
   displayFit?: 'contain' | 'cover';
   objectPosition?: string;
+}
+
+/** Roster grids and pickers load the small copy; the Character page loads `localPath`. */
+export function characterArtThumbPath(art: Pick<CharacterArtAsset, 'localPath' | 'thumbHash'>): string {
+  if (!art.thumbHash) return art.localPath;
+  return art.localPath.replace(/^\/art\//, '/art/thumb/');
 }
 
 export interface Character {

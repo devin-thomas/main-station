@@ -42,10 +42,19 @@ Versions retained at the time of writing, newest last:
 | `e8b16983-c179-4235-80a4-eda44fb1cfef` | 2026-09-19 | MS-030 surface acceptance |
 | `e01883cf-8268-4aa3-875a-3eb2083e0170` | 2026-09-19 | MS-031 release, cross-browser sign-in message |
 | `c8a59030-c253-4c2a-b83f-545701fc510e` | 2026-09-20 | Feedback reason list, regenerated types |
+| `34dd3892-edb5-42dd-88de-23dad94526c1` | 2026-09-20 | Full-roster Character art, guided onboarding |
 
 A Worker rollback does not touch `/sw.js` behaviour beyond serving the older bytes. If the
 defect is in the service worker itself, run the recovery worker in `docs/pwa-recovery.md`
 first, because clients controlled by a broken worker may never fetch the rolled-back build.
+
+Rolling back past `34dd3892-edb5-42dd-88de-23dad94526c1` leaves the product working but artless.
+That release replaced every `/art/*.png` and `/art/*.jpg` file with a `.webp` of the same
+Character, so an older build asks for filenames the current deploy no longer serves. Those
+requests return a real `404`, `CharacterStage` and `CharacterPortrait` fall back to the
+Character's name in the same frame, and every other route behaves normally. Nothing needs to be
+restored to make the rollback safe; re-deploying a build from that release or later brings the art
+back.
 
 ## Roll back the database
 
@@ -54,6 +63,11 @@ dropping data that the newer build wrote.
 
 A Worker rollback alone is safe against the two most recent migrations, and neither needs a
 database change to accompany it.
+
+`202609200002_full_roster_character_art` replaces the launch art ledger with full-roster
+coverage: it deletes every row of `character_art_assets` and inserts 395. It holds catalog rows
+only, no user data, and the browser reads art from its own bundled catalog rather than from the
+database, so an older Worker is unaffected by it either way. Re-running it is safe.
 
 `202609200001_feedback_reason_list` replaces `recommendation_feedback.reason_code` with a
 bounded `reason_codes text[]` and changes the `record_recommendation_feedback` signature to

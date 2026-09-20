@@ -17,7 +17,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-ahri.png', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/593043e42b15c4826f7e0fc2a0bea85a05cdd994-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:a8b7868f1782f73790bb95976f0124b522909cba99cd5fcc8f57e66b22ba1f70', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-ahri.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/593043e42b15c4826f7e0fc2a0bea85a05cdd994-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:356dd3d3beb5054cd77c50468a3a8a474f7df67752851755aaaaa6682718161e', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'ahri' and c.roster_role = 'fighter'
@@ -36,7 +36,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-akali.jpg', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/1705793c7046ee13bb9027b868a91e5b935095b6-472x630.jpg?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:29a29fcf24cfa7a3e2fc1d6c7296fc2bde78d5779bc7fa52ca01ca414996d14e', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-akali.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/1705793c7046ee13bb9027b868a91e5b935095b6-472x630.jpg?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ceb9a14d3383762fa3c1e9b7e778eed9b5ebf0dab45b3471bab820b7d859f230', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'akali' and c.roster_role = 'fighter'
@@ -55,7 +55,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-blitzcrank.png', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/5af8a16de4c87ea5bb8a3b3f945e90f3306a4cfe-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:beecc00b38bf24c55fca13d48fa14211212b4ae706a4d14dae26e620bf8a7691', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-blitzcrank.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/5af8a16de4c87ea5bb8a3b3f945e90f3306a4cfe-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:d7477cd65b4d2cf1bacc976ba42ad8101c8751fda8499072840694cf6c3e11e8', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'blitzcrank' and c.roster_role = 'fighter'
@@ -74,7 +74,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-braum.png', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/96bcb8cdcee7f3fd12b379c8517aa1f33504c371-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:4c3778c3a2f3c2bd3715a7a95b58143d698503f296256617a4c96628e2b939fe', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-braum.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/96bcb8cdcee7f3fd12b379c8517aa1f33504c371-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:5b1a4500a15643c2f0e30f829d8ea243c27c2c84c206b89b5813d307d8f17027', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'braum' and c.roster_role = 'fighter'
@@ -93,7 +93,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-caitlyn.jpg', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7d7c3713add9fe798cc71ba66217a1a46d6634bc-780x1040.jpg?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:b866957ee92e1832262d79b5b26336ae0f2a7c3a3751e6a09db11a49aeb5e164', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-caitlyn.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7d7c3713add9fe798cc71ba66217a1a46d6634bc-780x1040.jpg?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:2240bae3317b971387399a4eaa29bdcd5dee3a5511cac46d4c2f1470957d39a5', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'caitlyn' and c.roster_role = 'fighter'
@@ -112,7 +112,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-darius.png', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/67e08591a957c9068e3b146976785fb8308d6cd4-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:ad35f39c908a5b5f3386a5a3a2bd85e575ee9a53bdcc7580c0f9230a32cb3b6a', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-darius.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/67e08591a957c9068e3b146976785fb8308d6cd4-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:9b950aaded16314803e9fe2744a0cc2aa43366346497706e03f15f365962142b', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'darius' and c.roster_role = 'fighter'
@@ -131,7 +131,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-ekko.png', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f98dcc375555b36de58cc991c381c4fce641b636-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:3956f83f517517a8d86ab1dd6780b47ffe4f298c783d3dc4ace34681bd89e977', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-ekko.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f98dcc375555b36de58cc991c381c4fce641b636-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:8c3137c02bbb01b209bd1b9f50f194573b1c4444a075f29e028593b64758dfa7', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'ekko' and c.roster_role = 'fighter'
@@ -150,7 +150,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-illaoi.png', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/12a5e9cea0ea7626b0d89e3740180f13341b5dc8-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:5faf3f20c07751a798a6e9727c67324c10f1aeecb0ce35e1a94225d836c5fe4f', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-illaoi.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/12a5e9cea0ea7626b0d89e3740180f13341b5dc8-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:0699e2f9a3c335abe25335344e2c6aba367d5d3a3be43b8d1034fce0e356ef5f', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'illaoi' and c.roster_role = 'fighter'
@@ -169,7 +169,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-jinx.png', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f0e8ed7da57962c1245dfca8c26a8a81ddab017d-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:b9807815aaf85b1bf6848b9014ade9568a2be86e98075319eac9b53193537839', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-jinx.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f0e8ed7da57962c1245dfca8c26a8a81ddab017d-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b1b69182a27471fb7ffffa67965d745e57f2af7c123f436c54bae3c8107e36a1', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'jinx' and c.roster_role = 'fighter'
@@ -188,7 +188,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-senna.jpg', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/0606aa0ee6b494a762057c971c7bb642fe607bba-780x1040.jpg?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:3a1b260485576fcf812f7906fa76bc5166e6a3f48021319d5cf370f69aa59877', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-senna.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/0606aa0ee6b494a762057c971c7bb642fe607bba-780x1040.jpg?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a6b39183b5656654519a522e2adcb45406cfaa958ac064da147183a76447e352', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'senna' and c.roster_role = 'fighter'
@@ -207,7 +207,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-teemo.png', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/0933542e8d4fc57628e7fe7dff9cd17d2ff457a4-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:185a0c0bd7a1d932b21ddb71e499ab47eb7b671c7e0118720ad7a94f04721593', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-teemo.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/0933542e8d4fc57628e7fe7dff9cd17d2ff457a4-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:c923a8ac2255b44be514e7deb3c489fb9784816d88f50824d61f431192560cbd', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'teemo' and c.roster_role = 'fighter'
@@ -226,7 +226,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-thresh.jpg', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2c9af0c83fd43c0a8f5258f75f8f197655971de9-780x1040.jpg?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:a08696516143ef646c54e8a41d6c567de8c591a71dd370e9ff9798fc6a2db71c', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-thresh.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2c9af0c83fd43c0a8f5258f75f8f197655971de9-780x1040.jpg?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:d601dd706d03d731c04d8370ba2c3331f91e6dfe282be152fe953974c8b2a7cc', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'thresh' and c.roster_role = 'fighter'
@@ -245,7 +245,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-vi.png', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/d69d95df23f8a7e5c951a1021f4f5b118fadaec3-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:692475c52ffe6346d8a0fe0161f1d3035ccafff3b3cb5b60df46f26d379d3e0e', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-vi.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/d69d95df23f8a7e5c951a1021f4f5b118fadaec3-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:bf0099bb7cb38493e40c37abb9618b882f0bf2b4af88ecc6635dc2a80a9ce0d0', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'vi' and c.roster_role = 'fighter'
@@ -264,7 +264,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-warwick.png', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/6aa9fb38660c1b63c37716c6f44739ba406b501f-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:d9e8e03c1357ee068298dc5506a431874ce26bd9415d9293f391614510306fdc', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-warwick.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/6aa9fb38660c1b63c37716c6f44739ba406b501f-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a136337fda8890da7564bf114fab23df23e52fe0d1d2c50f5186bf86e7af7f99', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'warwick' and c.roster_role = 'fighter'
@@ -283,7 +283,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/2xko-yasuo.png', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7e9459768d4641533fdbfa1c0e84b6574d8e05ab-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes.', 'sha256:296dbb227cbccb9b67091d7b586d37c9fbd6743306094570bcb2848ac7f44f15', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/2xko-yasuo.webp', 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7e9459768d4641533fdbfa1c0e84b6574d8e05ab-780x1040.png?accountingTag=2XKO', 'Riot Games', 'https://www.riotgames.com/en/legal', 'conditional-community-policy', 'MainStation was created under Riot Games'' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.', 'Riot permits revocable non-commercial community use under its Legal Jibber Jabber policy. MainStation is a free community PWA with original profile and statistical content, and the required project notice is displayed; re-review is required if scope or monetization changes. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ec0c28a350a5125cd670957e6e26dcbb3f470a6bb18e83b3afd5a2aa8e1eae46', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = '2xko' and c.slug = 'yasuo' and c.roster_role = 'fighter'
@@ -308,6 +308,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-captain-america.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/captain-america-big-20-11-2025?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:bad2385defa5274d565033eb1616483c27d00b810cd953d5478e2e4003d71f86', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'captain-america' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'iron-man', 'Iron Man', 'fighter', 'released', true, 2, 'A ranged armored fighter who uses repulsor shots and air control to keep opponents at the distance where his team can convert safely.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
@@ -317,7 +328,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/marvel-tokon-iron-man.png', 'https://gmedia.playstation.com/is/image/SIEPDC/iron-man-big-16-02-2026?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:0431f9ecaa2d0f3ab66a60887c10e23ff33355f763772838c241938ed8407c55', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/marvel-tokon-iron-man.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/iron-man-big-16-02-2026?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:c64374392c5ca83b8ccfb4c1cd8dc8a4b2d4b402be4ea66321b52fe616e74d0c', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'marvel-tokon' and c.slug = 'iron-man' and c.roster_role = 'fighter'
@@ -335,6 +346,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-hulk.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/hulk-big-21-04-2026?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b0242667fe5b5e0190f9ab9021f21ba9f0dbc8ea5b1df8c324ea1bf3fc1be98a', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'hulk' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'black-panther', 'Black Panther', 'fighter', 'released', true, 4, 'A fast claw fighter who uses pouncing movement and close-range strings to break through space and maintain momentum.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
@@ -344,7 +366,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/marvel-tokon-black-panther.png', 'https://gmedia.playstation.com/is/image/SIEPDC/black-panther-big-21-04-2026?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:c15cc1540105a6b4d66f2308ab40459262c0241578431d8196ad03e2251a610a', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/marvel-tokon-black-panther.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/black-panther-big-21-04-2026?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:48eb9a2413b0059a7d127f23414da68ad1b0df5f996e58d16be86bcbc25cf7b5', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'marvel-tokon' and c.slug = 'black-panther' and c.roster_role = 'fighter'
@@ -363,7 +385,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/marvel-tokon-storm.png', 'https://gmedia.playstation.com/is/image/SIEPDC/storm-big-20-11-2025?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:558bbb66e3580c4f1a5543eaea1ff426ff4bf78b8bd9f0af101a9c48bdf5e9d3', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/marvel-tokon-storm.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/storm-big-20-11-2025?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a7125573ee08623f398f07b7ebd6d19021fe443cc8fb01449ab684a3aacb5d6a', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'marvel-tokon' and c.slug = 'storm' and c.roster_role = 'fighter'
@@ -382,7 +404,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/marvel-tokon-magik.png', 'https://gmedia.playstation.com/is/image/SIEPDC/magik-big-10-02-2026?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:51401dc3f3048d15f88013b39f31e3c46885a1f32db05d846a32a5ddf1ed781f', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/marvel-tokon-magik.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/magik-big-10-02-2026?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b0c647a7bb5bb4625f4926be149169848346f1c9704a762783702709232bc3ff', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'marvel-tokon' and c.slug = 'magik' and c.roster_role = 'fighter'
@@ -400,6 +422,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-wolverine.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/wolverine-big-10-02-2026?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:bbab38a9688e300d577a6151f2549c9d2fbd8dff6c3c39f7e1a337571223ced1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'wolverine' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'danger', 'Danger', 'fighter', 'released', true, 8, 'A technical robotic fighter who uses ranged weapons and deployable gadgets to support controlled approaches and team extensions.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
@@ -407,6 +440,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-danger.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/danger-big-10-02-2026?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:9d12beb2448fc72e194bc8159be71a8718db5465ce6806a423fe1c69c7fb0269', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'danger' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'spider-man', 'Spider-Man', 'fighter', 'released', true, 9, 'A mobile web-slinging fighter who changes trajectory quickly and converts evasive movement into scramble-heavy offense.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -417,7 +461,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/marvel-tokon-spider-man.png', 'https://gmedia.playstation.com/is/image/SIEPDC/spider-man-big-20-11-2025?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:9c1ff858cd3c773da6fda90a80916c9379a795866fc49402d0505e37890743d5', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/marvel-tokon-spider-man.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/spider-man-big-20-11-2025?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:541d036b30f5487c12621fec4c116716c6ee1eb2bcda8efbe5d9d12d5630db44', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'marvel-tokon' and c.slug = 'spider-man' and c.roster_role = 'fighter'
@@ -435,6 +479,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-ms-marvel.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/ms-marvel-big-20-11-2025?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:8e9b974bb170d5737535c91edfaaf8b7c2f1c645e4e8066a9c08f7a1f6a418b6', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'ms-marvel' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'star-lord', 'Star-Lord', 'fighter', 'released', true, 11, 'A projectile-focused blaster who controls lanes with ranged shots and uses mobility to reposition before confirming damage.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
@@ -442,6 +497,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-star-lord.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/star-lord-big-20-11-2025?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a2b461d283199f482b9047efa4953d5193bb5ea42d3b6261d368d7b71b58d5cd', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'star-lord' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'peni-parker', 'Peni Parker', 'fighter', 'released', true, 12, 'A mech-based fighter who combines armored robot attacks with ranged tools to cover space while her team rotates in.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -451,6 +517,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-peni-parker.webp', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. No per-character publisher media URL was located for this fighter; the asset is held in the shared Uppercut Labs fgc-assets repository and the product page stands as the publishing source.', 'sha256:06c03130fc19add45b292314fccf065a07d63275bcc91edc523cf277dc4c519b', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'peni-parker' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ghost-rider', 'Ghost Rider', 'fighter', 'released', true, 13, 'A long-reaching chain fighter who uses fire-based attacks and wide control zones to make approaches costly.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
@@ -458,6 +535,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-ghost-rider.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/ghost-rider-big-20-11-2025?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:271ad7b272ca8245b40ba7d3c95bf64ef420479cadf0f9ccf08d03aeb2249816', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'ghost-rider' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'blade', 'Blade', 'fighter', 'released', true, 14, 'A weapon fighter who blends sword strings with firearm pressure, giving his team a grounded way to contest both close and mid range.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -467,6 +555,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-blade.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/blade-big-19-06-2026?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f799826ac8274bc8f8aaf798cf18dae8314436ee7127e1f5b8c9dfaca782084b', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'blade' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'loki', 'Loki', 'fighter', 'released', true, 15, 'A deceptive control fighter who uses trickery and ranged magic to create uncertain approach timings for the opposing team.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
@@ -475,6 +574,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-loki.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/loki-big-19-06-2026?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:27c798996f7b5687eb6cb6439f6672f2c3c2136d4e3d8b6109247f4fddac322e', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'loki' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'deadpool', 'Deadpool', 'fighter', 'released', true, 16, 'A fast weapon-and-firearm fighter who switches between sword pressure and gunfire to keep offense unpredictable.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
@@ -482,6 +592,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-deadpool.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/deadpool-big-19-06-2026?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ed002ddc79b94e2f6d0e2581cba43df6646659ffcb2ca9c1db5767b81d647ebc', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'deadpool' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'doctor-doom', 'Doctor Doom', 'fighter', 'released', true, 17, 'A versatile armored fighter who uses energy projectiles and summoned technology to control space and extend team offense.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -492,7 +613,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/marvel-tokon-doctor-doom.png', 'https://gmedia.playstation.com/is/image/SIEPDC/dr-doom-big-20-11-2025?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:6cb2bb0244b68eb0d778b4bdcb680d62808a73604df1d1962227e40f73d420f6', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/marvel-tokon-doctor-doom.webp', 'https://gmedia.playstation.com/is/image/SIEPDC/dr-doom-big-20-11-2025?$1600px--t$', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:e1daba5dc98c83945f6f37c0db93365d65deb4b3fc0b600f065ee04e961dcdd9', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'marvel-tokon' and c.slug = 'doctor-doom' and c.roster_role = 'fighter'
@@ -510,6 +631,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-magneto.webp', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. No per-character publisher media URL was located for this fighter; the asset is held in the shared Uppercut Labs fgc-assets repository and the product page stands as the publishing source.', 'sha256:d30d40972ac69ef426f9225b795e384350a0946398c9b501e5116ae3ceeda2ca', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'magneto' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'green-goblin', 'Green Goblin', 'fighter', 'released', true, 19, 'A gadget fighter who uses explosive pumpkin attacks and glider mobility to harass opponents while controlling the screen.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
@@ -518,6 +650,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-green-goblin.webp', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. No per-character publisher media URL was located for this fighter; the asset is held in the shared Uppercut Labs fgc-assets repository and the product page stands as the publishing source.', 'sha256:404c3b0ec8f19c4795599bebc8070a7a1ff6cdb445019cf30992bcf9befc12fd', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'green-goblin' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'carnage', 'Carnage', 'fighter', 'released', true, 20, 'A symbiote weapon fighter who extends attacks with tendrils and traps movement with persistent, difficult-to-ignore pressure.', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'PlayStation / Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'marvel-tokon'
@@ -525,6 +668,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/marvel-tokon-carnage.webp', 'https://www.playstation.com/en-us/games/marvel-tokon-fighting-souls/', 'Sony Interactive Entertainment / Marvel', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Marvel Tōkon: Fighting Souls character art © Sony Interactive Entertainment / Marvel', 'Official PlayStation-hosted promotional art. PlayStation website terms reserve copying and public display absent express permission; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. No per-character publisher media URL was located for this fighter; the asset is held in the shared Uppercut Labs fgc-assets repository and the product page stands as the publishing source.', 'sha256:3cb5a4fed6abb84b4ee2ff53db9a9ed78ef5384fc219d3fa1171df0030be939e', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'marvel-tokon' and c.slug = 'carnage' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)
 values ('mvc2', 'Marvel vs. Capcom 2', 'MVC2', 'Arcade / collection ruleset', 3, '{"version":1,"noun":"Team","verified":true,"ordered":true,"uniqueCharacters":true,"slots":[{"id":"slot-1","label":"Point","allowedRoles":["fighter"],"optionLabel":"Assist","optionValues":["Assist A","Assist B","Assist C"]},{"id":"slot-2","label":"Middle","allowedRoles":["fighter"],"optionLabel":"Assist","optionValues":["Assist A","Assist B","Assist C"]},{"id":"slot-3","label":"Anchor","allowedRoles":["fighter"],"optionLabel":"Assist","optionValues":["Assist A","Assist B","Assist C"]}]}'::jsonb, 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'verified', '2026-08-25T00:00:00Z')
@@ -541,6 +695,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-blackheart.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/blackheart.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:72752ad0da331a76b4cec56e9cf72d5ccec543fc6ca7acd584904e0a08045fff', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'blackheart' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'cable', 'Cable', 'fighter', 'released', true, 2, 'A long-range gunner who controls neutral with grenades and beam supers, especially the assist-friendly Air Hyper Viper Beam.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -550,7 +715,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/mvc2-cable.png', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/cable.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:c76a8626ac3e2908044ed3688d91459d7cadb54f5db5b54a6d8b96e27d94ce54', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/mvc2-cable.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/cable.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:19755d3846b237db1da900263e58c237c5128ee73784d4ceb4998c7c1be678f1', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'mvc2' and c.slug = 'cable' and c.roster_role = 'fighter'
@@ -568,6 +733,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-captain-america.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/captain_america.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ac477aed8fe6a2aaf27109ac7e06117d33bd61c97a7c6a54bcdfaa8259bde55f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'captain-america' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'colossus', 'Colossus', 'fighter', 'released', true, 4, 'A large armored rushdown fighter who uses super armor and rushing command attacks to force his way into close range.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -575,6 +751,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-colossus.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/colossus.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:78aae69512df46b752b0051167f0285034e34f3206e4902edceaa99794bfa7e0', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'colossus' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'cyclops', 'Cyclops', 'fighter', 'released', true, 5, 'A well-rounded beam fighter whose optic blasts, fast normals, and strong anti-air assist make him useful from any team position.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -584,6 +771,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-cyclops.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/cyclops.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:49ad745d32be461e4089a430d23dc6102667d4f97f1e8f01dc56711a1a104619', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'cyclops' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'doctor-doom', 'Doctor Doom', 'fighter', 'released', true, 6, 'A versatile projectile fighter who combines rocks, hidden missiles, and beam attacks to control space and extend combos.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -591,6 +789,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-doctor-doom.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/doctor_doom.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f45ff27110e8507bce32db84e72c1e33d6e64f85829b358d8480f5cca0b71cc9', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'doctor-doom' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'gambit', 'Gambit', 'fighter', 'released', true, 7, 'A mid-range pressure fighter who throws charged cards and uses staff attacks to turn controlled pokes into explosive supers.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -600,6 +809,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-gambit.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/gambit.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:90d8d260e7a8cc1eb06453cb6a4af356d96b2ae0adc9af4076b10f8bfdf2a2e1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'gambit' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'hulk', 'Hulk', 'fighter', 'released', true, 8, 'A high-damage bruiser who relies on armored normals, Gamma Wave, and an imposing assist to make close exchanges dangerous.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -607,6 +827,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-hulk.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/hulk.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:69a56daa6106b39ca6cfcc631c3eab0b4db46e39a6e6e5cb872667296badf804', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'hulk' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'iceman', 'Iceman', 'fighter', 'released', true, 9, 'A projectile specialist who uses ice beams and hail to dominate lanes while threatening long-range DHCs and assists.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -616,6 +847,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-iceman.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/iceman.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:9adca5b5968107a92e9a0a04e22ccf71d69a97d8df8530318e769d677b06f5fb', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'iceman' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'iron-man', 'Iron Man', 'fighter', 'released', true, 10, 'A technical flight-capable fighter who layers repulsor beams and air movement into precise confirms and team extensions.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -624,6 +866,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-iron-man.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/ironman.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:7c3f4609d88fc7249e5ea0daa340e669638447bd5332bf6389f338a85af81352', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'iron-man' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'juggernaut', 'Juggernaut', 'fighter', 'released', true, 11, 'A heavy armored fighter who turns forward-moving strikes, headcrush attacks, and a damaging assist into blunt-force offense.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -631,6 +884,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-juggernaut.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/juggernaut.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:e2c5e6c4a586355524b84c6d08fd137179e01a8b424c8154006f3e3edeb711d2', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'juggernaut' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'magneto', 'Magneto', 'fighter', 'released', true, 12, 'A fast flight fighter who uses magnetic projectiles, tri-dash movement, and air strings to maintain relentless pressure.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -641,7 +905,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/mvc2-magneto.png', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/magneto.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:419c3f9d88276fd2d65c10f21f4b930f80e871cba719d55b3e522370f73e58c2', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/mvc2-magneto.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/magneto.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:d07bed1e4ecba4a0f2322d3fe079512e02876d70084720e762d02716c5913107', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'mvc2' and c.slug = 'magneto' and c.roster_role = 'fighter'
@@ -659,6 +923,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-marrow.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/marrow.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:468763e236ebfbead713dc2cc461f6fe38707f99d3307c4f75e1b58c5481ef8d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'marrow' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'omega-red', 'Omega Red', 'fighter', 'released', true, 14, 'A setplay fighter who uses carbonadium coils and long-reaching tentacles to restrict movement and lock down approaches.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -666,6 +941,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-omega-red.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/omega_red.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b703b91e89648d0876a50423838b567e982c3f8163ec5b506e6b07bf5142a98c', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'omega-red' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'psylocke', 'Psylocke', 'fighter', 'released', true, 15, 'A quick ninja fighter who uses psychic blades, mobility, and a reliable anti-air assist to start and sustain rushdown.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -675,6 +961,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-psylocke.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/psylocke.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6afadbea5b731bbc563f91ba8b6c4af14f24f5cafa8169e5b2c2c18f45b0fad5', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'psylocke' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'rogue', 'Rogue', 'fighter', 'released', true, 16, 'A close-range power-copy fighter who steals useful properties through contact and converts strong buttons into flexible offense.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -683,6 +980,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-rogue.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/rogue.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1fa85ab36399a1bd84232ea15996c0d95c1c7d0363578819cb1a12dc585b2aff', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'rogue' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sabretooth', 'Sabretooth', 'fighter', 'released', true, 17, 'A rushdown fighter who uses claw strings and Berserker-style pressure to turn a clean approach into extended corner offense.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -690,6 +998,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-sabretooth.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/sabretooth.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:602a5f9317623e30be3216b1b470104701d268d0525e02aa39b8c8b1ccbaa67f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'sabretooth' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sentinel', 'Sentinel', 'fighter', 'released', true, 18, 'A giant zoning fighter who uses drones, rockets, flight, and large normals to dominate both screen space and team neutral.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -700,7 +1019,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/mvc2-sentinel.png', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/sentinel.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:693e4b48a209f9656dbf37ba970c4c242d84d4d985f93de00ffe72b6f7d99c2a', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/mvc2-sentinel.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/sentinel.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:3e81653c9325e6835ff2f84dc2d09f94fa2e0d05eb2b091b14b59ecb78166165', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'mvc2' and c.slug = 'sentinel' and c.roster_role = 'fighter'
@@ -718,6 +1037,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-shuma-gorath.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/shumagorath.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1b7a3a1a8e2ce88565892b88dd1f6c63a370467a4f0f67d58ef0448eb5b11fb1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'shuma-gorath' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'silver-samurai', 'Silver Samurai', 'fighter', 'released', true, 20, 'A stance-based sword fighter who changes elemental weapon properties to vary neutral control and combo routes.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -725,6 +1055,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-silver-samurai.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/silver_samurai.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:25e51e2014aa993ef45b8be12072659cb341f4e8ea253f8a34dfcc313ce9e991', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'silver-samurai' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'spider-man', 'Spider-Man', 'fighter', 'released', true, 21, 'A mobile rushdown fighter who uses web balls, wall movement, and fast air strings to convert scrambles into pressure.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -734,6 +1075,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-spider-man.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/spider_man.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:29c2127d455febb787505981f90052c59e7a30bba2f812fb9926c6475f7f67e6', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'spider-man' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'spiral', 'Spiral', 'fighter', 'released', true, 22, 'A weapon-summoning fighter who creates sword storms and weapon patterns to overwhelm opponents from multiple ranges.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -741,6 +1093,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-spiral.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/spiral.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:aa385de92cd2a28983bdacf912a2950186c557b7b7fe75b19f28a31bf52ce846', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'spiral' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'storm', 'Storm', 'fighter', 'released', true, 23, 'A mobile weather fighter who controls the screen with wind, lightning, ice, and flight before routing into team supers.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -751,7 +1114,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/mvc2-storm.png', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/storm.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:ccb6b88438a76bc7d61831a3171fa8cd14eec18c006d5f73f555c94e8e13ade6', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/mvc2-storm.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/storm.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:23ea536eef73b1e30887bc5bf2847239ef0653a3161d5378b3c24a1348a241f8', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'mvc2' and c.slug = 'storm' and c.roster_role = 'fighter'
@@ -769,6 +1132,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-thanos.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/thanos.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:8bae4fcc48c20cdde52715983763bc6725e2b7fa9bea956ea6f3a2ffae0db7b7', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'thanos' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'venom', 'Venom', 'fighter', 'released', true, 25, 'A mid-range symbiote fighter who uses web projectiles, long limbs, and Venom Fang pressure to control grounded exchanges.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -776,6 +1150,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-venom.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/venom.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:45f7d93fbc9193b4c36bc7a4d217a1dea6de903bf7c6dcf541932a93b38bfedd', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'venom' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'war-machine', 'War Machine', 'fighter', 'released', true, 26, 'A heavy gunner who saturates the screen with bullets, missiles, and armor-breaking supers while contributing a strong projectile assist.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -785,6 +1170,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-war-machine.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/war_machine.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1deb74826419e1cbca2d17da0ff494b244afc6f1ecc872a8ed572a1cb730f709', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'war-machine' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'wolverine', 'Wolverine', 'fighter', 'released', true, 27, 'A premier claw rushdown fighter who uses Berserker Barrage, drill attacks, and fast normals to convert any close opening.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -792,6 +1188,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-wolverine.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/wolverine.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:522f7fcca99bf3e38a44d7b2ffe00a6d59a1f70456f7fa62777c84749ecdf580', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'wolverine' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'wolverine-bone', 'Wolverine (Bone Claws)', 'fighter', 'released', true, 28, 'A shorter-claw Wolverine variant that keeps the same close-range rushdown identity while changing reach and combo spacing from the metal-claw form.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -801,6 +1208,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-wolverine-bone.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/wolverine_bone.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:40b60d569f6441aefce1f2c0c3d5c2a46649005e20f34eaa0a55ab0c20dc7ff0', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'wolverine-bone' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'akuma', 'Akuma', 'fighter', 'released', true, 29, 'A glass-cannon rushdown fighter who combines air fireballs, teleport movement, and Shun Goku Satsu threat to attack from unexpected angles.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -808,6 +1226,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-akuma.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/akuma.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ad2d0aff9cf48f41da5583c30fb3fc976b0a6a443143755c8433cd91175da73a', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'akuma' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'amingo', 'Amingo', 'fighter', 'released', true, 30, 'A summon fighter who calls cactus helpers and uses unusual projectiles and command attacks to create awkward mid-range situations.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -817,6 +1246,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-amingo.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/amingo.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f42a8e7a4cf282d7dc7e63e1a3d5e8fc85cc825209f5d33f5f12032b4eabdc0c', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'amingo' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'anakaris', 'Anakaris', 'fighter', 'released', true, 31, 'A large curse-and-setplay fighter who uses transformation, mummy projectiles, and teleports to disrupt normal defense.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -824,6 +1264,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-anakaris.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/anakaris.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6434f7c8e048811f82541e01c15c15fb2601ca53a50a8682515357c6dcd68e21', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'anakaris' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'bulleta', 'B.B. Hood (Bulleta)', 'fighter', 'released', true, 32, 'A trap-heavy gunner who mixes firearms, bombs, and fast approach options to make every blocked sequence hard to read.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -833,6 +1284,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-bulleta.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/bb_hood.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:97dafad92056c6648f8548669cd673d09784fc583e3e03b0b26b81a8ac9b5460', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'bulleta' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'cammy', 'Cammy', 'fighter', 'released', true, 33, 'A fast rushdown fighter who uses Cannon Spike, Spiral Arrow, and Hooligan movement to attack low, high, and from the air.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -840,6 +1302,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-cammy.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/cammy.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:7ea0de8055e6d887aa5fcdb429e9483869ee302a30bc318a696f4eedc67b9d55', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'cammy' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'captain-commando', 'Captain Commando', 'fighter', 'released', true, 34, 'A balanced brawler who combines punches, fire, and electric attacks with a dependable assist that covers advancing teammates.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -849,6 +1322,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-captain-commando.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/captain_commando.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:4469bf6930a964725cebe8c2e6490a99b21de2583ed869f909f70024ffafff38', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'captain-commando' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'charlie', 'Charlie', 'fighter', 'released', true, 35, 'A charge-based footsie fighter who uses Sonic Boom and Flash Kick to control lanes and punish careless jumps.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -856,6 +1340,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-charlie.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/nash.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:955ec7ae9de1654e22650b9d9de8041460ca19a5cd4e9da8d4d5244ecb401a21', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'charlie' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'chun-li', 'Chun-Li', 'fighter', 'released', true, 36, 'A technical neutral fighter whose long-reaching normals, Kikoken, and lightning-leg pressure support both pokes and combos.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -865,6 +1360,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-chun-li.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/chun_li.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:c4d398d1eb316c6cdf3b518b5996757e14011f4e6246b89effea3dfbccfb89c8', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'chun-li' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'dan', 'Dan', 'fighter', 'released', true, 37, 'A compact pressure fighter who uses Gadoken, Dankukyaku, and Shoryuken-style counters to turn close reads into expressive offense.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -872,6 +1378,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-dan.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/dan.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:e8d56a5cd44bcc05f9ffb445239761c2ad30636ea3f1ee1ada15d434979bba8d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'dan' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'dhalsim', 'Dhalsim', 'fighter', 'released', true, 38, 'A long-range zoner who controls space with stretchy limbs, Yoga Fire, teleport movement, and difficult-to-approach angles.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -881,6 +1398,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-dhalsim.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/dhalism.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6f33d7968015b23325b8f3b4beefd9534a0bd18eb2c76c944bbbbcd24960c966', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'dhalsim' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'felicia', 'Felicia', 'fighter', 'released', true, 39, 'A mobile cat fighter who uses rolling attacks, wall movement, and rapid close-range strings to keep opponents scrambling.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -888,6 +1416,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-felicia.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/felicia.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:67f5f3ff3c9c3394c0c9d7781cf376eb42350f763ae40a97bc487f8f8bdc0376', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'felicia' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'guile', 'Guile', 'fighter', 'released', true, 40, 'A charge-based defensive fighter who builds a wall with Sonic Boom and Flash Kick before advancing behind disciplined spacing.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -897,6 +1436,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-guile.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/guile.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:09d3fcadf39a92536813831dbafb52b92d01b971dc79111cc0e6bd307f5c9795', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'guile' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'hayato', 'Hayato Kanzaki', 'fighter', 'released', true, 41, 'A sword rushdown fighter who uses plasma blade slashes, projectiles, and fast advancing attacks to punish gaps in defense.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -904,6 +1454,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-hayato.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/hayato.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:3af916ff458610d504bc3c4cb5b792d5a37569eb778346a61cb2f09c2bae3ffd', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'hayato' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'jill-valentine', 'Jill Valentine', 'fighter', 'released', true, 42, 'A setup fighter who combines firearm attacks with zombie and creature calls to create layered pressure and unusual screen control.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -913,6 +1474,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-jill-valentine.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/jill.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:63e442ba2df32dacfbc53c7df044d3b26894d7c54a51531a7731c05d723818d7', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'jill-valentine' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'jin-saotome', 'Jin Saotome', 'fighter', 'released', true, 43, 'A close-range brawler who uses explosive punches, rocket attacks, and fiery supers to convert aggressive reads into damage.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -920,6 +1492,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-jin-saotome.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/jin.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1bcd8a88cff0233db72ed12704b840fc64293ad8abc2d352bbbf67cb7e8e99d8', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'jin-saotome' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ken', 'Ken', 'fighter', 'released', true, 44, 'A direct shoto fighter who uses Hadoken, Shoryuken, and Tatsumaki Senpukyaku to cover neutral, anti-air, and combo needs.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -929,6 +1512,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-ken.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/ken.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f0f61ccb44b98dd627648d3b9225b507d1b1c2555d4a3dec17196efa3411e16a', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'ken' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'm-bison', 'M. Bison', 'fighter', 'released', true, 45, 'A rushdown dictator who uses Psycho Crusher, Scissor Kicks, and teleport movement to stay mobile and pressure the corner.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -936,6 +1530,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-m-bison.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/m_bison.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b4d7d13fa37eb8d28b6394ded5b437a632732db139b368e4b1f03e5cd762b539', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'm-bison' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'mega-man', 'Mega Man', 'fighter', 'released', true, 46, 'A projectile-focused fighter who uses lemons, charged shots, and weapon-copy supers to control the screen from a safe distance.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -945,6 +1550,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-mega-man.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/megaman.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f07f3a8a427f11f4daae8bfe08c2fd6c4b35d0f27a0e26ef10d5dbb6f1c82f0f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'mega-man' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'morrigan', 'Morrigan', 'fighter', 'released', true, 47, 'A flight-and-projectile fighter who fills the screen with Soul Fists and uses air movement to attack from ambiguous angles.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -952,6 +1568,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-morrigan.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/morrigan.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:940064aff31d033aa7493e3ded52630831d1c8f71376a2a2bfd1a3fa38829688', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'morrigan' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'roll', 'Roll', 'fighter', 'released', true, 48, 'A small technical fighter who uses broom attacks, compact hurtbox movement, and unusual normals to frustrate conventional spacing.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -961,6 +1588,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-roll.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/roll.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:691f9f0dcfb1ce1292dcd59d39c5c9449937bb737f5fcf0341af3bac6ad4adde', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'roll' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ruby-heart', 'Ruby Heart', 'fighter', 'released', true, 49, 'A versatile mid-range fighter who uses summoned spells, an anchor, and flexible movement to control space and set up confirms.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -968,6 +1606,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-ruby-heart.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/ruby_heart.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:be1a870b0735cc71515384451fc5f1cecb12f7194c768900e818145f9f4091e6', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'ruby-heart' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ryu', 'Ryu', 'fighter', 'released', true, 50, 'A well-rounded shoto fighter who uses Hadoken, Shoryuken, and Tatsumaki routes to cover neutral and convert clean hits.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -977,6 +1626,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-ryu.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/ryu.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:bb7f588f8485b3d661cdc3de3edb00c58c224dcbe2f06d8bc6641af4e3b7e30e', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'ryu' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sakura', 'Sakura', 'fighter', 'released', true, 51, 'A fast close-range shoto who uses compact fireballs, Shouoken, and rapid pressure to turn momentum into long combos.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -984,6 +1644,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-sakura.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/sakura.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:dae995c958d5e2f6181d2b955c0fe1c99b7ca632cbfefb9a8c854099a398ea9c', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'sakura' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'servbot', 'Servbot', 'fighter', 'released', true, 52, 'A small trickster fighter who relies on bombs, odd movement, and a difficult-to-hit body to create scrambles and punish whiffs.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -993,6 +1664,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-servbot.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/kobun.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:71ecd561fff73d4c70b0cdc0ba583c604d7a8333a21adbe61a994c5f7e93f4c3', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'servbot' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sonson', 'SonSon', 'fighter', 'released', true, 53, 'A staff-wielding fighter who changes size and uses projectiles, long pokes, and transformation options to vary her neutral game.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -1000,6 +1682,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-sonson.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/sonson.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:0ea0950bd60c32d377ab4111469109f7c6eb57fe5eb1b4fc25033fb8219dc09e', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'sonson' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'strider-hiryu', 'Strider Hiryu', 'fighter', 'released', true, 54, 'A highly mobile sword fighter who uses Formation summons, wall movement, and teleports to attack from every angle.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1009,6 +1702,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-strider-hiryu.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/hiryu.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:72b6d9d274647b6f3b7c583e35a11c485b92b9f2800d4793daa35783dff3a36a', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'strider-hiryu' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'tron-bonne', 'Tron Bonne', 'fighter', 'released', true, 55, 'A trap-and-summon fighter who uses Servbots, Gustaff armor, and projectile gadgets to control space before rushing in.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -1017,6 +1721,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-tron-bonne.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/tron.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:cbb96f9e9f4ee27211f10461594293bb560eac7a0687f1824ba42001c69dc98c', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'tron-bonne' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'zangief', 'Zangief', 'fighter', 'released', true, 56, 'A grappler who uses Spinning Piledriver, Green Hand, and armored lariats to turn one close read into sustained threat.', 'https://game.capcom.com/manual/MVCFC/en/switch/top', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mvc2'
@@ -1024,6 +1739,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mvc2-zangief.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/zabgief.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Marvel vs. Capcom 2 promotional art via Capcom; Marvel character rights', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:137be678980892accb1eecfd87bd57e88d9c452e8dcd9d9171b44e77e4b4abe0', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mvc2' and c.slug = 'zangief' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)
 values ('umvc3', 'Ultimate Marvel vs. Capcom 3', 'UMVC3', 'Ultimate roster', 4, '{"version":1,"noun":"Team","verified":true,"ordered":true,"uniqueCharacters":true,"slots":[{"id":"slot-1","label":"Point","allowedRoles":["fighter"],"optionLabel":"Assist","optionValues":["Assist alpha","Assist beta","Assist gamma"]},{"id":"slot-2","label":"Middle","allowedRoles":["fighter"],"optionLabel":"Assist","optionValues":["Assist alpha","Assist beta","Assist gamma"]},{"id":"slot-3","label":"Anchor","allowedRoles":["fighter"],"optionLabel":"Assist","optionValues":["Assist alpha","Assist beta","Assist gamma"]}]}'::jsonb, 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'verified', '2026-08-25T00:00:00Z')
@@ -1039,6 +1765,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-strider-hiryu.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/9b37faad74e618cecf0e5cf3c2387696.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:064b51b6edb15687d18ceefcaea8cbd2b0e20e80721b85ec0259bda510f74d6f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'strider-hiryu' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'iron-fist', 'Iron Fist', 'fighter', 'released', true, 2, 'A close-range martial artist who builds damage through Rekku and Immortal Weapon pressure after forcing his way inside.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1064,6 +1801,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-phoenix-wright.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/4ab1b6fa45f1aa33f788ea6577ceaa5c.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:57c8fca8a7ee7cf9bd081db43a62ef1511c3d4b1389656caf79921e99faef6fc', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'phoenix-wright' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'doctor-strange', 'Doctor Strange', 'fighter', 'released', true, 5, 'A long-range mystic who uses multiple spell patterns, teleport movement, and projectile control to dictate neutral.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1081,7 +1829,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/umvc3-vergil.png', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/b910a3cc3952012c7111b152af718e2f.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. The official art post invites fan creations but does not grant unchanged app reuse.', 'sha256:4dfdd583f5462e8db772896c825170bf4c2fc1d39a54aea376dd0cc2f63477c3', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/umvc3-vergil.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/b910a3cc3952012c7111b152af718e2f.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:2a00a0f7c87a4b061d65f3fc9b848755a6dbf88111425111149b66709f42f519', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'umvc3' and c.slug = 'vergil' and c.roster_role = 'fighter'
@@ -1107,6 +1855,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-frank-west.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/668198709285fd8f843cf7cbfb087112.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:6442ba8279b38eac0c150ff9d65b8af882ad37e4eaa9f219869c7dcb368f5bc6', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'frank-west' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'firebrand', 'Firebrand', 'fighter', 'released', true, 9, 'An aerial rushdown fighter who uses flight, wall cling movement, and fireball pressure to keep opponents trapped above or below.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1114,6 +1873,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-firebrand.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/a2cdf6896db203b3701372dd45300547.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:8c6bbcb151be745858b40c44e677ee4bed1266b02245ed26eea82d38d9ca40ef', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'firebrand' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'hawkeye', 'Hawkeye', 'fighter', 'released', true, 10, 'A precision zoner who switches arrow types to cover horizontal, vertical, and delayed spaces before confirming from safety.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1139,6 +1909,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-nemesis-t-type.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/149d5f30f1ccb950d07e1f1faf4e9768.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:233b53df662cc0e193aa9aa162f41f18f3f97edba0e514ad4ef4bfc27a3847b6', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'nemesis-t-type' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'captain-america', 'Captain America', 'fighter', 'released', true, 13, 'A durable shield fighter who uses charging strikes, shield throws, and defensive normals to provide stable team pressure.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1146,6 +1927,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-captain-america.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/captain_america.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Marvel vs. Capcom 2 art via Capcom; clearly labeled cross-version identity fallback for UMVC3', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Capcom''s own UMVC3 high-resolution art post no longer publishes the Marvel half of the cast, so this version-mismatched MVC2 render stands in and is labeled as such.', 'sha256:ac477aed8fe6a2aaf27109ac7e06117d33bd61c97a7c6a54bcdfaa8259bde55f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'captain-america' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ryu', 'Ryu', 'fighter', 'released', true, 14, 'A balanced shoto fighter who uses Hadoken, Shoryuken, and Tatsumaki routes before changing power through his available modes.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1155,6 +1947,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-ryu.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/243fc0db40b348e388c73e245f93c82c.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:63b104106a8eb2ee9a774e70d69b18743132b6a083188e8c633f6c163c8580d3', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'ryu' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'chun-li', 'Chun-Li', 'fighter', 'released', true, 15, 'A technical neutral fighter whose long normals, Kikoken, and lightning-leg pressure convert grounded control into team damage.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1162,6 +1965,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-chun-li.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/6c05e2226ef6d2cead79a43da999008e.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:0b4242c2c18b6ecf6978e2737f109ef442c095bdd2d4f4c54d008319f2c4f303', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'chun-li' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'thor', 'Thor', 'fighter', 'released', true, 16, 'A heavyweight thunder fighter who uses armored hammer attacks, lightning, and command-grab threat to dominate close range.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1179,6 +1993,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-spider-man.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/spider_man.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Marvel vs. Capcom 2 art via Capcom; clearly labeled cross-version identity fallback for UMVC3', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Capcom''s own UMVC3 high-resolution art post no longer publishes the Marvel half of the cast, so this version-mismatched MVC2 render stands in and is labeled as such.', 'sha256:29c2127d455febb787505981f90052c59e7a30bba2f812fb9926c6475f7f67e6', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'spider-man' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'dante', 'Dante', 'fighter', 'released', true, 18, 'A stance-rich weapon fighter who switches styles and weapons to cover neutral, setplay, and high-expression combo routes.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1188,7 +2013,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/umvc3-dante.png', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/893d1dc95c1896f2177e84bea51dad7d.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. The official art post invites fan creations but does not grant unchanged app reuse.', 'sha256:6641ca935f62229c8e1f416315711ff606366ebbab375882b4869b0b18e4cb95', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/umvc3-dante.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/893d1dc95c1896f2177e84bea51dad7d.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:ff01ab8b6ab9ba7506da28bb4d989bc2d0f9e6ee32afceae00fdf95d829ffcc0', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'umvc3' and c.slug = 'dante' and c.roster_role = 'fighter'
@@ -1206,6 +2031,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-trish.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/971bf98bc43394568578319fff976f86.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:26ea7639a2d0ff41daf4b5f2eee883bb0afd178815f78040d186acbc4468d5b0', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'trish' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'storm', 'Storm', 'fighter', 'released', true, 20, 'A flight-capable weather fighter who combines wind, lightning, and ice projectiles with strong air movement and team supers.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1213,6 +2049,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-storm.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/storm.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Marvel vs. Capcom 2 art via Capcom; clearly labeled cross-version identity fallback for UMVC3', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Capcom''s own UMVC3 high-resolution art post no longer publishes the Marvel half of the cast, so this version-mismatched MVC2 render stands in and is labeled as such.', 'sha256:23ea536eef73b1e30887bc5bf2847239ef0653a3161d5378b3c24a1348a241f8', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'storm' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'crimson-viper', 'Crimson Viper', 'fighter', 'released', true, 21, 'A mobility fighter who uses feints, seismic attacks, and burning kicks to create sudden left-right pressure and conversions.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1222,6 +2069,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-crimson-viper.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/c3d1b5a1de4e6c1827df2eb8b5455308.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:9632d73266e5bf40b709add0473cfc8db9ed66cefd41afd1a5af310c8cd19240', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'crimson-viper' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'viewtiful-joe', 'Viewtiful Joe', 'fighter', 'released', true, 22, 'A small rushdown fighter who uses Slow, Mach Speed, and Zoom to change attack timing and amplify close-range conversions.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1229,6 +2087,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-viewtiful-joe.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/eaf9efe63ea1d5a756c405753a39b064.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:7fd537461c7f5bf3ca03850682ae1fa86e4acaa686c20519c3183547e4633618', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'viewtiful-joe' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'spencer', 'Spencer', 'fighter', 'released', true, 23, 'A grappling-arm fighter who uses Bionic Maneuvers to swing through space, extend combos, and punish careless positioning.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1238,6 +2107,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-spencer.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/1bbdce11ee800bcb2d76e1a0492b2e90.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:d6b910e3d482fe85338f1652bc57d3566e13d05809018178fd2bc0ad56fc0899', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'spencer' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'amaterasu', 'Amaterasu', 'fighter', 'released', true, 24, 'A stance-based sword fighter who changes divine instruments to gain projectiles, traps, and close-range pressure.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1245,6 +2125,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-amaterasu.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/d546a940fa08ca595d166deba7dbc64e.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:fc750dfa24931d9aa18c61815fa2fbd33397940db197b09fde4b3b2db9480ec8', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'amaterasu' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'magneto', 'Magneto', 'fighter', 'released', true, 25, 'A flight fighter who uses magnetic projectiles, fast air movement, and repulsion tools to maintain offense from any angle.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1254,6 +2145,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-magneto.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/magneto.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Marvel vs. Capcom 2 art via Capcom; clearly labeled cross-version identity fallback for UMVC3', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Capcom''s own UMVC3 high-resolution art post no longer publishes the Marvel half of the cast, so this version-mismatched MVC2 render stands in and is labeled as such.', 'sha256:d07bed1e4ecba4a0f2322d3fe079512e02876d70084720e762d02716c5913107', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'magneto' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'iron-man', 'Iron Man', 'fighter', 'released', true, 26, 'A technical armored fighter who uses repulsor beams, flight, and precise air routes to control space and extend team combos.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1262,6 +2164,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-iron-man.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/ironman.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Marvel vs. Capcom 2 art via Capcom; clearly labeled cross-version identity fallback for UMVC3', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Capcom''s own UMVC3 high-resolution art post no longer publishes the Marvel half of the cast, so this version-mismatched MVC2 render stands in and is labeled as such.', 'sha256:7c3f4609d88fc7249e5ea0daa340e669638447bd5332bf6389f338a85af81352', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'iron-man' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'wolverine', 'Wolverine', 'fighter', 'released', true, 27, 'A fast claw rushdown fighter who uses Berserker Charge, drill attacks, and close-range normals to stay on top of opponents.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1269,6 +2182,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-wolverine.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/wolverine.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Marvel vs. Capcom 2 art via Capcom; clearly labeled cross-version identity fallback for UMVC3', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Capcom''s own UMVC3 high-resolution art post no longer publishes the Marvel half of the cast, so this version-mismatched MVC2 render stands in and is labeled as such.', 'sha256:522f7fcca99bf3e38a44d7b2ffe00a6d59a1f70456f7fa62777c84749ecdf580', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'wolverine' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'deadpool', 'Deadpool', 'fighter', 'released', true, 28, 'A weapon-switching rushdown fighter who blends katanas, pistols, teleport movement, and quick mix-ups into constant pressure.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1302,6 +2226,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-tron-bonne.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/a8d76fd70163d11b43c46bb855c9ed11.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:0fc97c766a26f1ffa29913d3c83180161701218a3f376a922a57fa82e695e4b7', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'tron-bonne' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'morrigan', 'Morrigan', 'fighter', 'released', true, 32, 'A flight-and-projectile specialist who uses Soul Fists, air movement, and Astral Vision to overwhelm opponents with layered patterns.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1309,6 +2244,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-morrigan.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/f24176ffc502fe39b2130a609a8dae39.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:13d2f73d55751bb12b5051334cbc53bb057a511c45aa9f8ea73746901e309aa7', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'morrigan' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'phoenix', 'Phoenix', 'fighter', 'released', true, 33, 'A resource-sensitive fighter who builds meter and then uses Dark Phoenix or resurrection threat to turn a fragile neutral game into momentum.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1325,6 +2271,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-felicia.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/d9255c8802089ce0a0316ff6df8c7407.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:45934a145a3e14ebb165cb205dd28698c034e996b874781291009bdfaafb34e3', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'felicia' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'x-23', 'X-23', 'fighter', 'released', true, 35, 'A fast claw fighter who uses teleporting movement, dive attacks, and Ankle Slicer pressure to create ambiguous rushdown.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1343,7 +2300,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/umvc3-doom.png', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/doctor_doom.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Marvel vs. Capcom 2 Doctor Doom art via Capcom; cross-version identity fallback for UMVC3', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. No live first-party version-matched UMVC3 Doctor Doom render was found; this MVC2 art is explicitly cross-version.', 'sha256:2867aaa52ef1094fbdfd24d961fd6e904182e2631a71591fb30f75029420b5a2', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/umvc3-doom.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/doctor_doom.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Marvel vs. Capcom 2 art via Capcom; clearly labeled cross-version identity fallback for UMVC3', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Capcom''s own UMVC3 high-resolution art post no longer publishes the Marvel half of the cast, so this version-mismatched MVC2 render stands in and is labeled as such.', 'sha256:f45ff27110e8507bce32db84e72c1e33d6e64f85829b358d8480f5cca0b71cc9', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'umvc3' and c.slug = 'doom' and c.roster_role = 'fighter'
@@ -1369,6 +2326,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-haggar.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/c3addb0a5bad6c19c0a5f0c0f90f9882.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:8547b663a4c5491509dcb033ea4e117fc99bb20af9c2c1212c75dca809540559', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'haggar' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'hulk', 'Hulk', 'fighter', 'released', true, 39, 'A heavyweight rushdown fighter who uses super armor, Gamma Wave, and large normals to make close-range trades heavily favor him.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1377,6 +2345,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-hulk.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/hulk.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Marvel vs. Capcom 2 art via Capcom; clearly labeled cross-version identity fallback for UMVC3', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Capcom''s own UMVC3 high-resolution art post no longer publishes the Marvel half of the cast, so this version-mismatched MVC2 render stands in and is labeled as such.', 'sha256:69a56daa6106b39ca6cfcc631c3eab0b4db46e39a6e6e5cb872667296badf804', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'hulk' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'arthur', 'Arthur', 'fighter', 'released', true, 40, 'A projectile-and-resource fighter who cycles armor and weapons while using daggers, axes, and shield tools to control space.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1384,6 +2363,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-arthur.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/3b283de4165c49bb006f61cc7ca44ea0.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:79c09b95da9918a2ada32e1620e54f0dc7b8c9c606c0a67c5b7c10729bac324a', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'arthur' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'she-hulk', 'She-Hulk', 'fighter', 'released', true, 41, 'A mobile grappler who uses command grabs, armored approaches, and torpedo movement to convert pressure into strong corner carry.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1401,6 +2391,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-akuma.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/f38b7273526b31bbc8a0026978488d4f.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:41c2583d787022432c9f33d722738e5b6f2de1e8f28fd73e37678552fae86f6d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'akuma' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'taskmaster', 'Taskmaster', 'fighter', 'released', true, 43, 'A weapon-copy fighter who uses arrows, sword normals, and shield attacks to borrow familiar tools and adapt to matchups.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1417,6 +2418,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-hsien-ko.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/4a32d66febce2373845913779fab5e11.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:d2add94deeabe6d11ebc3e65f161b20c18353db8c97a7b2ca9f931720bb19886', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'hsien-ko' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sentinel', 'Sentinel', 'fighter', 'released', true, 45, 'A giant zoning fighter who uses drones, rockets, flight, and huge normals to dominate screen space and support team conversions.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1424,6 +2436,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-sentinel.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/sentinel.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Marvel vs. Capcom 2 art via Capcom; clearly labeled cross-version identity fallback for UMVC3', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Capcom''s own UMVC3 high-resolution art post no longer publishes the Marvel half of the cast, so this version-mismatched MVC2 render stands in and is labeled as such.', 'sha256:3e81653c9325e6835ff2f84dc2d09f94fa2e0d05eb2b091b14b59ecb78166165', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'sentinel' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'chris-redfield', 'Chris Redfield', 'fighter', 'released', true, 46, 'A methodical gunner who switches firearms and explosives to control lanes, punish approaches, and convert grounded hits.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1433,6 +2456,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-chris-redfield.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/fc85c2a875df2a98e33bd440f32c3235.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:67d074449fc34796cb574711ad93f81d3e9addd6500b6ae56eba8f55c99da643', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'chris-redfield' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'wesker', 'Wesker', 'fighter', 'released', true, 47, 'A fast teleporting rushdown fighter who uses gunshots, Samurai Edge pressure, and wall-bounce routes to stay unpredictable.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1440,6 +2474,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-wesker.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/67dfdd8c21011b57a0d0aa63f23a94f5.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:6b3c61abf53ac3b7c42e98dc01a2c6ff7f548bc94b07f279ca391fdb5884116e', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'wesker' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'zero', 'Zero', 'fighter', 'released', true, 48, 'A high-execution sword fighter who chains Rekkoha, Raikousen, and projectile specials into relentless confirms and mix-ups.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -1450,7 +2495,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/umvc3-zero.png', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/2f7319c0e9932a47d0e9db7ef453ec4f.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. The official art post invites fan creations but does not grant unchanged app reuse.', 'sha256:66f595785490a5e6cadb6e05607b26bc8b1ef0fb9d718c21b0de789d5ee73b7e', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/umvc3-zero.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/2f7319c0e9932a47d0e9db7ef453ec4f.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:35fb23cca5e5748c248c078f4085c59e5af8fc7c5633d0a5f22aa1fe4f12ce15', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'umvc3' and c.slug = 'zero' and c.roster_role = 'fighter'
@@ -1468,6 +2513,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-jill-valentine.webp', 'https://cdn.capcom-unity.com/capcom-unity.com/user/mikeeb13/ultimate_marvel_vs._capcom_3__char_art/large/82a500357eac38a53fadceac7fef2931.png', 'Capcom / UMVC3 development team', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Official Ultimate Marvel vs. Capcom 3 high-resolution character art via Capcom', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Published by Capcom for community reuse at https://news.capcomusa.com/lets/browse/new-ultimate-marvel-vs-capcom-3-high-res-character-art; that post invites fan creations but does not grant unchanged app reuse.', 'sha256:fdb9be31ed81dc9979bfbadfd6dcef4d2b3df045237000cef7cc9e55c05c9925', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'jill-valentine' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'shuma-gorath', 'Shuma-Gorath', 'fighter', 'released', true, 50, 'A strange space-control fighter who uses tentacles, eye beams, and teleport movement to disrupt standard approaches.', 'https://static.capcom.com/manuals/umvc3/UMVC3_PS3_DMNL_EN.pdf', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'umvc3'
@@ -1475,6 +2531,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/umvc3-shuma-gorath.webp', 'https://www.capcom-games.com/marvel-vs-capcom-fc/assets/images/title/title6/character/shumagorath.png', 'Capcom / Marvel', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Marvel vs. Capcom 2 art via Capcom; clearly labeled cross-version identity fallback for UMVC3', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset. Capcom''s own UMVC3 high-resolution art post no longer publishes the Marvel half of the cast, so this version-mismatched MVC2 render stands in and is labeled as such.', 'sha256:1b7a3a1a8e2ce88565892b88dd1f6c63a370467a4f0f67d58ef0448eb5b11fb1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'umvc3' and c.slug = 'shuma-gorath' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)
 values ('uni2', 'Under Night In-Birth II Sys:Celes', 'UNI2', 'Current official roster', 5, '{"version":1,"noun":"Character","verified":true,"ordered":false,"uniqueCharacters":true,"slots":[{"id":"fighter","label":"Character","allowedRoles":["fighter"]}]}'::jsonb, 'https://www.arcsystemworks.jp/uni2celes/en/character/', 'verified', '2026-08-25T00:00:00Z')
@@ -1492,7 +2559,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-hyde.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_000Hyde.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:6deb04b76669e9e05ea301e53ddaecb0a31d312c4b313c675ba41a2b3f5038e4', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-hyde.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_000Hyde.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1a32add3da13bd291e3449062c7d08cca273ca1cd0bb8237827a3147ef70ab98', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'hyde' and c.roster_role = 'fighter'
@@ -1511,7 +2578,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-linne.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_001Linne.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:c01bac53bf24aee8a760b9a8f0f2cd522cdc6d0f26db9d4d861b442cb1d287e7', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-linne.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_001Linne.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:77183d8917ce821246b1db621fd833b740e3175cf1668db9c9c90259c0b04fbd', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'linne' and c.roster_role = 'fighter'
@@ -1530,7 +2597,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-waldstein.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_002Waldstein.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:fdd8d928fab8aa94879f9afa0d9073eb7415fefb4b32e4b597c722d7d7a6dc18', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-waldstein.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_002Waldstein.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b59cd9dd4442c660735772b06761b54c5135be7100d906b5c73160af404d91a5', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'waldstein' and c.roster_role = 'fighter'
@@ -1549,7 +2616,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-carmine.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_003Carmine.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:532eac2560010c3d30a78e10517b7b4a142e1b2b5339f1ae82523fe2477fb87b', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-carmine.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_003Carmine.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:c6a4454b71cf8499a423a3116a81806e6bcd16167f3e86dd05d8d1707bde93ca', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'carmine' and c.roster_role = 'fighter'
@@ -1568,7 +2635,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-orie.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_004Orie.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:d034e2e20297dd150d69b2337cb9beb130a56e2503ea0be74ec3d07d55d9f9e3', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-orie.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_004Orie.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:2bb81191c05cb81acd6aa4ce3bde579eef2e4320f861e4e241d9e869af202a0b', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'orie' and c.roster_role = 'fighter'
@@ -1587,7 +2654,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-gordeau.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_005Gordeau.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:7e4f743ab31a913642633d0331c8e275e6c17540ef16d00545616315fbe1b1b1', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-gordeau.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_005Gordeau.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a7323ee3a0b267577fea268a5413c0b74180b5cf92f6ec34ddbac37a28e0c71c', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'gordeau' and c.roster_role = 'fighter'
@@ -1606,7 +2673,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-merkava.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_006Merkava.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:dcf8c5f5c85d31d357288aab1876f6111c14fe7801840d6bb60a064d4ba65512', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-merkava.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_006Merkava.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:3017f4f2ea47dfcd51838f46d6507cf3bc4d15918a2bb8aac7d408ac5d132b4c', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'merkava' and c.roster_role = 'fighter'
@@ -1625,7 +2692,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-vatista.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_007Vatista.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:c5bd16037b77842456c7406d9686ba4efd6f8f116ebf6ddda03cab1809e161d4', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-vatista.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_007Vatista.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:69618b9ff34e61ef2acde8c79348407415ab230c3561344706adf07ac050a126', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'vatista' and c.roster_role = 'fighter'
@@ -1644,7 +2711,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-seth.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_008Seth.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:d764d96b9ddf29d57b0f3430db98d0eab446010cbaa96a723ff75ffc961cc0b5', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-seth.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_008Seth.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:aa2e2b2a5534a08b841762b91f869569014dd2632a2b9d4f96c0116cbeefe71a', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'seth' and c.roster_role = 'fighter'
@@ -1663,7 +2730,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-yuzuriha.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_009Yuzuriha.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:cbf1fc94121b64faf4ba632d59def84a916b66eebd991fd1f7c591188b3e169c', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-yuzuriha.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_009Yuzuriha.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:af2c10f0ba4e61ff7abdc8471499f6c3c91453ad6e7a3ce7c8afdd61c5659b2e', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'yuzuriha' and c.roster_role = 'fighter'
@@ -1682,7 +2749,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-hilda.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_010Hilda.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:f4b26461883d7655697c8e8920d11134b06db267ce6eaa333a04cf32e689df86', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-hilda.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_010Hilda.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:35f5788e2cf838e4a0dae059cf1fc3f8b31ca6440479f9601e32c0ede115bab0', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'hilda' and c.roster_role = 'fighter'
@@ -1701,7 +2768,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-chaos.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_015Chaos.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:fb2cf6eb6b6e81650b5d25828f24f888d6cc2f7755537120c1b20186f3faf78b', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-chaos.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_015Chaos.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:81a7b655a0c9fa0735f0433c24f81ee4e67c81ae9d1091fbb7841af5d04073db', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'chaos' and c.roster_role = 'fighter'
@@ -1720,7 +2787,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-nanase.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_012Nanase.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:dd7f0a9408971650777e665972dc2ccd06fbbaa346695c10559061b35e6b1566', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-nanase.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_012Nanase.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:0f35b792c05c95756ced01caee971d036ac8b2d6d96fdd72db41fc3ed01064eb', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'nanase' and c.roster_role = 'fighter'
@@ -1739,7 +2806,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-byakuya.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_013Byakuya.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:2eb71cb253c9d2682ef38fa6af7eeddd200eac5cf013a21711ab60772b90dac2', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-byakuya.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_013Byakuya.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:7c479d2b854ef802ecc05309bf1a7bd9983fdee3f9f1b39028b0fa9dc766041d', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'byakuya' and c.roster_role = 'fighter'
@@ -1758,7 +2825,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-phonon.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_024phonon.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:60b21d7571dc0bcf5626e73c9b419bd822fec88658f48a26f5182074176399ca', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-phonon.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_024phonon.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:676b66217a64350578a1b9862832d39b4346d878d5b452f505d176684aed6048', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'phonon' and c.roster_role = 'fighter'
@@ -1777,7 +2844,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-mika.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_021Mika.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:fa56a74db9792734738822b69b3ebf93375a3db05efa0225c9060e4811aa1075', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-mika.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_021Mika.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:8b6e03cc5e94c7bf75c4c865c97e7624d0d2e86160abab86d237b7e0405f8366', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'mika' and c.roster_role = 'fighter'
@@ -1796,7 +2863,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-wagner.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_016Wagner.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:e8eb4fcea9347ad992b50ded641c18aa54c46526d293af0566c46f24dcd1f22a', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-wagner.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_016Wagner.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b9162f7c0524d5346c2bf281b3842b1f4dfddf7e9af81dbf391f7f56b69b4fe4', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'wagner' and c.roster_role = 'fighter'
@@ -1815,7 +2882,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-enkidu.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_017Enkidu.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:e264f609214b897ed8499ee4cc3eae58859f55675876d300d8b639bad532a49b', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-enkidu.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_017Enkidu.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ed32320e3f41b0f2672883fa6674d97194871b76125902f6c56b305bb9cadd22', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'enkidu' and c.roster_role = 'fighter'
@@ -1834,7 +2901,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-londrekia.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_018Londrekia.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:0f6a279fcef6057aa8f0152fcca18ae0ba04416cbe37627cd6fa8e2b3d180642', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-londrekia.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_018Londrekia.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:473d55e5de21a9a92af2498a13b0f43b5ae065d8f84ffd9891bec7aa7aba1769', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'londrekia' and c.roster_role = 'fighter'
@@ -1853,7 +2920,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-tsurugi.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_019Tsurugi.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:895b5721a45d379276f39535b1ccea1707c42a8537b66717cc291f6ce3501d21', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-tsurugi.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_019Tsurugi.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:9edf7d3d7578ff196ffa842efcc1c42ae6899447b5b5ebae66415e8084610593', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'tsurugi' and c.roster_role = 'fighter'
@@ -1872,7 +2939,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-kaguya.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_022Kaguya.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:5f11e1b3b566bd44be459891ca85826499e7a345459ee749a292fbc8496130a0', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-kaguya.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_022Kaguya.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:613a09b04502458c6634a87965f1504909a62a69400ac98e8dcd21a5c34e7c7d', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'kaguya' and c.roster_role = 'fighter'
@@ -1891,7 +2958,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-kuon.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_023Kuon.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:9b3aaa0143daa03a3ba424460784446ffff8477a8b8465a2a01344cc6191babd', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-kuon.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_023Kuon.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:488d3ef932cfd6d96f61589cc9a7e2a8fad95e18db4327b0af7cd73f76a80e2b', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'kuon' and c.roster_role = 'fighter'
@@ -1910,7 +2977,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-uzuki.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_020Uzuki.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:a553e77ee3c92798060c818b7679d59a6c8b9d774faa604fd7f5c05f4baedaf4', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-uzuki.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_020Uzuki.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a2c4254d553017b9b002928baab59e7acf40bd339b490b1ba7bc84a42e8dd9ea', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'uzuki' and c.roster_role = 'fighter'
@@ -1929,7 +2996,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-ogre.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_025Ogre.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:3aa92b8eecc4a346961a0a79f7b64532176d624edb250cb2b13363d330d0aeef', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-ogre.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_025Ogre.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:28965b9344478df8426ae48c43992417675b4a148a61e0e59d23a1cf79c99ab7', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'ogre' and c.roster_role = 'fighter'
@@ -1948,7 +3015,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-izumi.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_026Izumi.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:f547ea2a60643c078f0bfbabe63779ad97e6725e0e1f5185ef56c04e5e4764c1', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-izumi.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_026Izumi.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:855b345072899d84cdae01811cb31c4e10c399511730141aa9950fc2c41abb6a', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'izumi' and c.roster_role = 'fighter'
@@ -1967,7 +3034,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-zohar.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_027zohar.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:ff2f7b33f659edbd3c909b0d5002acd6ce37a95522e7cb4261861a92181a4cd5', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-zohar.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_027zohar.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1cddb5a74473579887e7ae2df06787034b0ac36cbc4f9c0a0ffb6e53dbc9a81f', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'zohar' and c.roster_role = 'fighter'
@@ -1986,7 +3053,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-eltnum.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_011Eltnum.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:d3ad6b4fc2780287c53e3fb724d63616ff8e82177f57257bc2bf09a0b05f4e80', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-eltnum.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_011Eltnum.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b2d41e3394718489a09a60913e2a239c9e1b1d0eeac3d9adb9e95dce8fefeab6', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'eltnum' and c.roster_role = 'fighter'
@@ -2005,7 +3072,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/uni2-akatsuki.png', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_014Akatsuki.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and unmodified redistribution with notice and an official-site link.', 'sha256:51ce0e39c69595e0facebb6b1010e62830932e06cd97934c9a186904590a7403', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/uni2-akatsuki.webp', 'https://www.arcsystemworks.jp/uni2celes/assets/img/fankit/character/csel_noef_014Akatsuki.png', 'Arc System Works', 'https://www.arcsystemworks.jp/uni2celes/en/fankit/', 'express-fan-kit', '© FRENCH-BREAD / ARC SYSTEM WORKS', 'Official fan-kit terms permit website use and redistribution with notice and an official-site link. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:74455a4c6b42bab1914bfbbf74d2f2957985f3ecf7c8f26eb03b265220e7b21b', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'uni2' and c.slug = 'akatsuki' and c.roster_role = 'fighter'
@@ -2031,7 +3098,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/avatar-key-art.jpg', 'https://cdn.prod.website-files.com/6916373abb21267659191bf4/6a45f0a2b3629f80990bbd1d_FINAL-KEY-ART_ALTFG.jpg', 'PM Studios / Gameplay Group International', 'https://thegameplaygroup.com/terms-of-service', 'publisher-promotional', 'Avatar Legends: The Fighting Game key art © Gameplay Group International / Viacom International', 'Official publisher promotional art. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation, asset-fit gap, and removal path recorded. No standalone first-party aang cutout was found; this shared key art is character-focused in the page crop.', 'sha256:03dd1af59874090717f6faafc407fd888cb6d6ad6a0dcfc9e7153c0cec7f7a7a', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/avatar-legends-aang.webp', 'https://live.staticflickr.com/65535/55168531920_fd5b47afa6_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game roster art © Gameplay Group International / Viacom International', 'Official publisher roster art published on PlayStation.Blog. No standalone first-party cutout is published per fighter, so each Character is a fixed crop of that one roster image. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:45064b15e49e3b725b703e1ee0fd985887f70a38ca9837e0178d20a02c056e3b', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'avatar-legends' and c.slug = 'aang' and c.roster_role = 'fighter'
@@ -2050,7 +3117,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/avatar-key-art.jpg', 'https://cdn.prod.website-files.com/6916373abb21267659191bf4/6a45f0a2b3629f80990bbd1d_FINAL-KEY-ART_ALTFG.jpg', 'PM Studios / Gameplay Group International', 'https://thegameplaygroup.com/terms-of-service', 'publisher-promotional', 'Avatar Legends: The Fighting Game key art © Gameplay Group International / Viacom International', 'Official publisher promotional art. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation, asset-fit gap, and removal path recorded. No standalone first-party zuko cutout was found; this shared key art is character-focused in the page crop.', 'sha256:03dd1af59874090717f6faafc407fd888cb6d6ad6a0dcfc9e7153c0cec7f7a7a', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/avatar-legends-zuko.webp', 'https://live.staticflickr.com/65535/55168531920_fd5b47afa6_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game roster art © Gameplay Group International / Viacom International', 'Official publisher roster art published on PlayStation.Blog. No standalone first-party cutout is published per fighter, so each Character is a fixed crop of that one roster image. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:99ea4666f5649a7014e54ab71e890fe143c36be2131f8ac3d2d2043f7cf4c5cd', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'avatar-legends' and c.slug = 'zuko' and c.roster_role = 'fighter'
@@ -2068,6 +3135,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/avatar-legends-katara.webp', 'https://live.staticflickr.com/65535/55168531920_fd5b47afa6_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game roster art © Gameplay Group International / Viacom International', 'Official publisher roster art published on PlayStation.Blog. No standalone first-party cutout is published per fighter, so each Character is a fixed crop of that one roster image. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:cd7f46b8478620c3b604a5b502d67f896a250261c7fb0ac917d42abfa8dbd9ae', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'avatar-legends' and c.slug = 'katara' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'toph', 'Toph', 'fighter', 'released', true, 4, 'An earthbending heavyweight who uses grounded force and armor-like pressure to make close exchanges favor her team.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
@@ -2076,6 +3154,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/avatar-legends-toph.webp', 'https://live.staticflickr.com/65535/55168531920_fd5b47afa6_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game roster art © Gameplay Group International / Viacom International', 'Official publisher roster art published on PlayStation.Blog. No standalone first-party cutout is published per fighter, so each Character is a fixed crop of that one roster image. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ce5b7608c482bf8d2bded78e77ddba9540bed2eacaf49b6c7ac5979ad69ded0b', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'avatar-legends' and c.slug = 'toph' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sokka', 'Sokka', 'fighter', 'released', true, 5, 'A weapon-focused all-rounder who mixes boomerang zoning with sword attacks and Support calls to cover his approach.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
@@ -2083,6 +3172,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/avatar-legends-sokka.webp', 'https://live.staticflickr.com/65535/55168531920_fd5b47afa6_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game roster art © Gameplay Group International / Viacom International', 'Official publisher roster art published on PlayStation.Blog. No standalone first-party cutout is published per fighter, so each Character is a fixed crop of that one roster image. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:e7f0f7c3ca07d6d75af84881092489341193aa7746f74edd473d3e50c3896a64', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'avatar-legends' and c.slug = 'sokka' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'azula', 'Azula', 'fighter', 'released', true, 6, 'A fast firebending pressure fighter who uses aggressive flame attacks and lightning-based threat to force quick defensive decisions.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2093,7 +3193,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/avatar-azula.jpg', 'https://live.staticflickr.com/65535/55168531880_df00c7e87a_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game promotional screenshot © Gameplay Group International / Viacom International', 'Official publisher promotional art. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation, asset-fit gap, and removal path recorded. This version-exact screenshot features Azula rather than a standalone cutout.', 'sha256:9cf595dacb4d71c1eef1af50a9ca4ad6134859393ad8dd52a81603fde4d4ec6e', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/avatar-legends-azula.webp', 'https://live.staticflickr.com/65535/55168531920_fd5b47afa6_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game roster art © Gameplay Group International / Viacom International', 'Official publisher roster art published on PlayStation.Blog. No standalone first-party cutout is published per fighter, so each Character is a fixed crop of that one roster image. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:2a765e9aaf60ea63c1c2d812eaedbd5055a69d560ae0e7c509f9489dedc0c7c9', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'avatar-legends' and c.slug = 'azula' and c.roster_role = 'fighter'
@@ -2111,6 +3211,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/avatar-legends-kyoshi.webp', 'https://live.staticflickr.com/65535/55168531920_fd5b47afa6_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game roster art © Gameplay Group International / Viacom International', 'Official publisher roster art published on PlayStation.Blog. No standalone first-party cutout is published per fighter, so each Character is a fixed crop of that one roster image. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:879eb7e14217a34624c0a0fd24b3613c20b06469e39ed2feb74ebc0311e555db', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'avatar-legends' and c.slug = 'kyoshi' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ozai', 'Fire Lord Ozai', 'fighter', 'released', true, 8, 'A firebending zoner who uses sustained flame pressure and long-range attacks to keep opponents from starting their offense.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
@@ -2118,6 +3229,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/avatar-legends-ozai.webp', 'https://live.staticflickr.com/65535/55168531920_fd5b47afa6_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game roster art © Gameplay Group International / Viacom International', 'Official publisher roster art published on PlayStation.Blog. No standalone first-party cutout is published per fighter, so each Character is a fixed crop of that one roster image. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:3b459ecff250f794ea02e9b4187d49e977ea88540dbda09c25b70434e0a4f4be', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'avatar-legends' and c.slug = 'ozai' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'korra', 'Korra', 'fighter', 'released', true, 9, 'A versatile bending fighter who shifts between elemental tools and uses her Support loadout to adapt to different ranges.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2128,7 +3250,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/avatar-key-art.jpg', 'https://cdn.prod.website-files.com/6916373abb21267659191bf4/6a45f0a2b3629f80990bbd1d_FINAL-KEY-ART_ALTFG.jpg', 'PM Studios / Gameplay Group International', 'https://thegameplaygroup.com/terms-of-service', 'publisher-promotional', 'Avatar Legends: The Fighting Game key art © Gameplay Group International / Viacom International', 'Official publisher promotional art. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation, asset-fit gap, and removal path recorded. No standalone first-party korra cutout was found; this shared key art is character-focused in the page crop.', 'sha256:03dd1af59874090717f6faafc407fd888cb6d6ad6a0dcfc9e7153c0cec7f7a7a', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/avatar-legends-korra.webp', 'https://live.staticflickr.com/65535/55168531920_fd5b47afa6_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game roster art © Gameplay Group International / Viacom International', 'Official publisher roster art published on PlayStation.Blog. No standalone first-party cutout is published per fighter, so each Character is a fixed crop of that one roster image. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:cbf14938cb2c4e4a41311179cd7d0448c5f13803c21b39ec9220bad178da7105', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'avatar-legends' and c.slug = 'korra' and c.roster_role = 'fighter'
@@ -2146,6 +3268,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/avatar-legends-zaheer.webp', 'https://live.staticflickr.com/65535/55168531920_fd5b47afa6_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game roster art © Gameplay Group International / Viacom International', 'Official publisher roster art published on PlayStation.Blog. No standalone first-party cutout is published per fighter, so each Character is a fixed crop of that one roster image. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:0dd27f4ff3efa20551bc6235dbc084cf4024090d55c40c631ac02dd97aaf9aec', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'avatar-legends' and c.slug = 'zaheer' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'nightmare-korra', 'Nightmare Korra', 'fighter', 'released', true, 11, 'A corrupted Korra form that emphasizes aggressive elemental pressure and dangerous close-range conversions with its Support choices.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
@@ -2154,6 +3287,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/avatar-legends-nightmare-korra.webp', 'https://live.staticflickr.com/65535/55168531920_fd5b47afa6_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game roster art © Gameplay Group International / Viacom International', 'Official publisher roster art published on PlayStation.Blog. No standalone first-party cutout is published per fighter, so each Character is a fixed crop of that one roster image. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:9de948b7f01f841ca12a03e21b62b2fc1b883024c4def35c7687fb0d96a27e63', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'avatar-legends' and c.slug = 'nightmare-korra' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'avatar-aang', 'Avatar Aang', 'fighter', 'released', true, 12, 'An advanced Aang form that draws on multiple elements to switch between mobility, zoning, and pressure within the Support system.', 'https://store.steampowered.com/app/2424420/Avatar_Legends_The_Fighting_Game/', 'Gameplay Group International / PM Studios', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'avatar-legends'
@@ -2161,6 +3305,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/avatar-legends-avatar-aang.webp', 'https://live.staticflickr.com/65535/55168531920_fd5b47afa6_k.jpg', 'Gameplay Group International via PlayStation Blog', 'https://www.playstation.com/en-us/legal/website-terms-of-use/', 'publisher-promotional', 'Avatar Legends: The Fighting Game roster art © Gameplay Group International / Viacom International', 'Official publisher roster art published on PlayStation.Blog. No standalone first-party cutout is published per fighter, so each Character is a fixed crop of that one roster image. The publisher terms reserve unauthorized public reuse; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1e194852eec39fb21819a4efdf079cf7815b92e626f2983486eba0db46da6b02', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'avatar-legends' and c.slug = 'avatar-aang' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)
 values ('melee', 'Super Smash Bros. Melee', 'MELEE', 'NTSC 1.02 playable forms', 7, '{"version":1,"noun":"Character","verified":true,"ordered":false,"uniqueCharacters":true,"slots":[{"id":"fighter","label":"Character","allowedRoles":["fighter"]}]}'::jsonb, 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'verified', '2026-08-25T00:00:00Z')
@@ -2177,6 +3332,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-dr-mario.webp', 'https://www.smashbros.com/assets_v2/img/fighter/dr_mario/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:4297b855003c1febf9815d1d6dd887eac5f0d0e876757cb55d2a1483933cd99d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'dr-mario' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'mario', 'Mario', 'fighter', 'released', true, 2, 'A balanced platform fighter who uses fireballs, quick aerials, and up-special recovery to convert neutral wins into edge pressure.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2184,6 +3350,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-mario.webp', 'https://www.smashbros.com/assets_v2/img/fighter/mario/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1de7118ef469090475b69ecc611d3e8b60fba04a9a56544bb34de2560d250604', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'mario' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'luigi', 'Luigi', 'fighter', 'released', true, 3, 'A slippery brawler who uses fireballs, strong aerials, and wavedash movement to create unusual approach angles and grab pressure.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2193,6 +3370,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-luigi.webp', 'https://www.smashbros.com/assets_v2/img/fighter/luigi/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f9da21a2cb5db9f0ba274c97c5adeeece229eeb078365b185740782d8107978d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'luigi' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'bowser', 'Bowser', 'fighter', 'released', true, 4, 'A heavyweight fighter who uses armored-looking fire and claw attacks, powerful throws, and high knockback to punish close commitments.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2200,6 +3388,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-bowser.webp', 'https://www.smashbros.com/assets_v2/img/fighter/koopa/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:9d143f3ec34423f819cd9bc2e4940ba22c543b61651cbb0c8c2696e1602a8e78', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'bowser' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'peach', 'Peach', 'fighter', 'released', true, 5, 'A float-based fighter who controls the air with turnips and disjointed aerials while converting float movement into pressure.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2209,6 +3408,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-peach.webp', 'https://www.smashbros.com/assets_v2/img/fighter/peach/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6c12836de5cc5862151e48a8fe2e58cb02ca9f29260ad74da4a14098d0a6fce7', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'peach' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'yoshi', 'Yoshi', 'fighter', 'released', true, 6, 'A mobile fighter with an armored double jump who uses eggs, crouch movement, and strong aerials to contest space unexpectedly.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2216,6 +3426,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-yoshi.webp', 'https://www.smashbros.com/assets_v2/img/fighter/yoshi/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:09ea9b3a88be429a69c21cae82f1d2ef0733fb3789b63e65df4321cf6ce01ccd', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'yoshi' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'donkey-kong', 'Donkey Kong', 'fighter', 'released', true, 7, 'A heavyweight grappler who uses cargo throws, Giant Punch, and long-reaching normals to carry opponents toward the edge.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2225,6 +3446,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-donkey-kong.webp', 'https://www.smashbros.com/assets_v2/img/fighter/donkey_kong/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:78e02f7e9d268ef09f410f111858e22980551dd0dd3a57f5465807ea79385cf5', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'donkey-kong' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'captain-falcon', 'Captain Falcon', 'fighter', 'released', true, 8, 'A fast rushdown fighter who combines strong aerials, knee pressure, and burst movement with devastating punish conversions.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2233,6 +3465,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-captain-falcon.webp', 'https://www.smashbros.com/assets_v2/img/fighter/captain_falcon/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:41ac4ad67920d7457f7fb33200ab014e8d92bc055a16203c25a580493e11655f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'captain-falcon' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ganondorf', 'Ganondorf', 'fighter', 'released', true, 9, 'A slow powerhouse who uses large disjointed strikes and Dark Dive to turn a single hard read into heavy knockback.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2240,6 +3483,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-ganondorf.webp', 'https://www.smashbros.com/assets_v2/img/fighter/ganondorf/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:5cfcfc17985ddfedf7808df6e4dedb0c93e719cfcb254dc8b711ebc3737d3a39', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'ganondorf' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'falco', 'Falco', 'fighter', 'released', true, 10, 'A fast spacer who uses lasers, Shine, and high-falling aerials to start pillar combos and edgeguarding sequences.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2250,7 +3504,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/melee-falco.png', 'https://www.smashbros.com/assets_v2/img/fighter/falco/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee (fighter 20)', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded.', 'sha256:a616cc0cba78d999dec0eb1d43dee61117dd5e9decae0ed2a8a5e47262505d03', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/melee-falco.webp', 'https://www.smashbros.com/assets_v2/img/fighter/falco/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:776e4fd287c1945e58fdd66291e45f3803424b5a552a50504d777cf7a673a9f0', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'melee' and c.slug = 'falco' and c.roster_role = 'fighter'
@@ -2269,7 +3523,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/melee-fox.png', 'https://www.smashbros.com/assets_v2/img/fighter/fox/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee (fighter 07)', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded.', 'sha256:67db02396021221a109fff6b83940b5879705a77e07cb2740d90b50fb00add82', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/melee-fox.webp', 'https://www.smashbros.com/assets_v2/img/fighter/fox/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6d66859e4f926c78eccc18b24b247d62e90df261451bef18963a5b4e4cf6e853', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'melee' and c.slug = 'fox' and c.roster_role = 'fighter'
@@ -2287,6 +3541,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-ness.webp', 'https://www.smashbros.com/assets_v2/img/fighter/ness/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:594dcaf28a40750cb31df83a7c996f0c99e643d3da2089d58e5c6abf788c5c3f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'ness' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ice-climbers', 'Ice Climbers', 'fighter', 'released', true, 13, 'A partner-based fighter who uses Blizzard, desynchronized movement, and grab conversions to make coordinated pressure snowball.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2294,6 +3559,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-ice-climbers.webp', 'https://www.smashbros.com/assets_v2/img/fighter/ice_climbers/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:d183b6589e3ebc362cb8d4f3cbfbba27988b9f9286b40f782c1bc8399d404618', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'ice-climbers' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'kirby', 'Kirby', 'fighter', 'released', true, 14, 'A small aerial fighter who uses Copy abilities, flexible jumps, and compact normals to punish overextended opponents.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2303,6 +3579,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-kirby.webp', 'https://www.smashbros.com/assets_v2/img/fighter/kirby/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:88c40eedc7af675c78152c15190fd881bb838f5c05af4e0313ed5ce5ef48847e', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'kirby' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'samus', 'Samus', 'fighter', 'released', true, 15, 'A projectile-based fighter who uses Charge Shot, missiles, bombs, and grapple recovery to control approach lanes.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2311,6 +3598,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-samus.webp', 'https://www.smashbros.com/assets_v2/img/fighter/samus/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ff02a2d3295de5c0b1dd1bddc9ae31946c4f54ff1591ef8db8b176ff553741b7', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'samus' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'zelda', 'Zelda', 'fighter', 'released', true, 16, 'A magic-based zoner who uses Din''s Fire and Nayru''s Love before transforming into Sheik for faster close-range options.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2318,6 +3616,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-zelda.webp', 'https://www.smashbros.com/assets_v2/img/fighter/zelda/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:3d56fa873249d460f213c010e497c38b95a306871e1ef876984d1156ad894a1d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'zelda' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sheik', 'Sheik', 'fighter', 'released', true, 17, 'A fast technical fighter who uses needles, long-reaching aerials, and chain throws to convert neutral wins into edgeguards.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2328,7 +3637,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/melee-sheik.png', 'https://www.smashbros.com/assets_v2/img/fighter/sheik/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee (fighter 16)', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded.', 'sha256:1bc2bbceb4a1caacd3944c5d556243a401cc587b2b00bf7c672e7c4642ca941e', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/melee-sheik.webp', 'https://www.smashbros.com/assets_v2/img/fighter/sheik/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6c7a2c9366784c209be09811dc079f841e5735e44639a7a93ff5a5c47cc8d61b', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'melee' and c.slug = 'sheik' and c.roster_role = 'fighter'
@@ -2346,6 +3655,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-link.webp', 'https://www.smashbros.com/assets_v2/img/fighter/link/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:cc6913a5b08671317feed62f391880a6e1f1f775bd0eb703d1d2f7513dc8e8e3', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'link' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'young-link', 'Young Link', 'fighter', 'released', true, 19, 'A faster Link variant who uses quick fire arrows, boomerangs, bombs, and nimble aerials to keep opponents at mid range.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2354,6 +3674,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-young-link.webp', 'https://www.smashbros.com/assets_v2/img/fighter/young_link/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:5725509ebefd70cffafee750ecdb7cfc7373be7ae271cf96375856fba2c6060c', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'young-link' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'mewtwo', 'Mewtwo', 'fighter', 'released', true, 20, 'A light psychic fighter who uses Shadow Ball, teleport movement, and a long tail to create floaty spacing and edgeguard traps.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2361,6 +3692,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-mewtwo.webp', 'https://www.smashbros.com/assets_v2/img/fighter/mewtwo/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:7dbf7c60f84c20cbe8c2c67756b44d629b1dc8e2aeb6eb858474d3712ff6b62b', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'mewtwo' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'marth', 'Marth', 'fighter', 'released', true, 21, 'A precise sword fighter who rewards spacing at the blade tip and converts disjointed aerials into grabs and edge pressure.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2371,7 +3713,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/melee-marth.png', 'https://www.smashbros.com/assets_v2/img/fighter/marth/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee (fighter 21)', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded.', 'sha256:0437c89299459e11811e76e3b322a851d00619e93c5b55c9437ace13dfb3b1a4', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/melee-marth.webp', 'https://www.smashbros.com/assets_v2/img/fighter/marth/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:80976c48b502059e0097bdf1eec151f32ce6bbb860e92a20e3d413da01957d65', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'melee' and c.slug = 'marth' and c.roster_role = 'fighter'
@@ -2389,6 +3731,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-roy.webp', 'https://www.smashbros.com/assets_v2/img/fighter/roy/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b65689cd1bed6379a1d195f930cc28625836d1504a40ab55709f5b0afa86796b', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'roy' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'pichu', 'Pichu', 'fighter', 'released', true, 23, 'A tiny electric rushdown fighter who uses Quick Attack and fast aerials to scramble around opponents while taking self-damage.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2396,6 +3749,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-pichu.webp', 'https://www.smashbros.com/assets_v2/img/fighter/pichu/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1a4c54c47a5dade487575b730d3670bac0882dfa8cd9bfe283f500a0cf4d72fd', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'pichu' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'pikachu', 'Pikachu', 'fighter', 'released', true, 24, 'A mobile electric fighter who uses Quick Attack, Thunder Jolt, and edgeguarding aerials to control both stage and recovery routes.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2405,6 +3769,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-pikachu.webp', 'https://www.smashbros.com/assets_v2/img/fighter/pikachu/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:754bee5d5884b5fdbd31ca806b4bab3b2888715d88b92dc8ec2317a0167f6025', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'pikachu' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'jigglypuff', 'Jigglypuff', 'fighter', 'released', true, 25, 'A highly aerial fighter who uses drift, repeated jumps, and Rest confirms to turn patient edge pressure into sudden stocks.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2413,6 +3788,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-jigglypuff.webp', 'https://www.smashbros.com/assets_v2/img/fighter/purin/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6bfd76da299a5e4f77e22b1e733ca3e51141c401c43f903e5b88ec7266f26c4a', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'jigglypuff' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'mr-game-and-watch', 'Mr. Game & Watch', 'fighter', 'released', true, 26, 'A floaty multi-tool fighter who uses unusual disjoints, Bucket, and Judge to create matchup-specific pressure and punishment.', 'https://www.smashbros.com/wii/en_us/gamemode/various/various22.html', 'Nintendo', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'melee'
@@ -2420,6 +3806,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/melee-mr-game-and-watch.webp', 'https://www.smashbros.com/assets_v2/img/fighter/mr_game_and_watch/main.png', 'Nintendo', 'https://www.nintendo.com/us/terms-of-use/ncl/', 'publisher-promotional', 'Super Smash Bros. Ultimate render © Nintendo; cross-version identity fallback for Melee', 'Official Super Smash Bros. Ultimate promotional render used as a clearly labeled cross-version identity fallback for Melee. Nintendo terms do not grant this public display; included under accepted ADR-023 with the mismatch and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f3cb1df5fbfbd3dca176b8b68aeef4b1987370be10a73f326c701f25c8283af3', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'melee' and c.slug = 'mr-game-and-watch' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)
 values ('ggxxacpr', 'Guilty Gear XX Accent Core Plus R', '+R', 'Plus R', 8, '{"version":1,"noun":"Character","verified":true,"ordered":false,"uniqueCharacters":true,"slots":[{"id":"fighter","label":"Character","allowedRoles":["fighter"]}]}'::jsonb, 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'verified', '2026-08-25T00:00:00Z')
@@ -2437,7 +3834,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/ggxxacpr-sol.png', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_15.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded.', 'sha256:df54c4c9296de3bdcc0c8d978d6a8351dc44aa86ec2233c3b5a3e8585ffd3cd9', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/ggxxacpr-sol.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_15.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:21164b3da33a923ee768ffc275d70f0c042c4e114f9dcb8b64945ccb91e5cef5', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'ggxxacpr' and c.slug = 'sol' and c.roster_role = 'fighter'
@@ -2456,7 +3853,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/ggxxacpr-ky.png', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_07.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded.', 'sha256:0ddd478928d6e92eb516eae273a439b2fa80ddad4dcf4531dc4f3a628e5448fc', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/ggxxacpr-ky.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_07.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:55732bf787100b7afcfa10f9042cdf5849cc8157aedaeb570465d671a1e4fd5d', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'ggxxacpr' and c.slug = 'ky' and c.roster_role = 'fighter'
@@ -2474,6 +3871,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-may.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_24.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:888bae6f5f426b878ab2c46ddf678a697de8f0c82d14a8f7ec28ac9b03951b0d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'may' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'millia', 'Millia Rage', 'fighter', 'released', true, 4, 'A fast setplay fighter who uses Tandem Top and summoned hair discs to create repeated left-right and high-low pressure after knockdowns.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
@@ -2481,6 +3889,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-millia.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_23.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:fb13303c6bb6487836f39d657ee08044c800ea48df38ec02442a18f114b64e69', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'millia' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'zato-1', 'Eddie / Zato=1', 'fighter', 'released', true, 5, 'A summon fighter who manages Eddie''s gauge to layer drills, oppose attacks, and command-grab pressure over Zato''s own buttons.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2490,6 +3909,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-zato-1.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_10.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:4d8073400f79311398b194cb1ef2b7a45a0aa04b0bfd923952653306310859bb', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'zato-1' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'baiken', 'Baiken', 'fighter', 'released', true, 6, 'A defensive sword fighter who uses Tatami Gaeshi, parries, and tether-based follow-ups to punish approaches and force close decisions.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
@@ -2497,6 +3927,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-baiken.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_19.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a32fbdb7606cee87993cd266c4dfcc23f55622b40c0d5e8343d75de9eabbc611', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'baiken' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'faust', 'Faust', 'fighter', 'released', true, 7, 'A disruptive item-throw fighter who uses random objects, long pokes, and pogo movement to make every round play out differently.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2506,6 +3947,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-faust.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_20.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:74e36365703a80637d7301bb7e9d8909d9a91ab1f8f24c44ac3365be60ceae03', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'faust' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'anji', 'Anji Mito', 'fighter', 'released', true, 8, 'A counter-oriented fighter who uses autoguard fans and Fuujin follow-ups to absorb predictable attacks and open defensive gaps.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
@@ -2513,6 +3965,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-anji.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_03.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ac2f5c0e8cd1967503be71ff4eb369ef200eb301717b9f2c2359a62a9b2d92cc', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'anji' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'johnny', 'Johnny', 'fighter', 'released', true, 9, 'A mid-range sword fighter who stocks coins and uses Mist Finer stance attacks to control space and threaten high-damage confirms.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2522,6 +3985,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-johnny.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_13.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:d58b0c7bb2f6661355956699f2c656aa0ef4a6580fc892fe224747eb854e7aa1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'johnny' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'jam', 'Jam Kuradoberi', 'fighter', 'released', true, 10, 'A close-range martial artist who stocks special move enhancements and uses fast kicks, Rekka pressure, and frame traps to stay active.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
@@ -2529,6 +4003,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-jam.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_12.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:bebb7e21580ca0d9cfcdfae5f24c9cda002558e81e34271f0428ce4851220145', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'jam' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'venom', 'Venom', 'fighter', 'released', true, 11, 'A technical zoner who places billiard balls at chosen angles, then uses ball returns and charged shots to build layered offense.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2538,6 +4023,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-venom.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_05.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:deb70e6f2247018e4c5978c7672b9bcc1e9501bcdd0ce703e96946e5c09808cc', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'venom' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'dizzy', 'Dizzy', 'fighter', 'released', true, 12, 'A summon-and-projectile fighter who combines fish, fire, and ice attacks to control multiple lanes and punish impatient approaches.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
@@ -2545,6 +4041,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-dizzy.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_17.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a70352c586aedd749f944fc061ea55185195c7adfeebf037d0d1dffc5354904d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'dizzy' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'testament', 'Testament', 'fighter', 'released', true, 13, 'A trap fighter who plants seals and uses Grave Reaper, webs, and succubus pressure to make grounded movement unsafe.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2555,7 +4062,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/ggxxacpr-testament.png', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_18.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded.', 'sha256:8694ae2f59904d619ed97b649406cbfd76871dd28493718e88ab6a57ce755ff2', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/ggxxacpr-testament.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_18.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:709912ab7e952cf77fb4dcb19a143e0a970114654f7e0220a1e6b8243de54a71', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'ggxxacpr' and c.slug = 'testament' and c.roster_role = 'fighter'
@@ -2573,6 +4080,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-slayer.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_14.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b353723b9902a9e0b1435da8e5057fe8c76e9fb6d76f309f1ebff570200000b3', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'slayer' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'i-no', 'I-No', 'fighter', 'released', true, 15, 'A hover-dash rushdown fighter who uses musical notes, Chemical Love, and fast overhead routes to attack from changing heights.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
@@ -2580,6 +4098,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-i-no.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_04.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:9f8785aa5ca52d1c2288acb001d8a88a0f4fed3838e36bbde64abc1ff6dcc584', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'i-no' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'zappa', 'Zappa', 'fighter', 'released', true, 16, 'A stance-based setplay fighter who cycles spirit summons to gain different attacks, movement patterns, and pressure sequences.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2590,7 +4119,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/ggxxacpr-zappa.png', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_09.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded.', 'sha256:bc0b04ed27aad92bc2b940f00dcfb354ead3971c1ada92e67dd0fdc2ffcb73ae', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/ggxxacpr-zappa.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_09.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:3df2241d149c5f692ac2d6747d90fd37783047487b87e89d6047a0cde706e9f6', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'ggxxacpr' and c.slug = 'zappa' and c.roster_role = 'fighter'
@@ -2608,6 +4137,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-bridget.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_21.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:c0919ebf18f90aac46e909381b5b295315b86ce2591b3b3ec8ee155887f85034', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'bridget' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'robo-ky', 'Robo-Ky', 'fighter', 'released', true, 18, 'A resource fighter who charges his electric gauge to improve specials and then spends that power on stronger pressure and conversions.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
@@ -2615,6 +4155,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-robo-ky.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_25.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:cd3efb66e3575b3d94d6b06a6ab3268821388fa786fbad9989e943a4e72e63f0', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'robo-ky' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'aba', 'A.B.A', 'fighter', 'released', true, 19, 'A resource fighter who manages key and blood states to shift between a slower neutral mode and a powerful aggressive transformation.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2624,6 +4175,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-aba.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_02.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:9f49849d63b297f9f12d1082c54d5f8b7574fe1300ea7249a05fb5dd863ed550', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'aba' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'order-sol', 'Order-Sol', 'fighter', 'released', true, 20, 'A charge-based sword fighter who stores power for stronger specials and uses Dragon Install threat to amplify close-range offense.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
@@ -2631,6 +4193,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-order-sol.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_06.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:3b1b150dc21cb9136b05dc4c9ac5e283a6bb9795ef23ffe78c4c0f3164348cbe', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'order-sol' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'kliff', 'Kliff Undersn', 'fighter', 'released', true, 21, 'A slow, high-damage veteran who uses an enormous sword and powerful anti-airs to make every grounded approach a serious risk.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2640,6 +4213,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-kliff.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_08.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:183ba00388dbc87f8ce252987f20a900529ee0935c22ae98832d0a26ebdcb811', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'kliff' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'justice', 'Justice', 'fighter', 'released', true, 22, 'A projectile trap fighter who layers missiles and laser swords across the screen before cashing out with explosive conversions.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
@@ -2647,6 +4231,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-justice.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_11.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:49f8a99022955e58b820ae60281099e8f7aad8595dc6735281eab2040f34dfe1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'justice' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'potemkin', 'Potemkin', 'fighter', 'released', true, 23, 'A heavyweight grappler who uses Hammer Fall armor, Slide Head, and Potemkin Buster to force respect at close range.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2656,6 +4251,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-potemkin.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_22.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:128d907fff964f75a7fea377824b6ddf905a52f20966a91afc4e839741e9bd16', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'potemkin' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'chipp', 'Chipp Zanuff', 'fighter', 'released', true, 24, 'A fragile speed fighter who uses Alpha Blade, teleports, and wall movement to create rapid cross-ups and relentless mix-ups.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
@@ -2664,6 +4270,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-chipp.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_16.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6b85e37f74bda97685bccb846670c5e85293c5e1dc2f3f54f8ff8ef2e9bf6c71', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'chipp' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'axl', 'Axl Low', 'fighter', 'released', true, 25, 'A long-range chain fighter who uses sickle attacks, Rensen, and time-control pressure to punish movement from across the screen.', 'https://www.arcsystemworks.jp/steam/ggxxacpr/en/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggxxacpr'
@@ -2671,6 +4288,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggxxacpr-axl.webp', 'https://www.arcsystemworks.jp/switch/gg20th/acpr/en/img_2x/character/img_01.png', 'Arc System Works', 'https://www.arcsystemworks.jp/portal/fancontent/en/', 'publisher-promotional', '© ARC SYSTEM WORKS', 'Official publisher-hosted promotional asset. Arc System Works fan-content guidance does not grant direct official-visual reuse; included under accepted ADR-023 with the restriction and per-asset removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:21b75ac325bff7cd071db40ddb9f21363db8925430017e1be4638b3a204a3896', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggxxacpr' and c.slug = 'axl' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)
 values ('vampire-savior', 'Vampire Savior', 'VSAV', 'Darkstalkers 3 arcade rules', 9, '{"version":1,"noun":"Character","verified":true,"ordered":false,"uniqueCharacters":true,"slots":[{"id":"fighter","label":"Character","allowedRoles":["fighter"]}]}'::jsonb, 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'verified', '2026-08-25T00:00:00Z')
@@ -2687,6 +4315,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/vampire-savior-anakaris.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/10-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:c9d770885febb5fa4394f7a123f5cace1e4b187646891ecb02640f4683939e05', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'vampire-savior' and c.slug = 'anakaris' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'bishamon', 'Bishamon', 'fighter', 'released', true, 2, 'A sword rushdown fighter who uses long katana normals, armor, and unblockable-looking pressure to turn close openings into knockdowns.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
@@ -2694,6 +4333,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/vampire-savior-bishamon.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/12-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:0cbe7112a1e0a2eb0d8c4f61e57130c0828a146be06d6132d6e53e3b49ef7651', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'vampire-savior' and c.slug = 'bishamon' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'demitri', 'Demitri Maximoff', 'fighter', 'released', true, 3, 'A well-rounded vampire who uses fireballs, teleport movement, and command grabs to threaten both grounded space and close defense.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2703,6 +4353,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/vampire-savior-demitri.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/5-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:33c81191cd8b259df8b5d413d1ec0cf8ebb6383e33283a630f2183350e29ab86', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'vampire-savior' and c.slug = 'demitri' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'felicia', 'Felicia', 'fighter', 'released', true, 4, 'A mobile rushdown fighter who uses rolling attacks, wall movement, and fast normals to force scrambles at close range.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
@@ -2710,6 +4371,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/vampire-savior-felicia.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/11-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6cd3c65ddfba7e45704c75f461fe588a13ed678e7c1e25f86ecb861c519a8fd3', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'vampire-savior' and c.slug = 'felicia' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'hsien-ko', 'Hsien-Ko', 'fighter', 'released', true, 5, 'A projectile-and-item fighter who throws talismans and weapons while using armored specials to disrupt the opponent''s timing.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2719,6 +4391,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/vampire-savior-hsien-ko.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/4-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1ad76f2fffdc0b6cc5f2b630093cde75ff8bdf87db43211e7dbc1c0b96729114', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'vampire-savior' and c.slug = 'hsien-ko' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'jon-talbain', 'Jon Talbain', 'fighter', 'released', true, 6, 'A fast werewolf rushdown fighter who uses air mobility, Beast Cannon, and rekka-like attacks to keep pressure moving forward.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
@@ -2727,6 +4410,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/vampire-savior-jon-talbain.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/6-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:98c94b661e0c731331dbc4ae392718c9e7525dff4de79f4865bac1ba9908b357', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'vampire-savior' and c.slug = 'jon-talbain' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'lord-raptor', 'Lord Raptor', 'fighter', 'released', true, 7, 'A weapon rushdown fighter who combines chainsaws, projectiles, and fast air movement to make close-range pressure hard to escape.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
@@ -2734,6 +4428,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/vampire-savior-lord-raptor.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/8-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:c45646d72dcfb136f0fcd23dd7f774a3e3fdf50a31bd9b13b0f028fa5e6f2c6b', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'vampire-savior' and c.slug = 'lord-raptor' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'morrigan', 'Morrigan Aensland', 'fighter', 'released', true, 8, 'A mobile succubus who uses Soul Fist projectiles, air dashes, and flight-like movement to attack from ambiguous heights.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2744,7 +4449,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/vampire-savior-morrigan.png', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/9-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:953ea42cbc7b84d930ec056985768ef4c0bced4f90a6373dc6ec852cdd6d80d9', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/vampire-savior-morrigan.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/9-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:eabed5fcd28c37f924d00e275a7b4c7c0cc6167e713ddabb52a193ab301a04cc', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'vampire-savior' and c.slug = 'morrigan' and c.roster_role = 'fighter'
@@ -2762,6 +4467,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/vampire-savior-rikuo.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/13-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:7def097b65e722ce8fe6b4561358a9cdecbcfc756007d8987b63029b9bd153c1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'vampire-savior' and c.slug = 'rikuo' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sasquatch', 'Sasquatch', 'fighter', 'released', true, 10, 'A fast heavyweight who uses ice projectiles, powerful limbs, and sudden aerial movement to turn momentum into corner pressure.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
@@ -2770,6 +4486,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/vampire-savior-sasquatch.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/14-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:d77706eece265c7b661dceab3c5b19f6cfeca9ac46d2af9d6d2e39d72114da00', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'vampire-savior' and c.slug = 'sasquatch' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'victor', 'Victor von Gerdenheim', 'fighter', 'released', true, 11, 'A large electric bruiser who uses armor, long-reaching punches, and command attacks to win trades and force close-range respect.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
@@ -2777,6 +4504,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/vampire-savior-victor.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/7-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:bf6949dd63aebcbdc1c7b016440de67c002adbf0cce134c404d4bf77f606249e', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'vampire-savior' and c.slug = 'victor' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'bulleta', 'B.B. Hood', 'fighter', 'released', true, 12, 'A trap-heavy gunner who uses firearms, grenades, and deceptive movement to turn prepared space into explosive pressure.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2787,7 +4525,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/vampire-savior-bulleta.png', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/1-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:a1cdaee20de0e86fc7c9697ceae141fb45de5f4369ebc916c11529ef04b2cb78', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/vampire-savior-bulleta.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/1-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6f5d81ae3017922529f9d2d39a9f543b09e407de0b66853a91fd7370a24ea5af', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'vampire-savior' and c.slug = 'bulleta' and c.roster_role = 'fighter'
@@ -2806,7 +4544,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/vampire-savior-jedah.png', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/0-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:64b1f9913b9ac101d1e2643147adada5b786826a1bb3f3610b60d09d60e69373', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/vampire-savior-jedah.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/0-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:be45bc63c16a94a4d4c1e4b431b1812e0b61b9be6e883e9a480131146b680303', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'vampire-savior' and c.slug = 'jedah' and c.roster_role = 'fighter'
@@ -2824,6 +4562,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/vampire-savior-lilith.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/2-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:7d15b889e40977d20ba49447147465a42f77641c5631d6e5d58f70f7ff65bb21', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'vampire-savior' and c.slug = 'lilith' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'q-bee', 'Q-Bee', 'fighter', 'released', true, 15, 'A highly mobile rushdown fighter who uses flight, air dashes, and bee-based attacks to swarm opponents from changing angles.', 'https://www.capcom-games.com/cfc/en-us/title/darkstalkers.html', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'vampire-savior'
@@ -2833,7 +4582,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/vampire-savior-q-bee.png', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/3-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:78bdb1a0805b0031cb3a1f18644da2bd92a8d467f5c420e42d22181d93247b79', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/vampire-savior-q-bee.webp', 'https://www.capcom-games.com/cfc/assets/img/title/vampire-s/char/3-e.png', 'Capcom', 'https://www.capcom-games.com/en/terms/', 'publisher-promotional', 'Official Vampire Savior promotional art ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:29df62b9b5e7bfe400f5e40f8d37c4a2dc06a7144947370daabc1a1e813cbc76', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'vampire-savior' and c.slug = 'q-bee' and c.roster_role = 'fighter'
@@ -2858,6 +4607,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-ryu.webp', 'https://www.streetfighter.com/6/assets/images/character/ryu/ryu.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f6ce26c352aa519f3a531693a09079c315b7805b050252644db61f6d53666c45', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'ryu' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'luke', 'Luke', 'fighter', 'released', true, 2, 'A mid-range boxer who uses charged Flash Knuckle follow-ups, Sand Blast, and advancing normals to turn whiff punishes into pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -2865,6 +4625,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-luke.webp', 'https://www.streetfighter.com/6/assets/images/character/luke/luke.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:5b97ff5b06649083379c1f8c260550e3804c09815915bfb9974666d29ffb4da0', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'luke' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'chun-li', 'Chun-Li', 'fighter', 'released', true, 3, 'A technical stance fighter who combines Kikoken, Spinning Bird Kick, and Serenity Stream to vary her neutral and close pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2875,7 +4646,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/sf6-chun-li.png', 'https://www.streetfighter.com/6/assets/images/character/chunli/chunli.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:2d96b387d2a2dda6e65e5cdfb4baeb4c1b80f6e554066522482bc75e7c9d7c29', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/sf6-chun-li.webp', 'https://www.streetfighter.com/6/assets/images/character/chunli/chunli.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:53369b80e76cb575135ac6288ef86414a11e57a0157270708250dcb0a86bcd52', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'sf6' and c.slug = 'chun-li' and c.roster_role = 'fighter'
@@ -2893,6 +4664,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-jamie.webp', 'https://www.streetfighter.com/6/assets/images/character/jamie/jamie.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:04944a8bc4ef796bbc0014819c92c3861e706caad041c0ac34d0877684700e59', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'jamie' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'guile', 'Guile', 'fighter', 'released', true, 5, 'A charge-based zoner who builds a wall with Sonic Boom and Flash Kick, then uses Drive Rush to turn controlled space into offense.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -2901,6 +4683,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-guile.webp', 'https://www.streetfighter.com/6/assets/images/character/guile/guile.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:edadd978d849ee632b1a2fbfc4707dc02038d452584d5582e607bac8da0ce934', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'guile' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'kimberly', 'Kimberly', 'fighter', 'released', true, 6, 'A mobile ninja who uses spray-can setups, run special moves, and teleport-style movement to create sudden left-right pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -2908,6 +4701,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-kimberly.webp', 'https://www.streetfighter.com/6/assets/images/character/kimberly/kimberly.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:95f5eabd2659bfcde1f714e1af2f48c749b04514da7c092f01f52812277ac66a', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'kimberly' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'juri', 'Juri', 'fighter', 'released', true, 7, 'A flexible rushdown fighter who stores Fuha stocks and spends them on fireball, dive-kick, and Fuha-enhanced pressure routes.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2918,7 +4722,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/sf6-juri.png', 'https://www.streetfighter.com/6/assets/images/character/juri/juri.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:991ba53250a47db5f09ade953750d10a64d36146d3c4c6f32eb0e42b221431c8', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/sf6-juri.webp', 'https://www.streetfighter.com/6/assets/images/character/juri/juri.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:97673cc0c5be4218534184033d5bbd4af5454248b06699a9f2b676d8827507e8', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'sf6' and c.slug = 'juri' and c.roster_role = 'fighter'
@@ -2937,7 +4741,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/sf6-ken.png', 'https://www.streetfighter.com/6/assets/images/character/ken/ken.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:cb5052e9506ad88dfb430236f2dfa2b93979dcd1c0a440b5ca00026ce8eff7a7', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/sf6-ken.webp', 'https://www.streetfighter.com/6/assets/images/character/ken/ken.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f104bcc466ad052ed4871945c35420aefd349d78edb545c3c3a715a2981a467e', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'sf6' and c.slug = 'ken' and c.roster_role = 'fighter'
@@ -2955,6 +4759,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-blanka.webp', 'https://www.streetfighter.com/6/assets/images/character/blanka/blanka.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:40667a5755620477f2476fd2a39b3498f2fff6e9b7ca63b75a33cd8401f57359', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'blanka' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'dhalsim', 'Dhalsim', 'fighter', 'released', true, 10, 'A long-range yoga fighter who controls space with stretched limbs, Yoga Fire, teleport movement, and Drive-enhanced approach traps.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -2962,6 +4777,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-dhalsim.webp', 'https://www.streetfighter.com/6/assets/images/character/dhalsim/dhalsim.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f3f9093cf212aa4c39b07384b3dcf0432df005f7e1dbd0db5fbf008e5064fbf6', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'dhalsim' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'e-honda', 'E. Honda', 'fighter', 'released', true, 11, 'A heavyweight charge fighter who uses Headbutt, Hundred Hand Slap, and Sumo Dash to force grounded respect and corner pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2971,6 +4797,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-e-honda.webp', 'https://www.streetfighter.com/6/assets/images/character/ehonda/ehonda.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:914b35e33f584439aab5efe6bda1c4e82c23fc5b3640d26686af1be350fe5ee1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'e-honda' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'dee-jay', 'Dee Jay', 'fighter', 'released', true, 12, 'A feint-heavy mid-range fighter who uses Air Slasher, Sobat attacks, and sway-based follow-ups to make his offense difficult to call out.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -2978,6 +4815,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-dee-jay.webp', 'https://www.streetfighter.com/6/assets/images/character/deejay/deejay.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:11a22237fb5b5996b9dd51f9ef825aba403a8be60c6428ebaaa448e07b03d6df', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'dee-jay' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'cammy', 'Cammy', 'fighter', 'released', true, 13, 'A fast rushdown fighter who uses Spiral Arrow, Cannon Strike, and Hooligan Combination to attack from grounded and aerial angles.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -2987,6 +4835,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-cammy.webp', 'https://www.streetfighter.com/6/assets/images/character/cammy/cammy.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:898fc24220a670e855e67c9e7cbf0b945494d75e393672c9d8ddc0a43f53ecdd', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'cammy' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'manon', 'Manon', 'fighter', 'released', true, 14, 'A grappling footsie fighter who builds medal levels through command grabs and hit confirms, increasing the reward for every clean read.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -2994,6 +4853,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-manon.webp', 'https://www.streetfighter.com/6/assets/images/character/manon/manon.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:0a0fb6895bc87d7f178f4430e5e2a6f01a33f00867595fcabfa45f40b85994a3', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'manon' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'marisa', 'Marisa', 'fighter', 'released', true, 15, 'A heavyweight boxer who uses armored Gladius, charged strikes, and Scutum movement to turn one close-range hit into massive damage.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3003,6 +4873,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-marisa.webp', 'https://www.streetfighter.com/6/assets/images/character/marisa/marisa.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:97931a76680656174325370914d52887300c11b6b5af1d83434af84850dc67be', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'marisa' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'lily', 'Lily', 'fighter', 'released', true, 16, 'A small rushdown fighter who stores wind stocks to strengthen Condor Spire, Condor Wind, and her forward-moving pressure routes.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -3010,6 +4891,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-lily.webp', 'https://www.streetfighter.com/6/assets/images/character/lily/lily.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ff99225260669a5bb33d7190273fc81ab7aaeb59f9bee3edee7fe92a1dc792a8', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'lily' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'jp', 'JP', 'fighter', 'released', true, 17, 'A long-range control fighter who uses portals, Partisan projectiles, and Departure traps to force careful movement before opening defense.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3019,6 +4911,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-jp.webp', 'https://www.streetfighter.com/6/assets/images/character/jp/jp.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:06ceb48d11911bb54468ac73c6c54b932e907842b511635e3274ec322b83fc73', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'jp' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'zangief', 'Zangief', 'fighter', 'released', true, 18, 'A classic grappler who uses Spinning Piledriver, Screw Piledriver, and Drive Rush to turn a single approach into devastating pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -3026,6 +4929,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-zangief.webp', 'https://www.streetfighter.com/6/assets/images/character/zangief/zangief.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:73a3628be8fbd3b3b354e8953a2429f6694c06562e0fe148a222b18397aefe57', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'zangief' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'rashid', 'Rashid', 'fighter', 'released', true, 19, 'A mobile wind fighter who builds tornado setups and uses parkour movement, Whirlwind Shot, and Arabian Cyclone to attack from shifting angles.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3035,6 +4949,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-rashid.webp', 'https://www.streetfighter.com/6/assets/images/character/rashid/rashid.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:30acdf39ecb63267182bb0c20f55baeb9fe33f885e2d5608e320ead5a9ac0468', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'rashid' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'aki', 'A.K.I.', 'fighter', 'released', true, 20, 'A poison-focused setplay fighter who applies toxins with Serpent Lash and then uses long-range tentacles and command movement to exploit them.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -3043,6 +4968,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-aki.webp', 'https://www.streetfighter.com/6/assets/images/character/aki/aki.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:2648573fe86a0755bbc0f56ed73b829c33b60bbf743a8d554babce29ce7c299d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'aki' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ed', 'Ed', 'fighter', 'released', true, 21, 'A mid-range boxer who uses Psycho Flicker, Kill Rush, and shadow-based follow-ups to pull opponents into close pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -3050,6 +4986,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-ed.webp', 'https://www.streetfighter.com/6/assets/images/character/ed/ed.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:dd6bc391946d8a48d68eff1d643e29c6a9279206617b315a4aae938106fb0c54', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'ed' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'akuma', 'Akuma', 'fighter', 'released', true, 22, 'A high-damage shoto who combines grounded and aerial fireballs with demon-flip movement and Adamant Flame to keep neutral volatile.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3060,7 +5007,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/sf6-akuma.png', 'https://www.streetfighter.com/6/assets/images/character/gouki_akuma/gouki_akuma.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded.', 'sha256:27b005a34450c691ae04a24ebf1c6e5c70ee399754e77a102b10a62b990166a0', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/sf6-akuma.webp', 'https://www.streetfighter.com/6/assets/images/character/gouki_akuma/gouki_akuma.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:dcc2b4a2844915d249330a986671a9f2f1aff47bb44b6d7f265331946608a46d', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'sf6' and c.slug = 'akuma' and c.roster_role = 'fighter'
@@ -3078,6 +5025,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-m-bison.webp', 'https://www.streetfighter.com/6/assets/images/character/vega_mbison/vega_mbison.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ccdcdd901c66eaee15bccc802a2db02d5abf697ad632ef69160a5131eb39a411', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'm-bison' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'terry', 'Terry', 'fighter', 'released', true, 24, 'A well-rounded brawler who uses Power Wave, Burn Knuckle, and Crack Shoot to cover grounded, advancing, and anti-air interactions.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -3085,6 +5043,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-terry.webp', 'https://www.streetfighter.com/6/assets/images/character/terry/terry.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:29b752de762c3898b2a5d3ec8750b1ca23e303322a2c39559c9953dc09e44d17', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'terry' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'mai', 'Mai', 'fighter', 'released', true, 25, 'A mobile weapon fighter who uses fans, fire projectiles, and aerial movement to control lanes before rushing down behind Drive pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3094,6 +5063,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-mai.webp', 'https://www.streetfighter.com/6/assets/images/character/mai/mai.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:59196086c3d519f8dfcae3d7d5439162c48062c572de3757fe32d503f9a1632f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'mai' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'elena', 'Elena', 'fighter', 'released', true, 26, 'A rhythm-based footwork fighter who uses long-reaching kicks, healing options, and mobile pokes to control the pace of neutral exchanges.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -3101,6 +5081,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-elena.webp', 'https://www.streetfighter.com/6/assets/images/character/elena/elena.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:502ba78b342521467fda7854ba6ccc3e8b0ce7c03229c0313a06fca46b964f5e', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'elena' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sagat', 'Sagat', 'fighter', 'released', true, 27, 'A charge-and-space fighter who uses high and low Tiger Shots, Tiger Knee, and Tiger Uppercut to control lanes and punish jumps.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3110,6 +5101,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-sagat.webp', 'https://www.streetfighter.com/6/assets/images/character/sagat/sagat.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1b850c1bc0d0e82be84c27ffaab984f7aabae709ecd37d54a51a3fd1b5810818', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'sagat' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'c-viper', 'C. Viper', 'fighter', 'released', true, 28, 'A feint-oriented pressure fighter who uses burning kicks, seismic attacks, and sudden movement to turn Drive Rush approaches into mix-ups.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -3117,6 +5119,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-c-viper.webp', 'https://www.streetfighter.com/6/assets/images/character/cviper/cviper.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f4cb23994ebd216dc32e5d993b43cffda6d0e89405ba7bed21e6d79b8059551d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'c-viper' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'alex', 'Alex', 'fighter', 'released', true, 29, 'A close-range grappler who combines long-reaching strikes, command grabs, and Power Bomb pressure to reward decisive forward movement.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3126,6 +5139,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-alex.webp', 'https://www.streetfighter.com/6/assets/images/character/alex/alex.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:dd0216ce56070773a8809b07375719c6e5563615bc8dfdefb1841b9027b0aa65', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'alex' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ingrid', 'Ingrid', 'fighter', 'released', true, 30, 'A close-range power fighter whose light-based attacks, advancing normals, and Drive Gauge management are used to force compact exchanges.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -3134,6 +5158,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-ingrid.webp', 'https://www.streetfighter.com/6/assets/images/character/ingrid/ingrid.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:8cef436b28ee06fc278611d05e44bd7fbbdae8b0bfb3cedf72ab840615a265eb', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'ingrid' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'yasmine', 'Yasmine', 'fighter', 'released', true, 31, 'A spacing-focused SF6 roster entry that emphasizes whiff punishment, Drive Rush conversions, and controlled close-range pressure.', 'https://news.capcomusa.com/street_fighter', 'Capcom', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'sf6'
@@ -3141,6 +5176,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/sf6-yasmine.webp', 'https://www.streetfighter.com/6/assets/images/character/yasmine/yasmine.png', 'Capcom', 'https://www.capcom-games.com/en/fan-content-guidelines/', 'publisher-promotional', 'Street Fighter 6 ©CAPCOM', 'Official Capcom-hosted promotional art. Capcom fan-content guidance does not grant unchanged public display and excludes relevant third-party IP where applicable; included under accepted ADR-023 with the restriction and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1db2d1fbd5c7a0194993638e2de96dc0c56d833a61e00be45e57bc4006d0a1eb', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'sf6' and c.slug = 'yasmine' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)
 values ('mk1', 'Mortal Kombat 1', 'MK1', 'Definitive roster + Kameos', 11, '{"version":1,"noun":"Team","verified":true,"ordered":true,"uniqueCharacters":true,"slots":[{"id":"fighter","label":"Fighter","allowedRoles":["fighter"]},{"id":"kameo","label":"Kameo","allowedRoles":["kameo"]}]}'::jsonb, 'https://www.mortalkombat.com/en-us/roster', 'verified', '2026-08-25T00:00:00Z')
@@ -3157,6 +5203,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-liu-kang.webp', 'https://cdn-mk1.mortalkombat.com/roster/liu-kang/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:98c6eb16e3b0033edc5ec1c18320d35553211956491ffdfabecc7954cd4b0694', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'liu-kang' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'scorpion', 'Scorpion', 'fighter', 'released', true, 2, 'A weapon rushdown fighter who uses the Spear, teleport attacks, and fiery sword strings to pull opponents into close offense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3166,7 +5223,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/mk1-scorpion.webp', 'https://cdn-mk1.mortalkombat.com/roster/scorpion/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded.', 'sha256:dd4235ccd1b35ab31986473ab94ffb45e79c657a570780ab13f7708466e756cc', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/mk1-scorpion.webp', 'https://cdn-mk1.mortalkombat.com/roster/scorpion/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b4bf59327d904bb891e249c1a57a3a8e8758f2dc718f96e6c6160cf10ecc67fa', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'mk1' and c.slug = 'scorpion' and c.roster_role = 'fighter'
@@ -3185,7 +5242,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/mk1-sub-zero.webp', 'https://cdn-mk1.mortalkombat.com/roster/sub-zero/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded.', 'sha256:876ce25cd0bc55849f48dd2c96ff8053fa778a20a9ff1f4a3d55d7018af84cff', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/mk1-sub-zero.webp', 'https://cdn-mk1.mortalkombat.com/roster/sub-zero/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:7f7a48633288bd9d7b844edda924d9d31268f560795ee15d371ee4fc6a1411d8', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'mk1' and c.slug = 'sub-zero' and c.roster_role = 'fighter'
@@ -3203,6 +5260,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-raiden.webp', 'https://cdn-mk1.mortalkombat.com/roster/raiden/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b27a134fdbff1b2bf53608d0d5ba5bcf6bf5e25a29110015f6f24403b7454d54', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'raiden' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'kung-lao', 'Kung Lao', 'fighter', 'released', true, 5, 'A fast weapon fighter who uses hat attacks, teleport movement, and spinning pressure to open defense from multiple ranges.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3211,6 +5279,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-kung-lao.webp', 'https://cdn-mk1.mortalkombat.com/roster/kung-lao/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6db415c5840355d8bb7b127993cc5bccae0a4db82030c44f63a5f35f3f0d9aae', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'kung-lao' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'kitana', 'Kitana', 'fighter', 'released', true, 6, 'A mid-range fan fighter who uses Fan Toss, Fan-Nado, and aerial fan attacks to control lanes and convert whiff punishes.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3218,6 +5297,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-kitana.webp', 'https://cdn-mk1.mortalkombat.com/roster/kitana/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:16934768250c03b6a62a108eb97b54918042f322786f0eb8600c9db1c0a24d55', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'kitana' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'mileena', 'Mileena', 'fighter', 'released', true, 7, 'A mobile rushdown fighter who uses sais, Teleport Kick, and Ball Roll to close distance and turn openings into brutal corner pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3228,7 +5318,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/mk1-mileena.webp', 'https://cdn-mk1.mortalkombat.com/roster/mileena/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded.', 'sha256:25f601067356c7b1fff6fddcdf68f1550364a07a7565cde68ae82cbd069e9fce', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/mk1-mileena.webp', 'https://cdn-mk1.mortalkombat.com/roster/mileena/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:26c7d7627549bc87687cedcbe6f2f8f82eb4102b525950fc3021397c741ca2ff', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'mk1' and c.slug = 'mileena' and c.roster_role = 'fighter'
@@ -3246,6 +5336,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-johnny-cage.webp', 'https://cdn-mk1.mortalkombat.com/roster/johnny-cage/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:4afe5666c854d35832301126b3001c980dc9ce32bf856469200b2f469c8ab4e8', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'johnny-cage' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'kenshi', 'Kenshi', 'fighter', 'released', true, 9, 'A stance-and-sword fighter who calls his ancestral spirit to extend attacks, control space, and create layered pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3253,6 +5354,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-kenshi.webp', 'https://cdn-mk1.mortalkombat.com/roster/kenshi-takahashi/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:40aed82ad308a22a0ab56dbf2513e592d6daf910dfe59c31985ef8d445ab696d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'kenshi' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'smoke', 'Smoke', 'fighter', 'released', true, 10, 'A deceptive ninja who uses teleport attacks, invisibility, and smoke-based movement to create ambiguous approaches and whiff punishes.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3262,6 +5374,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-smoke.webp', 'https://cdn-mk1.mortalkombat.com/roster/smoke/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:2bf273cd06b6c5d18939a421ae06933d1302e5c1c40940b52285b85acd03fc5f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'smoke' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'rain', 'Rain', 'fighter', 'released', true, 11, 'A water-magic fighter who uses portals, projectiles, and stance-like movement to redirect attacks and control the ground.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3269,6 +5392,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-rain.webp', 'https://cdn-mk1.mortalkombat.com/roster/rain/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:70886105f0ae84852066de48276d2f6cf2957ae75a111e950b15990c89e85b78', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'rain' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'li-mei', 'Li Mei', 'fighter', 'released', true, 12, 'A mid-range brawler who uses lantern projectiles, explosive attacks, and strong kicks to turn grounded control into pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3278,6 +5412,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-li-mei.webp', 'https://cdn-mk1.mortalkombat.com/roster/li-mei/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b3c3ab8f3c1297aca9d79eb0f3e07aa5e3dd9447face6cfc22af7ce8984737ce', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'li-mei' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'tanya', 'Tanya', 'fighter', 'released', true, 13, 'A mobile weapon fighter who uses staff attacks, aerial movement, and safe advancing specials to maintain close-range momentum.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3285,6 +5430,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-tanya.webp', 'https://cdn-mk1.mortalkombat.com/roster/tanya/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:0c30380b1d42305e56aee681bd76ea28c386f9e3e1be926ce06de575f257fdb0', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'tanya' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'baraka', 'Baraka', 'fighter', 'released', true, 14, 'A blade rushdown fighter who uses arm blades, projectile slashes, and advancing attacks to overwhelm opponents at close range.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3294,6 +5450,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-baraka.webp', 'https://cdn-mk1.mortalkombat.com/roster/baraka/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:30a28badbf60a175c7a6c1de8450245aaab62b0ce7d0f4e48c0aff2501781885', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'baraka' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'geras', 'Geras', 'fighter', 'released', true, 15, 'A heavyweight setup fighter who uses sand constructs, command grabs, and time-based resets to make his pressure difficult to escape.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3301,6 +5468,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-geras.webp', 'https://cdn-mk1.mortalkombat.com/roster/geras/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:47e0ed3d2e53942c7f552d68131f0393b916ab9caabaeccf9fe1416d944e2471', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'geras' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'reptile', 'Reptile', 'fighter', 'released', true, 16, 'A transforming rushdown fighter who uses acid, invisibility, and lizard movement to approach from deceptive angles.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3310,6 +5488,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-reptile.webp', 'https://cdn-mk1.mortalkombat.com/roster/reptile/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:181974c258d4dd6f53ffccccafbb23a9b0dbf4f5d1eb0cab07c22b46b05b7a48', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'reptile' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ashrah', 'Ashrah', 'fighter', 'released', true, 17, 'A sword fighter who manages holy and demonic damage states to vary her specials, neutral control, and combo reward.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3317,6 +5506,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-ashrah.webp', 'https://cdn-mk1.mortalkombat.com/roster/ashrah/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:956d9970a143207e587db3f6bfe092e390bd1f7f44ed47d508e2c10d0ef17018', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'ashrah' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'havik', 'Havik', 'fighter', 'released', true, 18, 'A chaotic pressure fighter who uses dismemberment-based attacks, body-part projectiles, and unusual resets to keep defense unstable.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3326,6 +5526,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-havik.webp', 'https://cdn-mk1.mortalkombat.com/roster/havik/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:71cce7b3f27abfa9332b3d9f8ff43d7de723193881b93e5773a91e2d3cca7fce', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'havik' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'general-shao', 'General Shao', 'fighter', 'released', true, 19, 'A heavy weapon fighter who uses an axe, hammering pressure, and weapon-enhanced attacks to win slow, damaging exchanges.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3333,6 +5544,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-general-shao.webp', 'https://cdn-mk1.mortalkombat.com/roster/shao-kahn/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a64a4fd985cbc0f29e446dd353cb175fd058a261caa7f4ab18be6d11d8fa14a6', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'general-shao' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sindel', 'Sindel', 'fighter', 'released', true, 20, 'A control fighter who uses scream projectiles, levitation, hair attacks, and mobility to pressure from both ground and air.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3342,6 +5564,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-sindel.webp', 'https://cdn-mk1.mortalkombat.com/roster/sindel/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:3e505f4af4f07f72f57aec66e8c82364e18411231ba116c14c680676f57a114d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'sindel' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'reiko', 'Reiko', 'fighter', 'released', true, 21, 'A grappling rushdown fighter who uses command grabs, spear attacks, and advancing strikes to force repeated close-range guesses.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3349,6 +5582,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-reiko.webp', 'https://cdn-mk1.mortalkombat.com/roster/reiko/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:8e5507d84476993c6b5cd52d5136bb2c9f54df8ab438f9f80a1e92a7a4be8141', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'reiko' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'nitara', 'Nitara', 'fighter', 'released', true, 22, 'An aerial rushdown fighter who uses flight, blood-based attacks, and sharp dive-ins to attack from unusual heights.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3358,6 +5602,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-nitara.webp', 'https://cdn-mk1.mortalkombat.com/roster/nitara/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:026b65732a7d405b556e5b55425c6e6249063945b17c6c4e3ad5bd9761cb6dd1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'nitara' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'shang-tsung', 'Shang Tsung', 'fighter', 'released', true, 23, 'A stance-switching sorcerer who morphs between forms and uses skull projectiles, ground traps, and stolen attacks to vary offense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3365,6 +5620,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-shang-tsung.webp', 'https://cdn-mk1.mortalkombat.com/roster/shang-tsung/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:7bb39a6eac03dc114099b6f4747ec6487dbcf842d0f8d2f72a5390168f395e29', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'shang-tsung' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'omni-man', 'Omni-Man', 'fighter', 'released', true, 24, 'A heavyweight rushdown fighter who uses Viltrumite strength, flight-like movement, and brutal advancing strikes to carry opponents cornerward.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3374,6 +5640,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-omni-man.webp', 'https://cdn-mk1.mortalkombat.com/roster/omni-man/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b5f0d20034f99c187d4b502cb74ef9d441eb7ba63512f8741f492bbca58bcf80', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'omni-man' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'quan-chi', 'Quan Chi', 'fighter', 'released', true, 25, 'A portal-and-trap fighter who uses skulls, portals, and summoned hazards to make neutral space dangerous before opening defense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3381,6 +5658,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-quan-chi.webp', 'https://cdn-mk1.mortalkombat.com/roster/quan-chi/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:e9d7f2caeef2cb4d0e36e6a272ba99b0026a96b469906d6293e1f0878f404189', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'quan-chi' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'peacemaker', 'Peacemaker', 'fighter', 'released', true, 26, 'A gadget gunner who combines firearms, force fields, and anti-air tools with aggressive close-range pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3390,6 +5678,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-peacemaker.webp', 'https://cdn-mk1.mortalkombat.com/roster/peacemaker/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:c185f40e653bad309c89ed58cc76122e4646f4f46b4c777f9fd355a69c8b77e0', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'peacemaker' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ermac', 'Ermac', 'fighter', 'released', true, 27, 'A spirit-based mobility fighter who uses teleports, soul attacks, and possession-style movement to create layered offense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3397,6 +5696,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-ermac.webp', 'https://cdn-mk1.mortalkombat.com/roster/ermac/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:da95c884fc675b2948270499733dd2a05d37302a8ae41181c51903d413b7fee7', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'ermac' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'homelander', 'Homelander', 'fighter', 'released', true, 28, 'An aerial pressure fighter who uses flight, heat vision, and strong mid-range attacks to harass opponents from changing heights.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3406,6 +5716,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-homelander.webp', 'https://cdn-mk1.mortalkombat.com/roster/homelander/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:357e62c67766b3176539817a7c7140dc309d5af7712101604de4965a1004505b', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'homelander' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'takeda-takahashi', 'Takeda Takahashi', 'fighter', 'released', true, 29, 'A weapon-and-whip fighter who uses kunai, chained attacks, and agile movement to control space and extend corner combos.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3413,6 +5734,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-takeda-takahashi.webp', 'https://cdn-mk1.mortalkombat.com/roster/takeda/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:5dd3c34e041023f02db3451a00bdb3aa6d0ac6a4f7ae6a7827dde1b3bcf01de3', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'takeda-takahashi' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'cyrax', 'Cyrax', 'fighter', 'released', true, 30, 'A gadget fighter who uses bombs, traps, and explosive armor attacks to create delayed pressure and team openings.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3422,6 +5754,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-cyrax.webp', 'https://cdn-mk1.mortalkombat.com/roster/cyrax/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:45e4b82495483aed7cd2341227a9a70bc5b70ac2776d4b5389125d897ecf73ec', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'cyrax' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sektor', 'Sektor', 'fighter', 'released', true, 31, 'A missile-and-armor fighter who uses rockets, flamethrowers, and powered movement to control approach lanes and force corner pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3429,6 +5772,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-sektor.webp', 'https://cdn-mk1.mortalkombat.com/roster/sektor/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:0077099904adabd48b8ed18892a5cf2df1d5292d49f5d1295695c73fa1297f10', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'sektor' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'noob-saibot', 'Noob Saibot', 'fighter', 'released', true, 32, 'A shadow-clone fighter who uses portals, sickle attacks, and a controllable shadow to attack from two angles at once.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3438,6 +5792,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-noob-saibot.webp', 'https://cdn-mk1.mortalkombat.com/roster/noob-saibot/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:914dd79ea8d3e397f00a81df956de11ab458fa7cf528ed8b9117926471a167f1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'noob-saibot' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ghostface', 'Ghostface', 'fighter', 'released', true, 33, 'A weapon-based stance fighter who uses ambush attacks, hidden weapons, and identity-swapping pressure to create unpredictable offense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3445,6 +5810,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-ghostface.webp', 'https://cdn-mk1.mortalkombat.com/roster/ghostface/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:14d09892f6dcabdda8b73dc537ea44fdc8ab18ebfcd7de8d838284ae054d9f4c', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'ghostface' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'conan', 'Conan the Barbarian', 'fighter', 'released', true, 34, 'A heavy sword fighter who uses broad weapon swings, armor, and grappling attacks to turn close-range reads into high damage.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3454,6 +5830,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-conan.webp', 'https://cdn-mk1.mortalkombat.com/roster/conan/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ddaad5d571ce62eaf429d746cb7c357680a463f3e4fac159b48558dac7277d15', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'conan' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 't-1000', 'T-1000 Terminator', 'fighter', 'released', true, 35, 'A shapeshifting weapon fighter who uses liquid-metal attacks, blades, and body-morphing movement to vary pressure and punish whiffs.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3461,6 +5848,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-t-1000.webp', 'https://cdn-mk1.mortalkombat.com/roster/t-1000/hero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:53f9ef204cdafc5595a400b4d2a89b86dbc9d691cc47fc33e0ef647b48bfdc9b', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 't-1000' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sub-zero-kameo', 'Sub-Zero', 'kameo', 'released', true, 36, 'A defensive Kameo who adds ice armor and freezing attacks that help a fighter challenge pressure or extend a safe approach.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3470,6 +5868,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-sub-zero-kameo.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/sub-zero.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6d02b308fba4d6b65f781d00ce11ecaee850766857de86eb4e615d6ea90ae11b', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'sub-zero-kameo' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'shujinko', 'Shujinko', 'kameo', 'released', true, 37, 'A mimic Kameo who cycles through borrowed techniques to give the paired fighter changing neutral, combo, and punish options.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3477,6 +5886,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-shujinko.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/shujinko.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6d02eb5e555b283607ed256e900d9a93fda37e50457caa557d9d94e2954dc37f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'shujinko' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'scorpion-kameo', 'Scorpion', 'kameo', 'released', true, 38, 'An offensive Kameo who uses spear pulls and fiery strikes to extend combos, cover approaches, and reposition the opponent.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3486,6 +5906,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-scorpion-kameo.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/scorpion.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:25e38b13f7d6d83e03807c80c628a3fe76cd10194ed12efb46d2cfad105dfa29', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'scorpion-kameo' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'motaro', 'Motaro', 'kameo', 'released', true, 39, 'A utility Kameo who uses teleporting movement, projectile reflection, and long-reaching attacks to change how the paired fighter controls space.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3493,6 +5924,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-motaro.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/motaro.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:fd039500587c2ff6b9d8f6f8352b0ecd891920a222b22a76a0cebeb803f3758d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'motaro' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'kung-lao-kameo', 'Kung Lao', 'kameo', 'released', true, 40, 'A flexible Kameo who adds hat throws, teleport pressure, and low-to-high coverage to extend the paired fighter''s offense.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3502,6 +5944,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-kung-lao-kameo.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/kung-lao.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:e327de97936fd6288cb4de190f70419e42452c3805623cff5d83be06bf81f52e', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'kung-lao-kameo' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'cyrax-kameo', 'Cyrax', 'kameo', 'released', true, 41, 'A trap-oriented Kameo who adds bombs and explosive attacks that delay pressure and create combo extensions.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3509,6 +5962,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-cyrax-kameo.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/cyrax.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:334a802c4ae827cef238d6e8cf4a37a2b96db49b5d7bb28cfe023cec101ff133', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'cyrax-kameo' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'frost', 'Frost', 'kameo', 'released', true, 42, 'A control Kameo who contributes ice projectiles and freezing ground attacks that help the paired fighter restrict movement.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3518,6 +5982,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-frost.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/frost.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:3ada52f45a9e93e1c044e7fa7aecb7f58242bf20ae9203d0db919d8868b13794', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'frost' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'goro', 'Goro', 'kameo', 'released', true, 43, 'A heavyweight Kameo who adds command grabs, stomps, and armored-looking pressure to make close-range offense more threatening.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3526,6 +6001,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-goro.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/goro.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:dbd0fdb18bc52521bc5da0d784694f31da62336fd7f756b1348480aa6c9e1796', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'goro' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'jax', 'Jax', 'kameo', 'released', true, 44, 'A pressure Kameo who contributes ground pounds, throws, and high-impact attacks that help the paired fighter force defensive reactions.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3533,6 +6019,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-jax.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/jax.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:aeb2ea23445023d55336108fd2caea2a90b327f25fdc8f0318e9c252647a6c44', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'jax' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'kano', 'Kano', 'kameo', 'released', true, 45, 'A projectile Kameo who uses knives, a rolling ball, and grounded pressure to cover movement and extend attacks.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3543,7 +6040,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/mk1-kano.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/kano.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded.', 'sha256:b3876a74989be498442d16bd366282a754b93f67924879a3f28db13881241034', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/mk1-kano.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/kano.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:5dc146e46a952cdf0b54e3134b1f4716d261244d6eac0baaf0913297f5d48a93', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'mk1' and c.slug = 'kano' and c.roster_role = 'kameo'
@@ -3561,6 +6058,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-darrius.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/darrius.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a68e274980bae406350c83dd9df886c2dd5db85431fe11ce037c6c97c268729b', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'darrius' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sareena', 'Sareena', 'kameo', 'released', true, 47, 'A projectile Kameo who throws returning blades and demon attacks that extend combos and cover retreating or airborne opponents.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3569,6 +6077,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-sareena.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/sareena.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:2c35a69c2933a8a3bb489b0608a2229a5a214a8f1dcf51090a132ef1856c9411', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'sareena' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sektor-kameo', 'Sektor', 'kameo', 'released', true, 48, 'A gadget Kameo who adds missiles, rocket movement, and armor-breaking coverage to help the paired fighter control approach lanes.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3576,6 +6095,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-sektor-kameo.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/sektor.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:20b4937e6e307a111948828799d1d79a73c7809bedd0b93bf1c70da63e32c13d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'sektor-kameo' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sonya', 'Sonya', 'kameo', 'released', true, 49, 'A versatile Kameo who contributes energy rings, anti-air attacks, and advancing strikes for neutral coverage and combo support.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3586,7 +6116,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/mk1-sonya.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/sonya.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded.', 'sha256:ad51c7cb6e3929558eb60c8b885582695b4922f34683a8299108104789abfd9b', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/mk1-sonya.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/sonya.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:79b6e85ef2feeebce455dcb051005b022c74ec30ce64fac94b9d454f0a324c51', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'mk1' and c.slug = 'sonya' and c.roster_role = 'kameo'
@@ -3604,6 +6134,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-stryker.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/stryker.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1c3a4cf929b74455520ef00a585d30e6550752ef01437fc4418dade6c0949c40', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'stryker' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'tremor', 'Tremor', 'kameo', 'released', true, 51, 'A stance-based Kameo who cycles elemental attacks and armor options to give the paired fighter flexible neutral and defensive support.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3611,6 +6152,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-tremor.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/tremor.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ad0762b3f2272bc8b92f686197ee2d7eb1f4f8db2956d77d63d81400dd66def1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'tremor' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'khameleon', 'Khameleon', 'kameo', 'released', true, 52, 'A morphing Kameo who rotates between ninja tools to supply different approach, zoning, and combo-extension options.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3620,6 +6172,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-khameleon.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/khameleon.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:3f79825be744d42289f0af945276f0096ac5f642cc8dd602490a8c46f6b46855', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'khameleon' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'janet-cage', 'Janet Cage', 'kameo', 'released', true, 53, 'A close-range Kameo who adds energetic strikes and launcher support that help the paired fighter extend pressure and juggle routes.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3627,6 +6190,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-janet-cage.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/janet-cage.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:55806b1276782cf6a9227b9b3fb249cad75353f12a1c28ebfdeb4beab7575d49', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'janet-cage' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'mavado', 'Mavado', 'kameo', 'released', true, 54, 'A weapon Kameo who uses hooks, traps, and mobility tools to alter spacing and create unusual combo extensions.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3636,6 +6210,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-mavado.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/mavado.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:040dab01e4c665fe7a2ca0ef36150f3e955b5daeee7316f1c570a3ddd331e71c', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'mavado' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ferra', 'Ferra', 'kameo', 'released', true, 55, 'A setup Kameo who adds low-profile attacks and throw-based assistance that help the paired fighter create layered close pressure.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3644,6 +6229,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-ferra.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/ferra.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:fcef60d96b4d180040677ed132c74b0c6f85c5ba973f68b812f9760455f67c89', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'ferra' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'madam-bo', 'Madam Bo', 'kameo', 'released', true, 56, 'A support Kameo who adds grounded strikes, launcher coverage, and utility attacks that help the paired fighter maintain momentum.', 'https://www.mortalkombat.com/en-us/roster', 'NetherRealm Studios / Warner Bros. Games', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'mk1'
@@ -3651,6 +6247,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/mk1-madam-bo.webp', 'https://cdn-mk1.mortalkombat.com/roster/kameos/madam-bo.webp', 'Warner Bros. Games / NetherRealm Studios', 'https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.5.2.html', 'publisher-promotional', 'Mortal Kombat 1 character art © Warner Bros. Entertainment Inc. / NetherRealm Studios', 'Official Mortal Kombat 1 roster art. The official Kommunity Kit is a community-use signal but provides no general app license; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:dddb3475fa4119bf66f51e1e22f192e8054a21f38949be990eef0361003b37d0', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'mk1' and c.slug = 'madam-bo' and c.roster_role = 'kameo'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)
 values ('tekken-8', 'Tekken 8', 'TEKKEN 8', 'Current live roster', 12, '{"version":1,"noun":"Character","verified":true,"ordered":false,"uniqueCharacters":true,"slots":[{"id":"fighter","label":"Character","allowedRoles":["fighter"]}]}'::jsonb, 'https://tekken.com/fighters', 'verified', '2026-08-25T00:00:00Z')
@@ -3667,6 +6274,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-kazuya.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Kazuya-Mishima.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a2aa27ebd3feee7c7091a7f53a2672bc351b82249598abd1d98ac63a7d8f6fec', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'kazuya' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'jin', 'Jin', 'fighter', 'released', true, 2, 'A versatile Mishima fighter who combines disciplined pokes, stance transitions, and Devil Jin-inspired tools to control neutral and Heat pressure.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3676,7 +6294,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/tekken-8-jin.webp', 'https://us-east-1-bandai.graphassets.com/AXzioIclSWilEjFtsMJPwz/CSlAd5qETdKPCZ06jH88', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official publisher-hosted promotional asset; no express blanket reuse license was located. Included under accepted ADR-023 with the limitation recorded and a per-asset disable or replacement path.', 'sha256:112a0e87360839ecc7ba2c97ff5b05f7eacb4388166be5873aa61173145d7bba', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/tekken-8-jin.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Jin.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a5c778b36607b25b677e5c4678a0dd6bf9606c86a0ec2a57881ae885ce74772e', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'tekken-8' and c.slug = 'jin' and c.roster_role = 'fighter'
@@ -3695,7 +6313,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/tekken-8-king.webp', 'https://us-east-1-bandai.graphassets.com/AXzioIclSWilEjFtsMJPwz/ESDBWWFCTiWikbaNUkLm', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official publisher-hosted promotional asset; no express blanket reuse license was located. Included under accepted ADR-023 with the limitation recorded and a per-asset disable or replacement path.', 'sha256:4d19461384934edc9ffef3ad6e83365815c97982e6f0b223e174436de1b126d0', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/tekken-8-king.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-King.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:4be132d7ecf68f68f16b8b12b0ea98465085de844ecc924b0a40dbac21db2288', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'tekken-8' and c.slug = 'king' and c.roster_role = 'fighter'
@@ -3713,6 +6331,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-jun.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Jun-Kazama.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f0a99d561ed5054180d13bcd395e1564f91b13ea117dbd9b84c67c0b3ceccc2d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'jun' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'paul', 'Paul', 'fighter', 'released', true, 5, 'A heavyweight striker who uses Phoenix Smasher, Deathfist, and powerful whiff punishment to make mid-range mistakes extremely costly.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3720,6 +6349,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-paul.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Paul-Phoenix-new.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6c64aac658991df1750bb124d0cb83254957f013d6fcaa4fb3fd7b30e830508a', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'paul' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'law', 'Law', 'fighter', 'released', true, 6, 'A fast martial artist who uses Dragon Tail, flips, and nunchaku strings to rush down opponents and carry hits toward the wall.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3729,6 +6369,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-law.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Marshall-Law.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a583d0be1537c108e675aa50d12156ff2c9930c7c5dcd1d4fc9e52bb4b73afa7', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'law' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'jack-8', 'Jack-8', 'fighter', 'released', true, 7, 'A large robot who uses long limbs, guns, and armored Heat-enhanced attacks to control space and punish approaches.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3736,6 +6387,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-jack-8.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Jack-8.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a92f7e0c5b59626382ca2affe03720b1a2eba2550fcb1a8e355fdc2144c2e66a', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'jack-8' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'lars', 'Lars', 'fighter', 'released', true, 8, 'A mobile stance fighter who uses Dynamic Entry, Silent Entry, and Storm Gear transitions to attack quickly from changing angles.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3745,6 +6407,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-lars.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Lars-Alexandersson.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:cc6145ddb6beb32f05172c26c452e107df54c420e074b86f7f05c4124d368368', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'lars' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'xiaoyu', 'Xiaoyu', 'fighter', 'released', true, 9, 'A nimble stance fighter who uses Art of Phoenix evasion, Rain Dance, and low-profile movement to create awkward close-range openings.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3752,6 +6425,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-xiaoyu.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Ling-Xiaoyu.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:62d674b81516f55e6a005aae45d14bb7f66e93682f5e3fdd18244e3fb3d55c26', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'xiaoyu' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'nina', 'Nina', 'fighter', 'released', true, 10, 'A precise assassin who uses fast strings, throws, and gun-based extensions to keep pressure active after small neutral wins.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3761,6 +6445,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-nina.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Nina-Williams.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:ac02da0f1c9ac6ba7be67d7c048cda12af7c499df0e276faed9590494340dc71', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'nina' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'leroy', 'Leroy', 'fighter', 'released', true, 11, 'A defensive martial artist who uses parries, cane strikes, and compact pressure to punish predictable offense and control close range.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3769,6 +6464,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-leroy.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Leroy-Smith.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f39fb4062b6e5d92b66ee3b1494dccceb5ca20e3982d8f95ff43c783905bc2bf', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'leroy' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'asuka', 'Asuka', 'fighter', 'released', true, 12, 'A counter-oriented fighter who uses sabaki attacks, command throws, and strong mid-range strikes to punish overaggressive approaches.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3776,6 +6482,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-asuka.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Asuka.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:9ab5e803b650b856dfd404037295245ac9f147c9bb33921d8785695cfbf9c735', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'asuka' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'lili', 'Lili', 'fighter', 'released', true, 13, 'A mobile footwork fighter who uses evasive movement, long kicks, and wall carry to whiff-punish and sustain graceful pressure.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3786,7 +6503,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/tekken-8-lili.png', 'https://us-east-1-bandai.graphassets.com/AXzioIclSWilEjFtsMJPwz/pQi3O39ATPipjt8KqWgz', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official publisher-hosted promotional asset; no express blanket reuse license was located. Included under accepted ADR-023 with the limitation recorded and a per-asset disable or replacement path.', 'sha256:155d22e8f6de4f6e4bb1a0426abe0f16c86abe154298b6fd3e42fd9533222088', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/tekken-8-lili.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Lili-1.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:4c8ee05b5ad1410812aaf18e825239d4a1cb073b4f02232db9a2a68ad3d129ec', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'tekken-8' and c.slug = 'lili' and c.roster_role = 'fighter'
@@ -3804,6 +6521,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-bryan.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Bryan-Fury.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:de51161bbb3f462a584313bf7b891c5a6ad765ee8fb5492b4691531060d36dee', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'bryan' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'hwoarang', 'Hwoarang', 'fighter', 'released', true, 15, 'A stance-heavy kickboxer who cycles Left Flamingo and Right Flamingo attacks to maintain relentless high-low pressure.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3811,6 +6539,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-hwoarang.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Hwoarang_new.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:07a1f3b0d21ccf45bfc1e388d470ed061ca000ac51d0f770bc38f43b7abaeae3', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'hwoarang' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'claudio', 'Claudio', 'fighter', 'released', true, 16, 'A mid-range exorcist who uses Starburst-powered attacks, projectiles, and strong launchers to make neutral wins highly rewarding.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3820,6 +6559,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-claudio.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Claudio-Serafino_new.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a93ab36d90458c72d249f8800b2be537322e1c9774e16a7a38774f96e39f2328', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'claudio' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'azucena', 'Azucena', 'fighter', 'released', true, 17, 'A mobile striker who uses Libertador stance evasions, coffee-fueled pressure, and fast pokes to force awkward counter-hit situations.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3827,6 +6577,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-azucena.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Azucena.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:576dd7d74116f136c07c84797f32220ff322cab9d0eeb60c184a636b62fbb6d3', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'azucena' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'raven', 'Raven', 'fighter', 'released', true, 18, 'A stealthy ninja who uses shadow clones, teleport movement, and long-reaching attacks to create deceptive whiff-punish routes.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3836,6 +6597,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-raven.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Raven.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:373379131edd5774c1d51c732c2994fde83145982c65095c8694e1b9d6a4dcda', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'raven' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'leo', 'Leo', 'fighter', 'released', true, 19, 'A stance-based martial artist who uses Bajiquan power strikes and KNK transitions to pressure from grounded and close-range angles.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3843,6 +6615,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-leo.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Leo-new.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:bacd04ec5c3b2b85152f1d2e9217013ce61f2724ec8aa8b792c56acf03cf26bb', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'leo' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'steve', 'Steve', 'fighter', 'released', true, 20, 'A boxing specialist who uses weaving, ducking, and counter-hit punches to slip under attacks and build pressure without conventional kicks.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3852,6 +6635,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-steve.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Steve-Fox.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:244ff75c82a552ef4c53a903187b656ee865359ee690c2ffc7e08e90a7ff83e5', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'steve' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'kuma', 'Kuma', 'fighter', 'released', true, 21, 'A bear fighter who uses unusual stances, hunting attacks, and large swings to make spacing and punish timing unfamiliar.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3859,6 +6653,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-kuma.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Kuma.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f72882f2f27a5459dc5c70900a990f0805163447f9cf780855ded4edd7122d06', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'kuma' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'yoshimitsu', 'Yoshimitsu', 'fighter', 'released', true, 22, 'A trickster sword fighter who uses stance changes, spins, teleport-like movement, and health-risk attacks to disrupt standard defense.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3868,6 +6673,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-yoshimitsu.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Yoshimitsu.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:5ec977b460122d98c5a24e27ae99acb24804687624b0db3b7f4d426921faf5af', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'yoshimitsu' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'shaheen', 'Shaheen', 'fighter', 'released', true, 23, 'A grounded rushdown fighter who uses slide transitions, stealth stance pressure, and efficient pokes to control the space in front of him.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3875,6 +6691,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-shaheen.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Shaheen.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a22227af4161b4874cfa2beee92f7153ccaa23ba626232fc050f561307a58c32', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'shaheen' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'dragunov', 'Dragunov', 'fighter', 'released', true, 24, 'A pressure grappler who uses Running Two, strong lows, and command throws to keep opponents pinned after every approach.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3884,6 +6711,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-dragunov.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Sergei-Dragunov.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a1f8604b38a456be760b16b4f064a74e0a9613302eb51e62b026263bc03540a7', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'dragunov' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'feng', 'Feng', 'fighter', 'released', true, 25, 'A counter-hit martial artist who uses Kenpo evasions, shoulder attacks, and stance movement to punish buttons and reclaim space.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3891,6 +6729,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-feng.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Feng-Wei.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:0de4b7f9d439497ec636916da3d0618540b2a19b3b3dcc7b17b4f9eb2c082ec7', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'feng' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'panda', 'Panda', 'fighter', 'released', true, 26, 'A bear variant who uses large swings, unusual stance interactions, and matchup-specific movement to create offbeat neutral exchanges.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3900,6 +6749,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-panda.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Panda.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f6495c0646c8e4b29ca052f18ac6788051007e07a9af7a59b8ef613a6c99f556', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'panda' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'lee', 'Lee', 'fighter', 'released', true, 27, 'A precision martial artist who uses just-frame attacks, Mist Step movement, and elegant launchers to reward exact execution.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3907,6 +6767,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-lee.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-lee.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a9f5d32960fdfd4ccfac0d765fa51edb3de3cd6a7691f46ee73903c42d5d008a', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'lee' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'alisa', 'Alisa', 'fighter', 'released', true, 28, 'A mobile robot who uses detachable chainsaws, rocket movement, and aerial attacks to harass opponents and carry them to the wall.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3916,6 +6787,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-alisa.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail_Alisa.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:2100944f9b543a5f8d852b54ce89510534ca47a9518ae1c626d379762280851d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'alisa' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'zafina', 'Zafina', 'fighter', 'released', true, 29, 'A stance-heavy fighter who uses evasive postures, acrobatic attacks, and Azazel-linked powers to create difficult-to-track offense.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3923,6 +6805,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-zafina.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-zafina.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:bc766908b6a9f03e69c06c31b5b67fefe6c8cd73fd1781e1f683ce92b4e2540d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'zafina' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'devil-jin', 'Devil Jin', 'fighter', 'released', true, 30, 'An aerial Mishima fighter who combines Electric Wind God Fist, lasers, flight, and powerful Heat conversions to attack from every range.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3932,6 +6825,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-devil-jin.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-devil-jin.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:0bb39681154a816780b86ffbdf2e1d6ab33744fd8f26d65be104be222ed685f0', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'devil-jin' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'victor', 'Victor', 'fighter', 'released', true, 31, 'A weapon specialist who uses a sword, firearms, and teleporting movement to control mid range and punish failed approaches.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3939,6 +6843,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-victor.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Victor-Chevalier.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:174cdee8abf4f0b057dabc1b5e1f22d781b698e6a47b4fb9d2f85cc51db7c04c', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'victor' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'reina', 'Reina', 'fighter', 'released', true, 32, 'A fast Mishima fighter who combines electric attacks with stance transitions and aggressive pressure to turn neutral wins into Heat momentum.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3949,7 +6864,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/tekken-8-reina.webp', 'https://us-east-1-bandai.graphassets.com/AXzioIclSWilEjFtsMJPwz/TfCpIKWORbmnzyPWwqkK', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official publisher-hosted promotional asset; no express blanket reuse license was located. Included under accepted ADR-023 with the limitation recorded and a per-asset disable or replacement path.', 'sha256:d7c04a8c79b6c2f45cfc9a0a5e71e2040387e896520cff43dc9ee7d17d795377', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/tekken-8-reina.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Reina.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1e07a9a682a1c221d4a274a5e45049e5981585ddbcefc7b4138d8dd1373ac830', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'tekken-8' and c.slug = 'reina' and c.roster_role = 'fighter'
@@ -3967,6 +6882,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-eddy.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/eddy-thumbnail-v3.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a010588b43af3d55e1e5f6de91ac35d9a16f273a8395e624297201b1fa626f61', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'eddy' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'lidia', 'Lidia', 'fighter', 'released', true, 34, 'A karate fighter who uses stance transitions, strong fundamentals, and power-enhanced Heat attacks to make disciplined pressure snowball.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3974,6 +6900,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-lidia.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/lidia-thumbnail-v1.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:801821561a96a99735f80e9ead33ee41f5f5b2ffec32b9b3d9f92b9d85da96ba', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'lidia' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'heihachi', 'Heihachi', 'fighter', 'released', true, 35, 'A classic Mishima powerhouse who uses electric uppercuts, wavedash pressure, and hard-hitting mids to dominate close neutral exchanges.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3983,6 +6920,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-heihachi.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/heihachi-thumbnail.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:6ca5ef798a3fbf8c4735284cb52a1dfad29dba300a9bd4dc80890a525ed09491', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'heihachi' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'clive', 'Clive', 'fighter', 'released', true, 36, 'A long-reaching sword fighter who uses Phoenix Shift movement, ranged blade attacks, and Heat-enhanced pressure to control the middle of the stage.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -3990,6 +6938,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-clive.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Clive.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:a80a0ce16e4f672e1cf38ae8c1b4effb3e795860549199875e88d451321d36bc', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'clive' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'anna', 'Anna', 'fighter', 'released', true, 37, 'A close-range assassin who uses deceptive strings, explosive launchers, and stance-like transitions to keep pressure difficult to predict.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -3999,6 +6958,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-anna.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/Thumbnail-Anna.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:86b1bfc46699548cc6a21f0fd9e72de12511e35be2078c4272917a471160ea5b', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'anna' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'fahkumram', 'Fahkumram', 'fighter', 'released', true, 38, 'A long-limbed Muay Thai fighter who uses powerful kicks, knee pressure, and wall carry to make blocked movement increasingly dangerous.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -4006,6 +6976,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-fahkumram.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/fahkumram-thumbnail3.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:7756cfa5d2e8b5c7999d3d1526d333bbb91cf2a6bccbe59a3c1f748a962cbd29', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'fahkumram' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'armor-king', 'Armor King', 'fighter', 'released', true, 39, 'A masked grappler who combines chain throws, dark uppercuts, and armored strikes to punish close-range mistakes with heavy damage.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4015,6 +6996,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-armor-king.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/ARMOR-KING-thumbnail-dlc-v3.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:02cf2e789183f12b4c15c8c6539e21f43632964bb3e0e0e75fa97668ed30d412', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'armor-king' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'miary-zo', 'Miary Zo', 'fighter', 'released', true, 40, 'A nimble acrobatic fighter who uses fast stance transitions, evasive movement, and animal-assisted attacks to create unusual approach timings.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -4022,6 +7014,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-miary-zo.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/new-gallery/Thumbnail/miary_zo_thumbnail_V2.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:54dcee3edb97ac34812c31e8bbc68982a2c73dcbddc3bc24b8e8bc66e1258876', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'miary-zo' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'kunimitsu', 'Kunimitsu', 'fighter', 'released', true, 41, 'A fast ninja fighter who uses teleporting movement, kunai, and stance transitions to attack from changing sides and distances.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4031,6 +7034,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-kunimitsu.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/dlc/Kunimitsu/kunimitsu_thumbnail.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:fdb3001e77d51da6a819bc9a74db253ffb30a9c404a3e807c95f2b73e6f97e99', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'kunimitsu' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'bob', 'Bob', 'fighter', 'released', true, 42, 'A speed-focused heavyweight who uses fast rushing strings, spin movement, and weight-backed launchers to make his offense unusually mobile.', 'https://tekken.com/fighters', 'Bandai Namco Entertainment', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'tekken-8'
@@ -4038,6 +7052,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/tekken-8-bob.webp', 'https://p325k7wa.twic.pics/high/tekken/tekken-8/02-characters/dlc/Bob/Bob-Thumbnail.png', 'Bandai Namco Entertainment', 'https://www.bandainamcoent.com/legal/terms', 'publisher-promotional', 'TEKKEN 8 ©Bandai Namco Entertainment Inc.', 'Official TEKKEN 8 roster thumbnail served by Bandai Namco''s own media host. Bandai Namco terms reserve reuse absent express permission; included under accepted ADR-023 with the limitation and removal path recorded. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:5a3caf54650a7b063b4d3b28bdba284e2c5030a61d58c8db6993916e53502139', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'tekken-8' and c.slug = 'bob' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.game_versions (slug, name, short_name, release_label, launch_order, selection_schema, catalog_source_url, catalog_status, source_checked_at)
 values ('ggst', 'Guilty Gear -Strive-', 'STRIVE', 'Current live roster', 13, '{"version":1,"noun":"Character","verified":true,"ordered":false,"uniqueCharacters":true,"slots":[{"id":"fighter","label":"Character","allowedRoles":["fighter"]}]}'::jsonb, 'https://www.guiltygear.com/ggst/en/character/', 'verified', '2026-08-25T00:00:00Z')
@@ -4054,6 +7079,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-robo-ky.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara34_rbk.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b06af32b11e132dfedd1152a2657c1ac3a404fcd4b0c29123a68aac97b357f00', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'robo-ky' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'jam', 'Jam Kuradoberi', 'fighter', 'released', true, 2, 'A fast martial artist who stocks enhancements for her special moves and uses kick pressure to convert close openings into offense.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4061,6 +7097,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-jam.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara33_jam.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f92e4403024f7e889369fcfcee3b3f9b525f5133b9dca1a1431e3b8c06036fa7', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'jam' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'lucy', 'Lucy', 'fighter', 'released', true, 3, 'A mobile cybernetic fighter who uses hacking tools and quick close-range attacks to create sudden approach and pressure sequences.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4070,6 +7117,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-lucy.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara32_luc.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f4e0d18c578712fe3e70d3185070a6c045d691a5ebcfd4d36e5e32a8edd61c85', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'lucy' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'unika', 'Unika', 'fighter', 'released', true, 4, 'A versatile fighter who shifts between ranged weapon pressure and close attacks to keep opponents guessing about her next approach.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4077,6 +7135,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-unika.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara31_uni.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:cc0a002562367ec4d43506047d4a012e676afacf6e7c4bcbdef82d3853e0e012', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'unika' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'venom', 'Venom', 'fighter', 'released', true, 5, 'A technical zoner who places billiard balls at chosen angles and then redirects them to build layered neutral and pressure patterns.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4086,6 +7155,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-venom.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara30_ven.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:c48848ce40a3921e2c7e6b4410a37dee82ba281ae989e99555a77ab3f8b0bb7f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'venom' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'dizzy', 'Queen Dizzy', 'fighter', 'released', true, 6, 'A summon-and-projectile fighter who combines fish, fire, and ice effects to control multiple lanes and punish impatient approaches.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4093,6 +7173,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-dizzy.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara29_dzy.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f5fe46bfeab5a96fe584a7c05f30bfd10daa631089b9553b737f4f219a50b892', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'dizzy' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'slayer', 'Slayer', 'fighter', 'released', true, 7, 'A close-range counter fighter who uses Dandy Step, evasive movement, and Pilebunker to turn reads into explosive damage.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4102,6 +7193,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-slayer.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara28_sly.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:167b9eb58d27932c2b2b9d77ee8222f47586585751137b9614f2034c9e43b2f2', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'slayer' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'aba', 'A.B.A', 'fighter', 'released', true, 8, 'A resource fighter who manages her key and blood states to shift from a slower neutral mode into a powerful aggressive transformation.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4109,6 +7211,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-aba.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara27_aba.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:e051ab70d3b01f0c956a86fa21ab879f6e697f3b550940629026b8baff455ed3', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'aba' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'elphelt', 'Elphelt Valentine', 'fighter', 'released', true, 9, 'A weapon-stance fighter who switches between grenade, shotgun, and rifle pressure to create varied blockstrings and corner setups.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4118,6 +7231,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-elphelt.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara26_elp.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:2cc98218dc81c18eba67b96d82c83286fa02a0d0965bd3f1eb04dc18de7737d4', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'elphelt' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'johnny', 'Johnny', 'fighter', 'released', true, 10, 'A mid-range sword fighter who uses Mist Finer cards and coins to control space, set up pressure, and cash out on clean confirms.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4125,6 +7249,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-johnny.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara25_jhn.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:d3b96dee7b53554d26504a0b07deafed3ece4cf3f417e2c4503493096aa617fd', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'johnny' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'asuka-r', 'Asuka R#', 'fighter', 'released', true, 11, 'A spellbook resource fighter who manages mana and randomized spells to build flexible zoning, defense, and combo routes.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4134,6 +7269,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-asuka-r.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara24_ask.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:cd8b1968ff406e0d37f8318480ba169618ea2beecee1169b271800fc17a89094', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'asuka-r' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'bedman', 'Bedman?', 'fighter', 'released', true, 12, 'A setplay fighter whose error follow-ups and autonomous attacks let the bed keep pressure active while Bedman? repositions.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4142,6 +7288,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-bedman.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara23_bed.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:7559760c632a278cf43e107fdaf2041baea45597723a45ea64622a4a7cd044dc', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'bedman' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sin', 'Sin Kiske', 'fighter', 'released', true, 13, 'A mobile spear fighter who spends stamina on special attacks and uses Beak Driver to carry grounded openings into corner pressure.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4149,6 +7306,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-sin.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara22_sin.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:68ed131fd1182ec2a4debd865cc17585bf3e33e1933ff20473d989ca04e62e58', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'sin' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'bridget', 'Bridget', 'fighter', 'released', true, 14, 'A mobile yo-yo fighter who places setplay tools and uses rolling movement, Roman Cancels, and wall-break routes to attack from awkward angles.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4159,7 +7327,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/ggst-bridget.png', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara21_bgt.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change.', 'sha256:e9d2043da468825cda117f0eac9db930a43ec7b547e0e041a29f0660d14311da', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/ggst-bridget.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara21_bgt.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:2a20a7034221e2e388c3dcbb24f64a8c14d6667e3116cb72b02152249cf8ad94', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'ggst' and c.slug = 'bridget' and c.roster_role = 'fighter'
@@ -4177,6 +7345,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-testament.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara20_tst.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:0302c2e6d39bfa5b40b4094d2fd7939d2610a25ed31d86e0cf5eab1a994d8a55', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'testament' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'baiken', 'Baiken', 'fighter', 'released', true, 16, 'A defensive sword fighter who uses Tatami Gaeshi, parries, and tethered follow-ups to punish approaches and force close decisions.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4184,6 +7363,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-baiken.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara19_bkn.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f9e6a7122564ed0f5084734666d68845bb4d8a5ca7fb918a033d9e412aa68102', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'baiken' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'happy-chaos', 'Happy Chaos', 'fighter', 'released', true, 17, 'A gun-resource fighter who aims his revolver and manages concentration to control neutral with bullets and flexible curse pressure.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4193,6 +7383,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-happy-chaos.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara18_cos.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:f525494aece58511dd2cc762cae94508d3ee509ad1fff9923d8a143bc886b463', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'happy-chaos' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'jack-o', 'Jack-O''', 'fighter', 'released', true, 18, 'A minion setplay fighter who builds and commands servants to occupy space, then uses their formations to extend offense.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4200,6 +7401,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-jack-o.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara17_jko.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:b973215bded02fba95199175823521c42acda7b938633ecda67fc47bb98a969f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'jack-o' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'goldlewis', 'Goldlewis Dickinson', 'fighter', 'released', true, 19, 'A heavyweight who uses Behemoth Typhoon swings and security-level management to turn corner pressure into huge damage.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4209,6 +7421,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-goldlewis.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara16_gld.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1ce4825350b9af853c9e359c913530869d7fab6d57d5ed8c82e40b43af82e454', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'goldlewis' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'i-no', 'I-No', 'fighter', 'released', true, 20, 'A hover-dash rushdown fighter who uses musical notes, Chemical Love, and Roman Cancel routes to attack from changing heights and carry pressure to the wall.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4216,6 +7439,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-i-no.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara15_ino.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:88e5db441adff0e26460edd6fec7c91cff52e4c755363a3440ba7819c1341e37', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'i-no' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'anji', 'Anji Mito', 'fighter', 'released', true, 21, 'A counter-oriented fighter who uses Fuujin follow-ups, projectile butterflies, and autoguard movement to absorb predictable attacks.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4225,6 +7459,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-anji.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara14_anj.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:83c7f6830601861f48c05f70f0e7619aac5d6d374c22607440d03e80be0d59a0', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'anji' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'giovanna', 'Giovanna', 'fighter', 'released', true, 22, 'A close-range rushdown fighter who uses Sol Poente, Trovao, and strong plus-frame pressure to stay attached to opponents.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4232,6 +7477,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-giovanna.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara13_gio.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:684669c1811a4f25a8094b80bffac8db20b405457aa0ab17a3917b3de281995d', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'giovanna' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'nagoriyuki', 'Nagoriyuki', 'fighter', 'released', true, 23, 'A powerful sword fighter who manages the Blood Gauge while using Fukyo and wide slashes to control mid range and burst damage.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4242,7 +7498,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/ggst-nagoriyuki.png', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara12_nag.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change.', 'sha256:e856f37d4379827d0edf3d1b66dd3a559d48753969969071c4c97dbc3537f973', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/ggst-nagoriyuki.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara12_nag.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:0f8a4055ace06bbdc203d0ff156fc4bb4bd23355eced03fc6faeb0c3765626a6', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'ggst' and c.slug = 'nagoriyuki' and c.roster_role = 'fighter'
@@ -4260,6 +7516,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-leo.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara11_leo.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:03dc97c43e2dac0a8c52da4af6d05d84be3b278100873120f21f11a6a494b3f1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'leo' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ramlethal', 'Ramlethal Valentine', 'fighter', 'released', true, 25, 'A sword-throwing fighter who places her greatswords around the opponent, then uses rekka pressure and corner control to cash out.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4269,7 +7536,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/ggst-ramlethal.png', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara10_ram.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change.', 'sha256:1033fb5a445a2d774091d10c26e3a7360036fb9aad94e3f3aefc4db853356806', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/ggst-ramlethal.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara10_ram.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:2a5627ba3cbbb8219253c900981aa61ff9bf1934fe0f20b0324fbd75b9973fc9', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'ggst' and c.slug = 'ramlethal' and c.roster_role = 'fighter'
@@ -4287,6 +7554,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-zato-1.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara09_zat.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:338ece5ed7e78d4e58208bd00628807ca0737a5fa6d15d2c603909fbb30d5517', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'zato-1' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'millia', 'Millia Rage', 'fighter', 'released', true, 27, 'A fast setplay fighter who uses Tandem Top and hair discs to create repeated high-low and left-right pressure after knockdowns.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4294,6 +7572,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-millia.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara08_mll.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:cf2163cabf4819238aa6a7cf1c4b26713461ed898c5fe570aa8b58c94fc385aa', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'millia' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'faust', 'Faust', 'fighter', 'released', true, 28, 'A disruptive item-throw fighter who uses random objects, long pokes, and pogo movement to make neutral timing unpredictable.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4303,6 +7592,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-faust.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara07_fau.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:96e3008354eed3900e659b674dca9731687bd990da331e2cace933b02994f623', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'faust' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'potemkin', 'Potemkin', 'fighter', 'released', true, 29, 'A heavyweight grappler who uses Hammer Fall armor, Garuda Impact, and Potemkin Buster to force respect at close range before a wall break.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4310,6 +7610,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-potemkin.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara06_pot.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:716ef2189d68fd10e725a29ec09b9f8ce6abbc7da3655f4c5d5238e33a5a80f9', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'potemkin' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'chipp', 'Chipp Zanuff', 'fighter', 'released', true, 30, 'A fragile speed fighter who uses Alpha Blade, teleports, and wall movement to create rapid cross-ups and layered mix-ups.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4319,6 +7630,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-chipp.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara05_chipp.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1be951680c23f6d11337638d677fd0450394408c300bc3cb476779412751206f', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'chipp' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'axl', 'Axl Low', 'fighter', 'released', true, 31, 'A long-range chain fighter who uses sickle attacks, Rensen, and time-control pressure to punish movement across the screen.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4326,6 +7648,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-axl.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara04_axl.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:7e0bae2eeb61fa3c065895fded661352cc1d77bae46bbdc57d4ad71a42197b06', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'axl' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'may', 'May', 'fighter', 'released', true, 32, 'A charge-based rushdown fighter who uses Mr. Dolphin, beach-ball returns, and wall-break routes to approach from unpredictable angles.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4335,6 +7668,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-may.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara03_may.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:1391b06c0c607358adb8aa6ca3a1f199385e1e555aa4905555a987ab964366c1', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'may' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
+
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'ky', 'Ky Kiske', 'fighter', 'released', true, 33, 'A balanced sword fighter who uses Stun Edge, Vapor Thrust, and Dire Eclat to control space before turning a knockdown into pressure.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
 from public.game_versions where slug = 'ggst'
@@ -4342,6 +7686,17 @@ on conflict (game_version_id, slug, roster_role) do update set
   display_name = excluded.display_name, roster_status = excluded.roster_status, is_playable = excluded.is_playable,
   roster_order = excluded.roster_order, summary = excluded.summary, summary_source_url = excluded.summary_source_url,
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
+
+insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
+select c.id, '/art/ggst-ky.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara02_kyk.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:96c5eec49ebd304703d09dde788b3699fdf4fbde243c5570547880cc495c627a', 'approved', true, '2026-09-20', '2026-09-20'
+from public.characters c
+join public.game_versions gv on gv.id = c.game_version_id
+where gv.slug = 'ggst' and c.slug = 'ky' and c.roster_role = 'fighter'
+on conflict (character_id, asset_sha256) do update set
+  storage_path = excluded.storage_path, source_url = excluded.source_url,
+  source_publisher = excluded.source_publisher, license_url = excluded.license_url, asset_reuse_mode = excluded.asset_reuse_mode,
+  credit_text = excluded.credit_text, permission_evidence = excluded.permission_evidence,
+  is_primary = excluded.is_primary, retrieved_at = excluded.retrieved_at, reviewed_at = excluded.reviewed_at;
 
 insert into public.characters (game_version_id, slug, display_name, roster_role, roster_status, is_playable, roster_order, summary, summary_source_url, summary_source_publisher, summary_reuse_mode, source_checked_at)
 select id, 'sol', 'Sol Badguy', 'fighter', 'released', true, 34, 'A close-range powerhouse who uses Gunflame, Bandit Revolver, and strong frame traps to turn grounded openings into knockdown pressure.', 'https://www.guiltygear.com/ggst/en/character/', 'Arc System Works', 'attributed-paraphrase', '2026-08-25T00:00:00Z'
@@ -4352,7 +7707,7 @@ on conflict (game_version_id, slug, roster_role) do update set
   summary_source_publisher = excluded.summary_source_publisher, summary_reuse_mode = excluded.summary_reuse_mode, source_checked_at = excluded.source_checked_at;
 
 insert into public.character_art_assets (character_id, storage_path, source_url, source_publisher, license_url, asset_reuse_mode, credit_text, permission_evidence, asset_sha256, review_state, is_primary, retrieved_at, reviewed_at)
-select c.id, '/art/ggst-sol.png', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara01_sol.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change.', 'sha256:7fd6a1a4cc85e7196d3ca68df3e248b92df4abd84601b8292274ed3020677477', 'approved', true, '2026-08-25', '2026-08-25'
+select c.id, '/art/ggst-sol.webp', 'https://www.guiltygear.com/ggst/jp/wordpress/wp-content/themes/ggst/img/fankit/chara01_sol.png', 'Arc System Works', 'https://www.guiltygear.com/ggst/en/fankit/', 'conditional-fan-kit', '© ARC SYSTEM WORKS', 'Official fan-kit permits non-commercial use by individuals or unincorporated organizations with a visible notice and compliant processing. Re-review is required before monetization or an operator-status change. Delivered as WebP re-encoded from the publisher source at display resolution; the source URL identifies the original asset.', 'sha256:fe104de9fda7d616ab7398e15a4d8b57b9db19f21d196dfd8099207c973ab39f', 'approved', true, '2026-09-20', '2026-09-20'
 from public.characters c
 join public.game_versions gv on gv.id = c.game_version_id
 where gv.slug = 'ggst' and c.slug = 'sol' and c.roster_role = 'fighter'

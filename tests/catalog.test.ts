@@ -86,31 +86,61 @@ describe('founding catalog', () => {
     }
 
     expect(entries).toHaveLength(410);
-    expect(artEntries).toHaveLength(90);
-    expect(new Set(artEntries.map(({ game, character }) => `${game.slug}/${character.slug}`)).size).toBe(90);
+    expect(artEntries).toHaveLength(395);
+    expect(new Set(artEntries.map(({ game, character }) => `${game.slug}/${character.slug}`)).size).toBe(395);
     expect(new Set(artEntries.map(({ game }) => game.slug)).size).toBe(13);
     expect(basisCounts.get('express-fan-kit')).toBe(28);
-    expect(basisCounts.get('conditional-fan-kit')).toBe(4);
+    expect(basisCounts.get('conditional-fan-kit')).toBe(34);
     expect(basisCounts.get('conditional-community-policy')).toBe(15);
-    expect(basisCounts.get('publisher-promotional')).toBe(43);
+    expect(basisCounts.get('publisher-promotional')).toBe(318);
 
     for (const { character } of artEntries) {
       expect(character.art?.assetHash).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(character.art?.thumbHash).toMatch(/^sha256:[a-f0-9]{64}$/);
+      expect(character.art?.localPath).toMatch(/^\/art\/[a-z0-9-]+\.webp$/);
       expect(character.art?.sourceUrl).toMatch(/^https:\/\//);
       expect(character.art?.reviewUrl).toMatch(/^https:\/\//);
       expect(character.art?.creditText.length).toBeGreaterThan(8);
       expect(character.art?.permissionEvidence.length).toBeGreaterThan(40);
     }
 
-    const avatar = catalog.find((game) => game.slug === 'avatar-legends');
-    const sharedAvatarArt = avatar?.characters.filter((character) => ['aang', 'korra', 'zuko'].includes(character.slug)) ?? [];
-    expect(new Set(sharedAvatarArt.map((character) => character.art?.assetHash)).size).toBe(1);
-    expect(new Set(sharedAvatarArt.map((character) => character.art?.objectPosition)).size).toBe(3);
+    // Every Character carries its own file. Bytes repeat only where a labelled
+    // cross-version fallback serves another Game's official render.
+    expect(new Set(artEntries.map(({ character }) => character.art?.localPath)).size).toBe(395);
+    const byHash = new Map<string, string[]>();
+    for (const { game, character } of artEntries) {
+      const hash = character.art?.assetHash ?? '';
+      byHash.set(hash, [...(byHash.get(hash) ?? []), `${game.slug}/${character.slug}`]);
+    }
+    const shared = [...byHash.values()].filter((keys) => keys.length > 1);
+    expect(shared).toHaveLength(10);
+    for (const keys of shared) {
+      expect(keys).toHaveLength(2);
+      expect(keys.some((key) => key.startsWith('mvc2/'))).toBe(true);
+      const reused = keys.find((key) => key.startsWith('umvc3/'));
+      expect(reused).toBeDefined();
+      const slug = reused?.slice('umvc3/'.length);
+      const character = catalog.find((game) => game.slug === 'umvc3')?.characters.find((entry) => entry.slug === slug);
+      expect(character?.art?.creditText).toContain('cross-version');
+    }
 
     const melee = catalog.find((game) => game.slug === 'melee');
     expect(melee?.characters.filter((character) => character.art).every((character) => character.art?.creditText.includes('cross-version'))).toBe(true);
     const doom = catalog.find((game) => game.slug === 'umvc3')?.characters.find((character) => character.slug === 'doom');
     expect(doom?.art?.creditText).toContain('cross-version');
+  });
+
+  it('covers every roster row except the UMVC3 Marvel half Capcom no longer publishes', () => {
+    const uncovered = catalog.flatMap((game) => game.characters
+      .filter((character) => !character.art)
+      .map((character) => `${game.slug}/${character.slug}`));
+
+    expect(uncovered).toHaveLength(15);
+    expect(uncovered.every((key) => key.startsWith('umvc3/'))).toBe(true);
+    for (const game of catalog) {
+      if (game.slug === 'umvc3') continue;
+      expect(game.characters.every((character) => Boolean(character.art))).toBe(true);
+    }
   });
 
   it('records the verified current 2XKO roster and Fuse choices', () => {

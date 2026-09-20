@@ -1,6 +1,8 @@
 # MainStation historical release evidence
 
-Current release: [2026-09-19 public release](docs/releases/2026-09-19-public-release.md) — live at `https://mainstation.uppercut-labs.workers.dev`. Rollback: [docs/release-rollback.md](docs/release-rollback.md).
+Current release: [2026-09-20 full-roster art and guided onboarding](docs/releases/2026-09-20-roster-art-and-onboarding.md) — live at `https://mainstation.uppercut-labs.workers.dev`. Rollback: [docs/release-rollback.md](docs/release-rollback.md).
+
+Preceded by the [2026-09-19 public release](docs/releases/2026-09-19-public-release.md).
 
 Foundation tickets MS-001–023 record their acceptance retrospectively in [2026-09-20 foundation acceptance](docs/releases/2026-09-20-foundation-acceptance.md).
 
@@ -77,9 +79,9 @@ Captured: `2026-08-25T16:28:20Z`
 - Test email magic-link sign-in if it remains a supported launch method; this would send a real email and was not triggered during implementation.
 - Run install, update, standalone, and launcher-icon checks on physical Android, Windows, iOS/iPadOS, and macOS targets. Browser and static PWA checks do not prove installed-surface behavior.
 - Run Dark Reader extension acceptance on each desktop browser where the extension is part of the support claim.
-- Review and source approved art for the 320 expanded roster rows that currently use the explicit text-only art fallback; roster selection is complete independently of that rights ledger.
+- ~~Review and source approved art for the 320 expanded roster rows that currently use the explicit text-only art fallback~~ — **closed 2026-09-20.** 395 of 410 rows now carry reviewed art; the 15 that remain are the Marvel half of the UMVC3 cast, recorded with cause in `tickets/MS-032-roster-art-and-onboarding.md`.
 - Avatar's 12 launch fighters and 36 support choices are represented conditionally in the UI; the fighter names and support transcription retain the secondary-source boundary documented in `research/character-roster-completeness-2026-08-25.md` because the accessible first-party pages do not publish a complete text index.
 - Re-review promotional-art policy and remove affected assets promptly if a publisher requests it or the app's operator, monetization, or distribution model changes. The four GGST fan-kit records remain conditional on noncommercial eligibility, and Riot's required 2XKO notice must remain visible.
-- Replace the five explicitly labeled cross-version fallbacks when version-matched official art becomes available: UMVC3 Doctor Doom currently uses MVC2 art, and the four Melee entries use official Smash Ultimate renders.
+- Replace the explicitly labeled cross-version fallbacks when version-matched official art becomes available: ten UMVC3 Marvel-side Characters use MVC2 art, and all 26 Melee entries use official Smash Ultimate renders.
 - A custom domain can replace the generic production Worker origin later if desired.
 - The production build emits a non-blocking `>500 kB` chunk warning and the current PWA plugin emits an upstream `inlineDynamicImports` deprecation warning. Revisit code splitting and plugin configuration based on observed load/update data.

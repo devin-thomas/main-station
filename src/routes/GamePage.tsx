@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { CatalogRail } from '../components/CatalogRail';
+import { CharacterPortrait } from '../components/CharacterPortrait';
 import { VersionLabel } from '../components/VersionLabel';
 import { catalogBySlug } from '../data/catalog';
 import { loadGamePublicStats, type GamePublicStats } from '../features/stats/publicStats';
@@ -71,6 +72,9 @@ export function GamePage() {
         <ol>
           {game.characters.map((character) => (
             <li key={character.slug}>
+              <span className="roster-ledger__face" aria-hidden="true">
+                <CharacterPortrait character={character} gameName={game.name} decorative />
+              </span>
               <Link to={`/games/${game.slug}/characters/${character.slug}`}>{character.name}</Link>
               {character.role !== 'fighter' && <small>{character.role}</small>}
             </li>

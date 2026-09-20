@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { catalog } from '../../src/data/catalog';
+import { characterArtThumbPath } from '../../src/types/domain';
 import { firstUserId, mockAccount, secondUserId, switchAccount } from './auth-fixture';
 
 // Service workers can bypass Playwright network mocks, particularly in WebKit.
@@ -26,14 +27,21 @@ test('home, catalog, and cleared imagery render', async ({ page }) => {
 });
 
 test('every current Character art file and UI icon is served as an image', async ({ request }) => {
+  test.setTimeout(180_000);
   const artRecords = catalog.flatMap((game) => game.characters.map((character) => character.art)).filter((art) => art);
-  expect(artRecords).toHaveLength(90);
+  expect(artRecords).toHaveLength(395);
 
-  for (const art of artRecords) {
-    expect(art).toBeDefined();
-    const response = await request.get(art!.localPath);
-    expect(response.ok(), art!.localPath).toBeTruthy();
-    expect(response.headers()['content-type'], art!.localPath).toMatch(/^image\//);
+  // Both delivered copies: the Character page image and the roster thumbnail behind every grid.
+  const paths = artRecords.flatMap((art) => [art!.localPath, characterArtThumbPath(art!)]);
+  expect(new Set(paths).size).toBe(790);
+
+  for (let index = 0; index < paths.length; index += 20) {
+    const batch = paths.slice(index, index + 20);
+    const responses = await Promise.all(batch.map(async (path) => ({ path, response: await request.get(path) })));
+    for (const { path, response } of responses) {
+      expect(response.ok(), path).toBeTruthy();
+      expect(response.headers()['content-type'], path).toMatch(/^image\//);
+    }
   }
 
   for (const name of ['arrow-down', 'arrow-up', 'check', 'chevron-right', 'compass', 'pencil', 'plus', 'settings', 'trash-2', 'user-round', 'x']) {
@@ -201,7 +209,8 @@ for (const destination of ['/build', 'https://example.test/steal', '//example.te
     const account = await mockAccount(page, { signedIn: false });
     await page.goto(`/auth/callback?code=e2e-code&next=${encodeURIComponent(destination)}`);
     await expect(page).toHaveURL(destination === '/build' ? /\/build$/ : /\/settings$/);
-    await expect(page.getByRole('button', { name: destination === '/build' ? 'Save Character' : 'Create profile', exact: true })).toBeVisible();
+    if (destination === '/build') await expect(page.getByRole('button', { name: 'Save Character', exact: true })).toBeVisible();
+    else await expect(page.getByRole('link', { name: 'Claim your mains', exact: true })).toBeVisible();
     expect(account.requests.filter((request) => request.path === '/auth/v1/token')).toHaveLength(1);
     expect(account.requests.filter((request) => /merge|claim|save/.test(request.path))).toHaveLength(0);
   });
@@ -273,9 +282,9 @@ test('legacy guest drafts and pending merges are never imported after sign-in', 
   await expect(page).toHaveURL(/\/build$/);
   await expect(page.getByRole('button', { name: 'Save Character' })).toBeVisible();
   await expect(page.locator('.draft-action-ledger__row')).toHaveCount(0);
-  await page.goto('/settings');
-  await expect(page.getByLabel('Display name')).toHaveValue('');
-  await expect(page.getByLabel('Handle', { exact: true })).toHaveValue('');
+  await page.goto('/welcome');
+  await expect(page.getByRole('heading', { name: 'Which game do you main?' })).toBeVisible();
+  await expect(page.locator('.claimed-entry')).toHaveCount(0);
   await expect(page.getByText(/Recovery copy|What should happen after sign-in/)).toHaveCount(0);
   expect(account.requests.filter((request) => /merge|claim|save/.test(request.path))).toHaveLength(0);
 });
@@ -289,7 +298,7 @@ test('sign-out locks creation and a different account cannot see the previous ac
   await page.goto('/settings');
   await page.getByRole('button', { name: 'Sign out', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Sign in or create an account' })).toBeVisible();
-  await expect(page.getByLabel('Display name')).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Claim your mains' })).toHaveCount(0);
   await page.goto('/build');
   await expect(page).toHaveURL(/\/settings\?next=%2Fbuild$/);
   await switchAccount(page, secondUserId);
@@ -311,11 +320,16 @@ test('signed-in creation is local until the member explicitly creates a public p
   await page.getByRole('button', { name: 'Save Character' }).click();
   await expect(page.locator('.draft-action-ledger__row')).toHaveCount(1);
   expect(account.requests.filter((request) => /claim|save/.test(request.path))).toHaveLength(0);
-  await page.goto('/settings');
+  await page.goto('/welcome');
+  await page.getByRole('button', { name: /^UNI2 / }).click();
+  await page.getByRole('button', { name: 'Linne', exact: true }).click();
+  await page.getByRole('button', { name: 'Claim this character' }).click();
+  expect(account.requests.filter((request) => /claim|save/.test(request.path))).toHaveLength(0);
+  await page.getByRole('button', { name: 'Done adding mains' }).click();
   await page.getByLabel('Display name').fill('E2E Player');
   await page.getByLabel('Handle', { exact: true }).fill('e2e-player');
   await page.getByRole('button', { name: 'Create profile', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Profile saved' })).toBeVisible();
+  await expect(page).toHaveURL(/\/p\/e2e-player$/);
   expect(account.requests.filter((request) => request.path === '/rest/v1/rpc/claim_profile_draft')).toHaveLength(1);
 });
 

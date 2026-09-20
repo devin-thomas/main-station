@@ -9,6 +9,7 @@ Tickets are ordered by dependency. The launch is intentionally split into founda
 | MS-019–023 | Sign-in before creation, account editor, profiles, public Games and Characters |
 | MS-024–028 | Statistical policy, recommendations, feedback, deletion propagation |
 | MS-029–031 | PWA lifecycle, acceptance matrix, Cloudflare/Supabase release |
+| MS-032 | Full-roster Character art and the guided onboarding that depends on it |
 
 See `SPEC.md` for the governing implementation contract. Each numbered ticket must record acceptance evidence before it is closed.
 

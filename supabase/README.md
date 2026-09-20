@@ -4,7 +4,7 @@ Target project: `bqfzzrasfunysseoogcg`.
 
 The schema and migrations provide owner/public RLS, child-Pick privacy inheritance, normalized signatures, atomic authenticated profile creation and save, registered export, account deletion, live public statistics, immutable recommendation runs, constrained feedback, and a disableable provenance record for every published Character image. Current statistics derive from eligible source rows so hides and deletes disappear immediately without waiting for a materialized refresh. ADR-028 requires sign-in before profile setup or editing and retires the guest merge API; release evidence records which migration version is applied to the hosted project.
 
-The catalog contains 13 active Game Versions, 410 Character records, and 90 active primary art records. The art ledger contains 28 express fan-kit, 4 conditional fan-kit, 15 conditional community-policy, and 43 ADR-023 publisher-promotional records. All 13 game catalogs are source-checked for selection coverage; art rights review remains independent of roster completeness. Profile and identity counts in dated release evidence are historical snapshots, not a current account census.
+The catalog contains 13 active Game Versions, 410 Character records, and 395 active primary art records. The art ledger contains 28 express fan-kit, 34 conditional fan-kit, 15 conditional community-policy, and 318 ADR-023 publisher-promotional records. All 13 game catalogs are source-checked for selection coverage; art rights review remains independent of roster completeness. Profile and identity counts in dated release evidence are historical snapshots, not a current account census.
 
 ## Local reproduction
 

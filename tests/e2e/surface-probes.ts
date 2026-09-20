@@ -20,8 +20,16 @@ export async function waitForAssets({ timeoutMs = 10000, scope = 'html' } = {}) 
   if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) throw new Error('Invalid asset deadline');
   const root = document.querySelector(scope);
   if (!root) throw new Error(`Missing asset scope: ${scope}`);
-  const images = [...root.querySelectorAll('img')];
-  if (root instanceof HTMLImageElement) images.unshift(root);
+  const all = [...root.querySelectorAll('img')];
+  if (root instanceof HTMLImageElement) all.unshift(root);
+  // A lazy image below the fold is not part of the rendered surface and never decodes until it
+  // nears the viewport, so waiting on one would hang rather than report anything.
+  const nearViewport = (img: HTMLImageElement) => {
+    const bounds = img.getBoundingClientRect();
+    const margin = window.innerHeight;
+    return bounds.bottom > -margin && bounds.top < window.innerHeight + margin;
+  };
+  const images = all.filter((img) => img.loading !== 'lazy' || img.complete || nearViewport(img));
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {
     return await Promise.race([

@@ -23,10 +23,10 @@ select results_eq(
     where review_state = 'approved'
       and is_primary
       and storage_path in (
-        '/art/uni2-hyde.png',
-        '/art/uni2-linne.png',
-        '/art/uni2-waldstein.png',
-        '/art/uni2-yuzuriha.png'
+        '/art/uni2-hyde.webp',
+        '/art/uni2-linne.webp',
+        '/art/uni2-waldstein.webp',
+        '/art/uni2-yuzuriha.webp'
       )$$,
   array[4::integer],
   'the approved UNI2 fan-kit inventory contains all four unchanged preview Character assets'
@@ -35,8 +35,8 @@ select results_eq(
 select results_eq(
   $$select count(*)::integer from public.character_art_assets
     where review_state = 'approved' and is_primary and disabled_at is null$$,
-  array[90::integer],
-  'the art ledger has 90 active approved primary art records'
+  array[395::integer],
+  'the art ledger has 395 active approved primary art records'
 );
 
 select results_eq(
@@ -62,9 +62,9 @@ select results_eq(
     order by asset_reuse_mode$$,
   $$values
     ('conditional-community-policy'::text, 15::bigint),
-    ('conditional-fan-kit'::text, 4::bigint),
+    ('conditional-fan-kit'::text, 34::bigint),
     ('express-fan-kit'::text, 28::bigint),
-    ('publisher-promotional'::text, 43::bigint)$$,
+    ('publisher-promotional'::text, 318::bigint)$$,
   'art usage bases preserve fan-kit, community-policy, and ADR-023 promotional distinctions'
 );
 

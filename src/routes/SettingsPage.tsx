@@ -8,7 +8,7 @@ import { useInstall } from '../features/pwa/useInstall';
 import { validateLineup } from '../lib/lineupValidation';
 import { accountAuthorization, supabase, supabaseConfigured } from '../lib/supabase';
 import { clearAccountDraft } from '../features/draft/draftStore';
-import type { DraftProfile } from '../types/domain';
+import { HANDLE_PATTERN } from '../features/onboarding/onboardingModel';
 
 function downloadJson(filename: string, value: unknown) {
   const url = URL.createObjectURL(new Blob([JSON.stringify(value, null, 2)], { type: 'application/json' }));
@@ -29,11 +29,8 @@ export function SettingsPage() {
   const [authPending, setAuthPending] = useState<'discord' | 'email' | null>(null);
   const [authError, setAuthError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
-  const [claimedHandle, setClaimedHandle] = useState<string | null>(null);
   const [syncing, setSyncing] = useState(false);
   const [online, setOnline] = useState(() => navigator.onLine);
-  const [onboardingProfile, setOnboardingProfile] = useState<DraftProfile>(draft.profile);
-  const onboardingProfileTouched = useRef(false);
   const active = useRef(false);
 
   useEffect(() => {
@@ -51,25 +48,22 @@ export function SettingsPage() {
     };
   }, []);
 
-  useEffect(() => {
-    if (!onboardingProfileTouched.current) setOnboardingProfile(draft.profile);
-  }, [draft.profile]);
-
   const hasRegisteredProfile = Boolean(session && registeredHandle);
-  const profileForWrite = hasRegisteredProfile ? draft.profile : onboardingProfile;
 
   const readinessIssues = useMemo(() => {
     const issues: string[] = [];
-    if (!profileForWrite.displayName.trim()) issues.push('Add a display name');
-    if (!/^[a-z0-9][a-z0-9-]{1,30}[a-z0-9]$/.test(profileForWrite.handle)) issues.push('Choose a valid handle');
+    if (!draft.profile.displayName.trim()) issues.push('Add a display name');
+    if (!HANDLE_PATTERN.test(draft.profile.handle)) issues.push('Choose a valid handle');
     const invalidEntries = draft.lineups.filter((lineup) => !validateLineup(lineup).valid).length;
     if (invalidEntries > 0) issues.push(`Finish ${invalidEntries} incomplete ${invalidEntries === 1 ? 'entry' : 'entries'}`);
     return issues;
-  }, [draft.lineups, profileForWrite]);
+  }, [draft.lineups, draft.profile]);
   const draftCanSync = readinessIssues.length === 0;
   const profileCheckReady = !sessionLoading && !profileLoading && !profileLookupFailed && ready;
   const requestedNext = searchParams.get('next');
-  const authNext = requestedNext === '/build' || requestedNext === '/recommend' ? requestedNext : '/settings';
+  const authNext = requestedNext === '/build' || requestedNext === '/recommend' || requestedNext === '/welcome'
+    ? requestedNext
+    : '/settings';
 
   async function requestEmailLink(event: FormEvent) {
     event.preventDefault();
@@ -104,7 +98,6 @@ export function SettingsPage() {
     setAuthError(null);
     try {
       await signOut();
-      setClaimedHandle(null);
       setMessage('Signed out.');
     } catch {
       setAuthError('You could not be signed out.');
@@ -112,7 +105,7 @@ export function SettingsPage() {
   }
 
   async function requestProfileWrite() {
-    if (!session || !profileCheckReady || !draftCanSync || syncing) return;
+    if (!session || !hasRegisteredProfile || !profileCheckReady || !draftCanSync || syncing) return;
     setMessage(null);
     setAuthError(null);
     if (!online) {
@@ -122,16 +115,13 @@ export function SettingsPage() {
     setSyncing(true);
     let savedOnline = false;
     try {
-      const replacing = hasRegisteredProfile;
-      const draftToSave = replacing ? draft : { ...draft, profile: onboardingProfile, updatedAt: new Date().toISOString() };
-      const receipt = await writeProfileDraft(draftToSave, replacing, session.user.id);
+      const receipt = await writeProfileDraft(draft, true, session.user.id);
       savedOnline = true;
       const savedDraft = await loadMyProfileDraft(session.user.id);
       if (!savedDraft) throw new Error('Your saved profile could not be reloaded.');
       await replaceDraft(savedDraft);
       await refreshProfile();
-      if (replacing) setMessage(`Saved ${receipt.lineupCount} ${receipt.lineupCount === 1 ? 'entry' : 'entries'} to @${receipt.handle}.`);
-      else setClaimedHandle(receipt.handle);
+      setMessage(`Saved ${receipt.lineupCount} ${receipt.lineupCount === 1 ? 'entry' : 'entries'} to @${receipt.handle}.`);
     } catch {
       setAuthError(savedOnline
         ? 'Your profile was saved online, but this device could not reload it. Reload your saved profile to continue.'
@@ -237,12 +227,17 @@ export function SettingsPage() {
           <div className="account-recovery"><h2 id="account-heading">We could not check your account</h2><p>Try again to continue.</p><div className="command-row"><button type="button" className="button-primary" onClick={() => void refreshProfile()}>Retry account check</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
         ) : !ready ? (
           <div><h2 id="account-heading">Loading your Mainline...</h2>{storageError && <><p role="alert">{storageError}</p><button className="button-primary" onClick={reload}>Try again</button></>}</div>
-        ) : claimedHandle ? (
-          <div className="claim-success"><h2 id="account-heading">Profile saved</h2><p>Your public profile is live as <strong>@{claimedHandle}</strong>.</p><div className="command-row"><Link className="button-primary" to={`/p/${claimedHandle}`}>View your profile</Link><Link className="button-secondary" to="/build">Keep editing</Link></div></div>
         ) : hasRegisteredProfile ? (
           <div className="account-session"><div><h2 id="account-heading">@{registeredHandle}</h2><p>Your profile is saved online. Changes made in the builder stay on this device until you save them here.</p></div><div className="command-row"><Link className="button-secondary" to={`/p/${registeredHandle}`}>View profile</Link><button type="button" className="button-primary" disabled={syncing || !online || !draftCanSync} onClick={() => void requestProfileWrite()}>{syncing ? 'Saving…' : 'Save changes'}</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
         ) : (
-          <div className="account-claim"><h2 id="account-heading">Create your public profile</h2><p>Private entries stay private.</p><div className="account-onboarding__form"><label>Display name<input required autoComplete="nickname" value={onboardingProfile.displayName} maxLength={48} onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, displayName: event.target.value }); }} /></label><label>Handle<input required autoCapitalize="none" autoComplete="username" spellCheck={false} value={onboardingProfile.handle} maxLength={32} pattern="[a-z0-9-]+" placeholder="your-handle" onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, handle: event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') }); }} /></label><label className="account-onboarding__bio">Bio (optional)<input value={onboardingProfile.bio} maxLength={160} onChange={(event) => { onboardingProfileTouched.current = true; setOnboardingProfile({ ...onboardingProfile, bio: event.target.value }); }} /></label></div>{!draftCanSync && <div className="claim-readiness" role="status"><ul>{readinessIssues.map((issue) => <li key={issue}>{issue}</li>)}</ul>{readinessIssues.some((issue) => issue.includes('incomplete')) && <Link className="button-secondary" to="/build">Continue building</Link>}</div>}<div className="command-row"><button type="button" className="button-primary" disabled={syncing || !online || !draftCanSync} onClick={() => void requestProfileWrite()}>{syncing ? 'Creating…' : 'Create profile'}</button><button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button></div></div>
+          <div className="account-claim">
+            <h2 id="account-heading">Create your public profile</h2>
+            <p>A MainStation profile starts with the characters you play. The guided flow walks you through picking your mains and naming your profile.</p>
+            <div className="command-row">
+              <Link className="button-primary" to="/welcome">Claim your mains</Link>
+              <button type="button" className="button-secondary" onClick={() => void requestSignOut()}>Sign out</button>
+            </div>
+          </div>
         )}
         {message && <p className="inline-status" role="status">{message}</p>}
         {authError && <p className="inline-error" role="alert">{authError}</p>}

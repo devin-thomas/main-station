@@ -220,3 +220,65 @@ test('signed-in builder holds its layout and validation state on a phone', async
     .analyze();
   expect(results.violations.map((violation) => violation.id)).toEqual([]);
 });
+
+/**
+ * The guided onboarding is signed-in only, so it sits outside PUBLIC_SURFACES. Its two dense
+ * stages — the Game grid and a full roster of portraits — are the widest art surfaces in the app.
+ */
+const ONBOARDING_STAGES = [
+  { id: 'welcome-game', heading: 'Which game do you main?', open: null },
+  { id: 'welcome-roster', heading: 'Choose your TEKKEN 8 main', open: /^TEKKEN 8 Tekken 8$/ },
+] as const;
+
+for (const stage of ONBOARDING_STAGES) {
+  for (const viewport of VIEWPORTS) {
+    test(`geo-${stage.id}-${viewport.id}`, async ({ page }) => {
+      await mockAccount(page);
+      await page.setViewportSize({ width: viewport.width, height: viewport.height });
+      await page.goto('/welcome');
+      if (stage.open) await page.getByRole('button', { name: stage.open }).click();
+      await expect(page.getByRole('heading', { name: stage.heading })).toBeVisible();
+      await ready(page);
+
+      const geometry = await page.evaluate(inspectGeometry, {
+        tolerance: 1,
+        separate: [{ a: '.wordmark', b: '.header-actions' }],
+      });
+      expect(geometry.issues, JSON.stringify(geometry.issues)).toEqual([]);
+      expect(geometry.documentOverflow).toBeLessThanOrEqual(1);
+    });
+  }
+
+  for (const width of [390, 1440]) {
+    test(`a11y-${stage.id}-w${width}`, async ({ page }) => {
+      await mockAccount(page);
+      await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
+      await page.goto('/welcome');
+      if (stage.open) await page.getByRole('button', { name: stage.open }).click();
+      await expect(page.getByRole('heading', { name: stage.heading })).toBeVisible();
+      await ready(page);
+
+      const results = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+        .analyze();
+      const summary = results.violations.map((violation) => ({
+        id: violation.id,
+        impact: violation.impact,
+        nodes: violation.nodes.map((node) => node.target.join(' ')).slice(0, 4),
+      }));
+      expect(summary, JSON.stringify(summary, null, 2)).toEqual([]);
+    });
+  }
+
+  test(`targets-${stage.id}`, async ({ page }) => {
+    await mockAccount(page);
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/welcome');
+    if (stage.open) await page.getByRole('button', { name: stage.open }).click();
+    await expect(page.getByRole('heading', { name: stage.heading })).toBeVisible();
+    await ready(page);
+
+    const small = await page.evaluate(undersizedTargets, 44);
+    expect(small, JSON.stringify(small, null, 2)).toEqual([]);
+  });
+}
